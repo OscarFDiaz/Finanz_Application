@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>Blank App</title>
-    </head>
-    <body>
-        <script type="text/javascript" src="cordova.js"></script>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"
+    />
+           
+    <!--IMPORT DE LOS ESTILOS DE ONSEN UI-->
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
+    />
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+
+    <link
+      href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+      rel="stylesheet"
+    />   
+  
+    <!--IMPORT DE LOS .JS-->
+    <script src="scripts/splitter.js"></script>
+    <script src="scripts/timer.js"></script>
+
+    <!--IMPORT DE LA HOJA DE ESTILOS LOCAL-->
+    <link rel="stylesheet" href="./styles/style.css"/>
+    <link rel="stylesheet" href="./styles/indexStyle.css"/>
+    <link rel="stylesheet" href="./styles/menuStyle.css"/>
+    <link rel="stylesheet" href="./styles/homeStyle.css"/>
+         
+    <title>Proyecto Ahorro</title>
+  </head>
+  <body onload="startTime();">
+
+    <ons-navigator id="navigator" page="index.html"></ons-navigator>
+
+    <ons-template id="index.html">
+      <ons-page id="indexPage">
+
+        <ons-progress-bar class="spinner" modifier="material" indeterminate></ons-progress-bar>
+
+      </ons-page>
+    </ons-template>
+
+    <script type="text/javascript" src="cordova.js"></script>
+  </body>
 </html>

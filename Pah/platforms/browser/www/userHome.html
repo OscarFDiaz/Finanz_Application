@@ -1,0 +1,23 @@
+<ons-page id="userHome">
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <div class="left">
+      <ons-toolbar-button onclick="fn.open()">
+        <i class="menuButtonIcon ion-md-menu"></i>
+      </ons-toolbar-button>
+    </div>
+    <div class="center labelToolbar" id="titleSplitterUser">
+      INICIO
+    </div>
+  </ons-toolbar>
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#userHome")) {
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

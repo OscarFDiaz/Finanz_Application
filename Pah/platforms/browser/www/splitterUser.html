@@ -1,0 +1,52 @@
+<ons-page id="splitterUser">
+    <ons-splitter>
+        <ons-splitter-side id="menu" side="left" width="100%" height="100%" swipeable collapse>
+            <ons-page>
+                <ons-list id="userSplitterList" class="menuList">
+                    <ons-list-item onclick="fn.load('userHome.html')" tappable modifier="nodivider"  class="menuItem">
+                        <i class="menuIcon iconHome ion-md-home">
+                            <label class="labelMenu">INICIO</label>
+                        </i>
+                    </ons-list-item>
+                    <ons-list-item onclick="fn.load('goals.html')" tappable modifier="nodivider"  class="menuItem">
+                        <i class="menuIcon iconGoals ion-md-flag">
+                            <label class="labelMenu">METAS</label>
+                        </i>
+                        
+                    </ons-list-item>
+                    <ons-list-item onclick="fn.load('savings.html')" tappable modifier="nodivider"  class="menuItem">
+                        <i class="menuIcon iconSavings ion-ios-card">
+                            <label class="labelMenu">FONDO</label>
+                        </i>
+                        
+                    </ons-list-item>
+                    <ons-list-item onclick="fn.load('expenses.html')" tappable modifier="nodivider" class="menuItem">
+                        <i class='menuIcon iconExpenses ion-ios-list'>
+                            <label class="labelMenu">GASTOS</label>
+                        </i>
+                        
+                    </ons-list-item>
+                    <ons-list-item id="closeSesionItem" onclick="fn.load('money.html')" tappable modifier="nodivider" class="menuItem">
+                        <i class="menuIcon iconMoney ion-ios-wallet">
+                            <label class="labelMenu">MI DINERO</label>
+                        </i>
+                        
+                    </ons-list-item>
+                    <ons-list-item id="closeSesionItem" onclick="fn.load('configuration.html')" tappable modifier="nodivider" class="menuItem">
+                        <i class="menuIcon iconConfiguration ion-md-settings">
+                            <label class="labelMenu">CONFIGURACIÓN</label>
+                        </i>
+                    </ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-splitter-side>
+        <ons-splitter-content id="content" page="userHome.html"></ons-splitter-content>
+    </ons-splitter>
+    <script>
+        document.addEventListener('init', function (event) {
+            if (event.target.matches('#splitterUser')) {
+                
+            }
+        }, false);
+    </script>
+</ons-page>
