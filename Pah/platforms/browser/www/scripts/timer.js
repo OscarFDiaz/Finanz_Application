@@ -22,6 +22,6 @@ function startTime(){
     setTimeout(function () {
         const navigator = document.querySelector("#navigator");
         navigator.resetToPage("splitterUser.html");
-    }, 1500);
+    }, 1000);
     
 }
