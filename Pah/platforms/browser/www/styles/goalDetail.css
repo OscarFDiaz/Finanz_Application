@@ -1,0 +1,35 @@
+.detailTitle {
+  font-size: 24px;
+  color: var(--detail-goal-title-color);
+}
+
+.detailInfo {
+  color: var(--detail-goal-content-color);
+  font-weight: lighter;
+  font-size: 12px;
+}
+
+.percentDetailTitle {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  font-size: 50px;
+  text-align: center;
+}
+
+.percentBar {
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 16px;
+}
+
+.moneyDetailGoal {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+  font-size: 28px;
+  color: var(--detail-money-goal);
+}

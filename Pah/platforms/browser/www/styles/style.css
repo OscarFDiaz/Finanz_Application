@@ -12,7 +12,8 @@
 
   --menu-icon-color: #f5a11b;
   --menu-font-color: #ffffff;
-
+  
+  --back-button-color: #ffffff;
   --menu-button-color: #ffffff;
   --label-toolbar-color: #ffffff;
   --toolbar-color: #0d2840;
@@ -24,9 +25,17 @@
   --card-text-color: #9cd9ce;
   --card-content-text-color: #0596a6;
 
+  --detail-goal-content-color: #9CD9CE;
+  --detail-goal-title-color: #9CD9CE;
+  --detail-money-goal: #0596A6;
+
   --flat-button-color: #f5a11b;
   --flat-button-active-color: #cc7e00;
   --flat-button-color-text: #ffffff;
+
+  --flat-button-light-color-text:#ffffff;
+  --flat-button-light-color: #0596A6;
+  --flat-button-light-active-color: #05565f;
 }
 
 .page__background {
@@ -51,6 +60,10 @@
   font-size: 26px;
 }
 
+.back-button--material__icon {
+  fill: var(--back-button-color);
+}
+
 /* PROGRESS BAR & CARDS*/
 #progressbar {
   background-color: var(--progressbar-back-color);
@@ -60,14 +73,17 @@
 }
 #progressbar > div {
   background-color: var(--progressbar-main-color);
-  width: 48%; /* Adjust with JavaScript */
+  width: 50%; /* Adjust with JavaScript */
   height: 17px;
   border-radius: 15px;
 }
 
 .card--material {
   border-radius: 15px;
+
   padding: 0px;
+  margin-left: 16px;
+  margin-right: 16px;
   margin-bottom: 16px;
 
   -webkit-box-shadow: 0px 10px 6px 0px rgba(0, 0, 0, 0.2);
@@ -114,8 +130,30 @@
   min-height: 40px;
   width: 208px;
 }
-
 .flatButton:active {
   background: var(--flat-button-active-color);
+}
+
+.flatButtonLight {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: var(--flat-button-light-color);
+  color: var(--flat-button-light-color-text);
+
+  border-radius: 15px;
+  box-shadow: none;
+
+  font-size: 22px;
+  font-weight: 400;
+
+  line-height: 40px;
+  min-height: 4;
+  width: 208px;
+  margin-bottom: 16px;
+}
+.flatButtonLight:active {
+  background: var(--flat-button-light-active-color);
 }
 /**/
