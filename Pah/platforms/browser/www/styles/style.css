@@ -162,4 +162,25 @@
 .flatButtonLight:active {
   background: var(--flat-button-light-active-color);
 }
+
+.range--material__input {
+  background-image: linear-gradient(#F5A11B,#f5a11b);
+}
+
+.text-input--material__label {
+  margin-top: 16px;
+  font-size: 18px;
+  color: var(--text-color-3);
+  left: 33%;
+  top: 0px
+}
+
+.text-input--material {
+  margin-top: 16px;
+  color: var(--text-color-3);
+  font-size: 18px;
+  text-align: center;
+
+  background-image: linear-gradient(to top,#F5A11B 1px,#F5A11B 1px);
+}
 /**/

@@ -1,49 +1,136 @@
 <ons-page id="detailSaving">
-    <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
-        <ons-back-button></ons-back-button>
-    
-        <div class="center labelToolbar" id="titleDetailSaving">
-          Modificar Fondo
-        </div>
-      </ons-toolbar>
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <ons-back-button></ons-back-button>
 
-    <ons-card>
-      <div class="title mainTitle">
-        FONDO
-      </div>
-      <div class="content">
-        <label id="savingsInfo" class="savingInfo">$1005 / $67</label>
-      </div>
-    </ons-card>
+    <div class="center labelToolbar" id="titleDetailSaving">
+      Modificar Fondo
+    </div>
+  </ons-toolbar>
 
-    <ons-card>
-      <div class="title savingTitle">
-        DISPONIBLE
+  <ons-card>
+    <div class="content">
+      <div style="text-align: center; margin-top: 16px;">
+        <p>
+          <ons-input
+            id="username"
+            modifier="underbar"
+            placeholder="CANTIDAD"
+          ></ons-input>
+        </p>
       </div>
-      <div class="content">
-        <label id="savingsDailyInfo" class="savingDaily">$67</label>
-        <ons-button class="flatButtonLight">QUITAR</ons-button>
-      </div>
-    </ons-card>
 
-    <ons-card>
-      <div class="title daysTitle">
-        DÍAS RESTANTES | <span id="savingsDays" class="leftDays">15</span>
-      </div>
-      <div class="content">
-        <ons-button class="flatButton">TERMINAR DÍA</ons-button>
-      </div>
-    </ons-card>
-  
-    <ons-button class="flatButton" style="margin-bottom: 16px;">MODIFICAR</ons-button>
-    <script>
-      document.addEventListener(
-        "init",
-        function (event) {
-          if (event.target.matches("#savings")) {
-          }
-        },
-        false
-      );
-    </script>
-  </ons-page>
+      <p>
+        <label class="selectedText"
+          >DÍAS:
+          <span id="rangeSelectDays" class="selectedRange">16</span></label
+        >
+        <ons-row style="margin-top: 15px;">
+          <ons-col width="40px" style="text-align: center; line-height: 31px;">
+            <label class="labelRange">1</label>
+          </ons-col>
+          <ons-col>
+            <ons-range style="width: 100%;" value="50"></ons-range>
+          </ons-col>
+          <ons-col width="40px" style="text-align: center; line-height: 31px;">
+            <label class="labelRange">31</label>
+          </ons-col>
+        </ons-row>
+
+        <label class="selectedText"
+          >PORCENTAJE:
+          <span id="rangeSelectPercent" class="selectedRange">50%</span></label
+        >
+        <ons-row style="margin-top: 16px;">
+          <ons-col width="40px" style="text-align: center; line-height: 31px;">
+            <label class="labelRangeLess">0</label>
+          </ons-col>
+          <ons-col>
+            <ons-range style="width: 100%;" value="50"></ons-range>
+          </ons-col>
+          <ons-col width="35px" style="text-align: center; line-height: 31px;">
+            <label class="labelRangeLess">100</label>
+          </ons-col>
+        </ons-row>
+      </p>
+
+      <ons-button class="flatButton" style="margin-bottom: 16px;"
+        >INGRESAR</ons-button
+      >
+      <ons-button class="flatButtonLight">PREVISUALIZAR</ons-button>
+    </div>
+  </ons-card>
+
+  <ons-card>
+    <div class="title prevTitle">
+      PREVISUALIZACIÓN
+    </div>
+    <div class="content">
+      <label class="entryAmountText"
+        >CANTIDAD INGRESADA:
+        <span id="entryAmount" class="entryAmountDetail">$ 3000</span></label
+      >
+
+      <label class="entryAmountText"
+        >DÍAS: <span id="entryDays" class="entryAmountDetail">16</span></label
+      >
+
+      <label class="entryAmountText"
+        >PORCENTAJE:
+        <span id="entryPercent" class="entryAmountDetail"
+          >60% -> $ 1005</span
+        ></label
+      >
+
+      <label class="entryAmountText"
+        >PARA GASTAR:
+        <span id="entryExpend" class="entryAmountDetail">$ 67</span></label
+      >
+    </div>
+  </ons-card>
+
+  <ons-card>
+    <div class="title prevTitle">
+      FONDO ACTUAL
+    </div>
+    <div class="content">
+      <label class="entryAmountText"
+        >CANTIDAD INGRESADA:
+        <span id="entryCurrentAmount" class="entryAmountDetail"
+          >$ 3000</span
+        ></label
+      >
+
+      <label class="entryAmountText"
+        >DÍAS:
+        <span id="entryCurrentDays" class="entryAmountDetail">15</span></label
+      >
+
+      <label class="entryAmountText"
+        >PORCENTAJE:
+        <span id="entryCurrentPercent" class="entryAmountDetail"
+          >60% -> $ 1005</span
+        ></label
+      >
+
+      <label class="entryAmountText"
+        >PARA GASTAR:
+        <span id="entryCurrentExpend" class="entryAmountDetail"
+          >$ 67</span
+        ></label
+      >
+
+      <ons-button class="flatButtonLight">EDITAR</ons-button>
+    </div>
+  </ons-card>
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#savings")) {
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>
