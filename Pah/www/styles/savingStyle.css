@@ -1,0 +1,48 @@
+.mainTitle {
+  text-align: center;
+
+  font-size: 20px;
+  font-weight: normal;
+  color: var(--text-color-3);
+}
+
+.savingInfo {
+  text-align: center;
+  display: block;
+
+  font-size: 38px;
+  font-weight: normal;
+  color: var(--text-color-2);
+}
+
+.savingTitle {
+  text-align: center;
+
+  font-size: 38px;
+  font-weight: normal;
+  color: var(--text-color-3);
+}
+
+.savingDaily {
+  text-align: center;
+  display: block;
+
+  font-size: 140px;
+  font-weight: bold;
+  color: var(--text-color-4);
+}
+
+.daysTitle {
+  text-align: center;
+  margin-bottom: 16px;
+
+  font-size: 20px;
+  font-weight: normal;
+  color: var(--text-color-3);
+}
+
+.leftDays {
+  font-size: 20px;
+  font-weight: normal;
+  color: var(--text-color-4);
+}

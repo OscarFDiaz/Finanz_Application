@@ -10,6 +10,13 @@
   --color-4: #f5a11b;
   --color-5: #ffffff;
 
+  --text-color: #0d2840;
+  --text-color-1: #0e5259;
+  --text-color-2: #0596a6;
+  --text-color-3: #9cd9ce;
+  --text-color-4: #f5a11b;
+  --text-color-5: #ffffff;
+
   --menu-icon-color: #f5a11b;
   --menu-font-color: #ffffff;
   
@@ -149,9 +156,8 @@
   font-weight: 400;
 
   line-height: 40px;
-  min-height: 4;
+  min-height: 40px;
   width: 208px;
-  margin-bottom: 16px;
 }
 .flatButtonLight:active {
   background: var(--flat-button-light-active-color);

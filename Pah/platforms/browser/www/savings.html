@@ -9,7 +9,36 @@
         FONDO
       </div>
     </ons-toolbar>
+
+    <ons-card>
+      <div class="title mainTitle">
+        FONDO
+      </div>
+      <div class="content">
+        <label id="savingsInfo" class="savingInfo">$1005 / $67</label>
+      </div>
+    </ons-card>
+
+    <ons-card>
+      <div class="title savingTitle">
+        DISPONIBLE
+      </div>
+      <div class="content">
+        <label id="savingsDailyInfo" class="savingDaily">$67</label>
+        <ons-button class="flatButtonLight">QUITAR</ons-button>
+      </div>
+    </ons-card>
+
+    <ons-card>
+      <div class="title daysTitle">
+        DÍAS RESTANTES | <span id="savingsDays" class="leftDays">15</span>
+      </div>
+      <div class="content">
+        <ons-button class="flatButton">TERMINAR DÍA</ons-button>
+      </div>
+    </ons-card>
   
+    <ons-button class="flatButton" style="margin-bottom: 16px;" onclick="pushTest2()">MODIFICAR</ons-button>
     <script>
       document.addEventListener(
         "init",
