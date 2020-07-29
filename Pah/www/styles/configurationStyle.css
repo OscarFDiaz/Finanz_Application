@@ -1,0 +1,16 @@
+.listConfiguration {
+  background: none;
+}
+
+.itemListConfiguration {
+  color: var(--text-color-4);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/*CHEVRON DE LOS ELEMENTOS EN LA CONFIGURACIÓN*/
+.list-item--chevron:before,
+.list-item__expand-chevron {
+  border-right: 4px solid var(--menu-icon-color);
+  border-bottom: 4px solid var(--menu-icon-color);
+}

@@ -1,4 +1,4 @@
-<ons-page id="configurarion">
+<ons-page id="configuration">
     <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
       <div class="left">
         <ons-toolbar-button onclick="fn.open()">
@@ -9,12 +9,18 @@
         CONFIGURACIÓN
       </div>
     </ons-toolbar>
+
+    <ons-list class="listConfiguration">
+  
+      <ons-list-item modifier="chevron nodivider" class="itemListConfiguration" tappable>TEMA</ons-list-item>
+  
+    </ons-list>
   
     <script>
       document.addEventListener(
         "init",
         function (event) {
-          if (event.target.matches("#configurarion")) {
+          if (event.target.matches("#configuration")) {
           }
         },
         false
