@@ -5,7 +5,7 @@
 
 .detailInfo {
   color: var(--detail-goal-content-color);
-  font-weight: lighter;
+  font-weight: normal;
   font-size: 12px;
 }
 
