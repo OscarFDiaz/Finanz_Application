@@ -1,23 +1,56 @@
 <ons-page id="money">
-    <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <i class="menuButtonIcon ion-md-menu"></i>
-        </ons-toolbar-button>
-      </div>
-      <div class="center labelToolbar" id="titleMoney">
-        MI DINERO
-      </div>
-    </ons-toolbar>
-  
-    <script>
-      document.addEventListener(
-        "init",
-        function (event) {
-          if (event.target.matches("#money")) {
-          }
-        },
-        false
-      );
-    </script>
-  </ons-page>
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <div class="left">
+      <ons-toolbar-button onclick="fn.open()">
+        <i class="menuButtonIcon ion-md-menu"></i>
+      </ons-toolbar-button>
+    </div>
+    <div class="center labelToolbar" id="titleMoney">
+      MI DINERO
+    </div>
+  </ons-toolbar>
+
+  <ons-card>
+    <div class="title moneyTitle">
+      Alcancía
+    </div>
+    <div class="content">
+      <label class="moneyInfo">$ 5000</label>
+    </div>
+    <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;">
+      SUMAR
+    </ons-button>
+    <ons-button class="moneyButtonRe" style="margin-bottom: 16px;">
+      RESTAR
+    </ons-button>
+  </ons-card>
+
+  <ons-card>
+    <div class="title moneyTitle">
+      Tarjeta Nomina
+    </div>
+    <div class="content">
+      <label class="moneyInfo">$ 3450</label>
+    </div>
+
+    <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;">
+      SUMAR
+    </ons-button>
+    <ons-button class="moneyButtonRe" style="margin-bottom: 16px;">
+      RESTAR
+    </ons-button>
+  </ons-card>
+
+  <ons-button class="flatButton" onclick="pushTest4()">AÑADIR NUEVA</ons-button>
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#money")) {
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

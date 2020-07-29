@@ -12,3 +12,8 @@ function pushTest3() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("newGoal.html");    
 }
+
+function pushTest4() {
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("newMoney.html");    
+}
