@@ -46,3 +46,47 @@
   font-weight: normal;
   color: var(--text-color-4);
 }
+
+/* SAVING DETAIL */
+.labelRange {
+  font-size: 26px;
+  color: var(--text-color-3);
+}
+
+.labelRangeLess {
+  font-size: 20px;
+  color: var(--text-color-3);
+}
+
+.selectedText {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-color-3);
+  margin-bottom: -16px;
+}
+
+.selectedRange {
+  color: var(--text-color-4);
+}
+
+.prevTitle {
+  display: block;
+  text-align: center;
+  font-size: 26px;
+  color: var(--text-color-4);
+  margin-bottom: 16px;
+}
+
+.entryAmountText {
+  display: block;
+  text-align: left;
+  font-size: 20px;
+  color: var(--text-color-3);
+  margin-bottom: 16px;
+}
+
+.entryAmountDetail{
+  color: var(--text-color-4);
+  font-weight: bold;
+}

@@ -1,0 +1,69 @@
+<ons-page id="newExpense">
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <ons-back-button></ons-back-button>
+
+    <div class="center labelToolbar">
+      NUEVO GASTO
+    </div>
+  </ons-toolbar>
+
+  <ons-card>
+    <div class="content">
+      <div style="text-align: center; margin-top: 16px;">
+        <p>
+          <ons-input
+            id="newExpenseName"
+            modifier="underbar"
+            placeholder="NOMBRE DEL GASTO"
+            type="text"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+        </p>
+      </div>
+
+      <label class="iconExpenseLabel" style="margin-bottom: -15px;">
+        SELECCIONA UN ICONO
+      </label>
+
+      <div id="expenseIconsList" class="iconsListContainer">
+        <i class="expenseIconList ion-md-airplane"></i>
+        <i class="expenseIconList ion-md-beer"></i>
+        <i class="expenseIconList ion-md-laptop"></i>
+        <i class="expenseIconList ion-md-bus"></i>
+        <i class="expenseIconList ion-md-car"></i>
+        <i class="expenseIconList ion-md-film"></i>
+        <i class="expenseIconList ion-md-gift"></i>
+        <i class="expenseIconList ion-md-paw"></i>
+        <i class="expenseIconList ion-md-tv"></i>
+        <i class="expenseIconList ion-md-shirt"></i>
+      </div>
+
+      <label class="iconExpenseLabel" style="margin-bottom: -20px;">SELECCIONA UN COLOR</label>
+
+      <div style="text-align: center; margin-top: 16px;">
+        <p>
+          <ons-input
+            id="newExpenseColor"
+            type="color"
+            style="display: block; margin: 16px 16px; border-radius: 50%x;"
+          ></ons-input>
+        </p>
+      </div>
+
+      <ons-button class="flatButton">
+        TERMINADO
+      </ons-button>
+    </div>
+  </ons-card>
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#newExpense")) {
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

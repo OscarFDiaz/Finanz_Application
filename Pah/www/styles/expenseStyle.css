@@ -1,0 +1,48 @@
+/* MAIN EXPENSE */
+.expenseTitle {
+  display: block;
+  text-align: left;
+
+  font-size: 28px;
+  color: var(--text-color-5);
+}
+
+.expenseInfo {
+  display: block;
+  text-align: left;
+
+  font-size: 18px;
+  color: var(--text-color-3);
+}
+
+.expenseIcon {
+  font-size: 28px;
+  color: var(--menu-icon-color);
+}
+
+/* NEW EXPENSE */
+
+.iconExpenseLabel {
+    display: block;
+
+    text-align: center;
+    font-size: 20px;
+
+    color: var(--text-color-3);
+}
+
+.iconsListContainer {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.expenseIconList {
+    display: inline-block;
+    font-size: 50px;
+    color: white;
+    margin: 16px 16px 0px 5px;
+}
+
+/* DETAIL EXPENSE */

@@ -17,3 +17,13 @@ function pushTest4() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("newMoney.html");    
 }
+
+function pushTest5() {
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("newExpense.html");    
+}
+
+function pushTest6() {
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("detailExpense.html");    
+}
