@@ -13,4 +13,5 @@
 .list-item__expand-chevron {
   border-right: 4px solid var(--menu-icon-color);
   border-bottom: 4px solid var(--menu-icon-color);
+  display: block;
 }

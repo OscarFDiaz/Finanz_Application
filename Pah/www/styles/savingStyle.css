@@ -71,7 +71,7 @@
 }
 
 .prevTitle {
-  display: block;
+  display: block; 
   text-align: center;
   font-size: 26px;
   color: var(--text-color-4);

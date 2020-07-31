@@ -1,41 +1,84 @@
 <ons-page id="detailExpense">
-    <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
-      <ons-back-button></ons-back-button>
-  
-      <div class="center labelToolbar" id="titleDetailExpense">
-        DULCES
-      </div>
-    </ons-toolbar>
-  
-    <!--gasto toal - ultimos 15 días  - ultimos 30 días-->
-    <ons-card>
-      <div class="content">
-      </div>
-    </ons-card>
-  
-    <!-- ultimo gasto - fecha - nota-->
-    <ons-card>
-      <div class="content">
-      </div>
-    </ons-card>
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <ons-back-button></ons-back-button>
 
-    <!-- fecha inicial -->
-    <ons-card>
-        <div class="content">
-        </div>
-      </ons-card>
-  
-    <ons-button class="flatButtonLight" style="margin-bottom: 16px;">REINICIAR</ons-button>
-  
-    <script>
-      document.addEventListener(
-        "init",
-        function (event) {
-          if (event.target.matches("#detailExpense")) {
-          }
-        },
-        false
-      );
-    </script>
-  </ons-page>
-  
+    <div class="center labelToolbar" id="titleDetailExpense">
+      DULCES
+    </div>
+  </ons-toolbar>
+
+  <!--gasto toal - ultimos 15 días  - ultimos 30 días-->
+  <ons-card>
+    <div class="content">
+      <label class="labelDetailExpense"
+        >Gasto total:
+        <span id="totalExpenseDetail" class="labelInfoDetailExpense"
+          >$ 5000</span
+        ></label
+      >
+      <label class="labelDetailExpense"
+        >Últimos 15 días:
+        <span id="lastDaysDetail" class="labelInfoDetailExpense"
+          >$ 300</span
+        ></label
+      >
+      <label class="labelDetailExpense"
+        >Últimos 30 días:
+        <span id="lastMonthDetail" class="labelInfoDetailExpense"
+          >$ 800</span
+        ></label
+      >
+    </div>
+  </ons-card>
+
+  <!-- ultimo gasto - fecha - nota-->
+  <ons-card>
+    <div class="content">
+      <label class="labelDetailExpense"
+        >Último gasto:
+        <span id="lastExpenseDetail" class="labelInfoDetailExpense"
+          >$ 20</span
+        ></label
+      >
+      <label class="labelDetailExpense"
+        >Fecha:
+        <span id="lastExpenseDate" class="labelInfoDetailExpense"
+          >28/06/20</span
+        ></label
+      >
+      <label class="labelDetailExpense"
+        >Nota:
+        <span id="lastExpenseNote" class="labelInfoDetailExpense"
+          >Chocorroles</span
+        ></label
+      >
+    </div>
+  </ons-card>
+
+  <!-- fecha inicial -->
+  <ons-card>
+    <div class="content">
+      <label class="labelDetailExpense"
+        >Fecha inicial:
+        <span id="expenseFirstDate" class="labelInfoDetailExpense"
+          >28/04/20</span
+        ></label
+      >
+    </div>
+  </ons-card>
+
+  <ons-button class="flatButtonLight" style="margin-bottom: 16px;"
+    >REINICIAR</ons-button
+  >
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#detailExpense")) {
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>
