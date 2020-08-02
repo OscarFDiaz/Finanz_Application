@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.oscar.diaz" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Pah</name>
     <description>
-        A blank PhoneGap app.
+        Aplicación sencilla para el manejo de finanzas personales.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
+    <author email="oscarf.diaz@alumnos.udg.mx" href="https://github.com/OscarFDiaz">
         PhoneGap Team
     </author>
     <content src="index.html" />
