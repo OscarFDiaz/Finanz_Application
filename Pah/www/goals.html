@@ -23,19 +23,6 @@
           </div> 
         </div>
       </ons-card>
-  
-  
-      <ons-card onclick="">
-        <div class="title" id="titleGoal">
-          Nuevos lentes para no ser ciego
-        </div>
-        <div class="content">
-          <label id="goalInfo">$ 1500 de $ 5000 | 36 DÍAS RESTANTES</label>
-          <div id="progressbar"> 
-            <div></div> 
-          </div> 
-        </div>
-      </ons-card>
       -->
     </div>
 
@@ -45,7 +32,9 @@
       document.addEventListener(
         "init",
         function (event) {
-          if (event.target.matches("#userHome")) {
+          if (event.target.matches("#goals")) {
+            // Conseguir Goals
+            getGoals();
           }
         },
         false

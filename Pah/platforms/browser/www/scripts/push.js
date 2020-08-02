@@ -27,3 +27,13 @@ function pushTest6() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("detailExpense.html");    
 }
+
+// GOALS GOALS GOALS GOALS GOALS GOALS
+/*
+  - Con esta función hago POP a la página y así regreso
+  a la página anterior
+*/
+function functionPopPage() {
+  const navigator = document.querySelector("#navigator");
+  navigator.popPage();
+}

@@ -6,47 +6,131 @@
       Monitor para jugar a 144 FPS
     </div>
   </ons-toolbar>
+  <div id="goalDetailContainer"></div>
 
-  <ons-card onclick="">
-    <div class="title detailTitle" id="titleDetailGoal">
-      Monitor para jugar a 144 FPS
-    </div>
-    <div class="content detailInfo">
-      <p id="goalDetailInfo">
-        DESCRIPCIÓN: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-        in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-        officia deserunt mollit anim id est laborum.
-      </p>
-    </div>
-  </ons-card>
-
-  <ons-card>
-    <div class="title percentDetailTitle" id="progressDetail">
-      50%
+  <ons-alert-dialog id="my-alert-dialog" modifier="rowfooter">
+    <div style="text-align: center; margin-top: 16px;">
+      <div class="alert-dialog-title">Modificar meta</div>
     </div>
 
-    <div id="progressbar" class="percentBar">
-      <div></div>
+    <div class="alert-dialog-content">
+      <div style="text-align: center; margin-top: 16px;">
+        <p>
+          <ons-input
+            id="editGoalName"
+            modifier="underbar"
+            placeholder="NOMBRE DE LA META"
+            type="text"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+
+          <ons-input
+            id="editGoalDescription"
+            modifier="underbar"
+            placeholder="DESCRIPCIÓN"
+            type="text"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+
+          <ons-input
+            id="editGoalMoney"
+            modifier="underbar"
+            placeholder="DINERO NECESARIO"
+            type="number"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+
+          <ons-input
+            id="editActualGoalMoney"
+            modifier="underbar"
+            placeholder="DINERO ACTUAL"
+            type="number"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+
+          <ons-input
+            id="editGoalDate"
+            modifier="underbar"
+            placeholder="FECHA META"
+            type="date"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+        </p>
+      </div>
     </div>
 
-    <div class="content">
-      <label id="goalAmountInfo" class="moneyDetailGoal">$ 2500 de $ 5000</label>
-      <label id="goalDateInfo" class="moneyDetailGoal">SIN DATOS DE FECHA</label>
-      <ons-button class="flatButton" style="margin-top: 16px;">ELIMINAR</ons-button>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="hideAlertNoChange()"
+        >Cancelar</ons-alert-dialog-button
+      >
+      <ons-alert-dialog-button onclick="hideAlertDialog()"
+        >Listo!</ons-alert-dialog-button
+      >
     </div>
-  </ons-card>
-
-  <ons-button class="flatButtonLight" style="margin-bottom: 16px;">EDITAR</ons-button>
+  </ons-alert-dialog>
 
   <script>
     document.addEventListener(
       "init",
       function (event) {
         if (event.target.matches("#detailGoal")) {
+          document.getElementById("titleDetailGoal").innerHTML = "";
+
+          let retrievedGoal = sessionStorage.getItem("sessionFindGoal");
+          let parseGoal = JSON.parse(retrievedGoal);
+
+          let gName = parseGoal.name;
+          let gDescription = parseGoal.description;
+          let gAMoney = parseGoal.actualMoney;
+          let gMoney = parseGoal.goalMoney;
+          let gDate = parseGoal.date;
+
+          document.getElementById("titleDetailGoal").innerHTML = gName;
+
+          let goalsView = document.getElementById("goalDetailContainer");
+          goalsView.innerHTML = "";
+
+          /*
+       TODO 
+        - CALCULAR EL PORCENTAJE
+        - CALCULAR BIEN LAS FECHAS
+       */
+          goalsView.innerHTML += `<ons-card>
+              <div class="title detailTitle">
+                ${gName}
+              </div>
+              <div class="content detailInfo">
+                <p>
+                  DESCRIPCIÓN: ${gDescription}
+                </p>
+              </div>
+            </ons-card>
+        
+            <ons-card>
+              <div class="title percentDetailTitle">
+                50%
+              </div>
+
+              <div id="progressbar" class="percentBar">
+                <div></div>
+              </div>
+
+              <div class="content">
+                <label class="moneyDetailGoal">
+                  $ ${gAMoney} de $ ${gMoney}
+                </label>
+                <label class="moneyDetailGoal">
+                  ${gDate}
+                </label>
+                <ons-button class="flatButton" style="margin-top: 16px;" onclick="deleteGoal('${gName}')">
+                  ELIMINAR
+                </ons-button>
+              </div>
+            </ons-card>
+
+            <ons-button class="flatButtonLight" style="margin-bottom: 16px;" onclick="editGoal('${gName}')">
+              EDITAR
+            </ons-button>`;
         }
       },
       false
