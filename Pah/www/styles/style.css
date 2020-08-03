@@ -10,6 +10,9 @@
   --color-4: #f5a11b;
   --color-5: #ffffff;
 
+  --gradient-1: var(--color);
+  --gradient-2: #113a5e;
+
   --text-color: #0d2840;
   --text-color-1: #0e5259;
   --text-color-2: #0596a6;
@@ -49,8 +52,8 @@
   background: rgb(13, 40, 64);
   background: linear-gradient(
     180deg,
-    rgba(13, 40, 64, 1) 0%,
-    rgba(17, 58, 94, 1) 100%
+    var(--gradient-1) 0%,
+    var(--gradient-2) 100%
   );
   background-position: center top !important;
   background-repeat: no-repeat !important;
@@ -182,5 +185,40 @@
 
   background-image: linear-gradient(to top,#F5A11B 1px,#F5A11B 1px);
 }
+.alert-dialog--material, .alert-dialog-container--material {
+  background-color: var(--color);
+  border-radius: 15px;
+}
 
+.alert-dialog-title--material {
+  color: var(--text-color-5);
+}
+
+.alert-dialog-footer--material {
+  background-color: var(--color-1);
+}
+
+.alert-dialog-content--material {
+  background-color: none;
+  color: var(--text-color-5)
+}
+
+.alert-dialog-button--material {
+  color: var(--text-color-5);
+}
+
+.ons-toast .toast {
+  border-radius: 15px 15px 0px 0px;
+}
+
+.toast--material{
+  background-color: var(--color-4);
+  border-radius: 15px 15px 0px 0px;
+}
+
+.toast--material__message {
+  margin: 0px;
+  font-size: 18px;
+  text-align: center;
+}
 /**/

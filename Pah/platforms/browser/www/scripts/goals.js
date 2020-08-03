@@ -11,6 +11,36 @@ function makeNewGoal() {
   let goalMoney = document.getElementById("newGoalMoney").value;
   let goalActualMoney = "0";
   let goalDate = document.getElementById("newGoalDate").value;
+  console.log("GDATE: " + goalDate);
+
+  //Compruebo que no hay campos vacios, en su defecto los lleno
+  if (goalDescription === "") {
+    goalDescription =
+    "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR'";
+  }
+  
+  if (goalDate === "") {
+    goalDate = "SIN DATOS DE FECHA";
+  }
+
+  if (goalName === "") {
+    ons.notification.toast("Un momento, una meta necesita un buen nombre!", {
+      title: "Error!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
+
+  if (goalMoney === "") {
+    ons.notification.toast("Un momento, cuanto dinero necesita tu meta?!", {
+      title: "Error!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
+
 
   let goal = {
     goalName,
@@ -53,6 +83,10 @@ function getGoals() {
     let gMoney = goals[i].goalMoney;
     let gAMoney = goals[i].goalActualMoney;
     let gDate = goals[i].goalDate;
+
+    if (gDate === "") {
+      gDate = "SIN DATOS DE FECHA";
+    }
 
     // cambiar pushTest()
     goalsView.innerHTML += `<ons-card onclick="findGoal('${gName}')">

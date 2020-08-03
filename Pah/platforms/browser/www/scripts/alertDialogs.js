@@ -7,8 +7,8 @@ function createAlertDialogToEditGoal() {
 
   document.getElementById("editGoalName").value = parseGoal.name;
   document.getElementById("editGoalDescription").value = parseGoal.description;
-  document.getElementById("editGoalMoney").value = parseGoal.actualMoney;
-  document.getElementById("editActualGoalMoney").value = parseGoal.goalMoney;
+  document.getElementById("editGoalMoney").value = parseGoal.goalMoney;
+  document.getElementById("editActualGoalMoney").value = parseGoal.actualMoney;
   document.getElementById("editGoalDate").value = parseGoal.date;
 
   var dialog = document.getElementById("my-alert-dialog");
@@ -30,9 +30,9 @@ function createAlertDialogToEditGoal() {
 function hideAlertDialog() {
   functionPopPage();
   let name = document.getElementById("editGoalName").value;
-  let description = document.getElementById("editGoalDescription").value;
-  let actualMoney = document.getElementById("editGoalMoney").value;
-  let goalMoney = document.getElementById("editActualGoalMoney").value;
+  let description = docment.getElementById("editGoalDescription").value;
+  let actualMoney = document.getElementById("editActualGoalMoney").value;
+  let goalMoney = document.getElementById("editGoalMoney").value;
   let goalDate = document.getElementById("editGoalDate").value;
 
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
