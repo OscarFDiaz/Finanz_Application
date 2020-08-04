@@ -5,19 +5,35 @@
   - Mando update al usuario
   - Lo regreso a la pantalla
 */
+
+function parseDate(str) {
+  var mdy = str.split('-');
+  return new Date(mdy[2], mdy[0]-1, mdy[1]);
+}
+
+function datediff(first, second) {
+  // Take the difference between the dates and divide by milliseconds per day.
+  // Round to nearest whole number to deal with DST.
+  return Math.round((second-first)/(1000*60*60*24));
+}
+
 function makeNewGoal() {
   let goalName = document.getElementById("newGoalName").value;
   let goalDescription = document.getElementById("newGoalDescription").value;
   let goalMoney = document.getElementById("newGoalMoney").value;
   let goalActualMoney = "0";
-  let goalDate = document.getElementById("newGoalDate").value;
+
+  /**COMPROBAR CÓMO SE EVALUAN LAS FECHAS */
+  let goalDate1 = document.getElementById("newGoalDate").value;
+  let goalDate = datediff(parseDate(goalDate1), parseDate("2020-12-12"));
+
 
   //Compruebo que no hay campos vacios, en su defecto los lleno
   if (goalDescription === "") {
     goalDescription =
-    "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR'";
+      "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR'";
   }
-  
+
   if (goalDate === "") {
     goalDate = "SIN DATOS DE FECHA";
   }
@@ -39,7 +55,6 @@ function makeNewGoal() {
     });
     return;
   }
-
 
   let goal = {
     goalName,
@@ -222,5 +237,38 @@ function editGoal(sendGoalName) {
 }
 
 function addMoneyGoal(sendGoalName) {
-  
+  let goals = JSON.parse(localStorage.getItem("goalStorage"));
+
+  for (let i = 0; i < goals.length; i++) {
+    let gName = goals[i].goalName;
+
+    if (gName == sendGoalName) {
+      let gDescription = goals[i].goalDescription;
+      let gAMoney = goals[i].goalActualMoney;
+      let gMoney = goals[i].goalMoney;
+      let gDate = goals[i].goalDate;
+
+      let findGoalObject = {
+        name: gName,
+        description: gDescription,
+        actualMoney: gAMoney,
+        goalMoney: gMoney,
+        date: gDate,
+      };
+
+      if (sessionStorage.getItem("sessionFindGoal") === null) {
+        sessionStorage.setItem(
+          "sessionFindGoal",
+          JSON.stringify(findGoalObject)
+        );
+      } else {
+        sessionStorage.removeItem("sessionFindGoal");
+        sessionStorage.setItem(
+          "sessionFindGoal",
+          JSON.stringify(findGoalObject)
+        );
+      }
+    }
+  }
+  createAlertDialogToEditGoalMoney();
 }
