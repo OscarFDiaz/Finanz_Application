@@ -126,6 +126,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 16px;
 
   background: var(--flat-button-color);
   color: var(--flat-button-color-text);
@@ -148,6 +149,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 16px;
 
   background: var(--flat-button-light-color);
   color: var(--flat-button-light-color-text);
@@ -185,6 +187,16 @@
 
   background-image: linear-gradient(to top,#F5A11B 1px,#F5A11B 1px);
 }
+
+.textarea {
+  background: none;
+  font-size: 18px;
+  border-radius: 15px;
+  border: 2px solid var(--color-4);
+  color: var(--text-color-3);
+  width: 90%;
+}
+
 .alert-dialog--material, .alert-dialog-container--material {
   background-color: var(--color);
   border-radius: 15px;

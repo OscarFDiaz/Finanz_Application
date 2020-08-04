@@ -11,7 +11,6 @@ function makeNewGoal() {
   let goalMoney = document.getElementById("newGoalMoney").value;
   let goalActualMoney = "0";
   let goalDate = document.getElementById("newGoalDate").value;
-  console.log("GDATE: " + goalDate);
 
   //Compruebo que no hay campos vacios, en su defecto los lleno
   if (goalDescription === "") {
@@ -220,4 +219,8 @@ function editGoal(sendGoalName) {
     }
   }
   createAlertDialogToEditGoal();
+}
+
+function addMoneyGoal(sendGoalName) {
+  
 }

@@ -24,13 +24,12 @@
             style="display: block; margin: 16px 16px;"
           ></ons-input>
 
-          <ons-input
-            id="editGoalDescription"
-            modifier="underbar"
-            placeholder="DESCRIPCIÓN"
-            type="text"
-            style="display: block; margin: 16px 16px;"
-          ></ons-input>
+          <textarea
+          id="editGoalDescription" 
+          class="textarea" 
+          rows="5" 
+          placeholder="DESCRIPCIÓN"
+          ></textarea>
 
           <ons-input
             id="editGoalMoney"
@@ -122,15 +121,20 @@
                 <label class="moneyDetailGoal">
                   ${gDate}
                 </label>
-                <ons-button class="flatButton" style="margin-top: 16px;" onclick="deleteGoal('${gName}')">
-                  ELIMINAR
+                <ons-button class="flatButton" style="margin-top: 16px;" onclick="addMoneyGoal('${gName}')">
+                  AÑADIR DINERO
                 </ons-button>
               </div>
             </ons-card>
 
             <ons-button class="flatButtonLight" style="margin-bottom: 16px;" onclick="editGoal('${gName}')">
-              EDITAR
+              EDITAR META
+            </ons-button>
+            
+            <ons-button class="flatButton" style="margin-top: 16px;" onclick="deleteGoal('${gName}')">
+                  ELIMINAR META
             </ons-button>`;
+
         }
       },
       false

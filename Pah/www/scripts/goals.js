@@ -220,3 +220,7 @@ function editGoal(sendGoalName) {
   }
   createAlertDialogToEditGoal();
 }
+
+function addMoneyGoal(sendGoalName) {
+  
+}

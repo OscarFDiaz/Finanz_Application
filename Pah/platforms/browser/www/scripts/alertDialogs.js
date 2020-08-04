@@ -19,7 +19,7 @@ function createAlertDialogToEditGoal() {
     ons.notification.toast(
       "No se ha podido cargar la ventana para modificar!",
       {
-        title: "Aviso!",
+        title: "Error!",
         timeout: 2000,
         animation: "ascend",
       }
@@ -30,18 +30,22 @@ function createAlertDialogToEditGoal() {
 function hideAlertDialog() {
   functionPopPage();
   let name = document.getElementById("editGoalName").value;
-  let description = docment.getElementById("editGoalDescription").value;
+  let description = document.getElementById("editGoalDescription").value;
   let actualMoney = document.getElementById("editActualGoalMoney").value;
   let goalMoney = document.getElementById("editGoalMoney").value;
   let goalDate = document.getElementById("editGoalDate").value;
 
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
 
+  let indexGoal;
+
   let sName = localStorage.getItem("nameSaved");
 
   for (let i = 0; i < goals.length; i++) {
     if (goals[i].goalName == sName) {
-      deleteGoalInsta(goals[i].goalName);
+
+      indexGoal = i; //Pongo la posición donde esta mi objeto que modificare
+      //deleteGoalInsta(goals[i].goalName);
 
       let updateGoalObject = {
         goalName: name,
@@ -56,11 +60,9 @@ function hideAlertDialog() {
         goalsArray.push(updateGoalObject);
         localStorage.setItem("goalStorage", JSON.stringify(goalsArray));
       } else {
-        let goalsArray = JSON.parse(localStorage.getItem("goalStorage"));
-        goalsArray.push(updateGoalObject);
-        localStorage.setItem("goalStorage", JSON.stringify(goalsArray));
+        goals[indexGoal] = updateGoalObject;
+        localStorage.setItem("goalStorage", JSON.stringify(goals));
       }
-
       localStorage.removeItem("nameSaved");
     }
   }
