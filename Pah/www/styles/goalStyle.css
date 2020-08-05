@@ -24,6 +24,22 @@
   margin-bottom: 16px;
 }
 
+.progressBarContainer {
+  background-color: var(--progressbar-back-color);
+  border-radius: 15px;
+  padding: 1px;
+  margin-top: 15px;
+}
+
+.progressBarPercent {
+  background-color: var(--progressbar-main-color);
+  width: calc(var(--width, 0) * 1%);
+  min-width: 10px;
+  max-width: calc(100% - 1px);
+  height: 17px;
+  border-radius: 15px;
+}
+
 .moneyDetailGoal {
   display: block;
   margin-left: auto;

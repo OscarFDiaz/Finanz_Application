@@ -5,28 +5,14 @@
   - Mando update al usuario
   - Lo regreso a la pantalla
 */
-
-function parseDate(str) {
-  var mdy = str.split('-');
-  return new Date(mdy[2], mdy[0]-1, mdy[1]);
-}
-
-function datediff(first, second) {
-  // Take the difference between the dates and divide by milliseconds per day.
-  // Round to nearest whole number to deal with DST.
-  return Math.round((second-first)/(1000*60*60*24));
-}
-
 function makeNewGoal() {
   let goalName = document.getElementById("newGoalName").value;
   let goalDescription = document.getElementById("newGoalDescription").value;
   let goalMoney = document.getElementById("newGoalMoney").value;
-  let goalActualMoney = "0";
+  let goalActualMoney = 0;
 
   /**COMPROBAR CÓMO SE EVALUAN LAS FECHAS */
-  let goalDate1 = document.getElementById("newGoalDate").value;
-  let goalDate = datediff(parseDate(goalDate1), parseDate("2020-12-12"));
-
+  let goalDate = document.getElementById("newGoalDate").value;
 
   //Compruebo que no hay campos vacios, en su defecto los lleno
   if (goalDescription === "") {
@@ -61,7 +47,7 @@ function makeNewGoal() {
     goalDescription,
     goalMoney,
     goalActualMoney,
-    goalDate,
+    goalDate
   };
 
   if (localStorage.getItem("goalStorage") === null) {
@@ -86,6 +72,10 @@ function makeNewGoal() {
 /*
   - Consigo el local Storage y con un FOR lo voy cargando
 */
+function getPercent(goalMoney, actualMoney) {
+  return Math.round((actualMoney * 100) / goalMoney);
+}
+
 function getGoals() {
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
   let goalsView = document.getElementById("goalsContainer");
@@ -98,6 +88,8 @@ function getGoals() {
     let gAMoney = goals[i].goalActualMoney;
     let gDate = goals[i].goalDate;
 
+    let gPercent = getPercent(gMoney, gAMoney);
+
     if (gDate === "") {
       gDate = "SIN DATOS DE FECHA";
     }
@@ -109,8 +101,8 @@ function getGoals() {
         </div>
         <div class="content">
           <label id="goalInfo">$ ${gAMoney} de $ ${gMoney} | ${gDate}</label>
-          <div id="progressbar"> 
-            <div></div> 
+          <div class="progressBarContainer"> 
+            <div class="progressBarPercent" style="--width: ${gPercent}" id="${gName}-pbar"></div> 
           </div> 
         </div>
       </ons-card>`;

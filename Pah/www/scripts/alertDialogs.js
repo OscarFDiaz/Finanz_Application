@@ -117,7 +117,7 @@ function createAlertDialogToEditGoalMoney() {
     dialog.show();
   } else {
     ons.notification.toast(
-      "No se ha podido cargar la ventana para modificar!",
+      "Ups! No se ha podido cargar la ventana para modificar!",
       {
         title: "Error!",
         timeout: 2000,
@@ -148,6 +148,15 @@ function hideAlertDialogMoney() {
         goalDate: goals[i].goalDate,
       };
 
+      // Modifico los elementos para actualizar el dinero y % mostrado
+      let calculatedPercent = getPercent(updateGoalObject.goalMoney, newMoney);
+      document.getElementById(sName+"-pnumber").innerHTML = "";
+      document.getElementById(sName+"-pnumber").innerHTML = calculatedPercent + "%";
+      
+      document.getElementById(sName+"-pbar").style.setProperty('--width', calculatedPercent); 
+      console.log(document.getElementById(sName+"-pbar"));
+
+      // Modifico los elementos para mostrar la cantidad de dinero actualizada
       document.getElementById("detailMoneyStatus").innerHTML = "";
 
       document.getElementById("detailMoneyStatus").innerHTML =
@@ -169,7 +178,7 @@ function hideAlertDialogMoney() {
 
   document.getElementById("alertEditGoalMoney").hide();
 
-  ons.notification.toast("Meta modificada exitosamente!", {
+  ons.notification.toast("Meta modificada exitosamente!, nos acercamos a la meta!", {
     title: "Aviso!",
     timeout: 2000,
     animation: "ascend",

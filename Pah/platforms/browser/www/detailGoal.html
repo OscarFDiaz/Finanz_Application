@@ -125,6 +125,8 @@
           let gMoney = parseGoal.goalMoney;
           let gDate = parseGoal.date;
 
+          let gPercent = getPercent(gMoney, gAMoney);
+
           document.getElementById("titleDetailGoal").innerHTML = gName;
 
           let goalsView = document.getElementById("goalDetailContainer");
@@ -147,13 +149,13 @@
             </ons-card>
         
             <ons-card>
-              <div class="title percentDetailTitle">
-                50%
+              <div class="title percentDetailTitle" id="${gName}-pnumber">
+                ${gPercent}%
               </div>
 
-              <div id="progressbar" class="percentBar">
-                <div></div>
-              </div>
+              <div class="progressBarContainer percentBar"> 
+                <div class="progressBarPercent" style="--width:${gPercent}"  id="${gName}-pbar"></div> 
+              </div> 
 
               <div class="content">
                 <label class="moneyDetailGoal" id="detailMoneyStatus">

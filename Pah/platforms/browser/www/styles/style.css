@@ -74,19 +74,7 @@
   fill: var(--back-button-color);
 }
 
-/* PROGRESS BAR & CARDS*/
-#progressbar {
-  background-color: var(--progressbar-back-color);
-  border-radius: 15px;
-  padding: 1px;
-  margin-top: 15px;
-}
-#progressbar > div {
-  background-color: var(--progressbar-main-color);
-  width: 50%; /* Adjust with JavaScript */
-  height: 17px;
-  border-radius: 15px;
-}
+/* CARDS*/
 
 .card--material {
   border-radius: 15px;
