@@ -128,6 +128,17 @@ function createAlertDialogToEditGoalMoney() {
 }
 
 function hideAlertDialogMoney() {
+
+  let element = document.getElementById("editOnlyGoalMoney").value;
+  if(element === null || element === "" || element == ""){
+    ons.notification.toast("Ingresa cuanto dinero deseas añadir, por favor!", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
+
   let newMoney = sessionStorage.getItem("addNewMoney");
 
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
@@ -153,8 +164,7 @@ function hideAlertDialogMoney() {
       document.getElementById(sName+"-pnumber").innerHTML = "";
       document.getElementById(sName+"-pnumber").innerHTML = calculatedPercent + "%";
       
-      document.getElementById(sName+"-pbar").style.setProperty('--width', calculatedPercent); 
-      console.log(document.getElementById(sName+"-pbar"));
+      document.getElementById("pbarDetail").style.setProperty('--width', calculatedPercent);
 
       // Modifico los elementos para mostrar la cantidad de dinero actualizada
       document.getElementById("detailMoneyStatus").innerHTML = "";
@@ -176,6 +186,7 @@ function hideAlertDialogMoney() {
     }
   }
 
+  document.getElementById("editOnlyGoalMoney").value = null;
   document.getElementById("alertEditGoalMoney").hide();
 
   ons.notification.toast("Meta modificada exitosamente!, nos acercamos a la meta!", {
