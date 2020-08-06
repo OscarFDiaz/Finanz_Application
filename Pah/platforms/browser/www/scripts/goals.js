@@ -10,8 +10,6 @@ function makeNewGoal() {
   let goalDescription = document.getElementById("newGoalDescription").value;
   let goalMoney = document.getElementById("newGoalMoney").value;
   let goalActualMoney = 0;
-
-  /**COMPROBAR CÓMO SE EVALUAN LAS FECHAS */
   let goalDate = document.getElementById("newGoalDate").value;
 
   //Compruebo que no hay campos vacios, en su defecto los lleno
@@ -47,7 +45,7 @@ function makeNewGoal() {
     goalDescription,
     goalMoney,
     goalActualMoney,
-    goalDate
+    goalDate,
   };
 
   if (localStorage.getItem("goalStorage") === null) {
@@ -173,6 +171,12 @@ function deleteGoal(sendGoalName) {
         ons.notification.toast("Se ha elimindado la meta seleccionada!", {
           title: "Aviso!",
           timeout: 2000,
+          animation: "ascend",
+        });
+      } else {
+        ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
+          title: "Aviso!",
+          timeout: 1000,
           animation: "ascend",
         });
       }

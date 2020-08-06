@@ -10,44 +10,63 @@
     </div>
   </ons-toolbar>
 
-  <ons-card>
-    <div class="title moneyTitle">
-      Alcancía
-    </div>
-    <div class="content">
-      <label class="moneyInfo">$ 5000</label>
-    </div>
-    <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;">
-      SUMAR
-    </ons-button>
-    <ons-button class="moneyButtonRe" style="margin-bottom: 16px;">
-      RESTAR
-    </ons-button>
-  </ons-card>
+  <div id="moneyContainer"></div>
 
-  <ons-card>
-    <div class="title moneyTitle">
-      Tarjeta Nomina
-    </div>
-    <div class="content">
-      <label class="moneyInfo">$ 3450</label>
+  <ons-button
+    class="flatButton"
+    onclick="pushToNewMoney()"
+    style="margin-bottom: 16px;"
+    >AÑADIR NUEVO</ons-button
+  >
+
+  <!--ALERT PARA EDITAR UNICAMENTE EL DINERO-->
+  <ons-alert-dialog id="alertEditMoneyMoney" modifier="material">
+    <div style="text-align: center; margin-top: 16px;">
+      <div class="alert-dialog-title">Modificar mi dinero</div>
     </div>
 
-    <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;">
-      SUMAR
-    </ons-button>
-    <ons-button class="moneyButtonRe" style="margin-bottom: 16px;">
-      RESTAR
-    </ons-button>
-  </ons-card>
+    <div class="alert-dialog-content">
+      <div style="text-align: center; margin-top: 16px;">
+        <p>
+          <label style="color: var(--text-color-3);">DINERO ACTUAL: $ 
+            <label id="editMoneyActualMoney" style="color: var(--text-color-4)">0</label>
+          </label>
 
-  <ons-button class="flatButton" onclick="pushTest4()">AÑADIR NUEVA</ons-button>
+          <ons-input
+          onchange="makeSumMoney()"
+          onkeypress="this.onchange()"
+          oninput="this.onchange()"
+          id="editOnlyMoneyMoney"
+          modifier="underbar"
+          placeholder="QUIERO AÑADIR / QUITAR"
+          type="number"
+          style="display: block; margin: -10px auto 16px;"
+          ></ons-input>
+
+          <label style="color: var(--text-color-3);">CANTIDAD NUEVA: $ 
+            <label id="editMoneyEndMoney" style="color: var(--text-color-4)">0</label>
+          </label>
+        </p>
+      </div>
+    </div>
+
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="hideAlertNoChangeMoneys()"
+        >Cancelar</ons-alert-dialog-button
+      >
+      <ons-alert-dialog-button onclick="hideAlertMoneys()"
+        >Listo!</ons-alert-dialog-button
+      >
+    </div>
+  </ons-alert-dialog>
+  <!----------------------------------------------------------------->
 
   <script>
     document.addEventListener(
       "init",
       function (event) {
         if (event.target.matches("#money")) {
+          getMoneys();
         }
       },
       false

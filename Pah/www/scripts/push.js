@@ -8,12 +8,12 @@ function pushTest2() {
     navigator.pushPage("detailSaving.html");    
 }
 
-function pushTest3() {
+function pushToNewGoal() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("newGoal.html");    
 }
 
-function pushTest4() {
+function pushToNewMoney() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("newMoney.html");    
 }

@@ -114,7 +114,6 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 16px;
 
   background: var(--flat-button-color);
   color: var(--flat-button-color-text);
@@ -137,7 +136,6 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 16px;
 
   background: var(--flat-button-light-color);
   color: var(--flat-button-light-color-text);
@@ -188,6 +186,7 @@
 .alert-dialog--material, .alert-dialog-container--material {
   background-color: var(--color);
   border-radius: 15px;
+
 }
 
 .alert-dialog-title--material {
@@ -200,7 +199,8 @@
 
 .alert-dialog-content--material {
   background-color: none;
-  color: var(--text-color-5)
+  color: var(--text-color-5);
+  margin: 16px 0 16px;
 }
 
 .alert-dialog-button--material {
