@@ -1,0 +1,36 @@
+.cardHomeTitle {
+  display: block;
+  margin: 16px auto 0px auto;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-color-3);
+}
+
+.totalMoneyTitle {
+  display: block;
+  text-align: center;
+  padding-bottom: 16px;
+  font-size: 50px;
+  font-weight: 500;
+  color: var(--text-color-4);
+}
+
+.homeExpenseLabel {
+  display: block;
+  padding-top: 16px;
+  text-align: left;
+  font-size: 28px;
+  color: var(--text-color-4);
+  font-weight: 500;
+}
+
+.homeGoalLabel {
+  display: block;
+  padding-top: 16px;
+  margin-bottom: -10px;
+  text-align: left;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-color-3);
+}

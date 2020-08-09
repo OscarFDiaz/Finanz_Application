@@ -10,11 +10,48 @@
     </div>
   </ons-toolbar>
 
+  <label class="cardHomeTitle">DINERO TOTAL</label>
+  <ons-card onclick="fn.load('money.html')">
+    <div class="title totalMoneyTitle">
+      $ 5470
+    </div>
+  </ons-card>
+
+  
+  <label class="cardHomeTitle">GASTOS</label>
+  <ons-card onclick="fn.load('expenses.html')">
+    <div class="content">
+      <canvas id="oilChart" width="400" height="400"></canvas>
+    </div>
+  </ons-card>
+
+  <label class="cardHomeTitle">FONDO AHORRADO</label>
+  <ons-card onclick="fn.load('savings.html')">
+    <div class="title totalMoneyTitle">
+      $ 5470
+    </div>
+  </ons-card>
+
+  <label class="cardHomeTitle">METAS</label>
+  <ons-card onclick="fn.load('goals.html')">
+    <div class="content">
+      <label class="homeGoalLabel">Lentes</label>
+      <div class="progressBarContainer"> 
+        <div class="progressBarPercent" style="--width: 30"></div> 
+      </div> 
+      <label class="homeGoalLabel">Computadora</label>
+      <div class="progressBarContainer"> 
+        <div class="progressBarPercent" style="--width: 30"></div> 
+      </div> 
+    </div>
+  </ons-card>
+  
   <script>
     document.addEventListener(
       "init",
       function (event) {
         if (event.target.matches("#userHome")) {
+          makeChart();
         }
       },
       false
