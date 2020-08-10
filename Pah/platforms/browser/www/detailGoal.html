@@ -133,18 +133,13 @@
           let goalsView = document.getElementById("goalDetailContainer");
           goalsView.innerHTML = "";
 
-          /*
-       TODO 
-        - CALCULAR EL PORCENTAJE
-        - CALCULAR BIEN LAS FECHAS
-       */
           goalsView.innerHTML += `<ons-card>
               <div class="title detailTitle">
                 ${gName}
               </div>
               <div class="content detailInfo">
                 <p>
-                  DESCRIPCIÓN: ${gDescription}
+                  ${gDescription}
                 </p>
               </div>
             </ons-card>

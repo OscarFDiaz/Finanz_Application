@@ -14,10 +14,10 @@
   font-size: 18px;
   color: var(--text-color-3);
 }
-
+     
 .expenseIcon {
   font-size: 28px;
-  color: var(--menu-icon-color);
+  color: var(--expenseIconColorPrev, var(--menu-icon-color));
 }
 
 /* NEW EXPENSE */
@@ -33,7 +33,10 @@
 
 .expenseIconList {
   font-size: 50px;
-  color: white;
+  color: var(--expenseIconColor, #ffffff);
+}
+.expenseIconList:active {
+  background-color: var(--color-2);
 }
 
 .list-item__expandable-content {

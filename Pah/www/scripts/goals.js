@@ -15,7 +15,7 @@ function makeNewGoal() {
   //Compruebo que no hay campos vacios, en su defecto los lleno
   if (goalDescription === "") {
     goalDescription =
-      "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR'";
+      "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR META'";
   }
 
   if (goalDate === "") {
