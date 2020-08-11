@@ -69,29 +69,43 @@ function changeTitlePreview() {
     oldTitle.innerHTML = `NOMBRE <i class="expenseIcon ion-md-laptop"></i>`;
   } else {
     oldTitle.innerHTML = "";
-    oldTitle.innerHTML = newTitle + ` <i class="expenseIcon ion-md-laptop" id="expensePrevIcon"></i>`;
+    oldTitle.innerHTML = newTitle;
   }
 }
 
 function selectIcon(iconName, iconColor) {
-    let iName = iconName;
 
+    sessionStorage.setItem("expenseIconName", iconName);
     // Oculto los iconos, ya tengo uno seleccionado
     document.getElementById("expandableListContainer").hideExpansion();
 
+    // Añado el icono seleccionado
     let iconElement = document.getElementById("expensePrevIcon");
     iconElement.className = '';
     iconElement.classList.add("expenseIcon");
-    iconElement.classList.add(iName);
+    iconElement.classList.add(iconName);
+    // Añado el color
     iconElement.style.cssText = `--expenseIconColorPrev: ${iconColor}`;
 }
 
 function makeNewExpense() {
   let expenseName = document.getElementById("newExpenseName").value;
-  let iconName = document.getElementById("newExpenseName").value;
   let expenseColor = document.getElementById("newExpenseColor").value;
+  let iconName = sessionStorage.getItem("expenseIconName");
+  sessionStorage.removeItem("expenseIconName");
 
-  console.log(expenseName + " | " + expenseColor);
+  if (expenseName == "" || expenseName == null) {
+    ons.notification.toast("Un momento, el gasto necesita un nombre!", {
+      title: "Error!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  } else if (iconName == "" || iconName == null) {
+    iconName = "ion-md-laptop";
+  }
+
+  console.log(expenseName + " | " + expenseColor + " | " + iconName);
 }
 
 
