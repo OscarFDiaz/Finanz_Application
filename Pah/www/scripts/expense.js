@@ -65,11 +65,13 @@ function changeTitlePreview() {
   let newTitle = document.getElementById("newExpenseName").value;
   let oldTitle = document.getElementById("expensePrevTitle");
 
+
+  /**SI EXISTE UN ICONO NO CAMBIARLO */
   if (newTitle == "" || newTitle == null) {
     oldTitle.innerHTML = `NOMBRE <i class="expenseIcon ion-md-laptop"></i>`;
   } else {
     oldTitle.innerHTML = "";
-    oldTitle.innerHTML = newTitle + ` <i class="expenseIcon ion-md-laptop"></i>`;
+    oldTitle.innerHTML = newTitle + ` <i class="expenseIcon ion-md-laptop" id="expensePrevIcon"></i>`;
   }
 }
 

@@ -69,7 +69,7 @@ function changeTitlePreview() {
     oldTitle.innerHTML = `NOMBRE <i class="expenseIcon ion-md-laptop"></i>`;
   } else {
     oldTitle.innerHTML = "";
-    oldTitle.innerHTML = newTitle + ` <i class="expenseIcon ion-md-laptop"></i>`;
+    oldTitle.innerHTML = newTitle + ` <i class="expenseIcon ion-md-laptop" id="expensePrevIcon"></i>`;
   }
 }
 
