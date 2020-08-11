@@ -1,0 +1,80 @@
+<ons-page id="themeSelector">
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <ons-back-button></ons-back-button>
+    <div class="center labelToolbar" id="titleConfigurarion">
+      TEMAS
+    </div>
+  </ons-toolbar>
+
+  <ons-card style="height: 33%; margin: 16px;">
+    <ons-carousel fullscreen swipeable auto-scroll overscrollable id="carousel">
+      <ons-carousel-item class="themeDefault" style="border-radius: 15px;">
+        <div
+          style="
+            text-align: center;
+            font-size: 30px;
+            margin-top: 20%;
+            color: #fff;
+            border-radius: 15px;
+          "
+        >
+          POR DEFECTO
+        </div>
+      </ons-carousel-item>
+
+      <ons-carousel-item class="themeDark" style="border-radius: 15px;">
+        <div
+          style="
+            text-align: center;
+            font-size: 30px;
+            margin-top: 20%;
+            color: #fff;
+            border-radius: 15px;
+          "
+        >
+          OBSCURO
+        </div>
+      </ons-carousel-item>
+
+      <ons-carousel-item class="themeLight" style="border-radius: 15px;">
+        <div
+          style="
+            text-align: center;
+            font-size: 30px;
+            margin-top: 20%;
+            color: #000;
+            border-radius: 15px;
+          "
+        >
+          CLARO
+        </div>
+      </ons-carousel-item>
+    </ons-carousel>
+  </ons-card>
+
+  <ons-button
+    class="flatButton"
+    onclick=""
+    style="width: 250px; height: 50px; line-height: 50px; margin-top: 32px;"
+  >
+    SELECCIONAR
+  </ons-button>
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#themeSelector")) {
+          ons.ready(function () {
+            var carousel = document.addEventListener("postchange", function (
+              event
+            ) {
+              console.log("Changed to " + event.activeIndex);
+            });
+          });
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

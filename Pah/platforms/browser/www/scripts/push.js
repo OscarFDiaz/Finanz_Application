@@ -4,28 +4,38 @@ function pushTest() {
 }
 
 function pushTest2() {
-    const navigator = document.querySelector("#navigator");
-    navigator.pushPage("detailSaving.html");    
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("detailSaving.html");
 }
 
 function pushToNewGoal() {
   const navigator = document.querySelector("#navigator");
-  navigator.pushPage("newGoal.html");    
+  navigator.pushPage("newGoal.html");
 }
 
 function pushToNewMoney() {
   const navigator = document.querySelector("#navigator");
-  navigator.pushPage("newMoney.html");    
+  navigator.pushPage("newMoney.html");
 }
 
 function pushTest5() {
   const navigator = document.querySelector("#navigator");
-  navigator.pushPage("newExpense.html");    
+  navigator.pushPage("newExpense.html");
 }
 
 function pushTest6() {
   const navigator = document.querySelector("#navigator");
-  navigator.pushPage("detailExpense.html");    
+  navigator.pushPage("detailExpense.html");
+}
+
+function pushToThemeSelector() {
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("themeSelector.html");
+}
+
+function pushToHomeOptions() {
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("homeOptions.html");
 }
 
 // GOALS GOALS GOALS GOALS GOALS GOALS

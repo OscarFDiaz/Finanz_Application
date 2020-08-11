@@ -1,0 +1,35 @@
+<ons-page id="homeOptions">
+    <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+      <ons-back-button></ons-back-button>
+      <div class="center labelToolbar" id="titleConfigurarion">
+        PANTALLA INICIO
+      </div>
+    </ons-toolbar>
+  
+    <ons-list class="listConfiguration">
+      <ons-list-item
+        modifier="chevron nodivider"
+        class="itemListConfiguration"
+        tappable
+        >TEMA</ons-list-item
+      >
+      <ons-list-item
+        modifier="chevron nodivider"
+        class="itemListConfiguration"
+        tappable
+        >PANTALLA INICIO</ons-list-item
+      >
+    </ons-list>
+  
+    <script>
+      document.addEventListener(
+        "init",
+        function (event) {
+          if (event.target.matches("#homeOptions")) {
+          }
+        },
+        false
+      );
+    </script>
+  </ons-page> 
+  
