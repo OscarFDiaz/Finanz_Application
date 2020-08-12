@@ -3,6 +3,102 @@
 }
 
 :root {
+
+}
+
+.theme-dark {
+  --color: #1b1b2f;
+  --color-1: #162447;
+  --color-2: #1f4068;
+  --color-3: #fffcf2;
+  --color-4: #e43f5a;
+  --color-5: #ffffff;
+
+  --gradient-1: var(--color);
+  --gradient-2: #161627;
+
+  --text-color: #1b1b2f;
+  --text-color-1: #162447;
+  --text-color-2: #7890ad;
+  --text-color-3: #fffcf2;
+  --text-color-4: #e43f5a;
+  --text-color-5: #ffffff;
+
+  --menu-icon-color: #e43f5a;
+  --menu-font-color: #ffffff;
+  
+  --back-button-color: #ffffff;
+  --menu-button-color: #ffffff;
+  --label-toolbar-color: #ffffff;
+  --toolbar-color: #1b1b2f;
+
+  --progressbar-back-color: #1b1b2f;
+  --progressbar-main-color: #e43f5a;
+
+  --card-back-color: #134068;
+  --card-text-color: #ffffff;
+  --card-content-text-color: #fffcf2;
+
+  --detail-goal-content-color: #fffcf2;
+  --detail-goal-title-color: #fffcf2;
+  --detail-money-goal: #fffcf2;
+
+  --flat-button-color: #e43f5a;
+  --flat-button-active-color: #e43f5a;
+  --flat-button-color-text: #ffffff;
+
+  --flat-button-light-color-text:#ffffff;
+  --flat-button-light-color: #0f2b4e;
+  --flat-button-light-active-color: #2d517c;
+}
+
+.theme-light {
+  --color: #0784b5;
+  --color-1: #39ace7;
+  --color-2: #9bd4e4;
+  --color-3: #006eb8;
+  --color-4: #006eb8;
+  --color-5: #ffffff;
+
+  --gradient-1: var(--color);
+  --gradient-2: var(--color);
+
+  --text-color: #0784b5;
+  --text-color-1: #39ace7;
+  --text-color-2: #9bd4e4;
+  --text-color-3: #5cc3f3;
+  --text-color-4: #00406b;
+  --text-color-5: #00406b;
+
+  --menu-icon-color: #d2e7ff;
+  --menu-font-color: #ffffff;
+  
+  --back-button-color: #ffffff;
+  --menu-button-color: #ffffff;
+  --label-toolbar-color: #ffffff;
+  --toolbar-color: #0784b5;
+
+  --progressbar-back-color: #0784b5;
+  --progressbar-main-color: #00406b;
+
+  --card-back-color: #d2e7ff;
+  --card-text-color: #386ed3;
+  --card-content-text-color: #0596a6;
+
+  --detail-goal-content-color: #386ed3;
+  --detail-goal-title-color: #386ed3;
+  --detail-money-goal: #0596A6;
+
+  --flat-button-color: #00406b;
+  --flat-button-active-color: #00406b;
+  --flat-button-color-text: #ffffff;
+
+  --flat-button-light-color-text:#ffffff;
+  --flat-button-light-color: #0596A6;
+  --flat-button-light-active-color: #05565f;
+}
+
+.theme-default {
   --color: #0d2840;
   --color-1: #0e5259;
   --color-2: #0596a6;

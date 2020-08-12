@@ -54,7 +54,7 @@
 
   <ons-button
     class="flatButton"
-    onclick=""
+    onclick="changeTheme()"
     style="width: 250px; height: 50px; line-height: 50px; margin-top: 32px;"
   >
     SELECCIONAR
@@ -65,10 +65,12 @@
       "init",
       function (event) {
         if (event.target.matches("#themeSelector")) {
+          sessionStorage.setItem("themeIndex", "0");
           ons.ready(function () {
             var carousel = document.addEventListener("postchange", function (
               event
             ) {
+              sessionStorage.setItem("themeIndex", event.activeIndex);
               console.log("Changed to " + event.activeIndex);
             });
           });

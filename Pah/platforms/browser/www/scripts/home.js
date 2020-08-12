@@ -49,3 +49,45 @@ function makeChart(){
       data: oilData
     });
 }
+
+function changeTheme(){
+  let actualThemeIndex = sessionStorage.getItem("themeIndex");
+
+  if(actualThemeIndex == "0"){
+    setTheme("theme-default");
+  }else if(actualThemeIndex == "1"){
+    setTheme("theme-dark");
+  }else if(actualThemeIndex == "2"){
+    setTheme("theme-light")
+  }
+}
+
+function getTheme(themeName){
+  let actualTheme = localStorage.getItem("userTheme");
+  if(actualTheme == themeName || actualTheme === themeName){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function setTheme(themeName) {
+  if(getTheme(themeName)){
+    //EL TEMA SELECCIONADO YA ESTA PUESTO
+    ons.notification.toast("Actualmente tienes este tema puesto, esta chevere, verdad?", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+  }else{
+    //Si no es el mismo tema lo cambio
+    localStorage.setItem("userTheme", themeName);
+    document.documentElement.className = themeName;
+    ons.notification.toast("Se cambio el tema correctamente, tienes buenos gustos!", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+  }
+}
+
