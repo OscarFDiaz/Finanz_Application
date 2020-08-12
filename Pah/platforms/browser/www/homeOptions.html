@@ -1,35 +1,79 @@
 <ons-page id="homeOptions">
-    <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
-      <ons-back-button></ons-back-button>
-      <div class="center labelToolbar" id="titleConfigurarion">
-        PANTALLA INICIO
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <ons-back-button></ons-back-button>
+    <div class="center labelToolbar" id="titleConfigurarion">
+      PANTALLA INICIO
+    </div>
+  </ons-toolbar>
+
+  <p class="paraHome">
+    Las casillas marcadas apareceran en la pantalla inicio.
+  </p>
+
+  <ons-list style="background: none; margin: 16px;">
+    <ons-list-item modifier="nodivider">
+      <div class="center listLabels">
+        DINERO TOTAL
       </div>
-    </ons-toolbar>
-  
-    <ons-list class="listConfiguration">
-      <ons-list-item
-        modifier="chevron nodivider"
-        class="itemListConfiguration"
-        tappable
-        >TEMA</ons-list-item
-      >
-      <ons-list-item
-        modifier="chevron nodivider"
-        class="itemListConfiguration"
-        tappable
-        >PANTALLA INICIO</ons-list-item
-      >
-    </ons-list>
-  
-    <script>
-      document.addEventListener(
-        "init",
-        function (event) {
-          if (event.target.matches("#homeOptions")) {
-          }
-        },
-        false
-      );
-    </script>
-  </ons-page> 
-  
+      <div class="right">
+        <ons-switch checked></ons-switch>
+      </div>
+    </ons-list-item>
+
+    <ons-list-item modifier="nodivider">
+      <div class="center listLabels">
+        GASTOS
+      </div>
+      <div class="right">
+        <ons-switch checked></ons-switch>
+      </div>
+    </ons-list-item>
+
+    <ons-list-item modifier="nodivider">
+      <div class="center listLabels">
+        FONDO AHORRADO
+      </div>
+      <div class="right">
+        <ons-switch checked></ons-switch>
+      </div>
+    </ons-list-item>
+
+    <ons-list-item modifier="nodivider">
+      <div class="center listLabels">
+        METAS
+      </div>
+      <div class="right">
+        <ons-switch checked></ons-switch>
+      </div>
+    </ons-list-item>
+  </ons-list>
+
+  <ons-button class="flatButtonLight" onclick="">
+    GUARDAR
+  </ons-button>
+
+  <!--
+  document.addEventListener("show", function(event){
+    if (event.target.id == "pgOptions") { 
+        document.getElementById('optStats').addEventListener('change', function(e) {
+            localStorage.setItem('useDetailedStats', e.target.checked); 
+            useDetailedStats = e.target.checked;
+        });
+        document.getElementById('optStats').setChecked(useDetailedStats);
+      } 
+ },false);
+
+ https://stackoverflow.com/questions/35123385/onsen-2-0-adding-event-listener-to-ons-switch-with-javascript
+ -->
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#homeOptions")) {
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

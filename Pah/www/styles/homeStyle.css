@@ -36,34 +36,15 @@
 }
 
 .themeDefault {
-  background: rgb(13, 40, 64);
-  background: linear-gradient(
-    90deg,
-    rgba(13, 40, 64, 1) 0%,
-    rgba(17, 58, 94, 1) 16%,
-    rgba(14, 82, 89, 1) 33%,
-    rgba(5, 150, 166, 1) 50%,
-    rgba(245, 161, 27, 1) 68%,
-    rgba(156, 217, 206, 1) 83%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  background: url("../assets/images/themeDefault.png");
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .themeDark {
-  background: rgb(235, 244, 246);
-  background: linear-gradient(
-    90deg,
-    rgba(235, 244, 246, 1) 0%,
-    rgba(189, 234, 238, 1) 16%,
-    rgba(118, 180, 189, 1) 33%,
-    rgba(118, 180, 189, 1) 50%,
-    rgba(118, 180, 189, 1) 68%,
-    rgba(88, 102, 139, 1) 83%,
-    rgba(94, 86, 86, 1) 100%
-  );
+  /* 162447 - 1f4068 - 1b1b2f - e43f5a - fffcf2 */
+  background: url("../assets/images/themeDark.png");
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,18 +52,39 @@
 
 .themeLight {
   /*#fff6e9 • #ffefd7 • #fffef9 • #e3f0ff • #d2e7ff*/
-  background: rgb(255, 246, 233);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 246, 233, 1) 0%,
-    rgba(255, 239, 215, 1) 16%,
-    rgba(255, 254, 249, 1) 33%,
-    rgba(255, 254, 249, 1) 50%,
-    rgba(255, 254, 249, 1) 68%,
-    rgba(227, 240, 255, 1) 83%,
-    rgba(210, 231, 255, 1) 100%
-  );
+  background: url("../assets/images/themeLight.png");
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.paraHome {
+  display: block;
+  text-align: left;
+  color: var(--text-color-3);
+  margin: 16px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.listLabels {
+  font-size: 18px;
+  color: var(--text-color-3);
+  font-weight: normal;
+}
+
+:checked+.switch--material__toggle {
+  background-color: var(--color-2);
+}
+
+.switch--material__handle {
+  background-color: var(--color-4);
+}
+
+:checked+.switch--material__toggle>.switch--material__handle {
+  background-color: var(--color-4);
+}
+
+.switch--material__toggle {
+  background-color: var(--color-5);
 }

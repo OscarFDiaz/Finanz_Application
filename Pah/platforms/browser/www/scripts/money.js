@@ -46,6 +46,10 @@ function getMoneys() {
 
   moneyView.innerHTML = "";
 
+  if(moneys == null || moneys == "") {
+    return;
+  }
+
   for (let i = 0; i < moneys.length; i++) {
     let mName = moneys[i].moneyName;
     let mMoney = moneys[i].moneyCurrent;

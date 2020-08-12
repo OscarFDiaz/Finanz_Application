@@ -154,25 +154,6 @@
   background: var(--flat-button-light-active-color);
 }
 
-.themeButton {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
-  background: var(--flat-button-color);
-  color: var(--flat-button-color-text);
-
-  border-radius: 15px;
-  box-shadow: none;
-
-  font-size: 22px;
-  font-weight: 400;
-
-  line-height: 40px;
-  min-height: 40px;
-  width: 208px;
-}
-
 .range--material__input {
   background-image: linear-gradient(#F5A11B,#f5a11b);
 }
