@@ -4,7 +4,7 @@
   text-align: center;
   font-size: 24px;
   font-weight: 500;
-  color: var(--text-color-3);
+  color: var(--text-without-card);
 }
 
 .totalMoneyTitle {
@@ -13,9 +13,10 @@
   padding-bottom: 16px;
   font-size: 50px;
   font-weight: 500;
-  color: var(--text-color-4);
+  color: var(--home-total-money);
 }
 
+/*SIN USO*/
 .homeExpenseLabel {
   display: block;
   padding-top: 16px;
@@ -32,7 +33,7 @@
   text-align: left;
   font-size: 22px;
   font-weight: 500;
-  color: var(--text-color-3);
+  color: var(--home-goal-label);
 }
 
 .themeDefault {
@@ -61,7 +62,7 @@
 .paraHome {
   display: block;
   text-align: left;
-  color: var(--text-color-3);
+  color: var(--para-home-options);
   margin: 16px;
   font-size: 20px;
   font-weight: normal;
@@ -69,22 +70,22 @@
 
 .listLabels {
   font-size: 18px;
-  color: var(--text-color-3);
+  color: var(--home-options-labels);
   font-weight: normal;
 }
 
 :checked+.switch--material__toggle {
-  background-color: var(--color-2);
+  background-color: var(--switch-back-on);
 }
 
 .switch--material__handle {
-  background-color: var(--color-4);
+  background-color: var(--switch-button-round);
 }
 
 :checked+.switch--material__toggle>.switch--material__handle {
-  background-color: var(--color-4);
+  background-color: var(--switch-button-round);
 }
 
 .switch--material__toggle {
-  background-color: var(--color-5);
+  background-color: var(--switch-back-off);
 }

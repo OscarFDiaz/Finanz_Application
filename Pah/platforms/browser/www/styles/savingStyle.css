@@ -3,7 +3,7 @@
 
   font-size: 20px;
   font-weight: normal;
-  color: var(--text-color-3);
+  color: var(--saving-main-title);
 }
 
 .savingInfo {
@@ -12,7 +12,7 @@
 
   font-size: 38px;
   font-weight: normal;
-  color: var(--text-color-2);
+  color: var(--saving-info);
 }
 
 .savingTitle {
@@ -20,7 +20,7 @@
 
   font-size: 38px;
   font-weight: normal;
-  color: var(--text-color-3);
+  color: var(--saving-title);
 }
 
 .savingDaily {
@@ -29,7 +29,7 @@
 
   font-size: 140px;
   font-weight: bold;
-  color: var(--text-color-4);
+  color: var(--saving-daily);
 }
 
 .daysTitle {
@@ -38,55 +38,47 @@
 
   font-size: 20px;
   font-weight: normal;
-  color: var(--text-color-3);
+  color: var(--saving-days-title);
 }
 
 .leftDays {
   font-size: 20px;
   font-weight: normal;
-  color: var(--text-color-4);
+  color: var(--saving-days-left);
 }
 
 /* SAVING DETAIL */
 .labelRange {
   font-size: 26px;
-  color: var(--text-color-3);
+  color: var(--saving-edit-label-range);
 }
 
 .labelRangeLess {
   font-size: 20px;
-  color: var(--text-color-3);
+  color: var(--saving-edit-label-range);
 }
 
 .selectedText {
   display: block;
   text-align: center;
   font-size: 14px;
-  color: var(--text-color-3);
+  color: var(--saving-edit-range-selected);
   margin-bottom: -16px;
 }
 
 .selectedRange {
-  color: var(--text-color-4);
-}
-
-.prevTitle {
-  display: block; 
-  text-align: center;
-  font-size: 26px;
-  color: var(--text-color-4);
-  margin-bottom: 16px;
+  color: var(--saving-edit-selected-range);
 }
 
 .entryAmountText {
   display: block;
   text-align: left;
   font-size: 20px;
-  color: var(--text-color-3);
+  color: var(--entry-amount-text);
   margin-bottom: 16px;
 }
 
 .entryAmountDetail{
-  color: var(--text-color-4);
+  color: var(--entry-amount-detail);
   font-weight: bold;
 }

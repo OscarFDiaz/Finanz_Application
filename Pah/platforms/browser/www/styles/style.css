@@ -2,103 +2,342 @@
   box-sizing: border-box;
 }
 
-:root {
+.theme-dark-light {
+  /* COLORES */
+  --color: #060606;
+  --color-1: #2a3a35;
+  --color-2: #5d5d5d;
+  --color-3: #f6f6f6;
+  --color-4: #bdc3c6;
+  --color-5: #cf1f0b;
+  --color-6: #238843;
 
+  /* DEGRADADO */
+  --gradient-1: var(--color);
+  --gradient-2: #113a5e;
+
+  /* ICONOS MENÚ & TEXTO MENU*/
+  --icon-home: #f5a11b;
+  --icon-goals: #f5a11b;
+  --icon-savings: #f5a11b;
+  --icon-expenses: #f5a11b;
+  --icon-money: #f5a11b;
+  --icon-config: #f5a11b;
+
+  --menu-icon-color: #f5a11b;
+  --menu-font-color: #ffffff;
+
+  /* TOOLBAR */
+  --toolbar-color: #0d2840;
+  --label-toolbar-color: #ffffff;
+  --back-button-color: #ffffff;
+  --menu-button-color: #ffffff;
+
+  /* CHEVRON */
+  --chevron-color: #f5a11b;
+
+  /* TEXTOS */
+  --item-list-config: #9cd9ce;
+  --text-without-card: #9cd9ce;
+
+  --expense-title: #ffffff;
+  --expense-info: #9cd9ce;
+  --expense-detail: #9cd9ce;
+  --expense-detail-money: #f5a11b;
+
+  --detail-goal-title-color: #9cd9ce;
+  --detail-goal-content-color: #9cd9ce;
+  --detail-money-goal: #0596a6;
+
+  --home-total-money: #f5a11b;
+  --home-goal-label: #9cd9ce;
+  --para-home-options: #9cd9ce;
+  --home-options-labels: #9cd9ce;
+
+  --money-title: #ffffff;
+  --money-info: #9cd9ce;
+  --money-delete-button: crimson;
+
+  --saving-main-title: #9cd9ce;
+  --saving-info: #0596a6;
+  --saving-title: #9cd9ce;
+  --saving-daily: #f5a11b;
+  --saving-days-title: #9cd9ce;
+  --saving-days-left: #f5a11b;
+
+  --saving-edit-label-range: #9cd9ce;
+  --saving-edit-range-selected: #9cd9ce;
+  --saving-edit-selected-range: #f5a11b;
+  --entry-amount-text: #9cd9ce;
+  --entry-amount-detail: #f5a11b;
+
+  /* SWITCH */
+  --switch-button-round: #f5a11b;
+  --switch-back-off: #ffffff;
+  --switch-back-on: #0596a6;
+
+  /* INPUT */
+  --color-input: #f5a11b;
+  --color-input-text: #9cd9ce;
+
+  /* TEXT AREA */
+  --text-area-border-color: #f5a11b;
+  --text-area-text-color: #9cd9ce;
+
+  /* ALERT DIALOG */
+  --alert-tile-color: #ffffff;
+  --alert-container-color: #0d2840;
+  --alert-footer-color: #0e5259;
+  --alert-content-text-color: #ffffff;
+  --alert-button-color-text: #ffffff;
+
+  /* TOAST */
+  --toast-back-color: #f5a11b;
+  --toast-message-color: #ffffff;
+
+  /* PROGRESSBAR */
+  --progressbar-back-color: #0d2840;
+  --progressbar-main-color: #f5a11b;
+
+  /* CARDS */
+  --card-back-color: #134068;
+  --card-text-title-color: #9cd9ce;
+  --card-content-text-color: #0596a6;
+
+  /* BUTTONS */
+  --flat-button-color: #f5a11b;
+  --flat-button-color-text: #ffffff;
+  --flat-button-active-color: #cc7e00;
+
+  --flat-button-light-color: #0596a6;
+  --flat-button-light-color-text: #ffffff;
+  --flat-button-light-active-color: #05565f;
 }
 
 .theme-dark {
-  --color: #1b1b2f;
-  --color-1: #162447;
-  --color-2: #1f4068;
-  --color-3: #fffcf2;
-  --color-4: #e43f5a;
-  --color-5: #ffffff;
+  /* COLORES */
+  --color: #0a0c0d;
+  --color-1: #453f41;
+  --color-2: #f8f8f8;
+  --color-3: #a2a1a1;
+  --color-4: #a7553d;
+  --color-5: #597889;
 
+  /* DEGRADADO */
   --gradient-1: var(--color);
-  --gradient-2: #161627;
+  --gradient-2: #113a5e;
 
-  --text-color: #1b1b2f;
-  --text-color-1: #162447;
-  --text-color-2: #7890ad;
-  --text-color-3: #fffcf2;
-  --text-color-4: #e43f5a;
-  --text-color-5: #ffffff;
+  /* ICONOS MENÚ & TEXTO MENU*/
+  --icon-home: #f5a11b;
+  --icon-goals: #f5a11b;
+  --icon-savings: #f5a11b;
+  --icon-expenses: #f5a11b;
+  --icon-money: #f5a11b;
+  --icon-config: #f5a11b;
 
-  --menu-icon-color: #e43f5a;
+  --menu-icon-color: #f5a11b;
   --menu-font-color: #ffffff;
-  
+
+  /* TOOLBAR */
+  --toolbar-color: #0d2840;
+  --label-toolbar-color: #ffffff;
   --back-button-color: #ffffff;
   --menu-button-color: #ffffff;
-  --label-toolbar-color: #ffffff;
-  --toolbar-color: #1b1b2f;
 
-  --progressbar-back-color: #1b1b2f;
-  --progressbar-main-color: #e43f5a;
+  /* CHEVRON */
+  --chevron-color: #f5a11b;
 
+  /* TEXTOS */
+  --item-list-config: #9cd9ce;
+  --text-without-card: #9cd9ce;
+
+  --expense-title: #ffffff;
+  --expense-info: #9cd9ce;
+  --expense-detail: #9cd9ce;
+  --expense-detail-money: #f5a11b;
+
+  --detail-goal-title-color: #9cd9ce;
+  --detail-goal-content-color: #9cd9ce;
+  --detail-money-goal: #0596a6;
+
+  --home-total-money: #f5a11b;
+  --home-goal-label: #9cd9ce;
+  --para-home-options: #9cd9ce;
+  --home-options-labels: #9cd9ce;
+
+  --money-title: #ffffff;
+  --money-info: #9cd9ce;
+  --money-delete-button: crimson;
+
+  --saving-main-title: #9cd9ce;
+  --saving-info: #0596a6;
+  --saving-title: #9cd9ce;
+  --saving-daily: #f5a11b;
+  --saving-days-title: #9cd9ce;
+  --saving-days-left: #f5a11b;
+
+  --saving-edit-label-range: #9cd9ce;
+  --saving-edit-range-selected: #9cd9ce;
+  --saving-edit-selected-range: #f5a11b;
+  --entry-amount-text: #9cd9ce;
+  --entry-amount-detail: #f5a11b;
+
+  /* SWITCH */
+  --switch-button-round: #f5a11b;
+  --switch-back-off: #ffffff;
+  --switch-back-on: #0596a6;
+
+  /* INPUT */
+  --color-input: #f5a11b;
+  --color-input-text: #9cd9ce;
+
+  /* TEXT AREA */
+  --text-area-border-color: #f5a11b;
+  --text-area-text-color: #9cd9ce;
+
+  /* ALERT DIALOG */
+  --alert-tile-color: #ffffff;
+  --alert-container-color: #0d2840;
+  --alert-footer-color: #0e5259;
+  --alert-content-text-color: #ffffff;
+  --alert-button-color-text: #ffffff;
+
+  /* TOAST */
+  --toast-back-color: #f5a11b;
+  --toast-message-color: #ffffff;
+
+  /* PROGRESSBAR */
+  --progressbar-back-color: #0d2840;
+  --progressbar-main-color: #f5a11b;
+
+  /* CARDS */
   --card-back-color: #134068;
-  --card-text-color: #ffffff;
-  --card-content-text-color: #fffcf2;
+  --card-text-title-color: #9cd9ce;
+  --card-content-text-color: #0596a6;
 
-  --detail-goal-content-color: #fffcf2;
-  --detail-goal-title-color: #fffcf2;
-  --detail-money-goal: #fffcf2;
-
-  --flat-button-color: #e43f5a;
-  --flat-button-active-color: #e43f5a;
+  /* BUTTONS */
+  --flat-button-color: #f5a11b;
   --flat-button-color-text: #ffffff;
+  --flat-button-active-color: #cc7e00;
 
-  --flat-button-light-color-text:#ffffff;
-  --flat-button-light-color: #0f2b4e;
-  --flat-button-light-active-color: #2d517c;
+  --flat-button-light-color: #0596a6;
+  --flat-button-light-color-text: #ffffff;
+  --flat-button-light-active-color: #05565f;
 }
 
 .theme-light {
-  --color: #0784b5;
-  --color-1: #39ace7;
-  --color-2: #9bd4e4;
-  --color-3: #006eb8;
-  --color-4: #006eb8;
-  --color-5: #ffffff;
+  /* COLORES */
+  --color: #fafafa;
+  --color-1: #bcc6d2;
+  --color-2: #0e0f14;
+  --color-3: #4e4f4e;
+  --color-4: #698fac;
+  --color-5: #d4b7a5;
 
+  /* DEGRADADO */
   --gradient-1: var(--color);
-  --gradient-2: var(--color);
+  --gradient-2: #113a5e;
 
-  --text-color: #0784b5;
-  --text-color-1: #39ace7;
-  --text-color-2: #9bd4e4;
-  --text-color-3: #5cc3f3;
-  --text-color-4: #00406b;
-  --text-color-5: #00406b;
+  /* ICONOS MENÚ & TEXTO MENU*/
+  --icon-home: #f5a11b;
+  --icon-goals: #f5a11b;
+  --icon-savings: #f5a11b;
+  --icon-expenses: #f5a11b;
+  --icon-money: #f5a11b;
+  --icon-config: #f5a11b;
 
-  --menu-icon-color: #d2e7ff;
+  --menu-icon-color: #f5a11b;
   --menu-font-color: #ffffff;
-  
+
+  /* TOOLBAR */
+  --toolbar-color: #0d2840;
+  --label-toolbar-color: #ffffff;
   --back-button-color: #ffffff;
   --menu-button-color: #ffffff;
-  --label-toolbar-color: #ffffff;
-  --toolbar-color: #0784b5;
 
-  --progressbar-back-color: #0784b5;
-  --progressbar-main-color: #00406b;
+  /* CHEVRON */
+  --chevron-color: #f5a11b;
 
-  --card-back-color: #d2e7ff;
-  --card-text-color: #386ed3;
+  /* TEXTOS */
+  --item-list-config: #9cd9ce;
+  --text-without-card: #9cd9ce;
+
+  --expense-title: #ffffff;
+  --expense-info: #9cd9ce;
+  --expense-detail: #9cd9ce;
+  --expense-detail-money: #f5a11b;
+
+  --detail-goal-title-color: #9cd9ce;
+  --detail-goal-content-color: #9cd9ce;
+  --detail-money-goal: #0596a6;
+
+  --home-total-money: #f5a11b;
+  --home-goal-label: #9cd9ce;
+  --para-home-options: #9cd9ce;
+  --home-options-labels: #9cd9ce;
+
+  --money-title: #ffffff;
+  --money-info: #9cd9ce;
+  --money-delete-button: crimson;
+
+  --saving-main-title: #9cd9ce;
+  --saving-info: #0596a6;
+  --saving-title: #9cd9ce;
+  --saving-daily: #f5a11b;
+  --saving-days-title: #9cd9ce;
+  --saving-days-left: #f5a11b;
+
+  --saving-edit-label-range: #9cd9ce;
+  --saving-edit-range-selected: #9cd9ce;
+  --saving-edit-selected-range: #f5a11b;
+  --entry-amount-text: #9cd9ce;
+  --entry-amount-detail: #f5a11b;
+
+  /* SWITCH */
+  --switch-button-round: #f5a11b;
+  --switch-back-off: #ffffff;
+  --switch-back-on: #0596a6;
+
+  /* INPUT */
+  --color-input: #f5a11b;
+  --color-input-text: #9cd9ce;
+
+  /* TEXT AREA */
+  --text-area-border-color: #f5a11b;
+  --text-area-text-color: #9cd9ce;
+
+  /* ALERT DIALOG */
+  --alert-tile-color: #ffffff;
+  --alert-container-color: #0d2840;
+  --alert-footer-color: #0e5259;
+  --alert-content-text-color: #ffffff;
+  --alert-button-color-text: #ffffff;
+
+  /* TOAST */
+  --toast-back-color: #f5a11b;
+  --toast-message-color: #ffffff;
+
+  /* PROGRESSBAR */
+  --progressbar-back-color: #0d2840;
+  --progressbar-main-color: #f5a11b;
+
+  /* CARDS */
+  --card-back-color: #134068;
+  --card-text-title-color: #9cd9ce;
   --card-content-text-color: #0596a6;
 
-  --detail-goal-content-color: #386ed3;
-  --detail-goal-title-color: #386ed3;
-  --detail-money-goal: #0596A6;
-
-  --flat-button-color: #00406b;
-  --flat-button-active-color: #00406b;
+  /* BUTTONS */
+  --flat-button-color: #f5a11b;
   --flat-button-color-text: #ffffff;
+  --flat-button-active-color: #cc7e00;
 
-  --flat-button-light-color-text:#ffffff;
-  --flat-button-light-color: #0596A6;
+  --flat-button-light-color: #0596a6;
+  --flat-button-light-color-text: #ffffff;
   --flat-button-light-active-color: #05565f;
 }
 
 .theme-default {
+  /* COLORES */
   --color: #0d2840;
   --color-1: #0e5259;
   --color-2: #0596a6;
@@ -106,46 +345,110 @@
   --color-4: #f5a11b;
   --color-5: #ffffff;
 
+  /* DEGRADADO */
   --gradient-1: var(--color);
   --gradient-2: #113a5e;
 
-  --text-color: #0d2840;
-  --text-color-1: #0e5259;
-  --text-color-2: #0596a6;
-  --text-color-3: #9cd9ce;
-  --text-color-4: #f5a11b;
-  --text-color-5: #ffffff;
+  /* ICONOS MENÚ & TEXTO MENU*/
+  --icon-home: #f5a11b;
+  --icon-goals: #f5a11b;
+  --icon-savings: #f5a11b;
+  --icon-expenses: #f5a11b;
+  --icon-money: #f5a11b;
+  --icon-config: #f5a11b;
 
   --menu-icon-color: #f5a11b;
   --menu-font-color: #ffffff;
-  
+
+  /* TOOLBAR */
+  --toolbar-color: #0d2840;
+  --label-toolbar-color: #ffffff;
   --back-button-color: #ffffff;
   --menu-button-color: #ffffff;
-  --label-toolbar-color: #ffffff;
-  --toolbar-color: #0d2840;
 
+  /* CHEVRON */
+  --chevron-color: #f5a11b;
+
+  /* TEXTOS */
+  --item-list-config: #9cd9ce;
+  --text-without-card: #9cd9ce;
+
+  --expense-title: #ffffff;
+  --expense-info: #9cd9ce;
+  --expense-detail: #9cd9ce;
+  --expense-detail-money: #f5a11b;
+
+  --detail-goal-title-color: #9cd9ce;
+  --detail-goal-content-color: #9cd9ce;
+  --detail-money-goal: #0596a6;
+
+  --home-total-money: #f5a11b;
+  --home-goal-label: #9cd9ce;
+  --para-home-options: #9cd9ce;
+  --home-options-labels: #9cd9ce;
+
+  --money-title: #ffffff;
+  --money-info: #9cd9ce;
+  --money-delete-button: crimson;
+
+  --saving-main-title: #9cd9ce;
+  --saving-info: #0596a6;
+  --saving-title: #9cd9ce;
+  --saving-daily: #f5a11b;
+  --saving-days-title: #9cd9ce;
+  --saving-days-left: #f5a11b;
+
+  --saving-edit-label-range: #9cd9ce;
+  --saving-edit-range-selected: #9cd9ce;
+  --saving-edit-selected-range: #f5a11b;
+  --entry-amount-text: #9cd9ce;
+  --entry-amount-detail: #f5a11b;
+
+  /* SWITCH */
+  --switch-button-round: #f5a11b;
+  --switch-back-off: #ffffff;
+  --switch-back-on: #0596a6;
+
+  /* INPUT */
+  --color-input: #f5a11b;
+  --color-input-text: #9cd9ce;
+
+  /* TEXT AREA */
+  --text-area-border-color: #f5a11b;
+  --text-area-text-color: #9cd9ce;
+
+  /* ALERT DIALOG */
+  --alert-tile-color: #ffffff;
+  --alert-container-color: #0d2840;
+  --alert-footer-color: #0e5259;
+  --alert-content-text-color: #ffffff;
+  --alert-button-color-text: #ffffff;
+
+  /* TOAST */
+  --toast-back-color: #f5a11b;
+  --toast-message-color: #ffffff;
+
+  /* PROGRESSBAR */
   --progressbar-back-color: #0d2840;
   --progressbar-main-color: #f5a11b;
 
+  /* CARDS */
   --card-back-color: #134068;
-  --card-text-color: #9cd9ce;
+  --card-text-title-color: #9cd9ce;
   --card-content-text-color: #0596a6;
 
-  --detail-goal-content-color: #9CD9CE;
-  --detail-goal-title-color: #9CD9CE;
-  --detail-money-goal: #0596A6;
-
+  /* BUTTONS */
   --flat-button-color: #f5a11b;
-  --flat-button-active-color: #cc7e00;
   --flat-button-color-text: #ffffff;
+  --flat-button-active-color: #cc7e00;
 
-  --flat-button-light-color-text:#ffffff;
-  --flat-button-light-color: #0596A6;
+  --flat-button-light-color: #0596a6;
+  --flat-button-light-color-text: #ffffff;
   --flat-button-light-active-color: #05565f;
 }
 
 .page__background {
-  background: rgb(13, 40, 64);
+  background: rgb(0, 0, 0);
   background: linear-gradient(
     180deg,
     var(--gradient-1) 0%,
@@ -170,8 +473,6 @@
   fill: var(--back-button-color);
 }
 
-/* CARDS*/
-
 .card--material {
   border-radius: 15px;
 
@@ -185,11 +486,10 @@
   box-shadow: 0px 10px 6px 0px rgba(0, 0, 0, 0.2);
 
   background-color: var(--card-back-color);
- 
 }
 
 .card--material__title {
-  color: var(--card-text-color);
+  color: var(--card-text-title-color);
 
   padding: 16px 16px 0px 16px;
   margin: 0px;
@@ -251,68 +551,73 @@
 }
 
 .range--material__input {
-  background-image: linear-gradient(#F5A11B,#f5a11b);
+  background-image: linear-gradient(var(--color-input), var(--color-input));
 }
 
 .text-input--material__label {
   margin-top: 16px;
   font-size: 18px;
-  color: var(--text-color-3);
-  top: 0px
+  color: var(--color-input-text);
+  top: 0px;
 }
 
 .text-input--material {
   margin-top: 16px;
-  color: var(--text-color-3);
+  color: var(--color-input-text);
   font-size: 18px;
   text-align: center;
 
-  background-image: linear-gradient(to top,#F5A11B 1px,#F5A11B 1px);
+  background-image: linear-gradient(
+    to top,
+    var(--color-input) 1px,
+    var(--color-input) 1px
+  );
 }
 
 .textarea {
   background: none;
   font-size: 18px;
   border-radius: 15px;
-  border: 2px solid var(--color-4);
-  color: var(--text-color-3);
+  border: 2px solid var(--text-area-border-color);
+  color: var(--text-area-text-color);
   width: 90%;
 }
 
-.alert-dialog--material, .alert-dialog-container--material {
-  background-color: var(--color);
+.alert-dialog--material,
+.alert-dialog-container--material {
+  background-color: var(--alert-container-color);
   border-radius: 15px;
-
 }
 
 .alert-dialog-title--material {
-  color: var(--text-color-5);
+  color: var(--alert-tile-color);
 }
 
 .alert-dialog-footer--material {
-  background-color: var(--color-1);
+  background-color: var(--alert-footer-color);
 }
 
 .alert-dialog-content--material {
   background-color: none;
-  color: var(--text-color-5);
+  color: var(--alert-content-text-color);
   margin: 16px 0 16px;
 }
 
 .alert-dialog-button--material {
-  color: var(--text-color-5);
+  color: var(--alert-button-color-text);
 }
 
 .ons-toast .toast {
   border-radius: 15px 15px 0px 0px;
 }
 
-.toast--material{
-  background-color: var(--color-4);
+.toast--material {
+  background-color: var(--toast-back-color);
   border-radius: 15px 15px 0px 0px;
 }
 
 .toast--material__message {
+  color: var(--toast-message-color);
   margin: 0px;
   font-size: 18px;
   text-align: center;

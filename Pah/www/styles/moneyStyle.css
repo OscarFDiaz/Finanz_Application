@@ -3,7 +3,7 @@
   text-align: left;
 
   font-size: 28px;
-  color: var(--text-color-5);
+  color: var(--money-title);
 }
 
 .moneyInfo {
@@ -11,7 +11,7 @@
   text-align: left;
 
   font-size: 30px;
-  color: var(--text-color-3);
+  color: var(--money-info);
 }
 
 .moneyButtonAdd {
@@ -41,7 +41,7 @@
 }
 
 .moneyButtonDe {
-  background: crimson;
+  background: var(--money-delete-button);
   color: var(--flat-button-light-color-text);
   box-shadow: none;
   margin: 0px 0px 0px 16px;

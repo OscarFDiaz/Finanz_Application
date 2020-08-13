@@ -30,27 +30,27 @@
 }
 
 .iconHome {
-    color: var(--menu-icon-color);
+    color: var(--icon-home);
 }
 
 .iconGoals {
-    color: var(--menu-icon-color);
+    color: var(--icon-goals);
 }
 
 .iconSavings {
-    color: var(--menu-icon-color);
+    color: var(--icon-savings);
 }
 
 .iconExpenses {
-    color: var(--menu-icon-color);
+    color: var(--icon-expenses);
 }
 
 .iconMoney {
-    color: var(--menu-icon-color);
+    color: var(--icon-money);
 }
 
 .iconConfiguration {
-    color: var(--menu-icon-color);
+    color: var(--icon-config);
     margin-bottom: 16px;
 }
 
