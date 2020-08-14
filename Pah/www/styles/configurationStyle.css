@@ -7,7 +7,7 @@
 .itemListConfiguration {
   color: var(--item-list-config);
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 /*CHEVRON DE LOS ELEMENTOS EN LA CONFIGURACIÓN*/
