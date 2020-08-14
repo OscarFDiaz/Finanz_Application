@@ -219,7 +219,7 @@
   --progressbar-main-color: #a2a1a1;
 
   /* CARDS */
-  --card-back-color: #453f41;
+  --card-back-color: #211f1f;
   --card-text-title-color: #f8f8f8;
   --card-content-text-color: #a2a1a1;
 
@@ -240,112 +240,111 @@
   --color-2: #0e0f14;
   --color-3: #4e4f4e;
   --color-4: #698fac;
-  --color-5: #d4b7a5;
 
   /* DEGRADADO */
-  --gradient-1: var(--color);
-  --gradient-2: #113a5e;
+  --gradient-1: #f3f3f3;
+  --gradient-2: #f3f3f3;
 
   /* SPINNER ONLOAD PAGE*/
-  --spiner-back-color: #f5a11b;
-  --spiner-front-color: #9cd9ce;
+  --spiner-back-color: #0e0f14;
+  --spiner-front-color: #bcc6d2;
 
   /* ICONOS MENÚ & TEXTO MENU*/
-  --icon-home: #f5a11b;
-  --icon-goals: #f5a11b;
-  --icon-savings: #f5a11b;
-  --icon-expenses: #f5a11b;
-  --icon-money: #f5a11b;
-  --icon-config: #f5a11b;
+  --icon-home: crimson;
+  --icon-goals: #dc2929;
+  --icon-savings: #235dff;
+  --icon-expenses: #1aff4c;
+  --icon-money: #7aa200;
+  --icon-config: #acff0a;
 
   --menu-icon-color: #f5a11b;
-  --menu-font-color: #ffffff;
+  --menu-font-color: #0e0f14;
 
   /* TOOLBAR */
-  --toolbar-color: #0d2840;
-  --label-toolbar-color: #ffffff;
-  --back-button-color: #ffffff;
-  --menu-button-color: #ffffff;
+  --toolbar-color: #fafafa;
+  --label-toolbar-color: #0e0f14;
+  --back-button-color: #0e0f14;
+  --menu-button-color: #0e0f14;
 
   /* CHEVRON */
-  --chevron-color: #f5a11b;
+  --chevron-color: #0e0f14;
 
   /* TEXTOS */
-  --item-list-config: #9cd9ce;
-  --text-without-card: #9cd9ce;
+  --item-list-config: #0e0f14;
+  --text-without-card: #4e4f4e;
 
-  --expense-title: #ffffff;
-  --expense-info: #9cd9ce;
-  --expense-detail: #9cd9ce;
-  --expense-detail-money: #f5a11b;
+  --expense-title: #0e0f14;
+  --expense-info: #0e0f14;
+  --expense-detail: #0e0f14;
+  --expense-detail-money: #698fac;
 
-  --detail-goal-title-color: #9cd9ce;
-  --detail-goal-content-color: #9cd9ce;
-  --detail-money-goal: #0596a6;
+  --detail-goal-title-color: #0e0f14;
+  --detail-goal-content-color: #4e4f4e;
+  --detail-money-goal: #4e4f4e;
 
-  --home-total-money: #f5a11b;
-  --home-goal-label: #9cd9ce;
-  --para-home-options: #9cd9ce;
-  --home-options-labels: #9cd9ce;
+  --home-total-money: #0e0f14;
+  --home-goal-label: #0e0f14;
+  --para-home-options: #0e0f14;
+  --home-options-labels: #0e0f14;
 
-  --money-title: #ffffff;
-  --money-info: #9cd9ce;
+  --money-title: #0e0f14;
+  --money-info: #4e4f4e;
   --money-delete-button: crimson;
 
-  --saving-main-title: #9cd9ce;
+  --saving-main-title: #0e0f14;
   --saving-info: #0596a6;
-  --saving-title: #9cd9ce;
-  --saving-daily: #f5a11b;
-  --saving-days-title: #9cd9ce;
-  --saving-days-left: #f5a11b;
+  --saving-title: #0e0f14;
+  --saving-daily: #0596a6;
+  --saving-days-title: #0e0f14;
+  --saving-days-left: #0596a6;
 
-  --saving-edit-label-range: #9cd9ce;
-  --saving-edit-range-selected: #9cd9ce;
-  --saving-edit-selected-range: #f5a11b;
-  --entry-amount-text: #9cd9ce;
-  --entry-amount-detail: #f5a11b;
+  --saving-edit-label-range: #0e0f14;
+  --saving-edit-range-selected: #0e0f14;
+  --saving-edit-selected-range: #0596a6;
+  --entry-amount-text: #0e0f14;
+  --entry-amount-detail: #0596a6;
 
   /* SWITCH */
-  --switch-button-round: #f5a11b;
-  --switch-back-off: #ffffff;
-  --switch-back-on: #0596a6;
+  --switch-button-round: #0596a6;
+  --switch-back-off: #0596a6;
+  --switch-back-on: #4e4f4e;
 
   /* INPUT */
-  --color-input: #f5a11b;
-  --color-input-text: #9cd9ce;
+  --color-input: #0596a6;
+  --color-input-text: #4e4f4e;
 
   /* TEXT AREA */
-  --text-area-border-color: #f5a11b;
-  --text-area-text-color: #9cd9ce;
+  --text-area-border-color: #0596a6;
+  --text-area-text-color: #4e4f4e;
 
   /* ALERT DIALOG */
-  --alert-tile-color: #ffffff;
-  --alert-container-color: #0d2840;
-  --alert-footer-color: #0e5259;
-  --alert-content-text-color: #ffffff;
-  --alert-button-color-text: #ffffff;
+  --alert-tile-color: #0e0f14;
+  --alert-container-color: #fafafa;
+  --alert-footer-color: #4e4f4e;
+  --alert-content-text-color: #0e0f14;
+  --alert-button-color-text: #fafafa;
 
   /* TOAST */
-  --toast-back-color: #f5a11b;
-  --toast-message-color: #ffffff;
+  --toast-back-color: #0e0f14;
+  --toast-message-color: #fafafa;
 
   /* PROGRESSBAR */
-  --progressbar-back-color: #0d2840;
-  --progressbar-main-color: #f5a11b;
+  --progressbar-back-color: #0e0f14;
+  --progressbar-main-color: #bcc6d2;
 
   /* CARDS */
-  --card-back-color: #134068;
-  --card-text-title-color: #9cd9ce;
-  --card-content-text-color: #0596a6;
+  --card-back-color: #fafafa;
+  --card-text-title-color: #0e0f14;
+  --card-content-text-color: #4e4f4e;
 
   /* BUTTONS */
-  --flat-button-color: #f5a11b;
-  --flat-button-color-text: #ffffff;
-  --flat-button-active-color: #cc7e00;
+  --flat-button-color: #4e4f4e;
+  --flat-button-color-text: #fafafa;
+  --flat-button-active-color: #4e4f4e;
 
-  --flat-button-light-color: #0596a6;
-  --flat-button-light-color-text: #ffffff;
-  --flat-button-light-active-color: #05565f;
+  --flat-button-light-color: #0e0f14;
+  --flat-button-light-color-text: #fafafa;
+  --flat-button-light-active-color: #0596a6;
 }
 
 .theme-default {
