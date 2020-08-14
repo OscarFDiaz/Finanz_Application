@@ -30,7 +30,7 @@ function makeNewMoney() {
     localStorage.setItem("moneyStorage", JSON.stringify(moneyArray));
   }
 
-  ons.notification.toast("Nueva meta añadida!", {
+  ons.notification.toast("Nuevo dinero añadido!", {
     title: "Aviso!",
     timeout: 2000,
     animation: "ascend",
