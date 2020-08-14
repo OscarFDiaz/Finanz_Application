@@ -16,6 +16,10 @@
   --gradient-1: var(--color);
   --gradient-2: #113a5e;
 
+  /* SPINNER ONLOAD PAGE*/
+  --spiner-back-color: #f5a11b;
+  --spiner-front-color: #9cd9ce;
+
   /* ICONOS MENÚ & TEXTO MENU*/
   --icon-home: #f5a11b;
   --icon-goals: #f5a11b;
@@ -126,6 +130,10 @@
   /* DEGRADADO */
   --gradient-1: var(--color);
   --gradient-2: #211c1d;
+
+  /* SPINNER ONLOAD PAGE*/
+  --spiner-back-color: crimson;
+  --spiner-front-color: #453f41;
 
   /* ICONOS MENÚ & TEXTO MENU*/
   --icon-home: crimson;
@@ -238,6 +246,10 @@
   --gradient-1: var(--color);
   --gradient-2: #113a5e;
 
+  /* SPINNER ONLOAD PAGE*/
+  --spiner-back-color: #f5a11b;
+  --spiner-front-color: #9cd9ce;
+
   /* ICONOS MENÚ & TEXTO MENU*/
   --icon-home: #f5a11b;
   --icon-goals: #f5a11b;
@@ -348,6 +360,10 @@
   /* DEGRADADO */
   --gradient-1: var(--color);
   --gradient-2: #113a5e;
+
+  /* SPINNER ONLOAD PAGE*/
+  --spiner-back-color: #f5a11b;
+  --spiner-front-color: #9cd9ce;
 
   /* ICONOS MENÚ & TEXTO MENU*/
   --icon-home: #f5a11b;
@@ -640,5 +656,9 @@
   margin: 0px;
   font-size: 18px;
   text-align: center;
+}
+
+.progress-bar--material.progress-bar--indeterminate:after, .progress-bar--material.progress-bar--indeterminate:before{
+  background-color: var(--spiner-front-color);
 }
 /**/
