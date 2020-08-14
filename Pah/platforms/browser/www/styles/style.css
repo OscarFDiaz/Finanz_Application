@@ -168,7 +168,7 @@
   --detail-goal-content-color: #a2a1a1;
   --detail-money-goal: #a2a1a1;
 
-  --home-total-money: #a2a1a1;
+  --home-total-money: crimson;
   --home-goal-label: #f8f8f8;
   --para-home-options: #a2a1a1;
   --home-options-labels: #f8f8f8;
@@ -216,7 +216,7 @@
 
   /* PROGRESSBAR */
   --progressbar-back-color: #0a0c0d;
-  --progressbar-main-color: #a2a1a1;
+  --progressbar-main-color: crimson;
 
   /* CARDS */
   --card-back-color: #211f1f;
