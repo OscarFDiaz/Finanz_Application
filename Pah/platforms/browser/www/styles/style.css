@@ -2,120 +2,122 @@
   box-sizing: border-box;
 }
 
-.theme-dark-light {
+.theme-yuri {
   /* COLORES */
-  --color: #060606;
-  --color-1: #2a3a35;
-  --color-2: #5d5d5d;
-  --color-3: #f6f6f6;
-  --color-4: #bdc3c6;
-  --color-5: #cf1f0b;
-  --color-6: #238843;
+  --color: #353535;
+  --color-1: #284B63;
+  --color-2: #3C6E71;
+  --color-3: #D9D9D9;
+  --color-4: #FFFFF0;
+  --color-5: #f5353c;
 
   /* DEGRADADO */
-  --gradient-1: var(--color);
-  --gradient-2: #113a5e;
+  --gradient-1: var(--color-4);
+  --gradient-2: #D9D9D9;
 
   /* SPINNER ONLOAD PAGE*/
-  --spiner-back-color: #f5a11b;
-  --spiner-front-color: #9cd9ce;
+  --spiner-back-color: #D9D9D9;
+  --spiner-front-color: #284B63;
 
   /* ICONOS MENÚ & TEXTO MENU*/
   --icon-home: #f5a11b;
-  --icon-goals: #f5a11b;
-  --icon-savings: #f5a11b;
-  --icon-expenses: #f5a11b;
-  --icon-money: #f5a11b;
-  --icon-config: #f5a11b;
+  --icon-goals: #dc2929;
+  --icon-savings: #235dff;
+  --icon-expenses: #919a00;
+  --icon-money: #88b500;
+  --icon-config: #ff0000;
 
-  --menu-icon-color: #f5a11b;
-  --menu-font-color: #ffffff;
+  --menu-icon-color: #FFFFF0;
+  --menu-font-color: #353535;
 
   /* TOOLBAR */
-  --toolbar-color: #0d2840;
-  --label-toolbar-color: #ffffff;
-  --back-button-color: #ffffff;
-  --menu-button-color: #ffffff;
+  --toolbar-color: #353535;
+  --label-toolbar-color: #353535;
+  --back-button-color: #284B63;
+  --menu-button-color: #284B63;
 
   /* CHEVRON */
-  --chevron-color: #f5a11b;
+  --chevron-color: #284B63;
 
   /* TEXTOS */
-  --item-list-config: #9cd9ce;
-  --text-without-card: #9cd9ce;
+  --item-list-config: #3C6E71;
+  --text-without-card: #3C6E71;
 
-  --expense-title: #ffffff;
-  --expense-info: #9cd9ce;
-  --expense-detail: #9cd9ce;
-  --expense-detail-money: #f5a11b;
+  --expense-title: #FFFFF0;
+  --expense-info: #D9D9D9;
+  --expense-detail: #D9D9D9;
+  --expense-detail-money: #FFFFF0;
 
-  --detail-goal-title-color: #9cd9ce;
-  --detail-goal-content-color: #9cd9ce;
-  --detail-money-goal: #0596a6;
+  --detail-goal-title-color: #FFFFF0;
+  --detail-goal-content-color: #D9D9D9;
+  --detail-money-goal: #D9D9D9;
 
-  --home-total-money: #f5a11b;
-  --home-goal-label: #9cd9ce;
-  --para-home-options: #9cd9ce;
-  --home-options-labels: #9cd9ce;
+  --home-total-money: #FFFFF0;
+  --home-goal-label: #D9D9D9;
+  --para-home-options: #353535;
+  --home-options-labels: #D9D9D9;
 
-  --money-title: #ffffff;
-  --money-info: #9cd9ce;
-  --money-delete-button: crimson;
+  --money-title: #FFFFF0;
+  --money-info: #D9D9D9;
+  --money-delete-button: #3C6E71;
 
-  --saving-main-title: #9cd9ce;
-  --saving-info: #0596a6;
-  --saving-title: #9cd9ce;
-  --saving-daily: #f5a11b;
-  --saving-days-title: #9cd9ce;
-  --saving-days-left: #f5a11b;
+  --saving-main-title: #D9D9D9;
+  --saving-info: #353535;
+  --saving-title: #D9D9D9;
+  --saving-daily: #353535;
+  --saving-days-title: #D9D9D9;
+  --saving-days-left: #FFFFF0;
 
-  --saving-edit-label-range: #9cd9ce;
-  --saving-edit-range-selected: #9cd9ce;
-  --saving-edit-selected-range: #f5a11b;
-  --entry-amount-text: #9cd9ce;
-  --entry-amount-detail: #f5a11b;
+  --saving-edit-label-range: #D9D9D9;
+  --saving-edit-range-selected: #D9D9D9;
+  --saving-edit-selected-range: #FFFFF0;
+  --entry-amount-text: #D9D9D9;
+  --entry-amount-detail: #FFFFF0;
 
   /* SWITCH */
-  --switch-button-round: #f5a11b;
-  --switch-back-off: #ffffff;
-  --switch-back-on: #0596a6;
+  --switch-button-round: #353535;
+  --switch-back-off: #3C6E71;
+  --switch-back-on: #D9D9D9;
 
   /* INPUT */
-  --color-input: #f5a11b;
-  --color-input-text: #9cd9ce;
+  --color-input: #D9D9D9;
+  --color-input-text: #FFFFF0;
 
   /* TEXT AREA */
-  --text-area-border-color: #f5a11b;
-  --text-area-text-color: #9cd9ce;
+  --text-area-border-color: #D9D9D9;
+  --text-area-text-color: #FFFFF0;
 
   /* ALERT DIALOG */
-  --alert-tile-color: #ffffff;
-  --alert-container-color: #0d2840;
-  --alert-footer-color: #0e5259;
-  --alert-content-text-color: #ffffff;
-  --alert-button-color-text: #ffffff;
+  --alert-tile-color: #FFFFF0;
+  --alert-container-color: #284B63;
+  --alert-footer-color: #D9D9D9;
+  --alert-content-text-color: #FFFFF0;
+  --alert-button-color-text: #353535;
+
+  --alert-custom-label: #D9D9D9;
+  --alert-custom-label-money: #FFFFF0;
 
   /* TOAST */
-  --toast-back-color: #f5a11b;
-  --toast-message-color: #ffffff;
+  --toast-back-color: #284B63;
+  --toast-message-color: #FFFFF0;
 
   /* PROGRESSBAR */
-  --progressbar-back-color: #0d2840;
-  --progressbar-main-color: #f5a11b;
+  --progressbar-back-color: #353535;
+  --progressbar-main-color: #FFFFF0;
 
   /* CARDS */
-  --card-back-color: #134068;
-  --card-text-title-color: #9cd9ce;
-  --card-content-text-color: #0596a6;
+  --card-back-color: #284B63;
+  --card-text-title-color: #FFFFF0;
+  --card-content-text-color: #D9D9D9;
 
   /* BUTTONS */
-  --flat-button-color: #f5a11b;
-  --flat-button-color-text: #ffffff;
-  --flat-button-active-color: #cc7e00;
+  --flat-button-color: #353535;
+  --flat-button-color-text: #D9D9D9;
+  --flat-button-active-color: #201e1e;
 
-  --flat-button-light-color: #0596a6;
-  --flat-button-light-color-text: #ffffff;
-  --flat-button-light-active-color: #05565f;
+  --flat-button-light-color: #FFFFF0;
+  --flat-button-light-color-text: #353535;
+  --flat-button-light-active-color: #929292;
 }
 
 .theme-dark {
@@ -209,6 +211,9 @@
   --alert-footer-color: #453f41;
   --alert-content-text-color: #f8f8f8;
   --alert-button-color-text: #f8f8f8;
+
+  --alert-custom-label: #a2a1a1;
+  --alert-custom-label-money: crimson;
 
   /* TOAST */
   --toast-back-color: crimson;
@@ -324,6 +329,9 @@
   --alert-content-text-color: #0e0f14;
   --alert-button-color-text: #fafafa;
 
+  --alert-custom-label: #0e0f14;
+  --alert-custom-label-money: #0596a6;
+
   /* TOAST */
   --toast-back-color: #0e0f14;
   --toast-message-color: #fafafa;
@@ -438,6 +446,9 @@
   --alert-footer-color: #0e5259;
   --alert-content-text-color: #ffffff;
   --alert-button-color-text: #ffffff;
+
+  --alert-custom-label: #9cd9ce;
+  --alert-custom-label-money: #f5a11b;
 
   /* TOAST */
   --toast-back-color: #f5a11b;

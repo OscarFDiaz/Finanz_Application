@@ -36,29 +36,6 @@
   color: var(--home-goal-label);
 }
 
-.themeDefault {
-  background: url("../assets/images/themeDefault.png");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.themeDark {
-  /* 162447 - 1f4068 - 1b1b2f - e43f5a - fffcf2 */
-  background: url("../assets/images/themeDark.png");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.themeLight {
-  /*#fff6e9 • #ffefd7 • #fffef9 • #e3f0ff • #d2e7ff*/
-  background: url("../assets/images/themeLight.png");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .paraHome {
   display: block;
   text-align: left;
