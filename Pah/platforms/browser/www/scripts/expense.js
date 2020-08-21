@@ -158,7 +158,12 @@ function getExpenses() {
   let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
   let expensesView = document.getElementById("expensesContainer");
 
-  expensesView.innerHTML = "";
+  console.log(expensesView);
+  document.getElementById("expensesContainer").innerHTML = "";
+
+  if(expenses == null || expenses == "") {
+    return;
+  }
 
   for(let i = 0; i < expenses.length; i++) {
     let eName = expenses[i].expenseName;

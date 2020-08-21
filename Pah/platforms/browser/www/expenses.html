@@ -1,4 +1,4 @@
-<ons-page id="expenses">
+<ons-page id="expensesPage">
   <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
     <div class="left">
       <ons-toolbar-button onclick="fn.open()">
@@ -14,25 +14,16 @@
 
   </div>
 
-
-  <ons-card>
-    <div class="title expenseTitle">
-      COMPUTADORA
-      <i class="expenseIcon ion-md-laptop"></i>
-    </div>
-    <div class="content">
-      <label class="expenseInfo">$ 1500 GASTADOS TOTALMENTE</label>
-    </div>
-  </ons-card>
-
   <ons-button class="flatButton" onclick="pushTest5()">AÑADIR NUEVO</ons-button>
 
   <script>
     document.addEventListener(
-      "init",
+      "show",
       function (event) {
-        if (event.target.matches("#titleExpenses")) {
-          getExpenses();
+        if (event.target.matches("#expensesPage")) {
+            ons.ready(function() {
+              getExpenses();
+            });
         }
       },
       false
