@@ -90,8 +90,18 @@ function selectIcon(iconName, iconColor) {
 
 function makeNewExpense() {
   let expenseName = document.getElementById("newExpenseName").value;
-  let expenseColor = document.getElementById("newExpenseColor").value;
+  let totalExpense = 0;
+  let lastExpense = 0;
+  let lastNote = "";
+  let lastDate = "";
   let iconName = sessionStorage.getItem("expenseIconName");
+  let expenseColor = document.getElementById("newExpenseColor").value;
+  let inName = "";
+  let inAmount = 0;
+  let inDate = "";
+  let actualExpenses = 0;
+
+
   sessionStorage.removeItem("expenseIconName");
 
   if (expenseName == "" || expenseName == null) {
@@ -106,7 +116,83 @@ function makeNewExpense() {
   }
 
   console.log(expenseName + " | " + expenseColor + " | " + iconName);
+
+  let expense = {
+    expenseName,
+    totalExpense,
+    lastExpense,
+    lastNote,
+    lastDate,
+    iconName,
+    expenseColor,
+    gastos : [
+      inName,
+      inAmount,
+      inDate,
+      actualExpenses
+    ]
+  };
+
+  if (localStorage.getItem("expenseStorage") === null) {
+    let expenseArray = [];
+    expenseArray.push(expense);
+    localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+  } else {
+    let expenseArray = JSON.parse(localStorage.getItem("expenseStorage"));
+    expenseArray.push(expense);
+    localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+  }
+
+  ons.notification.toast("Nuevo gasto añadido!", {
+    title: "Aviso!",
+    timeout: 2000,
+    animation: "ascend",
+  });
+
+  getExpenses();
+  functionPopPage();
 }
 
 
-function loadExpenses() {}
+function getExpenses() {
+  let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
+  let expensesView = document.getElementById("expensesContainer");
+
+  expensesView.innerHTML = "";
+
+  for(let i = 0; i < expenses.length; i++) {
+    let eName = expenses[i].expenseName;
+    let eicon = expenses[i].iconName;
+    let eColor = expenses[i].expenseColor;
+    let eExpense = expenses[i].totalExpense;
+
+    expensesView.innerHTML += 
+    `<ons-card onclick="findExpense('${eName}')">
+      <div class="title expenseTitle">
+        ${eName}
+        <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor}"></i>
+      </div>
+      <div class="content">
+        <label class="expenseInfo">$ ${eExpense} GASTADOS TOTALMENTE</label>
+      </div>
+      <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addExpenseToExpense('${eName}')" > 
+        AÑADIR GASTO
+      </ons-button>
+      <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteExpense('${eName}')" >
+        ELIMINAR
+      </ons-button>
+    </ons-card>`
+  }
+}
+
+function findExpense(){
+
+}
+
+function addExpenseToExpense() {
+
+}
+
+function deleteExpense() {
+
+}

@@ -1,45 +1,41 @@
 <ons-page id="expenses">
-    <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <i class="menuButtonIcon ion-md-menu"></i>
-        </ons-toolbar-button>
-      </div>
-      <div class="center labelToolbar" id="titleExpenses">
-        GASTOS
-      </div>
-    </ons-toolbar>
-  
-    <ons-card onclick="pushTest6()">
-      <div class="title expenseTitle">
-        DULCES
-        <i class="expenseIcon ion-md-rose"></i>
-      </div>
-      <div class="content">
-        <label class="expenseInfo">$ 5000 GASTADOS TOTALMENTE</label>
-      </div>
-    </ons-card>
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <div class="left">
+      <ons-toolbar-button onclick="fn.open()">
+        <i class="menuButtonIcon ion-md-menu"></i>
+      </ons-toolbar-button>
+    </div>
+    <div class="center labelToolbar" id="titleExpenses">
+      GASTOS
+    </div>
+  </ons-toolbar>
 
-    <ons-card>
-      <div class="title expenseTitle">
-        COMPUTADORA
-        <i class="expenseIcon ion-md-laptop"></i>
-      </div>
-      <div class="content">
-        <label class="expenseInfo">$ 1500 GASTADOS TOTALMENTE</label>
-      </div>
-    </ons-card>
-  
-    <ons-button class="flatButton" onclick="pushTest5()">AÑADIR NUEVO</ons-button>
+  <div class="expensesContainer">
 
-    <script>
-      document.addEventListener(
-        "init",
-        function (event) {
-          if (event.target.matches("#titleExpenses")) {
-          }
-        },
-        false
-      );
-    </script>
-  </ons-page>
+  </div>
+
+
+  <ons-card>
+    <div class="title expenseTitle">
+      COMPUTADORA
+      <i class="expenseIcon ion-md-laptop"></i>
+    </div>
+    <div class="content">
+      <label class="expenseInfo">$ 1500 GASTADOS TOTALMENTE</label>
+    </div>
+  </ons-card>
+
+  <ons-button class="flatButton" onclick="pushTest5()">AÑADIR NUEVO</ons-button>
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#titleExpenses")) {
+          getExpenses();
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

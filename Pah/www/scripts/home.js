@@ -98,3 +98,41 @@ function setTheme(themeName) {
     );
   }
 }
+
+function getTotalMoney() {
+  let arrayMoney = JSON.parse(localStorage.getItem("moneyStorage"));
+  let amount = 0;
+  for (let i = 0; i < arrayMoney.length; i++){
+    amount += +arrayMoney[i].moneyCurrent;
+  }
+  return amount;
+}
+
+function getTotalSavings() {
+  return 0;
+}
+
+function getTotalExpenses() {
+  return true;
+}
+
+function getTotalGoals() {
+  let goals = JSON.parse(localStorage.getItem("goalStorage"));
+  let goalsView = "";
+
+  for (let i = 0; i < goals.length; i++) {
+    let gName = goals[i].goalName;
+    let gMoney = goals[i].goalMoney;
+    let gAMoney = goals[i].goalActualMoney;
+
+    let gPercent = getPercent(gMoney, gAMoney);
+
+    goalsView += 
+    `<label class="homeGoalLabel">${gName}</label>
+    <div class="progressBarContainer">
+      <div class="progressBarPercent" style="--width: ${gPercent};"></div>
+    </div>`;
+  }
+
+  return goalsView;
+}
