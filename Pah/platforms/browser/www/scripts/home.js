@@ -209,7 +209,7 @@ function getTotalGoals() {
 console.log(goals);
 console.log(goals.length);
   if (goals.length == 0 || goals == null || goals == "null") {
-    goalsView += `<label class="homeGoalLabel" style="text-align:center; padding-botton:10px">Nada por aquí...</label>`;
+    goalsView += `<label class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</label>`;
     return goalsView;
   }
 
