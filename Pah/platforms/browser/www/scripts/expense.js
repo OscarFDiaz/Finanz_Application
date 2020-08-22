@@ -92,7 +92,7 @@ function makeNewExpense() {
   let expenseName = document.getElementById("newExpenseName").value;
   let totalExpense = 0;
   let lastNote = "";
-  let mainDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+  let mainDate = new Date().toJSON().slice(0,10);
   let iconName = sessionStorage.getItem("expenseIconName");
   let expenseColor = document.getElementById("newExpenseColor").value;
   let inName = "";
@@ -113,21 +113,13 @@ function makeNewExpense() {
     iconName = "ion-md-laptop";
   }
 
-  let expenseDetail = {
-    expenseName,
-    inName,
-    inAmount,
-    inDate
-  }; 
-
   let expense = {
     expenseName,
     totalExpense,
     lastNote,
     mainDate,
     iconName,
-    expenseColor,
-    actualExpenses
+    expenseColor
   };
 
   /* Guardo el expense original*/
@@ -139,17 +131,6 @@ function makeNewExpense() {
     let expenseArray = JSON.parse(localStorage.getItem("expenseStorage"));
     expenseArray.push(expense);
     localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
-  }
-
-  /* Guardo los detalles del Expense*/
-  if (localStorage.getItem("expenseDetailStorage") === null) {
-    let expenseDetailArray = [];
-    expenseDetailArray.push(expenseDetail);
-    localStorage.setItem("expenseDetailStorage", JSON.stringify(expenseDetailArray));
-  } else {
-    let expenseDetailArray = JSON.parse(localStorage.getItem("expenseDetailStorage"));
-    expenseDetailArray.push(expenseDetail);
-    localStorage.setItem("expenseDetailStorage", JSON.stringify(expenseDetailArray));
   }
 
   ons.notification.toast("Nuevo gasto añadido!", {
@@ -227,7 +208,70 @@ function findExpense(sendName){
 }
 
 function addExpenseToExpense(sendName) {
+  let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
 
+  for (let i = 0; i < expenses.length; i++) {
+    let eName = expenses[i].expenseName;
+
+    if (eName == sendName) {
+
+      let objectFinded = expenses[i].expenseName;
+
+      if (sessionStorage.getItem("sessionFindExpense") === null) {
+        sessionStorage.setItem(
+          "sessionFindExpense",
+          objectFinded
+        );
+      } else {
+        sessionStorage.removeItem("sessionFindExpense");
+        sessionStorage.setItem(
+          "sessionFindExpense",
+          objectFinded
+        );
+      }
+    }
+  }
+  createAlertDialogToAddExpense();
+}
+
+function resetExpense(sendName) {
+  ons.notification.confirm({
+    message: "Estas seguro de borrar todos los gastos realizados?",
+    title: "Aviso!",
+    buttonLabels: ["Sí", "Cancelar"],
+    animation: "default",
+    primaryButtonIndex: 1,
+    cancelable: true,
+    callback: function (index) {
+      if (0 === index) {
+        let detailExpenses = JSON.parse(localStorage.getItem("expenseDetailStorage"))
+
+        for (let i = 0; i < detailExpenses.length; i++) {
+          let name = detailExpenses[i].expenseName;
+          if (name === sendName || name == sendName) {
+            detailExpenses.splice(i, 1);
+            i--;
+          }
+        }
+        localStorage.setItem("expenseDetailStorage", JSON.stringify(detailExpenses));
+        
+        functionPopPage();
+        
+        getExpenses();
+        ons.notification.toast("Se han reiniciado los gastos!", {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        });
+      } else {
+        ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
+          title: "Aviso!",
+          timeout: 1000,
+          animation: "ascend",
+        });
+      }
+    },
+  });
 }
 
 function deleteExpense(sendName) {
@@ -253,6 +297,7 @@ function deleteExpense(sendName) {
         for (let i = 0; i < detailExpenses.length; i++) {
           if (detailExpenses[i].expenseName == sendName) {
             detailExpenses.splice(i, 1);
+            i--;
           }
         }
         localStorage.setItem("expenseDetailStorage", JSON.stringify(detailExpenses));

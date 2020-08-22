@@ -14,14 +14,61 @@
 
   <ons-button class="flatButton" onclick="pushTest5()">AÑADIR NUEVO</ons-button>
 
+  <!--ALERT PARA AÑADIR UN GASTO-->
+  <ons-alert-dialog id="alertToAddExpense" modifier="material">
+    <div style="text-align: center; margin-top: 16px;">
+      <div class="alert-dialog-title">Añadir nuevo gasto</div>
+    </div>
+
+    <div class="alert-dialog-content">
+      <div style="text-align: center; margin-top: 16px;">
+        <p>
+          <ons-input
+            id="alertExpenseNote"
+            modifier="underbar"
+            placeholder="NOTA DEL GASTO"
+            type="text"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+
+          <ons-input
+            id="alertExpenseMoney"
+            modifier="underbar"
+            placeholder="DINERO GASTADO"
+            type="number"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+
+          <ons-input
+            id="alertExpenseDate"
+            modifier="underbar"
+            placeholder="FECHA DEL GASTO"
+            type="date"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+        </p>
+      </div>
+    </div>
+
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="hideAlertExpenseNoChange()"
+        >Cancelar</ons-alert-dialog-button
+      >
+      <ons-alert-dialog-button onclick="hideAlertExpense()"
+        >Listo!</ons-alert-dialog-button
+      >
+    </div>
+  </ons-alert-dialog>
+  <!----------------------------------------------------------------->
+
   <script>
     document.addEventListener(
       "show",
       function (event) {
         if (event.target.matches("#expensesPage")) {
-            ons.ready(function() {
-              getExpenses();
-            });
+          ons.ready(function () {
+            getExpenses();
+          });
         }
       },
       false

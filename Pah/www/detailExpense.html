@@ -9,10 +9,6 @@
 
   <div id="detailExpenseContainer"></div>
 
-  <ons-button class="flatButtonLight" style="margin-bottom: 16px;"
-    >REINICIAR</ons-button
-  >
-
   <script>
     document.addEventListener(
       "init",
@@ -30,23 +26,20 @@
           let lDate = parseExpense.lastNote;
           let mDate = parseExpense.mainDate;
 
-          let actualEx = parseExpense.actualExpenses;
-
           let lastFDays, lastTDays;
 
           if (eTotal == 0) {
             lastFDays = lastTDays = 0;
           } else {
             lastFDays = getAmountFDays();
-            lastTDays = getAmountTDays()
+            lastTDays = getAmountTDays();
           }
 
           let expenseView = document.getElementById("detailExpenseContainer");
           expenseView.innerHTML = "";
           document.getElementById("titleDetailExpense").innerHTML = eName;
 
-          expenseView.innerHTML += 
-          `<ons-card>
+          expenseView.innerHTML += `<ons-card>
             <div class="content">
               <label class="labelDetailExpense"
                 >Fecha creación:
@@ -100,30 +93,45 @@
                 </div>
               </ons-list-item>
             </ons-list>
-          </ons-card>`;
+          </ons-card>
           
-          let detailDetailExpenseView = document.getElementById("expenseListOfExpenses");
+          <ons-button class="flatButtonLight" style="margin-bottom: 16px;"
+          onclick="resetExpense('${eName}')">REINICIAR</ons-button
+          >`;
+
+          let detailDetailExpenseView = document.getElementById(
+            "expenseListOfExpenses"
+          );
           detailDetailExpenseView.innerHTML = "";
 
-          let expensesDetail = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+          let expensesDetail = JSON.parse(
+            localStorage.getItem("expenseDetailStorage")
+          );
 
-          if(actualEx == 0){
-            detailDetailExpenseView.innerHTML = 
-            `<div style="margin-bottom: 30px;">
+          let actualEx = 0;
+          for (let i = 0; i < expensesDetail.length; i++) {
+            if (expensesDetail[i].expenseName == eName) {
+              actualEx = 1;
+            }
+          }
+
+          if (actualEx == 0) {
+            detailDetailExpenseView.innerHTML = `<div style="margin-bottom: 30px;">
               <label class="labelDetailExpense">Nada por mostrar, vas bien con los ahorros...</label>
             </div>`;
           } else {
             for (let i = 0; i < expensesDetail.length; i++) {
-              let iName = expensesDetail[i].inName;
-              let iAmount = expensesDetail[i].inAmount;
-              let iDate = expensesDetail[i].inDate;
+              if (expensesDetail[i].expenseName == eName) {
+                let iName = expensesDetail[i].inName;
+                let iAmount = expensesDetail[i].inAmount;
+                let iDate = expensesDetail[i].inDate;
 
-              detailDetailExpenseView.innerHTML += 
-              `<div style="margin-bottom: 30px;">
-                <label class="labelDetailExpense" style="padding-top: 0px">Nota: <span class="labelInfoDetailExpense">${iName}</span></label>
-                <label class="labelDetailExpense" style="padding-top: 0px">Fecha: <span class="labelInfoDetailExpense">${iDate}</span></label>
-                <label class="labelDetailExpense" style="padding-top: 0px">Total: $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
-              </div>`;
+                detailDetailExpenseView.innerHTML += `<div style="margin-bottom: 30px;">
+                  <label class="labelDetailExpense" style="padding-top: 0px">Nota: <span class="labelInfoDetailExpense">${iName}</span></label>
+                  <label class="labelDetailExpense" style="padding-top: 0px">Fecha: <span class="labelInfoDetailExpense">${iDate}</span></label>
+                  <label class="labelDetailExpense" style="padding-top: 0px">Total: $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
+                  </div>`;
+              }
             }
           }
         }

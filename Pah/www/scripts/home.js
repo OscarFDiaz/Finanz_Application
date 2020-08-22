@@ -184,7 +184,6 @@ function loadOptions() {
     let goals = getTotalGoals();
     document.getElementById("homeGoalsContainer").innerHTML = goals;
   }
-
 }
 
 function getTotalMoney() {
@@ -207,6 +206,12 @@ function getTotalExpenses() {
 function getTotalGoals() {
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
   let goalsView = "";
+console.log(goals);
+console.log(goals.length);
+  if (goals.length == 0 || goals == null || goals == "null") {
+    goalsView += `<label class="homeGoalLabel" style="text-align:center; padding-botton:10px">Nada por aquí...</label>`;
+    return goalsView;
+  }
 
   for (let i = 0; i < goals.length; i++) {
     let gName = goals[i].goalName;

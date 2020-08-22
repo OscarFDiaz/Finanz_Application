@@ -37,7 +37,7 @@ function hideAlertMoneys() {
 
   let moneys = JSON.parse(localStorage.getItem("moneyStorage"));
 
-  let indexGoal, updateGoalObject;
+  let indexGoal;
 
   let sName = localStorage.getItem("nameSaved");
 
