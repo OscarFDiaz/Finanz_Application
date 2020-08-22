@@ -7,65 +7,7 @@
     </div>
   </ons-toolbar>
 
-  <!--gasto toal - ultimos 15 días  - ultimos 30 días-->
-  <ons-card>
-    <div class="content">
-      <label class="labelDetailExpense"
-        >Gasto total:
-        <span id="totalExpenseDetail" class="labelInfoDetailExpense"
-          >$ 5000</span
-        ></label
-      >
-      <label class="labelDetailExpense"
-        >Últimos 15 días:
-        <span id="lastDaysDetail" class="labelInfoDetailExpense"
-          >$ 300</span
-        ></label
-      >
-      <label class="labelDetailExpense"
-        >Últimos 30 días:
-        <span id="lastMonthDetail" class="labelInfoDetailExpense"
-          >$ 800</span
-        ></label
-      >
-    </div>
-  </ons-card>
-
-  <!-- ultimo gasto - fecha - nota-->
-  <ons-card>
-    <div class="content">
-      <label class="labelDetailExpense"
-        >Último gasto:
-        <span id="lastExpenseDetail" class="labelInfoDetailExpense"
-          >$ 20</span
-        ></label
-      >
-      <label class="labelDetailExpense"
-        >Fecha:
-        <span id="lastExpenseDate" class="labelInfoDetailExpense"
-          >28/06/20</span
-        ></label
-      >
-      <label class="labelDetailExpense"
-        >Nota:
-        <span id="lastExpenseNote" class="labelInfoDetailExpense"
-          >Chocorroles</span
-        ></label
-      >
-    </div>
-  </ons-card>
-
-  <!-- fecha inicial -->
-  <ons-card>
-    <div class="content">
-      <label class="labelDetailExpense"
-        >Fecha inicial:
-        <span id="expenseFirstDate" class="labelInfoDetailExpense"
-          >28/04/20</span
-        ></label
-      >
-    </div>
-  </ons-card>
+  <div id="detailExpenseContainer"></div>
 
   <ons-button class="flatButtonLight" style="margin-bottom: 16px;"
     >REINICIAR</ons-button
@@ -76,6 +18,114 @@
       "init",
       function (event) {
         if (event.target.matches("#detailExpense")) {
+          document.getElementById("detailExpenseContainer").innerHTML = "";
+
+          let retrievedExpense = sessionStorage.getItem("sessionFindGoal");
+          let parseExpense = JSON.parse(retrievedExpense);
+
+          let eName = parseExpense.expenseName;
+          let eTotal = parseExpense.totalExpense;
+          let lExpense = parseExpense.lastExpense;
+          let lNote = parseExpense.lastNote;
+          let lDate = parseExpense.lastNote;
+          let mDate = parseExpense.mainDate;
+
+          let actualEx = parseExpense.actualExpenses;
+
+          let lastFDays, lastTDays;
+
+          if (eTotal == 0) {
+            lastFDays = lastTDays = 0;
+          } else {
+            lastFDays = getAmountFDays();
+            lastTDays = getAmountTDays()
+          }
+
+          let expenseView = document.getElementById("detailExpenseContainer");
+          expenseView.innerHTML = "";
+          document.getElementById("titleDetailExpense").innerHTML = eName;
+
+          expenseView.innerHTML += 
+          `<ons-card>
+            <div class="content">
+              <label class="labelDetailExpense"
+                >Fecha creación:
+                <span id="expenseCreationDate" class="labelInfoDetailExpense"
+                  >${mDate}</span
+                ></label
+              >
+            </div>
+          </ons-card>
+
+          <ons-card>
+            <div class="content">
+              <label class="labelDetailExpense"
+                >Gasto total:
+                <span id="totalExpenseDetail" class="labelInfoDetailExpense"
+                  >$ ${eTotal}</span
+                ></label
+              >
+              <label class="labelDetailExpense"
+                >Últimos 15 días:
+                <span id="lastDaysDetail" class="labelInfoDetailExpense"
+                  >$ ${lastFDays}</span
+                ></label
+              >
+              <label class="labelDetailExpense"
+                >Últimos 30 días:
+                <span id="lastMonthDetail" class="labelInfoDetailExpense"
+                  >$ ${lastTDays}</span
+                ></label
+              >
+            </div>
+          </ons-card>
+          
+          
+          <ons-card>
+            <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+              <ons-list-item
+                id="expandableListContainer"
+                expandable
+                style="margin-top: 0px;"
+              >
+                <label class="iconExpenseLabel" style="margin-left: 50px;">
+                  VER GASTOS
+                </label>
+                <div
+                  class="expandable-content"
+                  id="expenseListOfExpenses"
+                  style="grid-template-columns: 1fr;"
+                >
+                  <!-- AQUI SE CARGAN LOS GASTOS -->
+                </div>
+              </ons-list-item>
+            </ons-list>
+          </ons-card>`;
+          
+          let detailDetailExpenseView = document.getElementById("expenseListOfExpenses");
+          detailDetailExpenseView.innerHTML = "";
+
+          let expensesDetail = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+
+          if(actualEx == 0){
+            detailDetailExpenseView.innerHTML = 
+            `<div style="margin-bottom: 30px;">
+              <label class="labelDetailExpense">Nada por mostrar, vas bien con los ahorros...</label>
+            </div>`;
+          } else {
+            for (let i = 0; i < expensesDetail.length; i++) {
+              let iName = expensesDetail[i].inName;
+              let iAmount = expensesDetail[i].inAmount;
+              let iDate = expensesDetail[i].inDate;
+
+              detailDetailExpenseView.innerHTML += 
+              `<div style="margin-bottom: 30px;">
+                <label class="labelDetailExpense" style="padding-top: 0px">Nota: <span class="labelInfoDetailExpense">${iName}</span></label>
+                <label class="labelDetailExpense" style="padding-top: 0px">Fecha: <span class="labelInfoDetailExpense">${iDate}</span></label>
+                <label class="labelDetailExpense" style="padding-top: 0px">Total: $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
+              </div>`;
+            }
+          }
         }
       },
       false

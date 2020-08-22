@@ -91,16 +91,14 @@ function selectIcon(iconName, iconColor) {
 function makeNewExpense() {
   let expenseName = document.getElementById("newExpenseName").value;
   let totalExpense = 0;
-  let lastExpense = 0;
   let lastNote = "";
-  let lastDate = "";
+  let mainDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
   let iconName = sessionStorage.getItem("expenseIconName");
   let expenseColor = document.getElementById("newExpenseColor").value;
   let inName = "";
   let inAmount = 0;
   let inDate = "";
   let actualExpenses = 0;
-
 
   sessionStorage.removeItem("expenseIconName");
 
@@ -115,24 +113,24 @@ function makeNewExpense() {
     iconName = "ion-md-laptop";
   }
 
-  console.log(expenseName + " | " + expenseColor + " | " + iconName);
+  let expenseDetail = {
+    expenseName,
+    inName,
+    inAmount,
+    inDate
+  }; 
 
   let expense = {
     expenseName,
     totalExpense,
-    lastExpense,
     lastNote,
-    lastDate,
+    mainDate,
     iconName,
     expenseColor,
-    gastos : [
-      inName,
-      inAmount,
-      inDate,
-      actualExpenses
-    ]
+    actualExpenses
   };
 
+  /* Guardo el expense original*/
   if (localStorage.getItem("expenseStorage") === null) {
     let expenseArray = [];
     expenseArray.push(expense);
@@ -141,6 +139,17 @@ function makeNewExpense() {
     let expenseArray = JSON.parse(localStorage.getItem("expenseStorage"));
     expenseArray.push(expense);
     localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+  }
+
+  /* Guardo los detalles del Expense*/
+  if (localStorage.getItem("expenseDetailStorage") === null) {
+    let expenseDetailArray = [];
+    expenseDetailArray.push(expenseDetail);
+    localStorage.setItem("expenseDetailStorage", JSON.stringify(expenseDetailArray));
+  } else {
+    let expenseDetailArray = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+    expenseDetailArray.push(expenseDetail);
+    localStorage.setItem("expenseDetailStorage", JSON.stringify(expenseDetailArray));
   }
 
   ons.notification.toast("Nuevo gasto añadido!", {
@@ -158,7 +167,6 @@ function getExpenses() {
   let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
   let expensesView = document.getElementById("expensesContainer");
 
-  console.log(expensesView);
   document.getElementById("expensesContainer").innerHTML = "";
 
   if(expenses == null || expenses == "") {
@@ -172,8 +180,8 @@ function getExpenses() {
     let eExpense = expenses[i].totalExpense;
 
     expensesView.innerHTML += 
-    `<ons-card onclick="findExpense('${eName}')">
-      <div class="title expenseTitle">
+    `<ons-card>
+      <div class="title expenseTitle" onclick="findExpense('${eName}')">
         ${eName}
         <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor}"></i>
       </div>
@@ -186,18 +194,91 @@ function getExpenses() {
       <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteExpense('${eName}')" >
         ELIMINAR
       </ons-button>
-    </ons-card>`
+    </ons-card>`;
   }
 }
 
-function findExpense(){
+function findExpense(sendName){
+  let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
+
+  for (let i = 0; i < expenses.length; i++) {
+    let eName = expenses[i].expenseName;
+
+    if (eName == sendName){
+      let findExpenseObject = expenses[i];
+
+      if (sessionStorage.getItem("sessionFindGoal") === null) {
+        sessionStorage.setItem(
+          "sessionFindGoal",
+          JSON.stringify(findExpenseObject)
+        );
+      } else {
+        sessionStorage.removeItem("sessionFindGoal");
+        sessionStorage.setItem(
+          "sessionFindGoal",
+          JSON.stringify(findExpenseObject)
+        );
+      }
+
+      const navigator = document.querySelector("#navigator");
+      navigator.pushPage("detailExpense.html");
+    }
+  }
+}
+
+function addExpenseToExpense(sendName) {
 
 }
 
-function addExpenseToExpense() {
+function deleteExpense(sendName) {
+  ons.notification.confirm({
+    message: "Estas seguro de borrar el gasto totalmente?",
+    title: "Aviso!",
+    buttonLabels: ["Sí", "Cancelar"],
+    animation: "default",
+    primaryButtonIndex: 1,
+    cancelable: true,
+    callback: function (index) {
+      if (0 === index) {
+        let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
+        let detailExpenses = JSON.parse(localStorage.getItem("expenseDetailStorage"))
 
+        for (let i = 0; i < expenses.length; i++) {
+          if (expenses[i].expenseName == sendName) {
+            expenses.splice(i, 1);
+          }
+        }
+        localStorage.setItem("expenseStorage", JSON.stringify(expenses));
+
+        for (let i = 0; i < detailExpenses.length; i++) {
+          if (detailExpenses[i].expenseName == sendName) {
+            detailExpenses.splice(i, 1);
+          }
+        }
+        localStorage.setItem("expenseDetailStorage", JSON.stringify(detailExpenses));
+
+        getExpenses();
+
+        ons.notification.toast("Se ha elimindado el gasto seleccionado!", {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        });
+      } else {
+        ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
+          title: "Aviso!",
+          timeout: 1000,
+          animation: "ascend",
+        });
+      }
+    },
+  });
 }
 
-function deleteExpense() {
+function getAmountFDays(){
+  return 0;
+}
 
+function getAmountTDays(){
+  return 0;
 }
