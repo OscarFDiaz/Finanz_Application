@@ -236,7 +236,7 @@ function addExpenseToExpense(sendName) {
 
 function resetExpense(sendName) {
   ons.notification.confirm({
-    message: "Estas seguro de borrar todos los gastos realizados?",
+    message: "Estas seguro de borrar todos los gastos realizados?, la fecha de creación no se modificara.",
     title: "Aviso!",
     buttonLabels: ["Sí", "Cancelar"],
     animation: "default",
@@ -245,6 +245,15 @@ function resetExpense(sendName) {
     callback: function (index) {
       if (0 === index) {
         let detailExpenses = JSON.parse(localStorage.getItem("expenseDetailStorage"))
+
+        if (detailExpenses.length == 0 || detailExpenses.length == "0") {
+          ons.notification.toast("Un momento, no hay gastos para borrar, me querias intentar engañar?", {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+          return;
+        }
 
         for (let i = 0; i < detailExpenses.length; i++) {
           let name = detailExpenses[i].expenseName;
@@ -258,7 +267,7 @@ function resetExpense(sendName) {
         functionPopPage();
         
         getExpenses();
-        ons.notification.toast("Se han reiniciado los gastos!", {
+        ons.notification.toast("Se han reiniciado los gastos!, un nuevo comienzo...", {
           title: "Aviso!",
           timeout: 2000,
           animation: "ascend",
