@@ -20,22 +20,35 @@ function hideAlertExpense() {
   let eMoney = document.getElementById("alertExpenseMoney").value;
   let eDate = document.getElementById("alertExpenseDate").value;
 
+  
   if (eName == null || eName == "") {
-    ons.notification.toast("Ingresa la nota del gasto!", {
+    ons.notification.toast("No puedo añadir un gasto sin un nombre/nota!", {
       title: "Aviso!",
       timeout: 2000,
       animation: "ascend",
     });
     return;
   } else if (eMoney == null || eMoney == "") {
-    ons.notification.toast("Ingresa la cantidad del gasto!", {
+    ons.notification.toast("Puedo añadir ese gasto, pero necesito saber cuanto gastaste.", {
       title: "Aviso!",
       timeout: 2000,
       animation: "ascend",
     });
     return;
-  } else if (eDate == null || eDate == "") {
+  }
+  
+  if (eDate == null || eDate == "") {
     eDate = new Date().toJSON().slice(0, 10);
+  }
+  
+  let testSign = Math.sign(eMoney);
+  if (testSign == "-1" || testSign == "-0") {
+    ons.notification.toast("No puedes añadir un gasto negativo, eso seria muy extraño.", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
   }
 
   // Obtengo el nombre del item, pero es necesario modificar el contador
@@ -66,6 +79,8 @@ function hideAlertExpense() {
       JSON.stringify(expenseDetailArray)
     );
   }
+
+  updateExpenseTotalMoney(expenseObject, eMoney);
 
   ons.notification.toast("Nuevo gasto añadido!", {
     title: "Aviso!",

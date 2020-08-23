@@ -24,6 +24,7 @@ function createAlertDialogToEditMoneyMoney() {
 
 function hideAlertMoneys() {
   let element = document.getElementById("editOnlyMoneyMoney").value;
+
   if (element === null || element === "" || element == "") {
     ons.notification.toast("Ingresa cuanto dinero deseas añadir/quitar, por favor!", {
       title: "Aviso!",
@@ -34,6 +35,19 @@ function hideAlertMoneys() {
   }
 
   let newMoney = sessionStorage.getItem("addNewMoney");
+
+  let testMoney = Math.sign(newMoney);
+  if (testMoney == "-1" || testMoney == "-0") {
+    ons.notification.toast(
+      "No puedes dejar una cartera en numeros negativos, lo siento...",
+      {
+        title: "Aviso!",
+        timeout: 2000,
+        animation: "ascend",
+      }
+    );
+    return;
+  }
 
   let moneys = JSON.parse(localStorage.getItem("moneyStorage"));
 
@@ -52,9 +66,8 @@ function hideAlertMoneys() {
 
       // Modifico los elementos para mostrar la cantidad de dinero actualizada
       document.getElementById(sName+"-money").innerHTML = "";
-
       document.getElementById(sName+"-money").innerHTML = "$ " + newMoney;
-
+      
       if (localStorage.getItem("moneyStorage") === null) {
         let moneysArray = [];
         moneysArray.push(updateMoneyObject);

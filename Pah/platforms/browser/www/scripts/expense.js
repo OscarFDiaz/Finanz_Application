@@ -95,10 +95,6 @@ function makeNewExpense() {
   let mainDate = new Date().toJSON().slice(0,10);
   let iconName = sessionStorage.getItem("expenseIconName");
   let expenseColor = document.getElementById("newExpenseColor").value;
-  let inName = "";
-  let inAmount = 0;
-  let inDate = "";
-  let actualExpenses = 0;
 
   sessionStorage.removeItem("expenseIconName");
 
@@ -142,7 +138,6 @@ function makeNewExpense() {
   getExpenses();
   functionPopPage();
 }
-
 
 function getExpenses() {
   let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
@@ -263,6 +258,33 @@ function resetExpense(sendName) {
           }
         }
         localStorage.setItem("expenseDetailStorage", JSON.stringify(detailExpenses));
+
+        /* RESETEO LOS CONTADORES DEL EXPENSE A 0*/
+        let exName = sendName;
+      
+        let expensesStorage = JSON.parse(localStorage.getItem("expenseStorage"));
+      
+        let expense;
+        let index;
+        for (let i = 0; i < expensesStorage.length; i++) {
+          if (expensesStorage[i].expenseName == exName) {
+            expense = expensesStorage[i];
+            index = i;
+          }
+        }
+      
+        expense.totalExpense = 0;
+      
+        /* Guardo el expense original*/
+        if (localStorage.getItem("expenseStorage") === null) {
+          let expenseArray = [];
+          expenseArray.push(expense);
+          localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+        } else {
+          let expenseArray = JSON.parse(localStorage.getItem("expenseStorage"));
+          expenseArray[index] = expense;
+          localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+        }
         
         functionPopPage();
         
@@ -327,6 +349,37 @@ function deleteExpense(sendName) {
       }
     },
   });
+}
+
+function updateExpenseTotalMoney(sendName, amountSend) {
+  let exName = sendName;
+  let newAmount = amountSend;
+
+  let expensesStorage = JSON.parse(localStorage.getItem("expenseStorage"));
+
+  let expense;
+  let index;
+  for (let i = 0; i < expensesStorage.length; i++) {
+    if (expensesStorage[i].expenseName == exName) {
+      expense = expensesStorage[i];
+      index = i;
+    }
+  }
+
+  expense.totalExpense += +newAmount;
+
+  /* Guardo el expense original*/
+  if (localStorage.getItem("expenseStorage") === null) {
+    let expenseArray = [];
+    expenseArray.push(expense);
+    localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+  } else {
+    let expenseArray = JSON.parse(localStorage.getItem("expenseStorage"));
+    expenseArray[index] = expense;
+    localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+  }
+
+  getExpenses();
 }
 
 function getAmountFDays(){

@@ -40,6 +40,16 @@ function makeNewGoal() {
     return;
   }
 
+  let goalTest = Math.sign(goalMoney);
+  if (goalTest == "-1" || goalTest == "-0") {
+    ons.notification.toast("Un momento, no es posible añadir una meta en negativo, seria imposible de lograr.", {
+      title: "Error!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
+
   let goal = {
     goalName,
     goalDescription,

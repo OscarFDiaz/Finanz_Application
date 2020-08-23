@@ -92,8 +92,7 @@ function hideAlertNoChange() {
 // ALERT DIALOG PARA EDITAR UNICAMENTE EL DINERO DE LA META
 
 function makeSum() {
-  let actualAmount = document.getElementById("editOnlyMoneyActualMoney")
-    .textContent;
+  let actualAmount = document.getElementById("editOnlyMoneyActualMoney").textContent;
   let newAmount = document.getElementById("editOnlyGoalMoney").value;
 
   let sumResult = +actualAmount + +newAmount;
@@ -140,6 +139,15 @@ function hideAlertDialogMoney() {
   }
 
   let newMoney = sessionStorage.getItem("addNewMoney");
+  let testMoney = Math.sign(newMoney);
+  if(testMoney == "-1" || testMoney === "-0") {
+    ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
 
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
 
@@ -159,21 +167,22 @@ function hideAlertDialogMoney() {
         goalDate: goals[i].goalDate,
       };
 
+      
       // Modifico los elementos para actualizar el dinero y % mostrado
       let calculatedPercent = getPercent(updateGoalObject.goalMoney, newMoney);
       document.getElementById(sName+"-pnumber").innerHTML = "";
       document.getElementById(sName+"-pnumber").innerHTML = calculatedPercent + "%";
       
       document.getElementById("pbarDetail").style.setProperty('--width', calculatedPercent);
-
+      
       // Modifico los elementos para mostrar la cantidad de dinero actualizada
       document.getElementById("detailMoneyStatus").innerHTML = "";
-
+      
       document.getElementById("detailMoneyStatus").innerHTML =
-        "$ " + newMoney +
-        " de $ " +
-        updateGoalObject.goalMoney;
-
+      "$ " + newMoney +
+      " de $ " +
+      updateGoalObject.goalMoney;
+      
       if (localStorage.getItem("goalStorage") === null) {
         let goalsArray = [];
         goalsArray.push(updateGoalObject);
@@ -182,18 +191,39 @@ function hideAlertDialogMoney() {
         goals[indexGoal] = updateGoalObject;
         localStorage.setItem("goalStorage", JSON.stringify(goals));
       }
+      // Checo como voy de dinero conforme a lo requerido en la meta.
+      let testElement = Math.sign(element);
+      if (testElement == "-1") {
+        ons.notification.toast("Meta modificada exitosamente!, retrocedimos un poco, pero esta bien!", {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        });
+      } else if (newMoney < updateGoalObject.goalMoney) {
+        ons.notification.toast("Meta modificada exitosamente!, nos acercamos a la meta!", {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        });
+      } else if (newMoney === updateGoalObject.goalMoney) {
+        ons.notification.toast("Meta modificada exitosamente!, hemos llegado a la meta!", {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        });
+      } else {
+        ons.notification.toast("Meta modificada exitosamente!", {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        });
+      }
       localStorage.removeItem("nameSaved");
     }
   }
 
   document.getElementById("editOnlyGoalMoney").value = null;
   document.getElementById("alertEditGoalMoney").hide();
-
-  ons.notification.toast("Meta modificada exitosamente!, nos acercamos a la meta!", {
-    title: "Aviso!",
-    timeout: 2000,
-    animation: "ascend",
-  });
 
   sessionStorage.clear();
   getGoals();

@@ -206,8 +206,7 @@ function getTotalExpenses() {
 function getTotalGoals() {
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
   let goalsView = "";
-console.log(goals);
-console.log(goals.length);
+  
   if (goals.length == 0 || goals == null || goals == "null") {
     goalsView += `<label class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</label>`;
     return goalsView;

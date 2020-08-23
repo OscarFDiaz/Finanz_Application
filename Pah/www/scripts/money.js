@@ -2,6 +2,7 @@ function makeNewMoney() {
   let moneyName = document.getElementById("newMoneyName").value;
   let moneyCurrent = document.getElementById("newMoneyMoney").value;
 
+  
   if (moneyName === "") {
     ons.notification.toast("Un momento, se necesita un buen nombre!", {
       title: "Error!",
@@ -10,8 +11,18 @@ function makeNewMoney() {
     });
     return;
   }
-
+  
   if (moneyCurrent === "") {
+    moneyCurrent = "0";
+  }
+  
+  let testMoney = Math.sign(moneyCurrent);
+  if (testMoney == "-1" || testMoney === "-0") {
+    ons.notification.toast("No puedo añadir una cartera con dinero negativo, supondre que la cartera esta vacia.", {
+      title: "Error!",
+      timeout: 2000,
+      animation: "ascend",
+    });
     moneyCurrent = "0";
   }
 
