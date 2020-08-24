@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.oscar.diaz" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.oscar.diaz" versionCode= "1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Pah</name>
     <description>
         Aplicación sencilla para el manejo de finanzas personales.
     </description>
     <author email="oscarf.diaz@alumnos.udg.mx" href="https://github.com/OscarFDiaz">
-        PhoneGap Team
+        Oscar Francisco Diaz Alvarez
     </author>
     <content src="index.html" />
     <access origin="*" />
+	<plugin name="cordova-plugin-whitelist" />
 </widget>
