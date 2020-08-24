@@ -1,9 +1,9 @@
 function startTime() {
   let themeSelected = localStorage.getItem("userTheme");
 
-  if (themeSelected == null || themeSelected == "" || themeSelected === null) {
+  if (themeSelected == null || themeSelected == "") {
     localStorage.setItem("userTheme", "theme-default");
-    document.documentElement.className = themeSelected;
+    document.documentElement.className = "theme-default";
   } else {
     document.documentElement.className = themeSelected;
   }

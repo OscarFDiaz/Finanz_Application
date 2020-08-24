@@ -99,65 +99,71 @@ function setTheme(themeName) {
   }
 }
 
+function checkOptions() {
+  let totalMoney = localStorage.getItem("storageSwitchTotalMoney");
+  if (totalMoney == "null" || totalMoney == null) {
+    localStorage.setItem("storageSwitchTotalMoney", true);
+  }
+
+  let expenses = localStorage.getItem("storageSwitchExpenses");
+  if (expenses == "null" || expenses == null) {
+    localStorage.setItem("storageSwitchExpenses", true);
+  }
+
+  let savings = localStorage.getItem("storageSwitchSavings");
+  if (savings == "null" || savings == null) {
+    localStorage.setItem("storageSwitchSavings", true);
+  }
+
+  let goals = localStorage.getItem("storageSwitchGoals");
+  if (goals == "null" || goals == null) {
+    localStorage.setItem("storageSwitchGoals", true);
+  }
+
+  loadOptions();
+}
+
 function loadOptions() {
   
   let userHomeView = document.getElementById("homeOptionsContainer");
   userHomeView.innerHTML = "";
 
   let totalMoney = localStorage.getItem("storageSwitchTotalMoney");
-  if (totalMoney == "null" || totalMoney == null) {
-    localStorage.setItem("storageSwitchTotalMoney", true);
-  } else {
-    if (totalMoney == true || totalMoney == "true") {
-      userHomeView.innerHTML += `<label class="cardHomeTitle">DINERO TOTAL</label>
-      <ons-card onclick="fn.load('money.html')">
-        <div class="title totalMoneyTitle" id="totalMoneyMoney">
-          $ 5470
-        </div>
-      </ons-card>`;
-    }
+  if (totalMoney == true || totalMoney == "true") {
+    userHomeView.innerHTML += `<label class="cardHomeTitle">DINERO TOTAL</label>
+    <ons-card onclick="fn.load('money.html')">
+      <div class="title totalMoneyTitle" id="totalMoneyMoney">
+      </div>
+    </ons-card>`;
   }
 
   let expenses = localStorage.getItem("storageSwitchExpenses");
-  if (expenses == "null" || expenses == null) {
-    localStorage.setItem("storageSwitchExpenses", true);
-  } else {
-    if (expenses == true || expenses == "true") {
-      userHomeView.innerHTML += `<label class="cardHomeTitle">GASTOS</label>
-      <ons-card onclick="fn.load('expenses.html')" style="padding-top: 16px;">
-        <div class="content">
-          <canvas id="oilChart" width="400" height="400"></canvas>
-        </div>
-      </ons-card>`;
-    }
+  if (expenses == true || expenses == "true") {
+    userHomeView.innerHTML += `<label class="cardHomeTitle">GASTOS</label>
+    <ons-card onclick="fn.load('expenses.html')" style="padding-top: 16px;">
+      <div class="content">
+        <canvas id="oilChart" width="400" height="400"></canvas>
+      </div>
+    </ons-card>`;
   }
 
   let savings = localStorage.getItem("storageSwitchSavings");
-  if (savings == "null" || savings == null) {
-    localStorage.setItem("storageSwitchSavings", true);
-  } else {
-    if (savings == true || savings == "true") {
-      userHomeView.innerHTML += `<label class="cardHomeTitle">FONDO AHORRADO</label>
-      <ons-card onclick="fn.load('savings.html')">
-        <div class="title totalMoneyTitle" id="totalSavingsAmount">
-          $ 5470
-        </div>
-      </ons-card>`;
-    }
+  if (savings == true || savings == "true") {
+    userHomeView.innerHTML += `<label class="cardHomeTitle">FONDO AHORRADO</label>
+    <ons-card onclick="fn.load('savings.html')">
+      <div class="title totalMoneyTitle" id="totalSavingsAmount">
+      </div>
+    </ons-card>`;
   }
 
   let goals = localStorage.getItem("storageSwitchGoals");
-  if (goals == "null" || goals == null) {
-    localStorage.setItem("storageSwitchGoals", true);
-  } else {
-    if (goals == true || goals == "true") {
-      userHomeView.innerHTML += `<label class="cardHomeTitle">METAS</label>
-      <ons-card onclick="fn.load('goals.html')">
-        <div class="content" id="homeGoalsContainer"> 
+  if (goals == true || goals == "true") {
+    userHomeView.innerHTML += `<label class="cardHomeTitle">METAS</label>
+    <ons-card onclick="fn.load('goals.html')">
+      <div class="content" id="homeGoalsContainer"> 
 
-        </div>
-      </ons-card>`;
-    }
+      </div>
+    </ons-card>`;
   }
 
   if (totalMoney == "false" && expenses == "false" && savings == "false" && goals == "false") {
@@ -189,6 +195,9 @@ function loadOptions() {
 function getTotalMoney() {
   let arrayMoney = JSON.parse(localStorage.getItem("moneyStorage"));
   let amount = 0;
+  if (arrayMoney == null || arrayMoney == "") {
+    return amount;
+  }
   for (let i = 0; i < arrayMoney.length; i++){
     amount += +arrayMoney[i].moneyCurrent;
   }
@@ -206,8 +215,8 @@ function getTotalExpenses() {
 function getTotalGoals() {
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
   let goalsView = "";
-  
-  if (goals.length == 0 || goals == null || goals == "null") {
+
+  if (goals == null || goals == "null") {
     goalsView += `<label class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</label>`;
     return goalsView;
   }
