@@ -90,6 +90,10 @@ function getGoals() {
 
   goalsView.innerHTML = "";
 
+  if (goals == null || goals == "null") {
+    return;
+  }
+
   for (let i = 0; i < goals.length; i++) {
     let gName = goals[i].goalName;
     let gMoney = goals[i].goalMoney;
