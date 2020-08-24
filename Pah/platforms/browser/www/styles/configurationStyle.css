@@ -42,9 +42,10 @@
   background-size: cover;
 }
 
-.themeYuri{
+.themeYuri {
   /*#fff6e9 • #ffefd7 • #fffef9 • #e3f0ff • #d2e7ff*/
-  background: url("../assets/images/themeYuri.png");
+  /*background: url("../assets/images/themeYuri.png");*/
+  background: url("../assets/images/themeLight.png");
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
