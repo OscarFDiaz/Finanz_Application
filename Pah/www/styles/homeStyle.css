@@ -38,7 +38,7 @@
 
 .paraHome {
   display: block;
-  text-align: left;
+  text-align: center;
   color: var(--para-home-options);
   margin: 16px;
   font-size: 20px;
