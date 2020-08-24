@@ -18,36 +18,59 @@ var pieChart = new Chart(oilCanvas, {
   data: oilData,
 });
 */
-
 function makeChart() {
-  var oilCanvas = document.getElementById("oilChart");
-
-  var oilData = {
-    labels: [
-      "Saudi Arabia",
-      "Russia",
-      "Iraq",
-      "United Arab Emirates",
-      "Canada",
-    ],
+  
+  var config = {
+    labels: [],
     datasets: [
       {
-        data: [133.3, 86.2, 52.2, 51.2, 50.2],
-        backgroundColor: [
-          "#FF6384",
-          "#63FF84",
-          "#84FF63",
-          "#8463FF",
-          "#6384FF",
-        ],
+        data: [],
+        backgroundColor: [],
       },
     ],
   };
 
-  var pieChart = new Chart(oilCanvas, {
+  loadChartData(config);
+}
+
+function loadChartData(expenseData) {
+
+  let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
+  if (expenseData.datasets.length > 0) {
+
+    if(expenses == null || expenses == "") {
+      expenseData.labels.push("NO HAY GASTOS PARA MOSTRAR");
+      expenseData.datasets[0].data.push("100");
+      expenseData.datasets[0].backgroundColor.push(getComputedStyle(document.documentElement).getPropertyValue('--home-total-money'));
+    } else {
+      for(let i = 0; i < expenses.length; i++) {
+        let eName = expenses[i].expenseName;
+        let eColor = expenses[i].expenseColor;
+        let eExpense = expenses[i].totalExpense;
+
+        expenseData.labels.push(eName);
+        expenseData.datasets[0].data.push(eExpense);
+        expenseData.datasets[0].backgroundColor.push(eColor);
+      }
+    }
+  }
+
+  let expenseCanvas = document.getElementById("oilChart");
+  Chart.defaults.global.defaultFontColor = getComputedStyle(document.documentElement).getPropertyValue('--card-text-title-color');
+  Chart.defaults.global.defaultFontSize = 16;
+
+  Chart.defaults.global.tooltips.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-color');
+  Chart.defaults.global.tooltips.titleFontSize = 20;
+
+  Chart.defaults.global.elements.arc.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--card-back-color');
+  Chart.defaults.global.elements.arc.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--card-back-color');
+  Chart.defaults.global.elements.arc.borderWidth = 1;
+  let pieChart = new Chart(expenseCanvas, {
     type: "doughnut",
-    data: oilData,
+    data: expenseData,
   });
+
+  pieChart.update();
 }
 
 function changeTheme() {
