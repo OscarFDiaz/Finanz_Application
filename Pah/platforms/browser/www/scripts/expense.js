@@ -112,7 +112,6 @@ function makeNewExpense() {
   let expense = {
     expenseName,
     totalExpense,
-    lastNote,
     mainDate,
     iconName,
     expenseColor

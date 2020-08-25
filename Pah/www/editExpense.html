@@ -13,9 +13,12 @@
       <div style="text-align: center; margin-top: 16px;">
         <p>
           <ons-input
+            onchange="changeTitlePreviewEdit()"
+            onkeypress="this.onchange()"
+            oninput="this.onchange()"
             id="newExpenseNameEdit"
             modifier="underbar"
-            placeholder="NOMBRE DEL GASTO"
+            placeholder="NUEVO NOMBRE"
             type="text"
             style="display: block; margin: 16px 16px;"
           ></ons-input>
@@ -39,7 +42,7 @@
       </div>
 
       <ons-list style="background: none; margin-top: -25px;">
-        <ons-list-item id="expandableListContainer" expandable>
+        <ons-list-item id="expandableListContainerEdit" expandable>
           <label class="iconExpenseLabel" style="margin-left: 50px;">
             SELECCIONA UN ICONO
           </label>
@@ -64,13 +67,42 @@
     </div>
   </ons-card>
 
+  <label class="cardHomeTitle">PREVISUALIZACIÓN</label>
+  <ons-card>
+    <div class="title expenseTitle" id="expensePrevTitleEdit" style="display: inline-block; margin-bottom: 16px;">
+      NUEVO NOMBRE
+    </div>
+    <i class="expenseIcon" id="expensePrevIconEdit"></i>
+  </ons-card>
+
   <script>
     document.addEventListener(
       "init",
       function (event) {
         if (event.target.matches("#editExpense")) {
-            console.log(document.getElementById("expenseIconListOfIconsEdit"));
-            loadIconsEdit();
+          loadIconsEdit();
+          let expenseNameEdit = sessionStorage.getItem("expenseNameEdit");
+          document.getElementById("newExpenseNameEdit").value = expenseNameEdit;
+          document.getElementById("expensePrevTitleEdit").innerHTML = expenseNameEdit;
+
+          let expenseS = JSON.parse(localStorage.getItem("expenseStorage"));
+          let expenseIcon, expenseColor;
+
+          for(let i = 0; i < expenseS.length; i++) {
+            if (expenseS[i].expenseName == expenseNameEdit) {
+              expenseIcon = expenseS[i].iconName;
+              expenseColor = expenseS[i].expenseColor;
+            }
+          }
+
+          /* OBTENGO EL ICONO ACTUAL Y LO AÑADO*/
+          let iconElement = document.getElementById("expensePrevIconEdit");
+          iconElement.className = '';
+          iconElement.classList.add("expenseIcon");
+          iconElement.classList.add(expenseIcon);
+          // Añado el color
+          iconElement.style.cssText = `--expenseIconColorPrev: ${expenseColor}`;
+
         }
       },
       false

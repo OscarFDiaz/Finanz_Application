@@ -38,7 +38,8 @@ function pushToHomeOptions() {
   navigator.pushPage("homeOptions.html");
 }
 
-function pushToTutorialOptions() {
+function pushToTutorialOptions(times) {
+
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("tutorialOptions.html");
 }
@@ -48,7 +49,11 @@ function pushToTutorialOptions() {
   - Con esta función hago POP a la página y así regreso
   a la página anterior
 */
-function functionPopPage() {
+function functionPopPage(timesS) {
+  let time = timesS;
+  if(time == null || time == "null" || time == ""){
+    time = 1;
+  }
   const navigator = document.querySelector("#navigator");
-  navigator.popPage();
+  navigator.popPage({times: time});
 }

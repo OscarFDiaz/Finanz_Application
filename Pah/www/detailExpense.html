@@ -8,67 +8,6 @@
 
   <div id="detailExpenseContainer"></div>
 
-    <!--ALERT PARA EDITAR UN GASTO-->
-    <ons-alert-dialog id="alertToEditExpense" modifier="material">
-      <div style="text-align: center; margin-top: 16px;">
-        <div class="alert-dialog-title">EDITAR GASTO</div>
-      </div>
-  
-      <div class="alert-dialog-content">
-        <div style="text-align: center; margin-top: 16px;">
-          <p>
-            <ons-input
-              onchange="changeTitlePreview()"
-              onkeypress="this.onchange()"
-              oninput="this.onchange()"
-              id="newExpenseNameEdit"
-              modifier="underbar"
-              placeholder="NUEVO NOMBRE"
-              type="text"
-              style="display: block; margin: 16px 16px;"
-            ></ons-input>
-  
-            <label class="iconExpenseLabel" style="margin-bottom: -20px;">SELECCIONA UN COLOR</label>
-
-            <div style="text-align: center; margin-top: 16px;">
-              <p>
-                <ons-input
-                  onchange="loadIconsEdit()"
-                  onkeypress="this.onchange()"
-                  oninput="this.onchange()"
-                  id="newExpenseColorEdi"
-                  type="color"
-                  value="#ffffff"
-                  style="display: block; margin: 16px 16px; border-radius: 50%x;"
-                ></ons-input>
-              </p>
-            </div>
-  
-            <ons-list style="background: none; margin-top: -25px;">
-              <ons-list-item id="expandableListContainer" expandable>
-                <label class="iconExpenseLabel" style="margin-left: 50px;">
-                  SELECCIONA UN ICONO
-                </label>
-                <div class="expandable-content" id="expenseIconListOfIconsEdit"> 
-                  <!-- AQUI SE CARGAN LOS ICONOS PARA SELECCIONAR -->
-                </div>
-              </ons-list-item>
-            </ons-list>
-          </p>
-        </div>
-      </div>
-  
-      <div class="alert-dialog-footer">
-        <ons-alert-dialog-button onclick="hideAlertExpenseEditNoChange()"
-          >Cancelar</ons-alert-dialog-button
-        >
-        <ons-alert-dialog-button onclick="hideAlertExpenseEdit()"
-          >Listo!</ons-alert-dialog-button
-        >
-      </div>
-    </ons-alert-dialog>
-    <!----------------------------------------------------------------->
-
   <script>
     document.addEventListener(
       "init",
@@ -97,6 +36,7 @@
 
           let expenseView = document.getElementById("detailExpenseContainer");
           expenseView.innerHTML = "";
+
           document.getElementById("titleDetailExpense").innerHTML = eName;
 
           expenseView.innerHTML += `<ons-card style="padding-bottom:16px">
