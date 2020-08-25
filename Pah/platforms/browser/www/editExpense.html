@@ -1,0 +1,81 @@
+<ons-page id="editExpense">
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <div class="left">
+      <ons-back-button></ons-back-button>
+    </div>
+    <div class="center labelToolbar" id="titleExpenses">
+      EDITAR GASTO
+    </div>
+  </ons-toolbar>
+
+  <ons-card>
+    <div class="content">
+      <div style="text-align: center; margin-top: 16px;">
+        <p>
+          <ons-input
+            id="newExpenseNameEdit"
+            modifier="underbar"
+            placeholder="NOMBRE DEL GASTO"
+            type="text"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+        </p>
+      </div>
+
+      <label class="iconExpenseLabel" style="margin-bottom: -20px;">SELECCIONA UN COLOR</label>
+
+      <div style="text-align: center; margin-top: 16px;">
+        <p>
+          <ons-input
+            onchange="loadIconsEdit()"
+            onkeypress="this.onchange()"
+            oninput="this.onchange()"
+            id="newExpenseColorEdit"
+            type="color"
+            value="#ffffff"
+            style="display: block; margin: 16px 16px; border-radius: 50%x;"
+          ></ons-input>
+        </p>
+      </div>
+
+      <ons-list style="background: none; margin-top: -25px;">
+        <ons-list-item id="expandableListContainer" expandable>
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            SELECCIONA UN ICONO
+          </label>
+          <div class="expandable-content" id="expenseIconListOfIconsEdit"> 
+            <!-- AQUI SE CARGAN LOS ICONOS PARA SELECCIONAR -->
+          </div>
+        </ons-list-item>
+      </ons-list>
+
+      <ons-button
+      class="flatButton"
+      style="margin-top: 16px;"
+      onclick="hideAlertExpenseEdit()"
+      >LISTO!</ons-button
+    >
+    <ons-button
+      class="flatButtonLight"
+      style="margin-top: 16px;"
+      onclick="hideAlertExpenseEditNoChange()"
+      >CANCELAR</ons-button
+    >
+    </div>
+  </ons-card>
+
+      
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#editExpense")) {
+            console.log(document.getElementById("expenseIconListOfIconsEdit"));
+            loadIconsEdit();
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

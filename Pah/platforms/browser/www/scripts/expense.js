@@ -392,7 +392,6 @@ function deleteExpense(sendName) {
         localStorage.setItem("expenseStorage", JSON.stringify(expenses));
 
         if (detailExpenses == null || detailExpenses == "null") {
-
         } else {
           for (let i = 0; i < detailExpenses.length; i++) { //null?
             if (detailExpenses[i].expenseName == sendName) {
