@@ -145,7 +145,73 @@ function getExpenses() {
 
   document.getElementById("expensesContainer").innerHTML = "";
 
-  if(expenses == null || expenses == "") {
+  if (expenses == null || expenses == "null") {
+    let tutorial = localStorage.getItem("storageSwitchTutorial");
+    if(tutorial == true || tutorial == "true"){
+      expensesView.innerHTML += `
+      <ons-card>
+        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+            <label class="iconExpenseLabel" style="margin-left: 50px;">
+              VER TUTORIAL
+            </label>
+            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+              <p class="paraTutorial">
+                Aquí podrás añadir los gastos que vayas realizando, los podrás separar en categorías, podrás seleccionar un color y un icono para cada categoría,
+                estos gastos se verán reflejados en la pantalla de "INICIO", donde esta la gráfica en forma de dona.
+              </p>
+              <p class="paraTutorial">
+                Podrás añadir gastos individualmente, se mostrara cuanto has gastado en cada categoría y te dira los gastos en total y de los últimos 15 y 30 días.
+              </p>
+              <p class="paraTutorial">
+                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran en orden cronológico.
+              </p>
+              <p class="paraTutorial">
+                Podrás reiniciar todos los gastos realizados en una categoría entrando a esta y dando en "REINICIAR".
+              </p>
+              <p class="paraTutorial">
+                Para crear un nuevo gasto pulsa "AÑADIR NUEVO".
+              </p>
+            </div>
+          </ons-list-item>
+        </ons-list>
+      </ons-card>`;
+      return;
+    }
+    return;
+  } else if (expenses.length == 0) {
+    let tutorial = localStorage.getItem("storageSwitchTutorial");
+    if(tutorial == true || tutorial == "true"){
+      expensesView.innerHTML += `
+      <ons-card>
+        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+            <label class="iconExpenseLabel" style="margin-left: 50px;">
+              VER TUTORIAL
+            </label>
+            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+              <p class="paraTutorial">
+                Aquí podrás añadir los gastos que vayas realizando, los podrás separar en categorías, podrás seleccionar un color y un icono para cada categoría,
+                estos gastos se verán reflejados en la pantalla de "INICIO", donde esta la gráfica en forma de dona.
+              </p>
+              <p class="paraTutorial">
+                Podrás añadir gastos individualmente, se mostrara cuanto has gastado en cada categoría y te dira los gastos en total y de los últimos 15 y 30 días.
+              </p>
+              <p class="paraTutorial">
+                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran en orden cronológico.
+              </p>
+              <p class="paraTutorial">
+                Podrás reiniciar todos los gastos realizados en una categoría entrando a esta y dando en "REINICIAR".
+              </p>
+              <p class="paraTutorial">
+                Para crear un nuevo gasto pulsa "AÑADIR NUEVO".
+              </p>
+            </div>
+          </ons-list-item>
+        </ons-list>
+      </ons-card>`;
+      return;
+    }
     return;
   }
 

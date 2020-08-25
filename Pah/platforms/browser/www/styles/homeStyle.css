@@ -45,6 +45,15 @@
   font-weight: normal;
 }
 
+.paraTutorial {
+  display: block;
+  text-align: center;
+  color: var(--card-content-text-color);
+  margin: 16px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
 .listLabels {
   font-size: 18px;
   color: var(--home-options-labels);

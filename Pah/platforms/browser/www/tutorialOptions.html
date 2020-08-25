@@ -1,0 +1,59 @@
+<ons-page id="tutorialOptions">
+    <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+      <ons-back-button></ons-back-button>
+      <div class="center labelToolbar" id="titleConfigurarion">
+        TUTORIALES
+      </div>
+    </ons-toolbar>
+  
+    <p class="paraHome">
+      Si la casilla esta marcada esto significa que apareceran los tutoriales de cómo utilizar la aplicación cada que el
+      programa lo detecte necesario. 
+    </p>
+    <p class="paraHome">
+       Si la casilla esta desmarcada no apareceran tutoriales de como utilizar la aplicación, a no ser que seas primer usuario.
+    </p>
+    <ons-card>
+      <ons-list style="background: none; margin: 16px;">
+        <ons-list-item modifier="nodivider" style="margin-top: 0px;">
+          <div class="center listLabels">
+            TUTORIALES
+          </div>
+          <div class="right">
+            <ons-switch id="switchTutoriales"></ons-switch>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+
+  
+    <script>
+      document.addEventListener(
+        "init",
+        function (event) {
+          if (event.target.matches("#tutorialOptions")) {
+  
+            /* SWITCH TUTORIAL */
+            let switchOne = localStorage.getItem("storageSwitchTutorial");
+            if(switchOne == null || switchOne == ""){
+              document.getElementById('switchTutoriales').setAttribute('checked', true);
+              localStorage.setItem("storageSwitchTutorial", true);
+            } else {
+              if(switchOne == true || switchOne == "true") {
+                document.getElementById('switchTutoriales').setAttribute('checked', true);
+              } else {
+                document.getElementById('switchTutoriales').removeAttribute('checked');
+              }
+            }
+   
+            document.getElementById("switchTutoriales").addEventListener('change', function(e) {
+              localStorage.setItem("storageSwitchTutorial", e.target.checked);
+            });
+  
+          }
+        },
+        false
+      );
+    </script>
+  </ons-page>
+  

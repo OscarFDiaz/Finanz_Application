@@ -2,6 +2,124 @@
   box-sizing: border-box;
 }
 
+.theme-pink {
+  /* COLORES */
+  --color: #EA0067;
+  --color-2: #EA5172;
+  --color-1: #F73395;
+  --color-3: #F981BE;
+  --color-4: #FEE3EF;
+  --color-5: #f0f0f0;
+
+  /* DEGRADADO */
+  --gradient-1: var(--color);
+  --gradient-2: #F73395;
+
+  /* SPINNER ONLOAD PAGE*/
+  --spiner-back-color: #FEE3EF;
+  --spiner-front-color: #F73395;
+
+  /* ICONOS MENÚ & TEXTO MENU*/
+  --icon-home: #ffffff;
+  --icon-goals: #e60000;
+  --icon-savings: #235dff;
+  --icon-expenses: #00ff43;
+  --icon-money: #002bff;
+  --icon-config: #e0fb00;
+
+  --menu-icon-color: #f5a11b;
+  --menu-font-color: #ffffff;
+
+  /* TOOLBAR */
+  --toolbar-color: #EA0067;
+  --label-toolbar-color: #FEE3EF;
+  --back-button-color: #FEE3EF;
+  --menu-button-color: #FEE3EF;
+
+  /* CHEVRON */
+  --chevron-color: #F981BE;
+
+  /* TEXTOS */
+  --item-list-config: #FEE3EF;
+  --text-without-card: #FEE3EF;
+
+  --expense-title: #ffffff;
+  --expense-info: #FEE3EF;
+  --expense-detail: #FEE3EF;
+  --expense-detail-money: #f0f0f0;
+
+  --detail-goal-title-color: #f0f0f0;
+  --detail-goal-content-color: #FEE3EF;
+  --detail-money-goal: #F981BE;
+
+  --home-total-money: #FEE3EF;
+  --home-goal-label: #FEE3EF;
+  --para-home-options: #FEE3EF;
+  --home-options-labels: #FEE3EF;
+
+  --money-title: #ffffff;
+  --money-info: #FEE3EF;
+  --money-delete-button: crimson;
+
+  --saving-main-title: #f0f0f0; 
+  --saving-info: #F981BE;
+  --saving-title: #f0f0f0;
+  --saving-daily: #F981BE;
+  --saving-days-title: #f0f0f0;
+  --saving-days-left: #F981BE;
+
+  --saving-edit-label-range: #FEE3EF;
+  --saving-edit-range-selected: #FEE3EF;
+  --saving-edit-selected-range: #f0f0f0;
+  --entry-amount-text: #FEE3EF;
+  --entry-amount-detail: #f0f0f0;
+
+  /* SWITCH */
+  --switch-button-round: #EA0067;
+  --switch-back-off: #ffffff;
+  --switch-back-on: #FEE3EF;
+
+  /* INPUT */
+  --color-input: #FEE3EF;
+  --color-input-text: #f0f0f0;
+
+  /* TEXT AREA */
+  --text-area-border-color: #FEE3EF;
+  --text-area-text-color: #f0f0f0;
+
+  /* ALERT DIALOG */
+  --alert-tile-color: #f0f0f0;
+  --alert-container-color: #EA0067;
+  --alert-footer-color: #EA5172;
+  --alert-content-text-color: #f0f0f0;
+  --alert-button-color-text: #FEE3EF;
+
+  --alert-custom-label: #FEE3EF;
+  --alert-custom-label-money: #f0f0f0;
+
+  /* TOAST */
+  --toast-back-color: #EA0067;
+  --toast-message-color: #f0f0f0;
+
+  /* PROGRESSBAR */
+  --progressbar-back-color: #EA0067;
+  --progressbar-main-color: #FEE3EF;
+
+  /* CARDS */
+  --card-back-color: #F73395;
+  --card-text-title-color: #f0f0f0;
+  --card-content-text-color: #FEE3EF;
+
+  /* BUTTONS */
+  --flat-button-color: #FEE3EF;
+  --flat-button-color-text: #EA0067;
+  --flat-button-active-color: #FEE3EF;
+
+  --flat-button-light-color: #EA0067;
+  --flat-button-light-color-text: #ffffff;
+  --flat-button-light-active-color: #EA0067;
+}
+
 .theme-yuri {
   /* COLORES */
   --color: #353535;
@@ -472,6 +590,8 @@
   --flat-button-light-color-text: #ffffff;
   --flat-button-light-active-color: #05565f;
 }
+
+
 
 .page__background {
   background: rgb(0, 0, 0);

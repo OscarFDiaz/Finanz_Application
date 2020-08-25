@@ -1,23 +1,4 @@
-/*var oilCanvas = document.getElementById("oilChart");
 
-Chart.defaults.global.defaultFontFamily = "Lato";
-Chart.defaults.global.defaultFontSize = 18;
-
-var oilData = {
-  labels: ["Saudi Arabia", "Russia", "Iraq", "United Arab Emirates", "Canada"],
-  datasets: [
-    {
-      data: [133.3, 86.2, 52.2, 51.2, 50.2],
-      backgroundColor: ["#FF6384", "#63FF84", "#84FF63", "#8463FF", "#6384FF"],
-    },
-  ],
-};
-
-var pieChart = new Chart(oilCanvas, {
-  type: "pie",
-  data: oilData,
-});
-*/
 function makeChart() {
   
   var config = {
@@ -84,6 +65,8 @@ function changeTheme() {
     setTheme("theme-light");
   } else if (actualThemeIndex == "3") {
     setTheme("theme-yuri");
+  } else if (actualThemeIndex == "4") {
+    setTheme("theme-pink");
   }
 }
 
@@ -141,6 +124,11 @@ function checkOptions() {
   let goals = localStorage.getItem("storageSwitchGoals");
   if (goals == "null" || goals == null) {
     localStorage.setItem("storageSwitchGoals", true);
+  }
+
+  let tutorial = localStorage.getItem("storageSwitchTutorial");
+  if (tutorial == "null" || tutorial == null) {
+    localStorage.setItem("storageSwitchTutorial", true);
   }
 
   loadOptions();
@@ -201,7 +189,6 @@ function loadOptions() {
 
   if (expenses == "true") {
     makeChart();
-    //getTotalExpenses();
   }
 
   if (savings == "true") {
@@ -240,7 +227,10 @@ function getTotalGoals() {
   let goalsView = "";
 
   if (goals == null || goals == "null") {
-    goalsView += `<label class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</label>`;
+    goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</p>`;
+    return goalsView;
+  } else if (goals.length == 0) {
+    goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</p>`;
     return goalsView;
   }
 

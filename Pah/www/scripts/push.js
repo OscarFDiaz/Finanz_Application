@@ -18,7 +18,7 @@ function pushToNewMoney() {
   navigator.pushPage("newMoney.html");
 }
 
-function pushTest5() {
+function pushToNewExpense() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("newExpense.html");
 }
@@ -36,6 +36,11 @@ function pushToThemeSelector() {
 function pushToHomeOptions() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("homeOptions.html");
+}
+
+function pushToTutorialOptions() {
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("tutorialOptions.html");
 }
 
 // GOALS GOALS GOALS GOALS GOALS GOALS
