@@ -229,7 +229,9 @@ function getTotalGoals() {
   if (goals == null || goals == "null") {
     goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</p>`;
     return goalsView;
-  } else if (goals.length == 0) {
+  }
+
+  if (goals.length == 0 || goals.length < 1) {
     goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</p>`;
     return goalsView;
   }
@@ -249,4 +251,33 @@ function getTotalGoals() {
   }
 
   return goalsView;
+}
+
+function deleteAllData() {
+  ons.notification.confirm({
+    message: "Estas seguro de borrar TODO?",
+    title: "Aviso!",
+    buttonLabels: ["Sí", "Cancelar"],
+    animation: "default",
+    primaryButtonIndex: 1,
+    cancelable: true,
+    callback: function (index) {
+      if (0 === index) {
+          localStorage.clear();
+          sessionStorage.clear();
+
+          const navigator = document.querySelector("#navigator");
+          navigator.resetToPage("splitterUser.html");
+      } else {
+        ons.notification.toast(
+          "De acuerdo, todo fluye como normalmente!",
+          {
+            title: "Aviso!",
+            timeout: 1000,
+            animation: "ascend",
+          }
+        );
+      }
+    },
+  });
 }

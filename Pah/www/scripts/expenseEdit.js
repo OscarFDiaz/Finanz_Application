@@ -33,6 +33,11 @@ function hideAlertExpenseEdit() {
     return;
   }
 
+  if (newIcon == null || newIcon == "null" || newIcon == "") {
+    newIcon = sessionStorage.getItem("oldIcon");
+    sessionStorage.removeItem("oldIcon");
+  }
+
   let expenseStorage = JSON.parse(localStorage.getItem("expenseStorage"));
   let index, expense;
 
@@ -49,6 +54,7 @@ function hideAlertExpenseEdit() {
       };
 
       expenseStorage[index] = expense;
+      break;
     }
   }
 

@@ -38,10 +38,16 @@ function pushToHomeOptions() {
   navigator.pushPage("homeOptions.html");
 }
 
-function pushToTutorialOptions(times) {
+function pushToTutorialOptions() {
 
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("tutorialOptions.html");
+}
+
+function pushToDeleteOptions() {
+
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("deleteOptions.html");
 }
 
 // GOALS GOALS GOALS GOALS GOALS GOALS

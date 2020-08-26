@@ -161,6 +161,7 @@ function deleteMoney(sendMoneyName) {
         for (let i = 0; i < moneys.length; i++) {
           if (moneys[i].moneyName == sendMoneyName) {
             moneys.splice(i, 1);
+            break;
           }
         }
         localStorage.setItem("moneyStorage", JSON.stringify(moneys));
@@ -209,9 +210,10 @@ function addMoneyTo(sendMoneyName) {
           JSON.stringify(findMoneyObject)
         );
       }
+      createAlertDialogToEditMoneyMoney();
+      break;
     }
   }
-  createAlertDialogToEditMoneyMoney();
 }
 
 function makeSumMoney(SendMoneyName) {

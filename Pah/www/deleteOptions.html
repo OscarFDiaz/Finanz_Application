@@ -1,0 +1,32 @@
+<ons-page id="deleteOptions">
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <ons-back-button></ons-back-button>
+    <div class="center labelToolbar" id="titleConfigurarion">
+      BORRAR DATOS
+    </div>
+  </ons-toolbar>
+
+  <p class="paraHome">
+    Al dar click en "Sí" se borraran todos los datos contenidos en la
+    aplicación, absolutamente todos, será como comenzar de nuevo en la
+    aplicación.
+  </p>
+    <ons-button
+      class="flatButton"
+      onclick="deleteAllData()"
+      style="margin-bottom: 16px;"
+      >BORRAR TODO</ons-button
+    >
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#deleteOptions")) {
+          
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

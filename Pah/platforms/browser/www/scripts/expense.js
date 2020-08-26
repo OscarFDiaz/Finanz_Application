@@ -263,6 +263,7 @@ function findExpense(sendName){
 
       const navigator = document.querySelector("#navigator");
       navigator.pushPage("detailExpense.html");
+      break;
     }
   }
 }
@@ -289,9 +290,10 @@ function addExpenseToExpense(sendName) {
           objectFinded
         );
       }
+      createAlertDialogToAddExpense();
+      break;
     }
   }
-  createAlertDialogToAddExpense();
 }
 
 function resetExpense(sendName) {
@@ -335,6 +337,7 @@ function resetExpense(sendName) {
           if (expensesStorage[i].expenseName == exName) {
             expense = expensesStorage[i];
             index = i;
+            break;
           }
         }
       
@@ -386,6 +389,7 @@ function deleteExpense(sendName) {
         for (let i = 0; i < expenses.length; i++) {
           if (expenses[i].expenseName == sendName) {
             expenses.splice(i, 1);
+            break;
           }
         }
         localStorage.setItem("expenseStorage", JSON.stringify(expenses));
@@ -431,6 +435,7 @@ function updateExpenseTotalMoney(sendName, amountSend) {
     if (expensesStorage[i].expenseName == exName) {
       expense = expensesStorage[i];
       index = i;
+      break;
     }
   }
 

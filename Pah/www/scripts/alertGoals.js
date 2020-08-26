@@ -30,7 +30,7 @@ function createAlertDialogToEditGoal() {
 }
 
 function hideAlertDialog() {
-  functionPopPage();
+  
   let name = document.getElementById("editGoalName").value;
   let description = document.getElementById("editGoalDescription").value;
   let actualMoney = document.getElementById("editActualGoalMoney").value;
@@ -42,6 +42,26 @@ function hideAlertDialog() {
   let indexGoal;
 
   let sName = localStorage.getItem("nameSaved");
+  let testMoney = Math.sign(goalMoney);
+  let testGMoney = Math.sign(actualMoney);
+
+  if (testMoney == "-1" || testMoney === "-0") {
+    ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
+
+  if (testGMoney == "-1" || testGMoney === "-0") {
+    ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
 
   for (let i = 0; i < goals.length; i++) {
     if (goals[i].goalName == sName) {
@@ -66,6 +86,7 @@ function hideAlertDialog() {
       }
       localStorage.removeItem("nameSaved");
       sessionStorage.clear();
+      break;
     }
   }
 
@@ -75,6 +96,7 @@ function hideAlertDialog() {
     timeout: 2000,
     animation: "ascend",
   });
+  functionPopPage();
   getGoals();
 }
 
@@ -219,6 +241,7 @@ function hideAlertDialogMoney() {
         });
       }
       localStorage.removeItem("nameSaved");
+      break;
     }
   }
 

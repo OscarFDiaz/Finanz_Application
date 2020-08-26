@@ -77,6 +77,7 @@ function hideAlertMoneys() {
         localStorage.setItem("moneyStorage", JSON.stringify(moneys));
       }
       localStorage.removeItem("nameSaved");
+      break;
     }
   }
 

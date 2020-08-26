@@ -97,6 +97,7 @@
 
           /* OBTENGO EL ICONO ACTUAL Y LO AÑADO*/
           let iconElement = document.getElementById("expensePrevIconEdit");
+          sessionStorage.setItem("oldIcon", expenseIcon);
           iconElement.className = '';
           iconElement.classList.add("expenseIcon");
           iconElement.classList.add(expenseIcon);

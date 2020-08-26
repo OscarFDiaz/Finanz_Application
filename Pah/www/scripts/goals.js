@@ -221,6 +221,7 @@ function findGoal(sendGoalName) {
 
       const navigator = document.querySelector("#navigator");
       navigator.pushPage("detailGoal.html");
+      break;
     }
   }
 }
@@ -240,6 +241,7 @@ function deleteGoal(sendGoalName) {
         for (let i = 0; i < goals.length; i++) {
           if (goals[i].goalName == sendGoalName) {
             goals.splice(i, 1);
+            break;
           }
         }
         localStorage.setItem("goalStorage", JSON.stringify(goals));
@@ -269,6 +271,7 @@ function deleteGoalInsta(sendGoalName) {
   for (let i = 0; i < goals.length; i++) {
     if (goals[i].goalName == sendGoalName) {
       goals.splice(i, 1);
+      break;
     }
   }
   localStorage.setItem("goalStorage", JSON.stringify(goals));
@@ -306,9 +309,10 @@ function editGoal(sendGoalName) {
           JSON.stringify(findGoalObject)
         );
       }
+      createAlertDialogToEditGoal();
+      break;
     }
   }
-  createAlertDialogToEditGoal();
 }
 
 function addMoneyGoal(sendGoalName) {
@@ -343,7 +347,8 @@ function addMoneyGoal(sendGoalName) {
           JSON.stringify(findGoalObject)
         );
       }
+      createAlertDialogToEditGoalMoney();
+      break;
     }
   }
-  createAlertDialogToEditGoalMoney();
 }
