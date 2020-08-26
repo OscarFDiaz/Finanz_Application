@@ -91,7 +91,6 @@ function selectIcon(iconName, iconColor) {
 function makeNewExpense() {
   let expenseName = document.getElementById("newExpenseName").value;
   let totalExpense = 0;
-  let lastNote = "";
   let mainDate = new Date().toJSON().slice(0,10);
   let iconName = sessionStorage.getItem("expenseIconName");
   let expenseColor = document.getElementById("newExpenseColor").value;
@@ -307,6 +306,15 @@ function resetExpense(sendName) {
     callback: function (index) {
       if (0 === index) {
         let detailExpenses = JSON.parse(localStorage.getItem("expenseDetailStorage"))
+
+        if (detailExpenses == null || detailExpenses == "null") {
+          ons.notification.toast("Un momento, no hay gastos para borrar, me querias intentar engañar?", {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+          return;
+        }
 
         if (detailExpenses.length == 0 || detailExpenses.length == "0") {
           ons.notification.toast("Un momento, no hay gastos para borrar, me querias intentar engañar?", {
