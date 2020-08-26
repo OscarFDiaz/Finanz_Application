@@ -16,6 +16,11 @@ window.fn.close = function(){
 window.fn.load = function(page) {
   var content = document.getElementById('content');
   var menu = document.getElementById('menu');
+  let aPage = localStorage.getItem("actuaPage");
   
-  content.load(page).then(menu.close.bind(menu));
+  if (aPage == page || aPage === page) {
+    menu.close();
+  } else {
+    content.load(page).then(menu.close.bind(menu));
+  }
 };

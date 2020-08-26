@@ -106,6 +106,7 @@ function hideAlertNoChange() {
     timeout: 2000,
     animation: "ascend",
   });
+  localStorage.removeItem("nameSaved");
   sessionStorage.clear();
   document.getElementById("my-alert-dialog").hide();
 }

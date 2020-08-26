@@ -66,6 +66,7 @@
       "init",
       function (event) {
         if (event.target.matches("#money")) {
+          localStorage.setItem("actuaPage", "money.html");
           getMoneys();
         }
       },

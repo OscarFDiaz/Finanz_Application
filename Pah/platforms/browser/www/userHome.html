@@ -17,6 +17,7 @@
       "show",
       function (event) {
         if (event.target.matches("#userHome")) {
+          localStorage.setItem("actuaPage", "userHome.html");
           checkOptions();
         }
       },

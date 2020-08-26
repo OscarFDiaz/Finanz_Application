@@ -67,6 +67,7 @@
       function (event) {
         if (event.target.matches("#expensesPage")) {
           ons.ready(function () {
+            localStorage.setItem("actuaPage", "expenses.html");
             getExpenses();
           });
         }
