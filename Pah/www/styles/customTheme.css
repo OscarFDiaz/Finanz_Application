@@ -1,0 +1,25 @@
+input[type="color" i] {
+  appearance: none;
+  height: 45px;
+  width: 45px;
+  border: none;
+  background-color: transparent;
+}
+
+.labelColorText {
+  margin-left: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--card-content-text-color);
+}
+
+.labelHeaderText {
+  text-align: center;
+  font-size: 18px;
+  color: var(--card-text-title-color);
+}
+
+.list-header,
+.list-header--material {
+  background: transparent;
+}

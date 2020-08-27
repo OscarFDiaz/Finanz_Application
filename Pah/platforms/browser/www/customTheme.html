@@ -1,0 +1,533 @@
+<ons-page id="customTheme">
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <ons-back-button></ons-back-button>
+    <div class="center labelToolbar" id="titleConfigurarion">
+      PERSONALIZAR TEMA
+    </div>
+  </ons-toolbar>
+
+  <div id="customThemeTutorialContainer"></div>
+
+  <ons-card>
+    <ons-list style="background: none" id="expenseListOfExpensesContainer">
+      
+      <ons-list-header class="labelHeaderText" style="background-image: none;">Fondo</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Color 1</div>
+        <div class="right">
+          <input value="#0d2840" type="color" id="gradient-1"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Color 2</div>
+        <div class="right">
+          <input value="#113a5e" type="color" id="gradient-2"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Pantalla carga</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Spinner atrás</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="spiner-back-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Spinner adelante</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="spiner-front-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Iconos menú</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Inicio</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="icon-home"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Metas</div>
+        <div class="right">
+          <input value="#dc2929" type="color" id="icon-goals"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo</div>
+        <div class="right">
+          <input value="#235dff" type="color" id="icon-savings"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Gastos</div>
+        <div class="right">
+          <input value="#1aff4c" type="color" id="icon-expenses"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Dinero</div>
+        <div class="right">
+          <input value="#c0ff00" type="color" id="icon-money"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Configuración</div>
+        <div class="right">
+          <input value="#acff0a" type="color" id="icon-config"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Letras</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="menu-font-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Toolbar</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Color fondo</div>
+        <div class="right">
+          <input value="#0d2840" type="color" id="toolbar-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Letra</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="label-toolbar-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Botón regresar</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="back-button-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Botón menú</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="menu-button-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Chevron</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Color</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="chevron-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Textos</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Lista página configuración</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="item-list-config"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fuera de las tarjetas</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="text-without-card"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Gastos > Titulo gastos</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="expense-title"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Gastos > Información gasto</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="expense-info"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Gastos > Detalle gasto</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="expense-detail"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Gastos > Detalle dinero</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="expense-detail-money"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Meta > Detalle meta titulo</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="detail-goal-title-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Meta > Detalle meta contenido</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="detail-goal-content-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Meta > Detalle meta dinero</div>
+        <div class="right">
+          <input value="#0596a6" type="color" id="detail-money-goal"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Inicio > Dinero total</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="home-total-money"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Inicio > Metas texto</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="home-goal-label"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Parrafo opciones</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="para-home-options"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Inicio opciones</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="home-options-labels"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Dinero > Titulo dinero</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="money-title"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Dinero > Info dinero</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="money-info"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Fondo titulo principal</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="saving-main-title"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Fondo información</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="saving-info"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Fondo titulo</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="saving-title"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Guardado diario</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="saving-daily"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Fondo días</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="saving-days-title"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Fondo días restantes</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="saving-days-left"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Fondo rango</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="saving-edit-label-range"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Fondo rango seleccionado</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="saving-edit-range-selected"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Fondo rango rango</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="saving-edit-selected-range"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Dinero ingresado</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="entry-amount-text"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo > Dinero detalle</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="entry-amount-detail"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Switch</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Color Switch</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="switch-button-round"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Switch apagado fondo</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="switch-back-off"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Switch prendido fondo</div>
+        <div class="right">
+          <input value="#0596a6" type="color" id="switch-back-on"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Campos de entrada</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Color texto</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="color-input-text"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Color campo de entrada</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="color-input"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Area texto</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Borde del area</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="text-area-border-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Color texto</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="text-area-text-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Alertas</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Titulo</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="alert-tile-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Texto</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="alert-content-text-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Contenedor</div>
+        <div class="right">
+          <input value="#0d2840" type="color" id="alert-container-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Botones</div>
+        <div class="right">
+          <input value="#0e5259" type="color" id="alert-footer-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Texto botón</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="alert-button-color-text"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Texto edición dinero</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="alert-custom-label"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Texto dinero en alerta</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="alert-custom-label-money"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Toast</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Texto</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="toast-message-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="toast-back-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Barra progreso</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo</div>
+        <div class="right">
+          <input value="#0d2840" type="color" id="progressbar-back-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Frente</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="progressbar-main-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Tarjetas</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo</div>
+        <div class="right">
+          <input value="#134068" type="color" id="card-back-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Titulo</div>
+        <div class="right">
+          <input value="#9cd9ce" type="color" id="card-text-title-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Texto</div>
+        <div class="right">
+          <input value="#0596a6" type="color" id="card-content-text-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Boton oscuro</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo</div>
+        <div class="right">
+          <input value="#f5a11b" type="color" id="flat-button-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Texto</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="flat-button-color-text"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo al click</div>
+        <div class="right">
+          <input value="#cc7e00" type="color" id="flat-button-active-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Dinero > Dinero borrar botón</div>
+        <div class="right">
+          <input value="crimson" type="color" id="money-delete-button"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header class="labelHeaderText" style="background-image: none; margin-top: -20px">Boton claro</ons-list-header>
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo</div>
+        <div class="right">
+          <input value="#0596a6" type="color" id="flat-button-light-color"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Texto</div>
+        <div class="right">
+          <input value="#ffffff" type="color" id="flat-button-light-color-text"/>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item style="margin-top: -20px" modifier="nodivider">
+        <div class="center labelColorText">Fondo al click</div>
+        <div class="right">
+          <input value="#05565f" type="color" id="flat-button-light-active-color"/>
+        </div>
+      </ons-list-item>
+
+    </ons-list>
+  </ons-card>
+
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#customTheme")) {
+          setTutorial();
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

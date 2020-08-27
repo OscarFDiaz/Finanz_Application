@@ -39,22 +39,20 @@ function pushToHomeOptions() {
 }
 
 function pushToTutorialOptions() {
-
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("tutorialOptions.html");
 }
 
 function pushToDeleteOptions() {
-
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("deleteOptions.html");
 }
 
-// GOALS GOALS GOALS GOALS GOALS GOALS
-/*
-  - Con esta función hago POP a la página y así regreso
-  a la página anterior
-*/
+function pushToEditTheme() {
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("customTheme.html");
+}
+
 function functionPopPage(timesS) {
   let time = timesS;
   if(time == null || time == "null" || time == ""){

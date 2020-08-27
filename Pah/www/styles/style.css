@@ -1,6 +1,124 @@
 * {
   box-sizing: border-box;
 }
+   
+.theme-custom {
+  /* COLORES */
+  --color: #0d2840;
+  --color-1: #0e5259;
+  --color-2: #0596a6;
+  --color-3: #9cd9ce;
+  --color-4: #f5a11b;
+  --color-5: #ffffff;
+
+  /* DEGRADADO */
+  --gradient-1: #0d2840;
+  --gradient-2: #113a5e;
+
+  /* SPINNER ONLOAD PAGE*/
+  --spiner-back-color: #f5a11b;
+  --spiner-front-color: #9cd9ce;
+
+  /* ICONOS MENÚ & TEXTO MENU*/
+  --icon-home: #f5a11b;
+  --icon-goals: #dc2929;
+  --icon-savings: #235dff;
+  --icon-expenses: #1aff4c;
+  --icon-money: #c0ff00;
+  --icon-config: #acff0a;
+
+  --menu-icon-color: #f5a11b;
+  --menu-font-color: #ffffff;
+
+  /* TOOLBAR */
+  --toolbar-color: #0d2840;
+  --label-toolbar-color: #ffffff;
+  --back-button-color: #ffffff;
+  --menu-button-color: #ffffff;
+
+  /* CHEVRON */
+  --chevron-color: #f5a11b;
+
+  /* TEXTOS */
+  --item-list-config: #9cd9ce;
+  --text-without-card: #9cd9ce;
+
+  --expense-title: #ffffff;
+  --expense-info: #9cd9ce;
+  --expense-detail: #9cd9ce;
+  --expense-detail-money: #f5a11b;
+
+  --detail-goal-title-color: #9cd9ce;
+  --detail-goal-content-color: #9cd9ce;
+  --detail-money-goal: #0596a6;
+
+  --home-total-money: #f5a11b;
+  --home-goal-label: #9cd9ce;
+  --para-home-options: #9cd9ce;
+  --home-options-labels: #9cd9ce;
+
+  --money-title: #ffffff;
+  --money-info: #9cd9ce;
+  --money-delete-button: crimson;
+
+  --saving-main-title: #9cd9ce;
+  --saving-info: #f5a11b;
+  --saving-title: #9cd9ce;
+  --saving-daily: #f5a11b;
+  --saving-days-title: #9cd9ce;
+  --saving-days-left: #f5a11b;
+
+  --saving-edit-label-range: #9cd9ce;
+  --saving-edit-range-selected: #9cd9ce;
+  --saving-edit-selected-range: #f5a11b;
+  --entry-amount-text: #9cd9ce;
+  --entry-amount-detail: #f5a11b;
+
+  /* SWITCH */
+  --switch-button-round: #f5a11b;
+  --switch-back-off: #ffffff;
+  --switch-back-on: #0596a6;
+
+  /* INPUT */
+  --color-input: #f5a11b;
+  --color-input-text: #9cd9ce;
+
+  /* TEXT AREA */
+  --text-area-border-color: #f5a11b;
+  --text-area-text-color: #9cd9ce;
+
+  /* ALERT DIALOG */
+  --alert-tile-color: #ffffff;
+  --alert-container-color: #0d2840;
+  --alert-footer-color: #0e5259;
+  --alert-content-text-color: #ffffff;
+  --alert-button-color-text: #ffffff;
+
+  --alert-custom-label: #9cd9ce;
+  --alert-custom-label-money: #f5a11b;
+
+  /* TOAST */
+  --toast-back-color: #f5a11b;
+  --toast-message-color: #ffffff;
+
+  /* PROGRESSBAR */
+  --progressbar-back-color: #0d2840;
+  --progressbar-main-color: #f5a11b;
+
+  /* CARDS */
+  --card-back-color: #134068;
+  --card-text-title-color: #9cd9ce;
+  --card-content-text-color: #0596a6;
+
+  /* BUTTONS */
+  --flat-button-color: #f5a11b;
+  --flat-button-color-text: #ffffff;
+  --flat-button-active-color: #cc7e00;
+
+  --flat-button-light-color: #0596a6;
+  --flat-button-light-color-text: #ffffff;
+  --flat-button-light-active-color: #05565f;
+}
 
 .theme-pink {
   /* COLORES */
@@ -12,7 +130,7 @@
   --color-5: #f0f0f0;
 
   /* DEGRADADO */
-  --gradient-1: var(--color);
+  --gradient-1: #EA0067;
   --gradient-2: #F73395;
 
   /* SPINNER ONLOAD PAGE*/
@@ -130,7 +248,7 @@
   --color-5: #f5353c;
 
   /* DEGRADADO */
-  --gradient-1: var(--color-4);
+  --gradient-1: #FFFFF0;
   --gradient-2: #D9D9D9;
 
   /* SPINNER ONLOAD PAGE*/
@@ -248,7 +366,7 @@
   --color-5: #597889;
 
   /* DEGRADADO */
-  --gradient-1: var(--color);
+  --gradient-1: #0a0c0d;
   --gradient-2: #211c1d;
 
   /* SPINNER ONLOAD PAGE*/
@@ -483,7 +601,7 @@
   --color-5: #ffffff;
 
   /* DEGRADADO */
-  --gradient-1: var(--color);
+  --gradient-1: #0d2840;
   --gradient-2: #113a5e;
 
   /* SPINNER ONLOAD PAGE*/

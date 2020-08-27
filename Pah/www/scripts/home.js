@@ -67,6 +67,8 @@ function changeTheme() {
     setTheme("theme-yuri");
   } else if (actualThemeIndex == "4") {
     setTheme("theme-pink");
+  } else if (actualThemeIndex == "5") {
+    setTheme("theme-custom");
   }
 }
 

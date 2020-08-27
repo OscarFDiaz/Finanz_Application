@@ -39,6 +39,12 @@
         </div>
       </ons-carousel-item>
 
+      <ons-carousel-item class="themeCustom" style="border-radius: 15px;">
+        <div style="text-align: center; font-size: 30px; margin-top: 20%; columns: #0d2840; border-radius: 15px; font-weight: 500;">
+          PERSONALIZADO
+        </div>
+      </ons-carousel-item>
+
     </ons-carousel>
   </ons-card>
 
@@ -47,6 +53,9 @@
   <ons-button class="flatButton" onclick="changeTheme()" style="width: 250px; height: 50px; line-height: 50px; margin-top: 32px;">
     SELECCIONAR
   </ons-button>
+
+  <div id="editThemeContainer">
+  </div>
 
   <script>
     document.addEventListener(
@@ -57,6 +66,15 @@
           ons.ready(function () {
             var carousel = document.addEventListener("postchange", function (event) {
               sessionStorage.setItem("themeIndex", event.activeIndex);
+
+              if (event.activeIndex == "5") {
+                document.getElementById("editThemeContainer").innerHTML = 
+                `<ons-button class="flatButtonLight" onclick="pushToEditTheme()" style="width: 250px; height: 50px; line-height: 50px; margin-top:16px">
+                  PERSONALIZAR
+                </ons-button>`;
+              } else {
+                document.getElementById("editThemeContainer").innerHTML = "";
+              }
             });
           });
         }
