@@ -53,21 +53,27 @@ function loadChartData(expenseData) {
 
   pieChart.update();
 }
-
+ 
 function changeTheme() {
   let actualThemeIndex = sessionStorage.getItem("themeIndex");
 
   if (actualThemeIndex == "0") {
+    deleteProperty();
     setTheme("theme-default");
   } else if (actualThemeIndex == "1") {
+    deleteProperty();
     setTheme("theme-dark");
   } else if (actualThemeIndex == "2") {
+    deleteProperty();
     setTheme("theme-light");
   } else if (actualThemeIndex == "3") {
+    deleteProperty();
     setTheme("theme-yuri");
   } else if (actualThemeIndex == "4") {
+    deleteProperty();
     setTheme("theme-pink");
   } else if (actualThemeIndex == "5") {
+    initColors();
     setTheme("theme-custom");
   }
 }

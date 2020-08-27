@@ -49,6 +49,7 @@ function pushToDeleteOptions() {
 }
 
 function pushToEditTheme() {
+  setTheme("theme-custom");
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("customTheme.html");
 }

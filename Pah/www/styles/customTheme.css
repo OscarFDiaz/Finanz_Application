@@ -1,4 +1,4 @@
-input[type="color" i] {
+.customInput {
   appearance: none;
   height: 45px;
   width: 45px;
