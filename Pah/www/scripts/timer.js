@@ -6,6 +6,9 @@ function startTime() {
     document.documentElement.className = "theme-default";
   } else {
     document.documentElement.className = themeSelected;
+    if(themeSelected == "theme-custom") {
+      initColors();
+    }
   }
 
   setTimeout(function () {
