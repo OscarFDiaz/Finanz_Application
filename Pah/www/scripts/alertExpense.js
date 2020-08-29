@@ -19,8 +19,16 @@ function hideAlertExpense() {
   let eName = document.getElementById("alertExpenseNote").value;
   let eMoney = document.getElementById("alertExpenseMoney").value;
   let eDate = document.getElementById("alertExpenseDate").value;
+  let eid = localStorage.getItem("detailExpenseCount");
 
-  
+  if (eid == null || eid == ""){
+    localStorage.setItem("detailExpenseCount", "0");
+    eid = 0;
+  }
+
+  eid = +eid + 1;
+  localStorage.setItem("detailExpenseCount", eid);
+
   if (eName == null || eName == "") {
     ons.notification.toast("No puedo añadir un gasto sin un nombre/nota!", {
       title: "Aviso!",
@@ -59,6 +67,7 @@ function hideAlertExpense() {
     inName: eName,
     inAmount: eMoney,
     inDate: eDate,
+    inID: eid
   };
 
   /* Guardo los detalles del Expense*/

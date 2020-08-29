@@ -165,3 +165,113 @@ function changeTitlePreviewEdit() {
     oldTitle.innerHTML = newTitle;
   }
 }
+
+function editDetailExpense(idSend) {
+  let idExpnese = idSend;
+}
+
+function deleteDetailExpense(idSend) {
+  ons.notification.confirm({
+    message: "Estas seguro de borrar el gasto?",
+    title: "Aviso!",
+    buttonLabels: ["Sí", "Cancelar"],
+    animation: "default",
+    primaryButtonIndex: 1,
+    cancelable: true,
+    callback: function (index) {
+      if (0 === index) {
+        let detailExpenses = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+        let loadName, amountLess;
+
+        for (let i = 0; i < detailExpenses.length; i++) {
+          if (detailExpenses[i].inID == idSend) {
+            loadName = detailExpenses[i].expenseName;
+            amountLess = detailExpenses[i].inAmount;
+            detailExpenses.splice(i, 1);
+            i--;
+            break;
+          }
+        }
+        localStorage.setItem("expenseDetailStorage", JSON.stringify(detailExpenses));
+
+        ons.notification.toast("Se ha elimindado el gasto seleccionado!", {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        });
+
+        /* Actualizo los datos de la meta principal */
+        reInsertExpenseDetail(loadName);
+        updateExpenseTotalMoney(loadName, "-"+amountLess);
+        let expenseView = document.getElementById("totalExpenseDetail").textContent;
+        let newAmount = +expenseView + -amountLess;
+        document.getElementById("totalExpenseDetail").innerHTML = newAmount;
+
+      } else {
+        ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
+          title: "Aviso!",
+          timeout: 1000,
+          animation: "ascend",
+        });
+      }
+    },
+  });
+}
+
+/* RECARGA LOS GASTOS AL ELIMINAR UNO CUANDO SE ENTRA DETALLADAMENTE A UN GASTO*/
+function reInsertExpenseDetail(sendName) {
+
+  let detailDetailExpenseView = document.getElementById(
+    "expenseListOfExpenses"
+  );
+  detailDetailExpenseView.innerHTML = "";
+
+  let expensesDetail = JSON.parse(
+    localStorage.getItem("expenseDetailStorage")
+  );
+
+  let actualEx = 0;
+  if (expensesDetail == null || expensesDetail == "null") {
+  } else {
+    for (let i = 0; i < expensesDetail.length; i++) {
+      if (expensesDetail[i].expenseName == sendName) {
+        actualEx = 1;
+        break;
+      }
+    }
+  }
+
+  if (actualEx == 0) {
+    detailDetailExpenseView.innerHTML = `<div style="margin-bottom: 30px;">
+      <label class="labelDetailExpense">Nada por mostrar, vas bien con los ahorros...</label>
+    </div>`;
+  } else {
+    for (let i = 0; i < expensesDetail.length; i++) {
+      if (expensesDetail[i].expenseName == sendName) {
+        let iName = expensesDetail[i].inName;
+        let iAmount = expensesDetail[i].inAmount;
+        let iDate = expensesDetail[i].inDate;
+        let iD = expensesDetail[i].inID;
+
+          detailDetailExpenseView.innerHTML +=
+          `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+            <div class="center">
+              <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
+              <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px">${iDate}</label>
+            </div>
+            <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
+
+              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
+                EDITAR
+              </ons-button>
+
+              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
+                ELIMINAR
+              </ons-button>
+
+            </div>
+          </ons-list-item>`;
+      }
+    }
+  }
+}

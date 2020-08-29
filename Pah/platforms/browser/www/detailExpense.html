@@ -54,21 +54,21 @@
           <ons-card>
             <div class="content">
               <label class="labelDetailExpense"
-                >Gasto total:
+                >Gasto total: $ 
                 <span id="totalExpenseDetail" class="labelInfoDetailExpense"
-                  >$ ${eTotal}</span
+                  >${eTotal}</span
                 ></label
               >
               <label class="labelDetailExpense"
-                >Últimos 15 días:
+                >Últimos 15 días: $ 
                 <span id="lastDaysDetail" class="labelInfoDetailExpense"
-                  >$ ${lastFDays}</span
+                  >${lastFDays}</span
                 ></label
               >
               <label class="labelDetailExpense"
-                >Últimos 30 días:
+                >Últimos 30 días: $ 
                 <span id="lastMonthDetail" class="labelInfoDetailExpense"
-                  >$ ${lastTDays}</span
+                  >${lastTDays}</span
                 ></label
               >
             </div>
@@ -77,19 +77,11 @@
           
           <ons-card>
             <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-              <ons-list-item
-                id="expandableListContainer"
-                expandable
-                style="margin-top: 0px;"
-              >
+              <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
                 <label class="iconExpenseLabel" style="margin-left: 50px;">
                   VER GASTOS
                 </label>
-                <div
-                  class="expandable-content"
-                  id="expenseListOfExpenses"
-                  style="grid-template-columns: 1fr;"
-                >
+                <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
                   <!-- AQUI SE CARGAN LOS GASTOS -->
                 </div>
               </ons-list-item>
@@ -130,12 +122,26 @@
                 let iName = expensesDetail[i].inName;
                 let iAmount = expensesDetail[i].inAmount;
                 let iDate = expensesDetail[i].inDate;
+                let iD = expensesDetail[i].inID;
 
-                detailDetailExpenseView.innerHTML += `<div style="margin-bottom: 30px;">
-                  <label class="labelDetailExpense" style="padding-top: 0px">Nota: <span class="labelInfoDetailExpense">${iName}</span></label>
-                  <label class="labelDetailExpense" style="padding-top: 0px">Fecha: <span class="labelInfoDetailExpense">${iDate}</span></label>
-                  <label class="labelDetailExpense" style="padding-top: 0px">Total: $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
-                  </div>`;
+                  detailDetailExpenseView.innerHTML +=
+                  `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+                    <div class="center">
+                      <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
+                      <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px">${iDate}</label>
+                    </div>
+                    <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
+
+                      <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
+                        EDITAR
+                      </ons-button>
+
+                      <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
+                        ELIMINAR
+                      </ons-button>
+
+                    </div>
+                  </ons-list-item>`;
               }
             }
           }

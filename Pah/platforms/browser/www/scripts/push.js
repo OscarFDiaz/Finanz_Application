@@ -54,6 +54,12 @@ function pushToEditTheme() {
   navigator.pushPage("customTheme.html");
 }
 
+pushToAbout
+function pushToAbout() {
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("about.html");
+}
+
 function functionPopPage(timesS) {
   let time = timesS;
   if(time == null || time == "null" || time == ""){
