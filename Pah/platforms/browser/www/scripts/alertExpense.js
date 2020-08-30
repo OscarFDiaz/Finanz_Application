@@ -251,7 +251,7 @@ function insertNewExpenseAmount(sendName){
         expenseName: mainStorage[i].expenseName,
         totalExpense: newAmount,
         mainDate: mainStorage[i].mainDate,
-        iconName: mainStorage[i].mainDate,
+        iconName: mainStorage[i].iconName,
         expenseColor: mainStorage[i].expenseColor
       };
       mainStorage[index] = expense;
