@@ -8,6 +8,53 @@
 
   <div id="detailExpenseContainer"></div>
 
+    <!--ALERT PARA EDITAR UN GASTO-->
+    <ons-alert-dialog id="alertToEditExpense" modifier="material">
+      <div style="text-align: center; margin-top: 16px;">
+        <div class="alert-dialog-title">Editar gasto</div>
+      </div>
+  
+      <div class="alert-dialog-content">
+        <div style="text-align: center; margin-top: 16px;">
+          <p>
+            <ons-input
+              id="alertEditExpenseNote"
+              modifier="underbar"
+              placeholder="NOTA DEL GASTO"
+              type="text"
+              style="display: block; margin: 16px 16px;"
+            ></ons-input>
+  
+            <ons-input
+              id="alertEditExpenseMoney"
+              modifier="underbar"
+              placeholder="DINERO GASTADO"
+              type="number"
+              style="display: block; margin: 16px 16px;"
+            ></ons-input>
+  
+            <ons-input
+              id="alertEditExpenseDate"
+              modifier="underbar"
+              placeholder="FECHA DEL GASTO"
+              type="date"
+              style="display: block; margin: 16px 16px;"
+            ></ons-input>
+          </p>
+        </div>
+      </div>
+  
+      <div class="alert-dialog-footer">
+        <ons-alert-dialog-button onclick="hideEditAlertExpenseNoChange()"
+          >Cancelar</ons-alert-dialog-button
+        >
+        <ons-alert-dialog-button onclick="hideEditAlertExpense()"
+          >Listo!</ons-alert-dialog-button
+        >
+      </div>
+    </ons-alert-dialog>
+    <!----------------------------------------------------------------->
+
   <script>
     document.addEventListener(
       "init",
