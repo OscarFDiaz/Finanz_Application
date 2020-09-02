@@ -156,13 +156,14 @@ function getExpenses() {
             <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
               <p class="paraTutorial">
                 Aquí podrás añadir los gastos que vayas realizando, los podrás separar en categorías, podrás seleccionar un color y un icono para cada categoría,
-                estos gastos se verán reflejados en la pantalla de "INICIO", donde esta la gráfica en forma de dona.
+                estos gastos se verán reflejados en la pantalla de "INICIO", donde está la gráfica en forma de dona, también podrás seleccionar si deseas remover el gasto a
+                alguna de tus carteras ubicadas en "MI DINERO", si reinicias los gastos ese dinero no se actualizara.
               </p>
               <p class="paraTutorial">
-                Podrás añadir gastos individualmente, se mostrara cuanto has gastado en cada categoría y te dira los gastos en total y de los últimos 15 y 30 días.
+                Podrás añadir gastos individualmente, se mostrara cuanto has gastado en cada categoría y te dira los gastos en total.
               </p>
               <p class="paraTutorial">
-                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran en orden cronológico.
+                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran conforme los ballas creando, primero estara el último creado.
               </p>
               <p class="paraTutorial">
                 Podrás reiniciar todos los gastos realizados en una categoría entrando a esta y dando en "REINICIAR".
@@ -190,13 +191,14 @@ function getExpenses() {
             <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
               <p class="paraTutorial">
                 Aquí podrás añadir los gastos que vayas realizando, los podrás separar en categorías, podrás seleccionar un color y un icono para cada categoría,
-                estos gastos se verán reflejados en la pantalla de "INICIO", donde esta la gráfica en forma de dona.
+                estos gastos se verán reflejados en la pantalla de "INICIO", donde está la gráfica en forma de dona, también podrás seleccionar si deseas remover el gasto a
+                alguna de tus carteras ubicadas en "MI DINERO", si reinicias los gastos ese dinero no se actualizara.
               </p>
               <p class="paraTutorial">
-                Podrás añadir gastos individualmente, se mostrara cuanto has gastado en cada categoría y te dira los gastos en total y de los últimos 15 y 30 días.
+                Podrás añadir gastos individualmente, se mostrara cuanto has gastado en cada categoría y te dira los gastos en total.
               </p>
               <p class="paraTutorial">
-                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran en orden cronológico.
+                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran conforme los ballas creando, primero estara el último creado.
               </p>
               <p class="paraTutorial">
                 Podrás reiniciar todos los gastos realizados en una categoría entrando a esta y dando en "REINICIAR".

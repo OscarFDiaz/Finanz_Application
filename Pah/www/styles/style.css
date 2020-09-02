@@ -829,7 +829,9 @@
 
 .text-input--underbar,
 .text-input__label,
-.text-input--material__label {
+.text-input--material__label,
+.text-input--underbar:invalid,
+.text-input:invalid {
   margin-top: 16px;
   font-size: 18px;
   color: var(--color-input-text);
@@ -847,6 +849,29 @@
     var(--color-input) 1px,
     var(--color-input) 1px
   );
+}
+
+select {
+  display: block;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background: none;
+  border: none;
+  color: var(--color-input-text);
+  font-size: 18px;
+  border-bottom: 2px solid var(--color-input);
+}
+
+option {
+  color: var(--color-input-text);
+  background: var(--card-back-color);
+}
+
+.select-input--material {
+  color: var(--color-input-text);
+  font-size: 18px;
+  text-align: center;
 }
 
 .textarea {
