@@ -17,8 +17,6 @@ function createAlertDialogToAddExpense() {
   }
 }
 
-
-
 function loadSelectOptions() {
   let moneyStorage = JSON.parse(localStorage.getItem("moneyStorage"));
 
@@ -279,6 +277,7 @@ function hideEditAlertExpense() {
   /**/
   reInsertExpenseDetail(mName);
   insertNewExpenseAmount(mName);
+  updateExpenseLastDays(mName);
 
   ons.notification.toast("Gasto modificado correctamente!", {
     title: "Aviso!",
@@ -536,6 +535,7 @@ function deleteDetailExpense(idSend) {
         /* Actualizo los datos de la meta principal */
         reInsertExpenseDetail(loadName);
         updateExpenseTotalMoney(loadName, "-"+amountLess);
+        updateExpenseLastDays(loadName);
         let expenseView = document.getElementById("totalExpenseDetail").textContent;
         let newAmount = +expenseView + -amountLess;
         document.getElementById("totalExpenseDetail").innerHTML = newAmount;
@@ -586,27 +586,36 @@ function reInsertExpenseDetail(sendName) {
         let iDate = expensesDetail[i].inDate;
         let iD = expensesDetail[i].inID;
 
-          detailDetailExpenseView.innerHTML +=
-          `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
-            <div class="center">
-              <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
-              <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px">${iDate}</label>
-            </div>
-            <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
+        detailDetailExpenseView.innerHTML +=
+        `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+          <div class="center">
+            <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
+            <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px">${iDate}</label>
+          </div>
+          <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
 
-              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
-                EDITAR
-              </ons-button>
+            <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
+              EDITAR
+            </ons-button>
 
-              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
-                ELIMINAR
-              </ons-button>
+            <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
+              ELIMINAR
+            </ons-button>
 
-            </div>
-          </ons-list-item>`;
+          </div>
+        </ons-list-item>`;
       }
     }
   }
+}
+
+function updateExpenseLastDays(sendName) {
+  let days = document.getElementById("lastDaysDetail");
+  let month = document.getElementById("lastMonthDetail");
+
+  days.innerHTML = getAmountFDays(sendName);
+  month.innerHTML = getAmountTDays(sendName);
+
 }
 
 

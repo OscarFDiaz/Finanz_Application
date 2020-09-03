@@ -473,10 +473,24 @@ function getAmountFDays(sendName){
   let total = 0;
   for(let i = 0; i < storage.length; i++) {
     if(storage[i].expenseName == sendName) {
-      //console.log(storage[i].inDate + " / " + today + "=" + dateDiff(storage[i].inDate, today));
-      
       let dateD = dateDiff(storage[i].inDate, today);
       if (dateD < 16 && dateD >= 0){
+        total = +total + +storage[i].inAmount;
+      }
+    }
+  }
+  return total;
+}
+
+function getAmountTDays(sendName){
+  let storage = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+
+  let today = new Date().toJSON().slice(0, 10);
+  let total = 0;
+  for(let i = 0; i < storage.length; i++) {
+    if(storage[i].expenseName == sendName) {
+      let dateD = dateDiff(storage[i].inDate, today);
+      if (dateD < 32 && dateD >= 0){
         total = +total + +storage[i].inAmount;
       }
     }
@@ -488,24 +502,6 @@ function dateDiff(date1, date2) {
   dt1 = new Date(date1);
   dt2 = new Date(date2);
   return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
-}
-
-function getAmountTDays(sendName){
-  let storage = JSON.parse(localStorage.getItem("expenseDetailStorage"));
-
-  let today = new Date().toJSON().slice(0, 10);
-  let total = 0;
-  for(let i = 0; i < storage.length; i++) {
-    if(storage[i].expenseName == sendName) {
-      //console.log(storage[i].inDate + " / " + today + "=" + dateDiff(storage[i].inDate, today));
-      
-      let dateD = dateDiff(storage[i].inDate, today);
-      if (dateD < 32 && dateD >= 0){
-        total = +total + +storage[i].inAmount;
-      }
-    }
-  }
-  return total;
 }
 
 function loadDetailExpense() {
