@@ -30,12 +30,15 @@ function loadSelectOptions() {
   option.innerText = text;
 
   container.appendChild(option);
-  for (let i = 0; i < moneyStorage.length; i++) {
-    const option = document.createElement('option');
-    let text = moneyStorage[i].moneyName;
-    option.innerText = text;
-
-    container.appendChild(option);
+  if(moneyStorage == null || moneyStorage == "null") {
+  } else {
+    for (let i = 0; i < moneyStorage.length; i++) {
+      const option = document.createElement('option');
+      let text = moneyStorage[i].moneyName;
+      option.innerText = text;
+  
+      container.appendChild(option);
+    }
   }
 }
 
@@ -48,7 +51,6 @@ function hideAlertExpense() {
   const selectTag = document.getElementById("selectOptio");
   const options = selectTag.options;
   var selectedOption = options[selectTag.selectedIndex].value;
-  
 
   if (eid == null || eid == ""){
     localStorage.setItem("detailExpenseCount", "0");
@@ -142,23 +144,26 @@ function hideAlertExpense() {
 function updateMoneyStorage(sendName, amount) {
   let moneyStorage = JSON.parse(localStorage.getItem("moneyStorage"));
 
-  for (let i = 0; i < moneyStorage.length; i++) {
-    if(moneyStorage[i].moneyName == sendName) {
-      let test = +moneyStorage[i].moneyCurrent + -amount;
-      let testSign = Math.sign(test);
-      if (testSign == "-1") {
-        ons.notification.toast("No se puede restar más dinero del lugar seleccionado.", {
-          title: "Aviso!",
-          timeout: 2000,
-          animation: "ascend",
-        });
-        return true;
+  if (moneyStorage == null || moneyStorage == "null") {
+  } else {
+    for (let i = 0; i < moneyStorage.length; i++) {
+      if(moneyStorage[i].moneyName == sendName) {
+        let test = +moneyStorage[i].moneyCurrent + -amount;
+        let testSign = Math.sign(test);
+        if (testSign == "-1") {
+          ons.notification.toast("No se puede restar más dinero del lugar seleccionado.", {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+          return true;
+        }
+  
+        moneyStorage[i].moneyCurrent = +moneyStorage[i].moneyCurrent + -amount;
+  
+        localStorage.setItem("moneyStorage", JSON.stringify(moneyStorage));
+        break;
       }
-
-      moneyStorage[i].moneyCurrent = +moneyStorage[i].moneyCurrent + -amount;
-
-      localStorage.setItem("moneyStorage", JSON.stringify(moneyStorage));
-      break;
     }
   }
 }

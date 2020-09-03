@@ -352,3 +352,64 @@ function addMoneyGoal(sendGoalName) {
     }
   }
 }
+
+function loadDetailGoal() {
+  document.getElementById("titleDetailGoal").innerHTML = "";
+
+  let retrievedGoal = sessionStorage.getItem("sessionFindGoal");
+  let parseGoal = JSON.parse(retrievedGoal);
+
+  let gName = parseGoal.name;
+  let gDescription = parseGoal.description;
+  let gAMoney = parseGoal.actualMoney;
+  let gMoney = parseGoal.goalMoney;
+  let gDate = parseGoal.date;
+
+  let gPercent = getPercent(gMoney, gAMoney);
+
+  document.getElementById("titleDetailGoal").innerHTML = gName;
+
+  let goalsView = document.getElementById("goalDetailContainer");
+  goalsView.innerHTML = "";
+
+  goalsView.innerHTML += `<ons-card>
+              <div class="title detailTitle">
+                ${gName}
+              </div>
+              <div class="content detailInfo">
+                <p>
+                  ${gDescription}
+                </p>
+              </div>
+            </ons-card>
+        
+            <ons-card>
+              <div class="title percentDetailTitle" id="${gName}-pnumber">
+                ${gPercent}%
+              </div>
+
+              <div class="progressBarContainer percentBar"> 
+                <div class="progressBarPercent" style="--width:${gPercent}" id="pbarDetail"></div> 
+              </div> 
+
+              <div class="content">
+                <label class="moneyDetailGoal" id="detailMoneyStatus">
+                  $ ${gAMoney} de $ ${gMoney}
+                </label>
+                <label class="moneyDetailGoal">
+                  ${gDate}
+                </label>
+                <ons-button class="flatButton" style="margin-top: 16px;" onclick="addMoneyGoal('${gName}')">
+                  AÑADIR DINERO
+                </ons-button>
+              </div>
+            </ons-card>
+
+            <ons-button class="flatButtonLight" style="margin-bottom: 16px;" onclick="editGoal('${gName}')">
+              EDITAR META
+            </ons-button>
+            
+            <ons-button class="flatButton" style="margin-top: 16px; margin-bottom: 16px" onclick="deleteGoal('${gName}')">
+                  ELIMINAR META
+            </ons-button>`;
+}

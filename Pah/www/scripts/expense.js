@@ -1,3 +1,4 @@
+
 function loadIcons() {
   let iconsView = document.getElementById("expenseIconListOfIcons");
   iconsView.innerHTML = "";
@@ -465,10 +466,178 @@ function updateExpenseTotalMoney(sendName, amountSend) {
   getExpenses();
 }
 
-function getAmountFDays(){
-  return 0;
+function getAmountFDays(sendName){
+  let storage = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+
+  let today = new Date().toJSON().slice(0, 10);
+  let total = 0;
+  for(let i = 0; i < storage.length; i++) {
+    if(storage[i].expenseName == sendName) {
+      //console.log(storage[i].inDate + " / " + today + "=" + dateDiff(storage[i].inDate, today));
+      
+      let dateD = dateDiff(storage[i].inDate, today);
+      if (dateD < 16 && dateD >= 0){
+        total = +total + +storage[i].inAmount;
+      }
+    }
+  }
+  return total;
 }
 
-function getAmountTDays(){
-  return 0;
+function dateDiff(date1, date2) {
+  dt1 = new Date(date1);
+  dt2 = new Date(date2);
+  return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+}
+
+function getAmountTDays(sendName){
+  let storage = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+
+  let today = new Date().toJSON().slice(0, 10);
+  let total = 0;
+  for(let i = 0; i < storage.length; i++) {
+    if(storage[i].expenseName == sendName) {
+      //console.log(storage[i].inDate + " / " + today + "=" + dateDiff(storage[i].inDate, today));
+      
+      let dateD = dateDiff(storage[i].inDate, today);
+      if (dateD < 32 && dateD >= 0){
+        total = +total + +storage[i].inAmount;
+      }
+    }
+  }
+  return total;
+}
+
+function loadDetailExpense() {
+  
+  document.getElementById("detailExpenseContainer").innerHTML = "";
+
+  let retrievedExpense = sessionStorage.getItem("sessionFindGoal");
+  let parseExpense = JSON.parse(retrievedExpense);
+
+  let eName = parseExpense.expenseName;
+  let eTotal = parseExpense.totalExpense;
+  let mDate = parseExpense.mainDate;
+
+  let lastFDays, lastTDays;
+
+  if (eTotal == 0) {
+    lastFDays = lastTDays = 0;
+  } else {
+    lastFDays = getAmountFDays(eName);
+    lastTDays = getAmountTDays(eName);
+  }
+
+  let expenseView = document.getElementById("detailExpenseContainer");
+  expenseView.innerHTML = "";
+
+  document.getElementById("titleDetailExpense").innerHTML = eName;
+
+  expenseView.innerHTML += `<ons-card style="padding-bottom:16px">
+    <div class="content">
+      <label class="labelDetailExpense"
+        >Fecha creación:
+        <span id="expenseCreationDate" class="labelInfoDetailExpense"
+          >${mDate}</span
+        ></label
+      >
+    </div>
+    <ons-button class="flatButton" onclick="editExpense('${eName}')">EDITAR GASTO</ons-button>
+  </ons-card>
+
+  <ons-card>
+    <div class="content">
+      <label class="labelDetailExpense"
+        >Gasto total: $ 
+        <span id="totalExpenseDetail" class="labelInfoDetailExpense"
+          >${eTotal}</span
+        ></label
+      >
+      
+      <label class="labelDetailExpense"
+        >Últimos 15 días: $ 
+        <span id="lastDaysDetail" class="labelInfoDetailExpense"
+          >${lastFDays}</span
+        ></label
+      >
+      <label class="labelDetailExpense"
+        >Últimos 30 días: $ 
+        <span id="lastMonthDetail" class="labelInfoDetailExpense"
+          >${lastTDays}</span
+        ></label
+      >
+    </div>
+  </ons-card>
+  
+  
+  <ons-card>
+    <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+      <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+        <label class="iconExpenseLabel" style="margin-left: 50px;">
+          VER GASTOS
+        </label>
+        <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+          <!-- AQUI SE CARGAN LOS GASTOS -->
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-card>
+  
+  <ons-button class="flatButtonLight" style="margin-bottom: 16px;"
+  onclick="resetExpense('${eName}')">REINICIAR</ons-button
+  >`;
+
+  let detailDetailExpenseView = document.getElementById(
+    "expenseListOfExpenses"
+  );
+  detailDetailExpenseView.innerHTML = "";
+
+  let expensesDetail = JSON.parse(
+    localStorage.getItem("expenseDetailStorage")
+  );
+
+  let actualEx = 0;
+  if (expensesDetail == null || expensesDetail == "null") {
+  } else {
+    for (let i = 0; i < expensesDetail.length; i++) {
+      if (expensesDetail[i].expenseName == eName) {
+        actualEx = 1;
+        break;
+      }
+    }
+  }
+
+  if (actualEx == 0) {
+    detailDetailExpenseView.innerHTML = `<div style="margin-bottom: 30px;">
+      <label class="labelDetailExpense">Nada por mostrar, vas bien con los ahorros...</label>
+    </div>`;
+  } else {
+    for (let i = 0; i < expensesDetail.length; i++) {
+      if (expensesDetail[i].expenseName == eName) {
+        let iName = expensesDetail[i].inName;
+        let iAmount = expensesDetail[i].inAmount;
+        let iDate = expensesDetail[i].inDate;
+        let iD = expensesDetail[i].inID;
+
+          detailDetailExpenseView.innerHTML +=
+          `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+            <div class="center">
+              <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
+              <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px">${iDate}</label>
+            </div>
+            <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
+
+              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
+                EDITAR
+              </ons-button>
+
+              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
+                ELIMINAR
+              </ons-button>
+
+            </div>
+          </ons-list-item>`;
+      }
+    }
+  }
 }
