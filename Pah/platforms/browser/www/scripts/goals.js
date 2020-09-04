@@ -167,8 +167,19 @@ function getGoals() {
 
     let gPercent = getPercent(gMoney, gAMoney);
 
+    let today = new Date().toJSON().slice(0, 10);
+    let days = dateDiff(today, gDate);
+
     if (gDate === "") {
       gDate = "SIN DATOS DE FECHA";
+    } else {
+      if (Math.sign(days) == 1 || Math.sign(days) == "1") {
+        gDate = days + " DÍAS RESTANTES";
+      } else if (Math.sign(days) == "-1" || Math.sign(days) == -1) {
+        gDate = "VENCIÓ HACE " + Math.abs(days) + " DÍAS";
+      } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
+        gDate = "HOY ES EL ÚLTIMO DÍA";
+      }
     }
 
     // cambiar pushTest()
@@ -367,49 +378,61 @@ function loadDetailGoal() {
 
   let gPercent = getPercent(gMoney, gAMoney);
 
+  let today = new Date().toJSON().slice(0, 10);
+  let days = dateDiff(today, gDate);
+  
+  if (Math.sign(days) == 1 || Math.sign(days) == "1") {
+    gDate = days + " DÍAS RESTANTES";
+  } else if (Math.sign(days) == "-1" || Math.sign(days) == -1) {
+    gDate = "VENCIÓ HACE " + Math.abs(days) + " DÍAS";
+  } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
+    gDate = "HOY ES EL ÚLTIMO DÍA";
+  }
+
   document.getElementById("titleDetailGoal").innerHTML = gName;
 
   let goalsView = document.getElementById("goalDetailContainer");
   goalsView.innerHTML = "";
 
-  goalsView.innerHTML += `<ons-card>
-              <div class="title detailTitle">
-                ${gName}
-              </div>
-              <div class="content detailInfo">
-                <p>
-                  ${gDescription}
-                </p>
-              </div>
-            </ons-card>
-        
-            <ons-card>
-              <div class="title percentDetailTitle" id="${gName}-pnumber">
-                ${gPercent}%
-              </div>
+  goalsView.innerHTML += 
+    `<ons-card>
+      <div class="title detailTitle">
+        ${gName}
+      </div>
+      <div class="content detailInfo">
+        <p>
+          ${gDescription}
+        </p>
+      </div>
+    </ons-card>
 
-              <div class="progressBarContainer percentBar"> 
-                <div class="progressBarPercent" style="--width:${gPercent}" id="pbarDetail"></div> 
-              </div> 
+    <ons-card>
+      <div class="title percentDetailTitle" id="${gName}-pnumber">
+        ${gPercent}%
+      </div>
 
-              <div class="content">
-                <label class="moneyDetailGoal" id="detailMoneyStatus">
-                  $ ${gAMoney} de $ ${gMoney}
-                </label>
-                <label class="moneyDetailGoal">
-                  ${gDate}
-                </label>
-                <ons-button class="flatButton" style="margin-top: 16px;" onclick="addMoneyGoal('${gName}')">
-                  AÑADIR DINERO
-                </ons-button>
-              </div>
-            </ons-card>
+      <div class="progressBarContainer percentBar"> 
+        <div class="progressBarPercent" style="--width:${gPercent}" id="pbarDetail"></div> 
+      </div> 
 
-            <ons-button class="flatButtonLight" style="margin-bottom: 16px;" onclick="editGoal('${gName}')">
-              EDITAR META
-            </ons-button>
-            
-            <ons-button class="flatButton" style="margin-top: 16px; margin-bottom: 16px" onclick="deleteGoal('${gName}')">
-                  ELIMINAR META
-            </ons-button>`;
+      <div class="content">
+        <label class="moneyDetailGoal" id="detailMoneyStatus">
+          $ ${gAMoney} de $ ${gMoney}
+        </label>
+        <label class="moneyDetailGoal">
+          ${gDate}
+        </label>
+        <ons-button class="flatButton" style="margin-top: 16px;" onclick="addMoneyGoal('${gName}')">
+          AÑADIR DINERO
+        </ons-button>
+      </div>
+    </ons-card>
+
+    <ons-button class="flatButtonLight" style="margin-bottom: 16px;" onclick="editGoal('${gName}')">
+      EDITAR META
+    </ons-button>
+    
+    <ons-button class="flatButton" style="margin-top: 16px; margin-bottom: 16px" onclick="deleteGoal('${gName}')">
+          ELIMINAR META
+    </ons-button>`;
 }
