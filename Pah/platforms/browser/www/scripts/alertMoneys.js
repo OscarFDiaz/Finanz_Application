@@ -37,7 +37,7 @@ function hideAlertMoneys() {
   let newMoney = sessionStorage.getItem("addNewMoney");
 
   let testMoney = Math.sign(newMoney);
-  if (testMoney == "-1" || testMoney == "-0") {
+  if (testMoney == "-1" || testMoney === "-0") {
     ons.notification.toast(
       "No puedes dejar una cartera en numeros negativos, lo siento...",
       {
