@@ -68,6 +68,7 @@
 
 .selectedRange {
   color: var(--saving-edit-selected-range);
+  font-weight: bold;
 }
 
 .entryAmountText {

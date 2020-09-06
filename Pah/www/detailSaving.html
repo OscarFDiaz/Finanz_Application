@@ -9,10 +9,13 @@
 
   <ons-card>
     <div class="content">
-      <div style="text-align: center; margin-top: 16px;">
+      <div style="text-align: center; margin-top: 16px">
         <p>
           <ons-input
-            id="username"
+            onchange="updateSavingPreview()"
+            onkeypress="this.onchange()"
+            oninput="this.onchange()"
+            id="savingMainAmount"
             modifier="underbar"
             placeholder="CANTIDAD"
             type="number"
@@ -25,91 +28,97 @@
           >DÍAS:
           <span id="rangeSelectDays" class="selectedRange">16</span></label
         >
-        <ons-row style="margin-top: 15px;">
-          <ons-col width="40px" style="text-align: center; line-height: 31px;">
+        <ons-row style="margin-top: 15px">
+          <ons-col width="40px" style="text-align: center; line-height: 31px">
             <label class="labelRange">1</label>
           </ons-col>
           <ons-col>
-            <ons-range style="width: 100%;" value="50"></ons-range>
+            <ons-range 
+            onchange="updateSavingPreview()"
+            onkeypress="this.onchange()"
+            oninput="this.onchange()"
+            style="width: 100%" 
+            value="50" 
+            id="rangeDays"></ons-range>
           </ons-col>
-          <ons-col width="40px" style="text-align: center; line-height: 31px;">
+          <ons-col width="40px" style="text-align: center; line-height: 31px">
             <label class="labelRange">31</label>
           </ons-col>
         </ons-row>
 
         <label class="selectedText"
-          >PORCENTAJE:
+          >PORCENTAJE A USAR:
           <span id="rangeSelectPercent" class="selectedRange">50%</span></label
         >
-        <ons-row style="margin-top: 16px;">
-          <ons-col width="40px" style="text-align: center; line-height: 31px;">
+        <ons-row style="margin-top: 16px">
+          <ons-col width="40px" style="text-align: center; line-height: 31px">
             <label class="labelRangeLess">0</label>
           </ons-col>
           <ons-col>
-            <ons-range style="width: 100%;" value="50"></ons-range>
+            <ons-range
+            onchange="updateSavingPreview()"
+            onkeypress="this.onchange()"
+            oninput="this.onchange()"
+            style="width: 100%" 
+            value="50" 
+            id="rangePercent"></ons-range>
           </ons-col>
-          <ons-col width="35px" style="text-align: center; line-height: 31px;">
+          <ons-col width="35px" style="text-align: center; line-height: 31px">
             <label class="labelRangeLess">100</label>
           </ons-col>
         </ons-row>
       </p>
 
-      <ons-button class="flatButton">INGRESAR</ons-button>
+      <ons-button class="flatButton" onclick="makeSaving()">INGRESAR</ons-button>
     </div>
   </ons-card>
 
   <label class="cardHomeTitle">PREVISUALIZACIÓN</label>
-  <ons-card style="padding-top: 16px;">
+  <ons-card style="padding-top: 16px">
     <div class="content">
       <label class="entryAmountText"
-        >CANTIDAD INGRESADA:
-        <span id="entryAmount" class="entryAmountDetail">$ 3000</span></label
+        >CANTIDAD INGRESADA: <span class="entryAmountDetail">$ </span>
+        <span id="entryAmount" class="entryAmountDetail">0</span></label
       >
 
       <label class="entryAmountText"
-        >DÍAS: <span id="entryDays" class="entryAmountDetail">16</span></label
+        >DÍAS: <span id="entryDays" class="entryAmountDetail"></span></label
       >
 
       <label class="entryAmountText"
         >PORCENTAJE:
-        <span id="entryPercent" class="entryAmountDetail"
-          >60% -> $ 1005</span
-        ></label
+        <span id="entryPercent" class="entryAmountDetail"></span></label
       >
 
       <label class="entryAmountText"
-        >PARA GASTAR:
-        <span id="entryExpend" class="entryAmountDetail">$ 67</span></label
+        >PARA GASTAR: <span class="entryAmountDetail">$ </span>
+        <span id="entryExpend" class="entryAmountDetail">0</span></label
       >
     </div>
   </ons-card>
 
   <label class="cardHomeTitle">FONDO ACTUAL</label>
-  <ons-card style="padding-top: 16px;">
-    <div class="content">
+  <ons-card style="padding-top: 16px">
+    <div class="content" id="actualSavingContainer">
       <label class="entryAmountText"
-        >CANTIDAD INGRESADA:
-        <span id="entryCurrentAmount" class="entryAmountDetail"
-          >$ 3000</span
-        ></label
+        >CANTIDAD INGRESADA: <span class="entryAmountDetail">$ </span>
+        <span id="entryCurrentAmount" class="entryAmountDetail">0</span></label
       >
 
       <label class="entryAmountText"
         >DÍAS:
-        <span id="entryCurrentDays" class="entryAmountDetail">15</span></label
+        <span id="entryCurrentDays" class="entryAmountDetail"></span></label
       >
 
       <label class="entryAmountText"
         >PORCENTAJE:
-        <span id="entryCurrentPercent" class="entryAmountDetail"
-          >60% -> $ 1005</span
+        <span id="entryCurrentPercent" class="entryAmountDetail"></span
         ></label
       >
 
       <label class="entryAmountText"
-        >PARA GASTAR:
-        <span id="entryCurrentExpend" class="entryAmountDetail"
-          >$ 67</span
+        >PARA GASTAR: <span class="entryAmountDetail">$ </span>
+        <span id="entryCurrentExpend" class="entryAmountDetail">0</span
         ></label
       >
       <ons-button class="flatButtonLight">EDITAR</ons-button>
@@ -120,7 +129,9 @@
     document.addEventListener(
       "init",
       function (event) {
-        if (event.target.matches("#savings")) {
+        if (event.target.matches("#detailSaving")) {
+          loadDetailSaving();
+          updateLastSaving();
         }
       },
       false

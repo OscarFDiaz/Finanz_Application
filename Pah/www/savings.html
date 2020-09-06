@@ -10,42 +10,19 @@
       </div>
     </ons-toolbar>
 
-    <ons-card>
-      <div class="title mainTitle">
-        FONDO
-      </div>
-      <div class="content">
-        <label id="savingsInfo" class="savingInfo">$1005 / $67</label>
-      </div>
-    </ons-card>
+    <div id="savingMainContainer"></div>
 
-    <ons-card>
-      <div class="title savingTitle">
-        DISPONIBLE
-      </div>
-      <div class="content">
-        <label id="savingsDailyInfo" class="savingDaily">$67</label>
-        <ons-button class="flatButtonLight" style="margin-bottom: 16px;">QUITAR</ons-button>
-        <ons-button class="flatButton">AÑADIR</ons-button>
-      </div>
-    </ons-card>
-
-    <ons-card>
-      <div class="title daysTitle">
-        DÍAS RESTANTES | <span id="savingsDays" class="leftDays">15</span>
-      </div>
-      <div class="content">
-        <ons-button class="flatButtonLight">TERMINAR DÍA</ons-button>
-      </div>
-    </ons-card>
   
-    <ons-button class="flatButton" style="margin-bottom: 16px;" onclick="pushTest2()">MODIFICAR</ons-button>
+    <ons-button class="flatButton" style="margin-bottom: 16px;" onclick="pushToDetailSaving()">MODIFICAR</ons-button>
+
     <script>
       document.addEventListener(
         "init",
         function (event) {
           if (event.target.matches("#savings")) {
             localStorage.setItem("actuaPage", "savings.html");
+
+            loadSaving();
           }
         },
         false

@@ -3,7 +3,7 @@ function pushTest() {
   navigator.pushPage("detailGoal.html");
 }
 
-function pushTest2() {
+function pushToDetailSaving() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("detailSaving.html");
 }

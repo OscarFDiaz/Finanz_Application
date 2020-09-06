@@ -1,7 +1,6 @@
 function makeNewMoney() {
   let moneyName = document.getElementById("newMoneyName").value;
   let moneyCurrent = document.getElementById("newMoneyMoney").value;
-
   
   if (moneyName === "") {
     ons.notification.toast("Un momento, se necesita un buen nombre!", {
@@ -28,7 +27,7 @@ function makeNewMoney() {
 
   let money = {
     moneyName,
-    moneyCurrent,
+    moneyCurrent
   };
 
   if (localStorage.getItem("moneyStorage") === null) {
@@ -87,7 +86,6 @@ function getMoneys() {
           </ons-list-item>
         </ons-list>
       </ons-card>`;
-      return;
     }
     return;
   } else if (moneys.length == 0) {
@@ -120,7 +118,6 @@ function getMoneys() {
           </ons-list-item>
         </ons-list>
       </ons-card>`;
-      return;
     }
     return;
   }
