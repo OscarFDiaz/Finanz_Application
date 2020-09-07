@@ -27,7 +27,13 @@
   text-align: center;
   display: block;
 
-  font-size: 140px;
+/*
+  --minFontSize: 32px;
+  --maxFontSize: 200px;
+  --scaler: 10vw;
+  font-size: clamp( var(--minFontSize), var(--scaler), var(--maxFontSize) );
+*/
+  font-size: 75px;
   font-weight: bold;
   color: var(--saving-daily);
 }

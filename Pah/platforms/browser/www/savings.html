@@ -1,31 +1,129 @@
 <ons-page id="savings">
-    <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <i class="menuButtonIcon ion-md-menu"></i>
-        </ons-toolbar-button>
+  <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
+    <div class="left">
+      <ons-toolbar-button onclick="fn.open()">
+        <i class="menuButtonIcon ion-md-menu"></i>
+      </ons-toolbar-button>
+    </div>
+    <div class="center labelToolbar" id="titleSavings">FONDO</div>
+  </ons-toolbar>
+
+  <div id="savingMainContainer"></div>
+
+  <ons-button
+    class="flatButton"
+    style="margin-bottom: 16px"
+    onclick="pushToDetailSaving()"
+    >MODIFICAR</ons-button
+  >
+
+  <!--ALERT PARA AÑADIR DINERO-->
+  <ons-alert-dialog id="alertAddSavingMoney" modifier="material">
+    <div style="text-align: center; margin-top: 16px">
+      <div class="alert-dialog-title">Añadir dinero al fondo</div>
+    </div>
+
+    <div class="alert-dialog-content">
+      <div style="text-align: center; margin-top: 16px">
+        <p>
+          <label style="color: var(--alert-custom-label)"
+            >DINERO ACTUAL: $
+            <label
+              id="alertAddMoney"
+              style="color: var(--alert-custom-label-money)"
+              >0</label
+            >
+          </label>
+
+          <ons-input
+            onchange="makeSavingSumMoney()"
+            onkeypress="this.onchange()"
+            oninput="this.onchange()"
+            id="alertInputMoney"
+            modifier="underbar"
+            placeholder="QUIERO AÑADIR"
+            type="number"
+            style="display: block; margin: -10px auto 16px"
+          ></ons-input>
+
+          <label style="color: var(--alert-custom-label)"
+            >CANTIDAD NUEVA: $
+            <label
+              id="alertAddMoneyEnd"
+              style="color: var(--alert-custom-label-money)"
+              >0</label
+            >
+          </label>
+        </p>
       </div>
-      <div class="center labelToolbar" id="titleSavings">
-        FONDO
+    </div>
+
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="">Cancelar</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="">Listo!</ons-alert-dialog-button>
+    </div>
+  </ons-alert-dialog>
+  <!----------------------------------------------------------------->
+
+  <!--ALERT PARA RESTAR DINERO-->
+  <ons-alert-dialog id="alertResSavingMoney" modifier="material">
+    <div style="text-align: center; margin-top: 16px">
+      <div class="alert-dialog-title">Añadir dinero al fondo</div>
+    </div>
+
+    <div class="alert-dialog-content">
+      <div style="text-align: center; margin-top: 16px">
+        <p>
+          <label style="color: var(--alert-custom-label)"
+            >DINERO ACTUAL: $
+            <label
+              id="alertResMoney"
+              style="color: var(--alert-custom-label-money)"
+              >0</label
+            >
+          </label>
+
+          <ons-input
+            onchange="makeSavingResMoney()"
+            onkeypress="this.onchange()"
+            oninput="this.onchange()"
+            id="alertResInputMoney"
+            modifier="underbar"
+            placeholder="QUIERO AÑADIR"
+            type="number"
+            style="display: block; margin: -10px auto 16px"
+          ></ons-input>
+
+          <label style="color: var(--alert-custom-label)"
+            >CANTIDAD NUEVA: $
+            <label
+              id="alertResMoneyEnd"
+              style="color: var(--alert-custom-label-money)"
+              >0</label
+            >
+          </label>
+        </p>
       </div>
-    </ons-toolbar>
+    </div>
 
-    <div id="savingMainContainer"></div>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="">Cancelar</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="">Listo!</ons-alert-dialog-button>
+    </div>
+  </ons-alert-dialog>
+  <!----------------------------------------------------------------->
 
-  
-    <ons-button class="flatButton" style="margin-bottom: 16px;" onclick="pushToDetailSaving()">MODIFICAR</ons-button>
+  <script>
+    document.addEventListener(
+      "init",
+      function (event) {
+        if (event.target.matches("#savings")) {
+          localStorage.setItem("actuaPage", "savings.html");
 
-    <script>
-      document.addEventListener(
-        "init",
-        function (event) {
-          if (event.target.matches("#savings")) {
-            localStorage.setItem("actuaPage", "savings.html");
-
-            loadSaving();
-          }
-        },
-        false
-      );
-    </script>
-  </ons-page>
+          loadSaving();
+        }
+      },
+      false
+    );
+  </script>
+</ons-page>

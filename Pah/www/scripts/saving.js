@@ -16,27 +16,58 @@ function makeSaving() {
     return;
   }
 
-  rangeDays = returnDays(rangeDays);
-  let equivalentAmount =
-    (parseInt(rangePercent) * parseFloat(mainAmount)) / 100;
-  let toExpend = (parseFloat(equivalentAmount) / parseInt(rangeDays)).toFixed(
-    2
-  );
-  let daysLeft = rangeDays;
-  let moneyLeft = toExpend;
+  let storage = JSON.parse(localStorage.getItem("savingStorage"));
 
-  let saving = {
-    mainAmount,
-    rangeDays,
-    rangePercent,
-    equivalentAmount,
-    toExpend,
-    daysLeft,
-    moneyLeft,
-  };
+  if (storage) {
+    ons.notification.confirm({
+      message:
+        "Ya existe un fondo, quieres borrar el actual e ingresar este nuevo?",
+      title: "Aviso!",
+      buttonLabels: ["Sí", "Cancelar"],
+      animation: "default",
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          rangeDays = returnDays(rangeDays);
+          let equivalentAmount =
+            (parseInt(rangePercent) * parseFloat(mainAmount)) / 100;
+          let toExpend = (
+            parseFloat(equivalentAmount) / parseInt(rangeDays)
+          ).toFixed(2);
+          let daysLeft = rangeDays;
+          let moneyLeft = toExpend;
 
-  localStorage.setItem("savingStorage", JSON.stringify(saving));
-  updateLastSaving();
+          let saving = {
+            mainAmount,
+            rangeDays,
+            rangePercent,
+            equivalentAmount,
+            toExpend,
+            daysLeft,
+            moneyLeft,
+          };
+
+          localStorage.setItem("savingStorage", JSON.stringify(saving));
+          updateLastSaving();
+          functionPopPage();
+          loadSaving();
+
+          ons.notification.toast("Se ha actualizado el fondo!", {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+        } else {
+          ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
+            title: "Aviso!",
+            timeout: 1000,
+            animation: "ascend",
+          });
+        }
+      },
+    });
+  }
 }
 
 function updateSavingPreview() {
@@ -167,8 +198,8 @@ function loadSaving() {
         </div>
         <div class="content">
             <label id="savingsDailyInfo" class="savingDaily">$${sMoneyDayLeft}</label>
-            <ons-button class="flatButtonLight" style="margin-bottom: 16px;">QUITAR</ons-button>
-            <ons-button class="flatButton">AÑADIR</ons-button>
+            <ons-button class="flatButtonLight" style="margin-bottom: 16px;" onclick="resSaving()">QUITAR</ons-button>
+            <ons-button class="flatButton" onclick="addSaving()">AÑADIR</ons-button>
         </div>
     </ons-card>
 
@@ -177,7 +208,7 @@ function loadSaving() {
             DÍAS RESTANTES | <span id="savingsDays" class="leftDays">${sDaysLeft}</span>
         </div>
         <div class="content">
-            <ons-button class="flatButtonLight">TERMINAR DÍA</ons-button>
+            <ons-button class="flatButtonLight" onclick="endSavingDay()">TERMINAR DÍA</ons-button>
         </div>
     </ons-card>`;
 }
@@ -252,4 +283,80 @@ function returnDays(days) {
   } else if (dd > 94 && dd < 101) {
     return 31; ///
   }
+}
+
+function endSavingDay() {
+  /*
+    - Preguntar si desea terminar el día
+      - Si responde que sí 
+        - Verificar si quedó dinero restante
+          - Si quedo dinero restante:
+                    Quedo: $60
+              Añadir al día siguiente
+              { - Conseguir dinero para gastar y añadir al que se mostrara }
+              Añadir a DINERO
+              { - Cargar "DINERO" para seleccionar cual cargar }
+              // SELECCIONAR UNA SÍ O SÍ
+          - Sino Terminar día y hacer los cambios necesarios
+      - Sino no hacer nada
+  */
+  ons.notification.confirm({
+    message: "Estas seguro de terminar el día?",
+    title: "Aviso!",
+    buttonLabels: ["Sí", "Cancelar"],
+    animation: "default",
+    primaryButtonIndex: 1,
+    cancelable: true,
+    callback: function (index) {
+      if (0 === index) {
+      } else {
+        ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
+          title: "Aviso!",
+          timeout: 1000,
+          animation: "ascend",
+        });
+      }
+    },
+  });
+}
+
+function addSaving() {
+  /*
+    - Mostrar cuadro para añadir dinero
+    - Mostrar cantidad que se añadira
+    - Convertir cantidad estrictamente a positivo, no debe funcionar "-"
+
+    alert: alertAddSavingMoney
+    dinero actual: alertAddMoney
+    input: alertInputMoney
+    dinero final: alertAddMoneyEnd
+  */
+}
+
+function resSaving() {
+  /*
+    - Mostrar cuadro para restar dinero
+    - Mostrar cantidad que se restara en tiempo
+    - Convertir cantidad estrictamente a negativo
+
+
+    alert: alertResSavingMoney
+    dinero actual: alertResMoney
+    input: alertResInputMoney
+    dinero final: alertResMoneyEnd
+  */
+}
+
+function makeSavingSumMoney() {
+  let actualMoney = document.getElementById("alertAddMoney").textContent;
+  let inputMoney = document.getElementById("alertInputMoney").value;
+  let endMoney = document.getElementById("alertAddMoneyEnd");
+
+}
+
+function makeSavingResMoney() {
+  let actualMoney = document.getElementById("alertResMoney").textContent;
+  let inputMoney = document.getElementById("alertResInputMoney").value;
+  let endMoney = document.getElementById("alertResMoneyEnd");
+
 }
