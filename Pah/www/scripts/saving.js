@@ -198,8 +198,7 @@ function loadSaving() {
         </div>
         <div class="content">
             <label id="savingsDailyInfo" class="savingDaily">$${sMoneyDayLeft}</label>
-            <ons-button class="flatButtonLight" style="margin-bottom: 16px;" onclick="resSaving()">QUITAR</ons-button>
-            <ons-button class="flatButton" onclick="addSaving()">AÑADIR</ons-button>
+            <ons-button class="flatButton" onclick="editMoneySaving()">AÑADIR / QUITAR</ons-button>
         </div>
     </ons-card>
 
@@ -320,43 +319,57 @@ function endSavingDay() {
   });
 }
 
-function addSaving() {
+function editMoneySaving() {
   /*
     - Mostrar cuadro para añadir dinero
     - Mostrar cantidad que se añadira
     - Convertir cantidad estrictamente a positivo, no debe funcionar "-"
 
-    alert: alertAddSavingMoney
+    alert: alertEditSavingMoney
     dinero actual: alertAddMoney
     input: alertInputMoney
     dinero final: alertAddMoneyEnd
   */
+ 
+ var dialog = document.getElementById("alertEditSavingMoney");
+ let storage = JSON.parse(localStorage.getItem("savingStorage"));
+
+ document.getElementById("alertAddMoney").innerHTML = storage.moneyLeft;
+ 
+ 
+ if (dialog) {
+     dialog.show();
+ } else {
+   ons.notification.toast(
+     "Ups! No se ha podido cargar la ventana para modificar!",
+     {
+       title: "Error!",
+       timeout: 2000,
+       animation: "ascend",
+     }
+   );
+ }
 }
 
-function resSaving() {
-  /*
-    - Mostrar cuadro para restar dinero
-    - Mostrar cantidad que se restara en tiempo
-    - Convertir cantidad estrictamente a negativo
-
-
-    alert: alertResSavingMoney
-    dinero actual: alertResMoney
-    input: alertResInputMoney
-    dinero final: alertResMoneyEnd
-  */
-}
-
-function makeSavingSumMoney() {
+function makeSavingOperation() {
   let actualMoney = document.getElementById("alertAddMoney").textContent;
   let inputMoney = document.getElementById("alertInputMoney").value;
   let endMoney = document.getElementById("alertAddMoneyEnd");
 
-}
+  let testAmoney = Math.sign(parseFloat(actualMoney));
+  let result;
 
-function makeSavingResMoney() {
-  let actualMoney = document.getElementById("alertResMoney").textContent;
-  let inputMoney = document.getElementById("alertResInputMoney").value;
-  let endMoney = document.getElementById("alertResMoneyEnd");
+  // Si el dinero actual es negativo
+  if (testAmoney == "-1" || testAmoney === "-0") {
+    result = parseFloat(actualMoney) - parseFloat(inputMoney);
+    endMoney.innerHTML = result;
+
+    /*
+      Preguntar si desea generar un gasto, si es que la cantidad disminuyo
+    */
+  } else {
+    result = parseFloat(actualMoney) + parseFloat(inputMoney);
+    endMoney.innerHTML = result;
+  }
 
 }
