@@ -216,6 +216,36 @@ function getExpenses() {
     return;
   }
 
+  let totalExpenses = getTotalExpenses();
+  let totalFDays = getAmountFDaysN();
+  let totalTDays = getAmountTDaysN();
+
+  expensesView.innerHTML += 
+  `<ons-card>
+    <div class="content">
+      <label class="labelDetailExpense"
+        >Gasto total: $ 
+        <span id="totalExpenseDetail" class="labelInfoDetailExpense"
+          >${totalExpenses}</span
+        ></label
+      >
+      
+      <label class="labelDetailExpense"
+        >Últimos 15 días: $ 
+        <span id="lastDaysDetail" class="labelInfoDetailExpense"
+          >${totalFDays}</span
+        ></label
+      >
+      <label class="labelDetailExpense"
+        >Últimos 31 días: $ 
+        <span id="lastMonthDetail" class="labelInfoDetailExpense"
+          >${totalTDays}</span
+        ></label
+      >
+    </div>
+  </ons-card>`;
+
+
   for(let i = 0; i < expenses.length; i++) {
     let eName = expenses[i].expenseName;
     let eicon = expenses[i].iconName;
@@ -636,4 +666,50 @@ function loadDetailExpense() {
       }
     }
   }
+}
+
+function getTotalExpenses() {
+  let total = 0;
+  let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
+
+  for (let i = 0; i < expenses.length; i++) {
+    total = +total + +expenses[i].totalExpense;
+  }
+  return total;
+}
+
+function getAmountFDaysN() {
+  let storage = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+
+  if (storage == null || storage == "") {
+    return 0;
+  }
+
+  let today = new Date().toJSON().slice(0, 10);
+  let total = 0;
+  for(let i = 0; i < storage.length; i++) {
+    let dateD = dateDiff(storage[i].inDate, today);
+    if (dateD < 16 && dateD >= 0){
+      total = +total + +storage[i].inAmount;
+    }
+  }
+  return total;
+}
+
+function getAmountTDaysN() {
+  let storage = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+
+  if (storage == null || storage == "") {
+    return 0;
+  }
+
+  let today = new Date().toJSON().slice(0, 10);
+  let total = 0;
+  for(let i = 0; i < storage.length; i++) {
+    let dateD = dateDiff(storage[i].inDate, today);
+    if (dateD < 32 && dateD >= 0){
+      total = +total + +storage[i].inAmount;
+    }
+  }
+  return total;
 }
