@@ -535,14 +535,7 @@ function deleteDetailExpense(idSend) {
         /* Actualizo los datos de la meta principal */
         reInsertExpenseDetail(loadName);
         updateExpenseTotalMoney(loadName, "-"+amountLess);
-
-        console.log("Update last days");
-        console.log("name: " + loadName);
-
         updateExpenseLastDays(loadName);
-
-        console.log("Update view");
-        console.log("ALESS: " + amountLess);
 
         let storage = JSON.parse(localStorage.getItem("expenseStorage"));
 
@@ -552,8 +545,6 @@ function deleteDetailExpense(idSend) {
             break;
           }
         }
-        console.log( document.getElementById("totalExpenseDetail"));
-
       } else {
         ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
           title: "Aviso!",
