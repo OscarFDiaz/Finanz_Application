@@ -67,6 +67,36 @@ function makeSaving() {
         }
       },
     });
+  } else {
+    rangeDays = returnDays(rangeDays);
+    let equivalentAmount =
+      (parseInt(rangePercent) * parseFloat(mainAmount)) / 100;
+    let toExpend = (parseFloat(equivalentAmount) / parseInt(rangeDays)).toFixed(
+      2
+    );
+    let daysLeft = rangeDays;
+    let moneyLeft = toExpend;
+
+    let saving = {
+      mainAmount,
+      rangeDays,
+      rangePercent,
+      equivalentAmount,
+      toExpend,
+      daysLeft,
+      moneyLeft,
+    };
+
+    localStorage.setItem("savingStorage", JSON.stringify(saving));
+    updateLastSaving();
+    functionPopPage();
+    loadSaving();
+
+    ons.notification.toast("Se ha ingresado el fondo!", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
   }
 }
 
@@ -330,25 +360,24 @@ function editMoneySaving() {
     input: alertInputMoney
     dinero final: alertAddMoneyEnd
   */
- 
- var dialog = document.getElementById("alertEditSavingMoney");
- let storage = JSON.parse(localStorage.getItem("savingStorage"));
 
- document.getElementById("alertAddMoney").innerHTML = storage.moneyLeft;
- 
- 
- if (dialog) {
-     dialog.show();
- } else {
-   ons.notification.toast(
-     "Ups! No se ha podido cargar la ventana para modificar!",
-     {
-       title: "Error!",
-       timeout: 2000,
-       animation: "ascend",
-     }
-   );
- }
+  var dialog = document.getElementById("alertEditSavingMoney");
+  let storage = JSON.parse(localStorage.getItem("savingStorage"));
+
+  document.getElementById("alertAddMoney").innerHTML = storage.moneyLeft;
+
+  if (dialog) {
+    dialog.show();
+  } else {
+    ons.notification.toast(
+      "Ups! No se ha podido cargar la ventana para modificar!",
+      {
+        title: "Error!",
+        timeout: 2000,
+        animation: "ascend",
+      }
+    );
+  }
 }
 
 function makeSavingOperation() {
@@ -371,5 +400,4 @@ function makeSavingOperation() {
     result = parseFloat(actualMoney) + parseFloat(inputMoney);
     endMoney.innerHTML = result;
   }
-
 }
