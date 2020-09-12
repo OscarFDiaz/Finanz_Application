@@ -136,6 +136,8 @@ function createAlertDialogToEditGoalMoney() {
   var dialog = document.getElementById("alertEditGoalMoney");
 
   if (dialog) {
+    document.getElementById("editOnlyGoalMoney").value = "";
+    document.getElementById("editOnlyEndMoney").innerHTML = "";
     dialog.show();
   } else {
     ons.notification.toast(

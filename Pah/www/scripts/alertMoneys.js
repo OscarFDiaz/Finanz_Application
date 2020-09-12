@@ -8,6 +8,8 @@ function createAlertDialogToEditMoneyMoney() {
   var dialog = document.getElementById("alertEditMoneyMoney");
   
   if (dialog) {
+      document.getElementById("editOnlyMoneyMoney").value = "";
+      document.getElementById("editMoneyEndMoney").innerHTML = "";
       dialog.show();
       document.getElementById("editMoneyActualMoney").innerHTML = parseMoney.moneyCurrent;
   } else {
