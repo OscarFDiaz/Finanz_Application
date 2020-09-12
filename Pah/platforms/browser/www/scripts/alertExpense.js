@@ -535,10 +535,24 @@ function deleteDetailExpense(idSend) {
         /* Actualizo los datos de la meta principal */
         reInsertExpenseDetail(loadName);
         updateExpenseTotalMoney(loadName, "-"+amountLess);
+
+        console.log("Update last days");
+        console.log("name: " + loadName);
+
         updateExpenseLastDays(loadName);
-        let expenseView = document.getElementById("totalExpenseDetail").textContent;
-        let newAmount = +expenseView + -amountLess;
-        document.getElementById("totalExpenseDetail").innerHTML = newAmount;
+
+        console.log("Update view");
+        console.log("ALESS: " + amountLess);
+
+        let storage = JSON.parse(localStorage.getItem("expenseStorage"));
+
+        for(let i = 0; i < storage.length; i++){
+          if (storage[i].expenseName == loadName){
+            document.getElementById("totalExpenseDetail").innerHTML = "" + storage[i].totalExpense;
+            break;
+          }
+        }
+        console.log( document.getElementById("totalExpenseDetail"));
 
       } else {
         ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
@@ -586,11 +600,26 @@ function reInsertExpenseDetail(sendName) {
         let iDate = expensesDetail[i].inDate;
         let iD = expensesDetail[i].inID;
 
+        let today = new Date().toJSON().slice(0, 10);
+        let days = dateDiff(today, iDate);
+    
+        if (iDate === "") {
+          iDate = "SIN DATOS DE FECHA";
+        } else {
+          if (Math.sign(days) == 1 || Math.sign(days) == "1") {
+            iDate = "EN " + days + " DÍAS";
+          } else if (Math.sign(days) == "-1" || Math.sign(days) == -1) {
+            iDate = "HACE " + Math.abs(days) + " DÍAS";
+          } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
+            iDate = "HOY";
+          }
+        }
+
         detailDetailExpenseView.innerHTML +=
         `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
           <div class="center">
             <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
-            <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px">${iDate}</label>
+            <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px">${iDate}</label>
           </div>
           <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
 
@@ -615,7 +644,6 @@ function updateExpenseLastDays(sendName) {
 
   days.innerHTML = getAmountFDays(sendName);
   month.innerHTML = getAmountTDays(sendName);
-
 }
 
 

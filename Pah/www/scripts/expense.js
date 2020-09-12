@@ -1,4 +1,3 @@
-
 function loadIcons() {
   let iconsView = document.getElementById("expenseIconListOfIcons");
   iconsView.innerHTML = "";
@@ -225,20 +224,20 @@ function getExpenses() {
     <div class="content">
       <label class="labelDetailExpense"
         >Gasto total: $ 
-        <span id="totalExpenseDetail" class="labelInfoDetailExpense"
+        <span id="totalExpenseDetailMain" class="labelInfoDetailExpense"
           >${totalExpenses}</span
         ></label
       >
       
       <label class="labelDetailExpense"
         >Últimos 15 días: $ 
-        <span id="lastDaysDetail" class="labelInfoDetailExpense"
+        <span id="lastDaysDetailMain" class="labelInfoDetailExpense"
           >${totalFDays}</span
         ></label
       >
       <label class="labelDetailExpense"
         >Últimos 31 días: $ 
-        <span id="lastMonthDetail" class="labelInfoDetailExpense"
+        <span id="lastMonthDetailMain" class="labelInfoDetailExpense"
           >${totalTDays}</span
         ></label
       >
@@ -645,24 +644,39 @@ function loadDetailExpense() {
         let iDate = expensesDetail[i].inDate;
         let iD = expensesDetail[i].inID;
 
-          detailDetailExpenseView.innerHTML +=
-          `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
-            <div class="center">
-              <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
-              <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px">${iDate}</label>
-            </div>
-            <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
+        let today = new Date().toJSON().slice(0, 10);
+        let days = dateDiff(today, iDate);
+    
+        if (iDate === "") {
+          iDate = "SIN DATOS DE FECHA";
+        } else {
+          if (Math.sign(days) == 1 || Math.sign(days) == "1") {
+            iDate = "EN " + days + " DÍAS";
+          } else if (Math.sign(days) == "-1" || Math.sign(days) == -1) {
+            iDate = "HACE " + Math.abs(days) + " DÍAS";
+          } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
+            iDate = "HOY";
+          }
+        }
 
-              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
-                EDITAR
-              </ons-button>
+        detailDetailExpenseView.innerHTML +=
+        `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+          <div class="center">
+            <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
+            <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px">${iDate}</label>
+          </div>
+          <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
 
-              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
-                ELIMINAR
-              </ons-button>
+            <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
+              EDITAR
+            </ons-button>
 
-            </div>
-          </ons-list-item>`;
+            <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
+              ELIMINAR
+            </ons-button>
+
+          </div>
+        </ons-list-item>`;
       }
     }
   }
