@@ -17,6 +17,64 @@
     >MODIFICAR</ons-button
   >
 
+  <!--ALERT PARA AÑADIR UN GASTO-->
+  <ons-alert-dialog id="alertToAddExpenseSaving" modifier="material">
+    <div style="text-align: center; margin-top: 16px;">
+      <div class="alert-dialog-title">Añadir nuevo gasto de mi fondo</div>
+    </div>
+
+    <div class="alert-dialog-content">
+      <div style="text-align: center; margin-top: 16px;">
+        <p>
+          <label style="color: var(--alert-tile-color)">CATEGORÍA: </label>
+          <select id="selectOptioCa">
+            <!--AQUI SE CARGAN LAS CATEGORÍAS-->
+          </select>
+
+          <ons-input
+            id="alertExpenseNoteSaving"
+            modifier="underbar"
+            placeholder="NOTA DEL GASTO"
+            type="text"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+
+          <ons-input
+            id="alertExpenseMoneySaving"
+            modifier="underbar"
+            placeholder="DINERO GASTADO"
+            type="number"
+            style="display: block; margin: 16px 16px;"
+            disabled
+          ></ons-input>
+
+          <ons-input
+            id="alertExpenseDateSaving"
+            modifier="underbar"
+            placeholder="FECHA DEL GASTO"
+            type="date"
+            style="display: block; margin: 16px 16px;"
+          ></ons-input>
+
+          <label style="color: var(--alert-tile-color)">RESTAR A: </label>
+          <select id="selectOptio">
+            <!--AQUI SE CARGAN LOS POSIBLES GASTOS-->
+          </select>
+        </p>
+      </div>
+    </div>
+
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="hideAlertAddExpenseSavingNoChange()"
+        >Cancelar</ons-alert-dialog-button
+      >
+      <ons-alert-dialog-button onclick="hideAlertAddExpenseSaving()"
+        >Listo!</ons-alert-dialog-button
+      >
+    </div>
+  </ons-alert-dialog>
+  <!----------------------------------------------------------------->
+
   <!--ALERT PARA EDITAR DINERO-->
   <ons-alert-dialog id="alertEditSavingMoney" modifier="material">
     <div style="text-align: center; margin-top: 16px">
@@ -29,7 +87,7 @@
           <label style="color: var(--alert-custom-label)"
             >DINERO ACTUAL: $
             <label
-              id="alertAddMoney"
+              id="alertAddSaving"
               style="color: var(--alert-custom-label-money)"
               >0</label
             >
@@ -39,7 +97,7 @@
             onchange="makeSavingOperation()"
             onkeypress="this.onchange()"
             oninput="this.onchange()"
-            id="alertInputMoney"
+            id="alertInputSaving"
             modifier="underbar"
             placeholder="QUIERO AÑADIR / QUITAR"
             type="number"
@@ -49,7 +107,7 @@
           <label style="color: var(--alert-custom-label)"
             >CANTIDAD NUEVA: $
             <label
-              id="alertAddMoneyEnd"
+              id="alertAddSavingEnd"
               style="color: var(--alert-custom-label-money)"
               >0</label
             >
@@ -59,8 +117,12 @@
     </div>
 
     <div class="alert-dialog-footer">
-      <ons-alert-dialog-button onclick="">Cancelar</ons-alert-dialog-button>
-      <ons-alert-dialog-button onclick="">Listo!</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="closeAlertSavingNoChange()"
+        >Cancelar</ons-alert-dialog-button
+      >
+      <ons-alert-dialog-button onclick="closeAlertSaving()"
+        >Listo!</ons-alert-dialog-button
+      >
     </div>
   </ons-alert-dialog>
   <!----------------------------------------------------------------->

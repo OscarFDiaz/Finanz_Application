@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-   
+
 .theme-custom {
   /* COLORES */
   --color: #0d2840;
@@ -708,7 +708,6 @@
   --flat-button-light-color-text: #ffffff;
   --flat-button-light-active-color: #05565f;
 }
-
 
 .page__background {
   background: rgb(0, 0, 0);

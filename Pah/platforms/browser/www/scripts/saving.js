@@ -158,8 +158,7 @@ function updateLastSaving() {
         >PARA GASTAR: <span class="entryAmountDetail">$ </span>
         <span id="entryCurrentExpend" class="entryAmountDetail">0</span
         ></label
-        >
-        <ons-button class="flatButtonLight">EDITAR</ons-button>`;
+        >`;
   }
 
   let sInnerAmount = savingStorage.mainAmount;
@@ -349,22 +348,14 @@ function endSavingDay() {
   });
 }
 
+/* ABRE EL ALERT PARA EDITAR EL SAVING*/
 function editMoneySaving() {
-  /*
-    - Mostrar cuadro para añadir dinero
-    - Mostrar cantidad que se añadira
-    - Convertir cantidad estrictamente a positivo, no debe funcionar "-"
-
-    alert: alertEditSavingMoney
-    dinero actual: alertAddMoney
-    input: alertInputMoney
-    dinero final: alertAddMoneyEnd
-  */
-
   var dialog = document.getElementById("alertEditSavingMoney");
   let storage = JSON.parse(localStorage.getItem("savingStorage"));
 
-  document.getElementById("alertAddMoney").innerHTML = storage.moneyLeft;
+  document.getElementById("alertAddSaving").innerHTML = storage.moneyLeft;
+  document.getElementById("alertInputSaving").value = "";
+  document.getElementById("alertAddSavingEnd").innerHTML = "";
 
   if (dialog) {
     dialog.show();
@@ -381,9 +372,9 @@ function editMoneySaving() {
 }
 
 function makeSavingOperation() {
-  let actualMoney = document.getElementById("alertAddMoney").textContent;
-  let inputMoney = document.getElementById("alertInputMoney").value;
-  let endMoney = document.getElementById("alertAddMoneyEnd");
+  let actualMoney = document.getElementById("alertAddSaving").textContent;
+  let inputMoney = document.getElementById("alertInputSaving").value;
+  let endMoney = document.getElementById("alertAddSavingEnd");
 
   let testAmoney = Math.sign(parseFloat(actualMoney));
   let result;
@@ -392,12 +383,137 @@ function makeSavingOperation() {
   if (testAmoney == "-1" || testAmoney === "-0") {
     result = parseFloat(actualMoney) - parseFloat(inputMoney);
     endMoney.innerHTML = result;
-
-    /*
-      Preguntar si desea generar un gasto, si es que la cantidad disminuyo
-    */
   } else {
     result = parseFloat(actualMoney) + parseFloat(inputMoney);
     endMoney.innerHTML = result;
   }
+}
+
+function closeAlertSavingNoChange() {
+  var dialog = document.getElementById("alertEditSavingMoney");
+
+  ons.notification.toast("No se modifica nada!", {
+    title: "Aviso!",
+    timeout: 2000,
+    animation: "ascend",
+  });
+
+  sessionStorage.clear();
+  document.getElementById("alertEditSavingMoney").hide();
+}
+
+function closeAlertSaving() {
+  let element = document.getElementById("alertInputSaving").value;
+
+  if (element === null || element === "" || element == "") {
+    ons.notification.toast(
+      "Ingresa cuanto dinero deseas añadir/quitar, por favor!",
+      {
+        title: "Aviso!",
+        timeout: 2000,
+        animation: "ascend",
+      }
+    );
+    return;
+  }
+
+  let actualMoney = parseFloat(
+    document.getElementById("alertAddSaving").textContent
+  );
+  let endMoney = parseFloat(
+    document.getElementById("alertAddSavingEnd").textContent
+  );
+
+  let testMoney = Math.sign(endMoney);
+  if (testMoney == "-1" || testMoney === "-0") {
+    ons.notification.toast("No puedes dejar tu fondo negativo, lo siento...", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
+
+  /* Se hizo una resta */
+  if (actualMoney > endMoney) {
+    let storage = JSON.parse(localStorage.getItem("savingStorage"));
+    storage.moneyLeft = endMoney;
+    localStorage.setItem("savingStorage", JSON.stringify(storage));
+    document.getElementById("alertEditSavingMoney").hide();
+
+    /* Preguntar si deseo añadir eso como gasto */
+    ons.notification.confirm({
+      message: "Has reducido el dinero disponible. Quieres añadir un gasto?",
+      title: "Aviso!",
+      buttonLabels: ["Sí", "No"],
+      animation: "default",
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          /* ABRIR VENTANA PARA AÑADIR UN GASTO A ALGUNA CATEGORÍA DE GASTO */
+          var dialog = document.getElementById("alertToAddExpenseSaving");
+
+          document.getElementById("alertExpenseNoteSaving").value = "";
+          document.getElementById("alertExpenseMoneySaving").value = Math.abs(
+            element
+          );
+          document.getElementById("alertExpenseDateSaving").value = "";
+
+          if (dialog) {
+            dialog.show();
+            //TODO: CARGAR CATEGORÍAS DISPONIBLES Y CARGAR DONDE SE PUEDE RESTAR EL DINERO
+          } else {
+            ons.notification.toast(
+              "Ups! No se ha podido cargar la ventana para modificar!",
+              {
+                title: "Error!",
+                timeout: 2000,
+                animation: "ascend",
+              }
+            );
+          }
+          loadSaving();
+        } else {
+          ons.notification.toast(
+            "De acuerdo, sólo se ha reducido el dinero disponible!",
+            {
+              title: "Aviso!",
+              timeout: 1000,
+              animation: "ascend",
+            }
+          );
+          loadSaving();
+        }
+      },
+    });
+  } else if (actualMoney < endMoney) {
+    // Se hizo una suma
+    let storage = JSON.parse(localStorage.getItem("savingStorage"));
+    storage.moneyLeft = endMoney;
+    localStorage.setItem("savingStorage", JSON.stringify(storage));
+
+    ons.notification.toast("Se ha aumentado el dinero disponible!", {
+      title: "Aviso!",
+      timeout: 1000,
+      animation: "ascend",
+    });
+
+    document.getElementById("alertEditSavingMoney").hide();
+    loadSaving();
+  }
+}
+
+function hideAlertAddExpenseSaving() {
+  // TODO: Añadir el gasto a donde corresponde
+}
+
+function hideAlertAddExpenseSavingNoChange() {
+  ons.notification.toast("De acuerdo, no se añadira ningún gasto!", {
+    title: "Aviso!",
+    timeout: 1000,
+    animation: "ascend",
+  });
+
+  document.getElementById("alertToAddExpenseSaving").hide();
 }
