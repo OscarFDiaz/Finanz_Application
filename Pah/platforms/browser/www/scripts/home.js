@@ -219,11 +219,11 @@ function getTotalMoney() {
   for (let i = 0; i < arrayMoney.length; i++){
     amount += +arrayMoney[i].moneyCurrent;
   }
-  return amount;
+  return amount.toFixed(2);
 }
 
 function getTotalSavings() {
-  return 0;
+  return localStorage.getItem("savedMoneySaving");
 }
 
 function getTotalExpenses() {

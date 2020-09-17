@@ -932,4 +932,16 @@ option {
 .progress-bar--material.progress-bar--indeterminate:after, .progress-bar--material.progress-bar--indeterminate:before{
   background-color: var(--spiner-front-color);
 }
+
+:checked+.radio-button--material__checkmark:after {
+  background: var(--chevron-color);
+}
+
+:checked+.radio-button--material__checkmark:before {
+  border: 2px solid var(--chevron-color);
+}
+
+.radio-button--material__checkmark:before {
+  border: 1px solid var(--chevron-color);
+}
 /**/

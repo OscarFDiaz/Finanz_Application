@@ -16,12 +16,21 @@ function makeSaving() {
     return;
   }
 
+  let testMoney = Math.sign(mainAmount);
+  if (testMoney == "-1" || testMoney === "-0") {
+    ons.notification.toast("No puedes añadir un fondo negativo.", {
+      title: "Error!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
+
   let storage = JSON.parse(localStorage.getItem("savingStorage"));
 
   if (storage) {
     ons.notification.confirm({
-      message:
-        "Ya existe un fondo, quieres borrar el actual e ingresar este nuevo?",
+      message:"Ya existe un fondo, quieres borrar el actual e ingresar este nuevo?",
       title: "Aviso!",
       buttonLabels: ["Sí", "Cancelar"],
       animation: "default",
@@ -144,8 +153,13 @@ function updateLastSaving() {
         >
 
         <label class="entryAmountText"
-        >DÍAS:
+        >DÍAS SELECCIONADOS:
         <span id="entryCurrentDays" class="entryAmountDetail"></span></label
+        >
+
+        <label class="entryAmountText"
+        >DÍAS RESTANTES:
+        <span id="entryCurrentDaysLeft" class="entryAmountDetail"></span></label
         >
 
         <label class="entryAmountText"
@@ -157,6 +171,12 @@ function updateLastSaving() {
         <label class="entryAmountText"
         >PARA GASTAR: <span class="entryAmountDetail">$ </span>
         <span id="entryCurrentExpend" class="entryAmountDetail">0</span
+        ></label
+        >
+        
+        <label class="entryAmountText"
+        >DISPONIBLE ACTUAL: <span class="entryAmountDetail">$ </span>
+        <span id="entryCurrentExpendLeft" class="entryAmountDetail">0</span
         ></label
         >`;
   }
@@ -171,9 +191,10 @@ function updateLastSaving() {
 
   document.getElementById("entryCurrentAmount").innerHTML = sInnerAmount;
   document.getElementById("entryCurrentDays").innerHTML = sDaysSelected;
-  document.getElementById("entryCurrentPercent").innerHTML =
-    sPercent + "% | $ " + sTakedAmount;
+  document.getElementById("entryCurrentDaysLeft").innerHTML = sDaysLeft;
+  document.getElementById("entryCurrentPercent").innerHTML = sPercent + "% | $ " + sTakedAmount;
   document.getElementById("entryCurrentExpend").innerHTML = sMoneyDay;
+  document.getElementById("entryCurrentExpendLeft").innerHTML = sMoneyDayLeft;
 }
 
 function loadSaving() {
@@ -314,20 +335,7 @@ function returnDays(days) {
 }
 
 function endSavingDay() {
-  /*
-    - Preguntar si desea terminar el día
-      - Si responde que sí 
-        - Verificar si quedó dinero restante
-          - Si quedo dinero restante:
-                    Quedo: $60
-              Añadir al día siguiente
-              { - Conseguir dinero para gastar y añadir al que se mostrara }
-              Añadir a DINERO
-              { - Cargar "DINERO" para seleccionar cual cargar }
-              // SELECCIONAR UNA SÍ O SÍ
-          - Sino Terminar día y hacer los cambios necesarios
-      - Sino no hacer nada
-  */
+
   ons.notification.confirm({
     message: "Estas seguro de terminar el día?",
     title: "Aviso!",
@@ -337,6 +345,53 @@ function endSavingDay() {
     cancelable: true,
     callback: function (index) {
       if (0 === index) {
+        let storageS = JSON.parse(localStorage.getItem("savingStorage"));
+        let moneyLeft = storageS.moneyLeft;
+
+        if(storageS.daysLeft < 1) {
+          ons.notification.toast(
+            "No quedan más días en tu fondo, ya no puedes terminar el día, lo siento!",
+            {
+              title: "Error!",
+              timeout: 2000,
+              animation: "ascend",
+            }
+          );
+          return;
+        }
+
+        // Si me quedo dinero
+        if (moneyLeft > 0) {
+          let dialog = document.getElementById("alertMoneyLeft");
+
+          if (dialog) {
+            dialog.show();
+            document.getElementById("leftMoneyToAlert").innerHTML = moneyLeft;
+          } else {
+            ons.notification.toast(
+              "Ups! No se ha podido cargar la ventana para el dinero disponible!",
+              {
+                title: "Error!",
+                timeout: 2000,
+                animation: "ascend",
+              }
+            );
+          }
+        } else { // Si no me quedó dinero
+          let savingStorage = JSON.parse(localStorage.getItem("savingStorage"));
+
+          savingStorage.daysLeft = parseInt(savingStorage.daysLeft) - 1;
+          savingStorage.moneyLeft = savingStorage.toExpend;
+    
+          localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
+          loadSaving();
+    
+          ons.notification.toast("Se ha cambiado de día!", {
+            title: "Aviso!",
+            timeout: 2500,
+            animation: "ascend",
+          });
+        }
       } else {
         ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
           title: "Aviso!",
@@ -371,6 +426,156 @@ function editMoneySaving() {
   }
 }
 
+function checkRadioSelect(id) {
+  let container = document.getElementById("containerAlertAddMoneyLeft");
+  sessionStorage.setItem("selectedRadioID", id);
+
+  // Si elige la opcion de mi dinero se cargan las opciones, de lo contrario se ocultan
+  if(id == "radio-2"){
+    container.innerHTML = `
+    <label style="color: var(--alert-tile-color)">AÑADIR A: </label>
+    <select id="selectOptionAddMoney">
+      <!--AQUI SE CARGAN LOS POSIBLES GASTOS-->
+    </select>`;
+
+    // CARGO EL DINERO DISPONIBLE
+    let moneyStorage = JSON.parse(localStorage.getItem("moneyStorage"));
+
+    let containerMoney = document.getElementById("selectOptionAddMoney");
+    containerMoney.innerHTML = "";
+
+    const option = document.createElement("option");
+    let text = "SELECCIONA OPCIÓN";
+    option.innerText = text;
+
+    containerMoney.appendChild(option);
+    if (moneyStorage == null || moneyStorage == "null") {
+    } else {
+      for (let i = 0; i < moneyStorage.length; i++) {
+        const option = document.createElement("option");
+        let text = moneyStorage[i].moneyName;
+        option.innerText = text;
+
+        containerMoney.appendChild(option);
+      }
+    }
+  } else {
+    container.innerHTML = "";
+  }
+}
+
+function addToMoneyLeftMoney() {
+  let leftMoney = document.getElementById("leftMoneyToAlert").textContent;
+  let selectedRadioID = sessionStorage.getItem("selectedRadioID");
+  let savingStorage = JSON.parse(localStorage.getItem("savingStorage"));
+
+  if (selectedRadioID == null || selectedRadioID == "") {
+    selectedRadioID = "radio-1";
+    sessionStorage.setItem("selectedRadioID", "radio-1");
+  }
+
+  // Si quiero añadir al día siguiente
+  if (selectedRadioID == "radio-1") {
+    let days = savingStorage.daysLeft;
+    let leftDays = parseInt(days) - 1;
+
+    // No hay más días para el fondo
+    if(leftDays < 1) {
+      ons.notification.toast("No hay más días para el fondo, debes seleccionar 'Añadir a MI DINERO' o modificar el fondo y agregar más días.", {
+        title: "Aviso!",
+        timeout: 2500,
+        animation: "ascend",
+      });
+      return;
+    } else {
+      // Resto el día y añado el dinero al día siguiente
+      savingStorage.daysLeft = parseInt(savingStorage.daysLeft) - 1;
+
+      let newAmount = parseFloat(savingStorage.toExpend) + parseFloat(leftMoney);
+      savingStorage.moneyLeft = newAmount.toFixed(2);
+
+      localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
+
+      document.getElementById("alertMoneyLeft").hide();
+      loadSaving();
+
+      ons.notification.toast("Dinero restante añadido, hoy podrás gastar un poco más!", {
+        title: "Aviso!",
+        timeout: 2500,
+        animation: "ascend",
+      });
+    }
+  } else if(selectedRadioID == "radio-2"){ // Si quiero añadir el dinero a alguna cartera
+
+    const selMoney = document.getElementById("selectOptionAddMoney");
+    const optMoney = selMoney.options;
+    // Categoría seleccionada
+    var choseMoney = optMoney[selMoney.selectedIndex].value;
+
+    if (choseMoney == "SELECCIONA OPCIÓN"){
+      ons.notification.toast("Selecciona una opción donde guardar el dinero, si no existe un lugar donde guardar el dinero, añade uno en 'MI DINERO'", {
+        title: "Aviso!",
+        timeout: 2500,
+        animation: "ascend",
+      });
+      return;
+    }
+
+    savingStorage.daysLeft = parseInt(savingStorage.daysLeft) - 1;
+    localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
+
+    let moneys = JSON.parse(localStorage.getItem("moneyStorage"));
+  
+    // Añado el dinero a la cartera
+    for (let i = 0; i < moneys.length; i++) {
+      if (moneys[i].moneyName == choseMoney) {
+        let newMoney = parseFloat(moneys[i].moneyCurrent) + parseFloat(leftMoney);
+        moneys[i].moneyCurrent = newMoney.toFixed(2);
+
+        localStorage.setItem("moneyStorage", JSON.stringify(moneys));
+
+        // Actualizo el dinero ahorrado
+        let savedMoney = localStorage.getItem("savedMoneySaving");
+        if(savedMoney == null || savedMoney == ""){
+          savedMoney = 0;
+        }
+        savedMoney = (parseFloat(savedMoney) + parseFloat(leftMoney)).toFixed(2);
+        localStorage.setItem("savedMoneySaving", savedMoney);
+        break;
+      }
+    }
+
+    // Pongo el nuevo dinero
+    savingStorage.moneyLeft = savingStorage.toExpend;
+    localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
+
+    // Pongo el dinero disponible en 0 dado que no quedan días restantes del fondo
+    if (parseInt(savingStorage.daysLeft) === 0){
+      savingStorage.moneyLeft = 0;
+      localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
+    }
+
+    document.getElementById("alertMoneyLeft").hide();
+    loadSaving();
+
+    ons.notification.toast(`Dinero restante añadido a: ${choseMoney}!`, {
+      title: "Aviso!",
+      timeout: 2500,
+      animation: "ascend",
+    });
+  }
+}
+
+function cancelAddLeftMoney() {
+  document.getElementById("alertMoneyLeft").hide();
+
+  ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
+    title: "Aviso!",
+    timeout: 1000,
+    animation: "ascend",
+  });
+}
+
 function makeSavingOperation() {
   let actualMoney = document.getElementById("alertAddSaving").textContent;
   let inputMoney = document.getElementById("alertInputSaving").value;
@@ -382,15 +587,14 @@ function makeSavingOperation() {
   // Si el dinero actual es negativo
   if (testAmoney == "-1" || testAmoney === "-0") {
     result = parseFloat(actualMoney) - parseFloat(inputMoney);
-    endMoney.innerHTML = result;
+    endMoney.innerHTML = result.toFixed(2);
   } else {
     result = parseFloat(actualMoney) + parseFloat(inputMoney);
-    endMoney.innerHTML = result;
+    endMoney.innerHTML = result.toFixed(2);
   }
 }
 
 function closeAlertSavingNoChange() {
-  var dialog = document.getElementById("alertEditSavingMoney");
 
   ons.notification.toast("No se modifica nada!", {
     title: "Aviso!",
@@ -402,6 +606,7 @@ function closeAlertSavingNoChange() {
   document.getElementById("alertEditSavingMoney").hide();
 }
 
+/* ALERT PRINCIPAL */
 function closeAlertSaving() {
   let element = document.getElementById("alertInputSaving").value;
 
@@ -462,7 +667,8 @@ function closeAlertSaving() {
 
           if (dialog) {
             dialog.show();
-            //TODO: CARGAR CATEGORÍAS DISPONIBLES Y CARGAR DONDE SE PUEDE RESTAR EL DINERO
+            //CARGAR CATEGORÍAS DISPONIBLES Y CARGAR DONDE SE PUEDE RESTAR EL DINERO
+            loadDialogCategoryAndMoney();
           } else {
             ons.notification.toast(
               "Ups! No se ha podido cargar la ventana para modificar!",
@@ -504,16 +710,191 @@ function closeAlertSaving() {
   }
 }
 
-function hideAlertAddExpenseSaving() {
-  // TODO: Añadir el gasto a donde corresponde
+// Añado las categorías de gastos que tengo y a donde quiero restar
+function loadDialogCategoryAndMoney() {
+  // CATEGORY
+  let categoryStorage = JSON.parse(localStorage.getItem("expenseStorage"));
+
+  let catContainer = document.getElementById("selectOptioCa");
+  catContainer.innerHTML = "";
+
+  const nOption = document.createElement("option");
+  let ntext = "NINGUNA CATEGORÍA";
+  nOption.innerText = ntext;
+
+  catContainer.appendChild(nOption);
+  if (categoryStorage == null || categoryStorage == "null") {
+  } else {
+    for (let i = 0; i < categoryStorage.length; i++) {
+      const nOption = document.createElement("option");
+      let nText = categoryStorage[i].expenseName;
+      nOption.innerText = nText;
+
+      catContainer.appendChild(nOption);
+    }
+  }
+
+  // MONEY
+  let moneyStorage = JSON.parse(localStorage.getItem("moneyStorage"));
+
+  let container = document.getElementById("selectOption");
+  container.innerHTML = "";
+
+  const option = document.createElement("option");
+  let text = "NO RESTAR";
+  option.innerText = text;
+
+  container.appendChild(option);
+  if (moneyStorage == null || moneyStorage == "null") {
+  } else {
+    for (let i = 0; i < moneyStorage.length; i++) {
+      const option = document.createElement("option");
+      let text = moneyStorage[i].moneyName;
+      option.innerText = text;
+
+      container.appendChild(option);
+    }
+  }
 }
 
-function hideAlertAddExpenseSavingNoChange() {
-  ons.notification.toast("De acuerdo, no se añadira ningún gasto!", {
+// Cuando da en listo para añadir un gasto
+function hideAlertAddExpenseSaving() {
+  // Añadir el gasto a donde corresponde
+
+  const selCategory = document.getElementById("selectOptioCa");
+  const optCategory = selCategory.options;
+  // Categoría seleccionada
+  var choseCategory = optCategory[selCategory.selectedIndex].value;
+
+  const selMoney = document.getElementById("selectOption");
+  const optMoney = selMoney.options;
+  // Dinero seleccionado
+  var choseMoney = optMoney[selMoney.selectedIndex].value;
+
+  let eName = document.getElementById("alertExpenseNoteSaving").value;
+  let eMoney = document.getElementById("alertExpenseMoneySaving").value;
+  let eDate = document.getElementById("alertExpenseDateSaving").value;
+  let eid = localStorage.getItem("detailExpenseCount");
+
+  if (eid == null || eid == "") {
+    localStorage.setItem("detailExpenseCount", "0");
+    eid = 0;
+  }
+
+  eid = +eid + 1;
+  localStorage.setItem("detailExpenseCount", eid);
+
+  if (eName == null || eName == "") {
+    ons.notification.toast("No puedo añadir un gasto sin un nombre/nota!", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
+
+  if (eDate == null || eDate == "") {
+    eDate = new Date().toJSON().slice(0, 10);
+  }
+
+  if (choseCategory == "NINGUNA CATEGORÍA") {
+    ons.notification.toast(
+      "Debes seleccionar una categoría, de no haber, debes crear una en 'GASTOS'",
+      {
+        title: "Aviso!",
+        timeout: 2000,
+        animation: "ascend",
+      }
+    );
+    return;
+  }
+
+  if (choseMoney == "NO RESTAR") {
+  } else {
+    // Resto el dinero de donde se selecciono, me regreso sino se puede restar
+    if (updateMoneyStorage(choseMoney, eMoney)) {
+      return;
+    }
+  }
+
+  let expenseDetail = {
+    expenseName: choseCategory,
+    inName: eName,
+    inAmount: eMoney,
+    inDate: eDate,
+    inID: eid,
+  };
+
+  /* Guardo los detalles del Expense*/
+  if (localStorage.getItem("expenseDetailStorage") === null) {
+    let expenseDetailArray = [];
+    expenseDetailArray.unshift(expenseDetail);
+    localStorage.setItem(
+      "expenseDetailStorage",
+      JSON.stringify(expenseDetailArray)
+    );
+  } else {
+    let expenseDetailArray = JSON.parse(
+      localStorage.getItem("expenseDetailStorage")
+    );
+    expenseDetailArray.unshift(expenseDetail);
+    localStorage.setItem(
+      "expenseDetailStorage",
+      JSON.stringify(expenseDetailArray)
+    );
+  }
+
+  updateExpenseTotalMoneySaving(choseCategory, eMoney);
+
+  ons.notification.toast("Nuevo gasto añadido!", {
     title: "Aviso!",
-    timeout: 1000,
+    timeout: 2000,
+    animation: "ascend",
+  });
+
+  sessionStorage.clear();
+  document.getElementById("alertToAddExpenseSaving").hide();
+}
+
+// Cuando da en cancelar en el alert para añadir un gasto
+function hideAlertAddExpenseSavingNoChange() {
+  ons.notification.toast("De acuerdo, no se añadira ningún gasto, pero el dinero sí se redujo!", {
+    title: "Aviso!",
+    timeout: 2500,
     animation: "ascend",
   });
 
   document.getElementById("alertToAddExpenseSaving").hide();
 }
+
+// Actualizo los gastos
+function updateExpenseTotalMoneySaving(sendName, amountSend) {
+  let exName = sendName;
+  let newAmount = amountSend;
+
+  let expensesStorage = JSON.parse(localStorage.getItem("expenseStorage"));
+
+  let expense;
+  let index;
+  for (let i = 0; i < expensesStorage.length; i++) {
+    if (expensesStorage[i].expenseName == exName) {
+      expense = expensesStorage[i];
+      index = i;
+      break;
+    }
+  }
+
+  expense.totalExpense += +newAmount;
+
+  /* Guardo el expense original*/
+  if (localStorage.getItem("expenseStorage") === null) {
+    let expenseArray = [];
+    expenseArray.push(expense);
+    localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+  } else {
+    let expenseArray = JSON.parse(localStorage.getItem("expenseStorage"));
+    expenseArray[index] = expense;
+    localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+  }
+}
+

@@ -57,7 +57,7 @@
           ></ons-input>
 
           <label style="color: var(--alert-tile-color)">RESTAR A: </label>
-          <select id="selectOptio">
+          <select id="selectOption">
             <!--AQUI SE CARGAN LOS POSIBLES GASTOS-->
           </select>
         </p>
@@ -78,7 +78,7 @@
   <!--ALERT PARA EDITAR DINERO-->
   <ons-alert-dialog id="alertEditSavingMoney" modifier="material">
     <div style="text-align: center; margin-top: 16px">
-      <div class="alert-dialog-title">Añadir dinero al fondo</div>
+      <div class="alert-dialog-title">Añadir/Quitar dinero al fondo</div>
     </div>
 
     <div class="alert-dialog-content">
@@ -126,6 +126,57 @@
     </div>
   </ons-alert-dialog>
   <!----------------------------------------------------------------->
+
+    <!--ALERT PARA VER QUE HACER SI QUEDA DINERO DISPONIBLE-->
+    <ons-alert-dialog id="alertMoneyLeft" modifier="material">
+      <div style="text-align: center; margin-top: 16px">
+        <div class="alert-dialog-title">Quedó dinero disponible, ¿qué quieres hacer con el?</div>
+      </div>
+  
+      <div class="alert-dialog-content">
+        <div style="text-align: center; margin-top: 16px;">
+          <label style="color: var(--alert-custom-label)">DINERO RESTANTE: $ 
+            <span id="leftMoneyToAlert" style="color: var(--alert-custom-label-money)"></span>
+          </label>
+
+          <ons-list style="background: none;">
+
+            <ons-list-item tappable modifier="nodivider" onclick="checkRadioSelect('radio-1')">
+              <label class="left">
+                <ons-radio name="option" input-id="radio-1" checked></ons-radio>
+              </label>
+              <label for="radio-1" class="center daysTitle" style="text-align: left; margin: 0px;">
+                Añadir al día siguiente
+              </label>
+            </ons-list-item>
+
+            <ons-list-item tappable modifier="nodivider" onclick="checkRadioSelect('radio-2')">
+              <label class="left">
+                <ons-radio name="option" input-id="radio-2"></ons-radio>
+              </label>
+              <label for="radio-2" class="center daysTitle" style="text-align: left; margin: 0px;">
+                Añadir a 'MI DINERO'
+              </label>
+            </ons-list-item>
+
+            <div id="containerAlertAddMoneyLeft" style="text-align: center; margin-top: 16px;">
+              <!-- AQUI SE CARGA LAS OPCIONES PARA DONDE AÑADIR-->
+            </div>
+
+          </ons-list>
+        </div>
+      </div>
+  
+      <div class="alert-dialog-footer">
+        <ons-alert-dialog-button onclick="cancelAddLeftMoney()"
+          >Cancelar</ons-alert-dialog-button
+        >
+        <ons-alert-dialog-button onclick="addToMoneyLeftMoney()"
+          >Listo!</ons-alert-dialog-button
+        >
+      </div>
+    </ons-alert-dialog>
+    <!----------------------------------------------------------------->
 
   <script>
     document.addEventListener(

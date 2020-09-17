@@ -90,8 +90,12 @@ function hideAlertExpense() {
     return;
   }
 
-  if(updateMoneyStorage(selectedOption, eMoney)){
-    return;
+  if(selectedOption == "NO RESTAR") {
+  } else {
+    // Resto el dinero de donde se selecciono, me regreso sino se puede restar
+    if(updateMoneyStorage(selectedOption, eMoney)){
+      return;
+    }
   }
 
   // Obtengo el nombre del item, pero es necesario modificar el contador

@@ -26,16 +26,12 @@
 .savingDaily {
   text-align: center;
   display: block;
-
-/*
-  --minFontSize: 32px;
-  --maxFontSize: 200px;
-  --scaler: 10vw;
-  font-size: clamp( var(--minFontSize), var(--scaler), var(--maxFontSize) );
-*/
-  font-size: 75px;
+  font-size: 80px;
   font-weight: bold;
   color: var(--saving-daily);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 .daysTitle {
@@ -49,7 +45,7 @@
 
 .leftDays {
   font-size: 20px;
-  font-weight: normal;
+  font-weight: bold;
   color: var(--saving-days-left);
 }
 
