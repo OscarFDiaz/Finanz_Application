@@ -105,7 +105,7 @@ function getGoals() {
             </label>
             <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
               <p class="paraTutorial">
-                Aquí podrás añadir esas metas que deseas cumplir, deberás añadir un nombre a la meta, cuanto dinero necesitas para cumplir esa meta,
+                Aquí podrás añadir esas metas que deseas cumplir, deberás añadir un nombre a la meta, cuánto dinero necesitas para cumplir esa meta,
                 y si gustas una fecha, en la cual te gustaría cumplir esa meta.
               </p>
               <p class="paraTutorial">
@@ -137,7 +137,7 @@ function getGoals() {
             </label>
             <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
               <p class="paraTutorial">
-                Aquí podrás añadir esas metas que deseas cumplir, deberás añadir un nombre a la meta, cuanto dinero necesitas para cumplir esa meta,
+                Aquí podrás añadir esas metas que deseas cumplir, deberás añadir un nombre a la meta, cuánto dinero necesitas para cumplir esa meta,
                 y si gustas una fecha, en la cual te gustaría cumplir esa meta.
               </p>
               <p class="paraTutorial">

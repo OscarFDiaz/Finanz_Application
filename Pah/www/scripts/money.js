@@ -1,7 +1,7 @@
 function makeNewMoney() {
   let moneyName = document.getElementById("newMoneyName").value;
   let moneyCurrent = document.getElementById("newMoneyMoney").value;
-  
+
   if (moneyName === "") {
     ons.notification.toast("Un momento, se necesita un buen nombre!", {
       title: "Error!",
@@ -10,24 +10,27 @@ function makeNewMoney() {
     });
     return;
   }
-  
+
   if (moneyCurrent === "") {
     moneyCurrent = "0";
   }
-  
+
   let testMoney = Math.sign(moneyCurrent);
   if (testMoney == "-1" || testMoney === "-0") {
-    ons.notification.toast("No puedo añadir una cartera con dinero negativo, supondre que la cartera esta vacia.", {
-      title: "Error!",
-      timeout: 2000,
-      animation: "ascend",
-    });
+    ons.notification.toast(
+      "No puedo añadir una cartera con dinero negativo, supondre que la cartera esta vacia.",
+      {
+        title: "Error!",
+        timeout: 2000,
+        animation: "ascend",
+      }
+    );
     moneyCurrent = "0";
   }
 
   let money = {
     moneyName,
-    moneyCurrent
+    moneyCurrent,
   };
 
   if (localStorage.getItem("moneyStorage") === null) {
@@ -58,7 +61,7 @@ function getMoneys() {
 
   if (moneys == null || moneys == "null") {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
-    if(tutorial == true || tutorial == "true"){
+    if (tutorial == true || tutorial == "true") {
       moneyView.innerHTML += `
       <ons-card>
         <ons-list style="background: none;" id="expenseListOfExpensesContainer">
@@ -68,16 +71,16 @@ function getMoneys() {
             </label>
             <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
               <p class="paraTutorial">
-                Aquí podrás añadir dinero/alcancías, ese lugar donde tienes guardado tu dinero, una alcancía, tu cartera, alguna tarjeta de nómina etc.
+              Aquí podrás añadir dinero/alcancías, ese lugar donde tienes guardado tu dinero, una alcancía, tu cartera, alguna tarjeta de nómina etc.
               </p>
               <p class="paraTutorial">
-                Se te pedira que ingreses un nombre y el dinero actual que tienes en esa alcancía/dinero, si no sabes después lo podrás modificar ;).
+                Se te pedirá que ingreses un nombre y el dinero actual que tienes en esa alcancía/dinero, si no sabes después lo podrás modificar ;).
               </p>
               <p class="paraTutorial">
-                Podrás añadir o restar dinero a esa alcancía/dinero, y posteriormente podrás eliminarlo, sólo recuerda que no puedes dejar una alcancía en numeros negativos.
+                Podrás añadir o restar dinero a esa alcancía/dinero, y posteriormente podrás eliminarlo, sólo recuerda que no puedes dejar una alcancía en números negativos.
               </p>
               <p class="paraTutorial">
-              En la pantalla principal "DINERO TOTAL", hace referencía a cuanto dinero tienes en todas tus alcancías/dinero, es una suma de todas estas.
+              En la pantalla principal "DINERO TOTAL", hace referencia a cuánto dinero tienes en todas tus alcancías/dinero, es una suma de todas estas.
               </p>
               <p class="paraTutorial">
                 Para crear una nueva alcancía/dinero pulsa "AÑADIR NUEVO".
@@ -90,7 +93,7 @@ function getMoneys() {
     return;
   } else if (moneys.length == 0) {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
-    if(tutorial == true || tutorial == "true"){
+    if (tutorial == true || tutorial == "true") {
       moneyView.innerHTML += `
       <ons-card>
         <ons-list style="background: none;" id="expenseListOfExpensesContainer">
@@ -103,13 +106,13 @@ function getMoneys() {
                 Aquí podrás añadir dinero/alcancías, ese lugar donde tienes guardado tu dinero, una alcancía, tu cartera, alguna tarjeta de nómina etc.
               </p>
               <p class="paraTutorial">
-                Se te pedira que ingreses un nombre y el dinero actual que tienes en esa alcancía/dinero, si no sabes después lo podrás modificar ;).
+                Se te pedirá que ingreses un nombre y el dinero actual que tienes en esa alcancía/dinero, si no sabes después lo podrás modificar ;).
               </p>
               <p class="paraTutorial">
-                Podrás añadir o restar dinero a esa alcancía/dinero, y posteriormente podrás eliminarlo, sólo recuerda que no puedes dejar una alcancía en numeros negativos.
+                Podrás añadir o restar dinero a esa alcancía/dinero, y posteriormente podrás eliminarlo, sólo recuerda que no puedes dejar una alcancía en números negativos.
               </p>
               <p class="paraTutorial">
-              En la pantalla principal "DINERO TOTAL", hace referencía a cuanto dinero tienes en todas tus alcancías/dinero, es una suma de todas estas.
+              En la pantalla principal "DINERO TOTAL", hace referencia a cuánto dinero tienes en todas tus alcancías/dinero, es una suma de todas estas.
               </p>
               <p class="paraTutorial">
                 Para crear una nueva alcancía/dinero pulsa "AÑADIR NUEVO".

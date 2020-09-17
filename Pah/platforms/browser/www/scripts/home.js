@@ -223,7 +223,11 @@ function getTotalMoney() {
 }
 
 function getTotalSavings() {
-  return localStorage.getItem("savedMoneySaving");
+  let storage = localStorage.getItem("savedMoneySaving");
+  if (storage == null || storage == ""){
+    storage = 0
+  } 
+  return storage;
 }
 
 function getTotalExpenses() {

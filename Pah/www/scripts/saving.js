@@ -30,7 +30,8 @@ function makeSaving() {
 
   if (storage) {
     ons.notification.confirm({
-      message:"Ya existe un fondo, quieres borrar el actual e ingresar este nuevo?",
+      message:
+        "Ya existe un fondo, quieres borrar el actual e ingresar este nuevo?",
       title: "Aviso!",
       buttonLabels: ["Sí", "Cancelar"],
       animation: "default",
@@ -192,7 +193,8 @@ function updateLastSaving() {
   document.getElementById("entryCurrentAmount").innerHTML = sInnerAmount;
   document.getElementById("entryCurrentDays").innerHTML = sDaysSelected;
   document.getElementById("entryCurrentDaysLeft").innerHTML = sDaysLeft;
-  document.getElementById("entryCurrentPercent").innerHTML = sPercent + "% | $ " + sTakedAmount;
+  document.getElementById("entryCurrentPercent").innerHTML =
+    sPercent + "% | $ " + sTakedAmount;
   document.getElementById("entryCurrentExpend").innerHTML = sMoneyDay;
   document.getElementById("entryCurrentExpendLeft").innerHTML = sMoneyDayLeft;
 }
@@ -215,7 +217,31 @@ function loadSaving() {
             </label>
             <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
               <p class="paraTutorial">
-                TEXTO AQUI
+                Fondo será la opción que te ayudará a controlar tus gastos, 
+                podrás elegir que cantidad de dinero quieres gastar y en cuantos días, 
+                mediante un porcentaje podrás seleccionar cuanto dinero podrás gastar día con día.
+              </p>
+              <p class="paraTutorial">
+                Ejemplo, sí tienes $3000 y quieres gastar el 50% de esa cantidad en los próximos 15 días, 
+                la aplicación te dirá cuanto dinero puedes gastar durante cada día por esos días seleccionados.
+              </p>
+              <p class="paraTutorial">
+                Podrás aumentar el gasto diario que tendrás, también podrás reducirlo,
+                si lo quieres reducir se te preguntara si deseas crear un gasto, 
+                de aceptar deberás seleccionar en que categoría quieres crear ese gasto, eso sí, 
+                deberás tener ya el gasto creado en “GASTOS”, también podrás reducirlo a tu dinero, y obvio deberás tener ese dinero creado en “MI DINERO”.
+              </p>
+              <p class="paraTutorial">
+                El punto es que vayas restando los días conforme estos terminen, para terminarlo deberás dar sobre “Terminar día”, 
+                no es necesario que te termines todo tu dinero disponible en el día para pasar al siguiente, 
+                si quedó algo de dinero se te preguntara que quieres hacer con él, 
+                añadirlo al día siguiente en caso de haberlo o guardarlo en tu dinero.
+              </p>
+              <p class="paraTutorial">
+                El dinero que guardes cuando te sobre es el que se verá en la pantalla de inicio en “FONDO GUARDADO”.
+              </p>
+              <p class="paraTutorial">
+                Para modificar/ingresar un nuevo fondo da click en “Modificar”.
               </p>
             </div>
           </ons-list-item>
@@ -335,7 +361,6 @@ function returnDays(days) {
 }
 
 function endSavingDay() {
-
   ons.notification.confirm({
     message: "Estas seguro de terminar el día?",
     title: "Aviso!",
@@ -348,7 +373,7 @@ function endSavingDay() {
         let storageS = JSON.parse(localStorage.getItem("savingStorage"));
         let moneyLeft = storageS.moneyLeft;
 
-        if(storageS.daysLeft < 1) {
+        if (storageS.daysLeft < 1) {
           ons.notification.toast(
             "No quedan más días en tu fondo, ya no puedes terminar el día, lo siento!",
             {
@@ -377,15 +402,16 @@ function endSavingDay() {
               }
             );
           }
-        } else { // Si no me quedó dinero
+        } else {
+          // Si no me quedó dinero
           let savingStorage = JSON.parse(localStorage.getItem("savingStorage"));
 
           savingStorage.daysLeft = parseInt(savingStorage.daysLeft) - 1;
           savingStorage.moneyLeft = savingStorage.toExpend;
-    
+
           localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
           loadSaving();
-    
+
           ons.notification.toast("Se ha cambiado de día!", {
             title: "Aviso!",
             timeout: 2500,
@@ -431,7 +457,7 @@ function checkRadioSelect(id) {
   sessionStorage.setItem("selectedRadioID", id);
 
   // Si elige la opcion de mi dinero se cargan las opciones, de lo contrario se ocultan
-  if(id == "radio-2"){
+  if (id == "radio-2") {
     container.innerHTML = `
     <label style="color: var(--alert-tile-color)">AÑADIR A: </label>
     <select id="selectOptionAddMoney">
@@ -480,18 +506,22 @@ function addToMoneyLeftMoney() {
     let leftDays = parseInt(days) - 1;
 
     // No hay más días para el fondo
-    if(leftDays < 1) {
-      ons.notification.toast("No hay más días para el fondo, debes seleccionar 'Añadir a MI DINERO' o modificar el fondo y agregar más días.", {
-        title: "Aviso!",
-        timeout: 2500,
-        animation: "ascend",
-      });
+    if (leftDays < 1) {
+      ons.notification.toast(
+        "No hay más días para el fondo, debes seleccionar 'Añadir a MI DINERO' o modificar el fondo y agregar más días.",
+        {
+          title: "Aviso!",
+          timeout: 2500,
+          animation: "ascend",
+        }
+      );
       return;
     } else {
       // Resto el día y añado el dinero al día siguiente
       savingStorage.daysLeft = parseInt(savingStorage.daysLeft) - 1;
 
-      let newAmount = parseFloat(savingStorage.toExpend) + parseFloat(leftMoney);
+      let newAmount =
+        parseFloat(savingStorage.toExpend) + parseFloat(leftMoney);
       savingStorage.moneyLeft = newAmount.toFixed(2);
 
       localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
@@ -499,25 +529,32 @@ function addToMoneyLeftMoney() {
       document.getElementById("alertMoneyLeft").hide();
       loadSaving();
 
-      ons.notification.toast("Dinero restante añadido, hoy podrás gastar un poco más!", {
-        title: "Aviso!",
-        timeout: 2500,
-        animation: "ascend",
-      });
+      ons.notification.toast(
+        "Dinero restante añadido, hoy podrás gastar un poco más!",
+        {
+          title: "Aviso!",
+          timeout: 2500,
+          animation: "ascend",
+        }
+      );
     }
-  } else if(selectedRadioID == "radio-2"){ // Si quiero añadir el dinero a alguna cartera
+  } else if (selectedRadioID == "radio-2") {
+    // Si quiero añadir el dinero a alguna cartera
 
     const selMoney = document.getElementById("selectOptionAddMoney");
     const optMoney = selMoney.options;
     // Categoría seleccionada
     var choseMoney = optMoney[selMoney.selectedIndex].value;
 
-    if (choseMoney == "SELECCIONA OPCIÓN"){
-      ons.notification.toast("Selecciona una opción donde guardar el dinero, si no existe un lugar donde guardar el dinero, añade uno en 'MI DINERO'", {
-        title: "Aviso!",
-        timeout: 2500,
-        animation: "ascend",
-      });
+    if (choseMoney == "SELECCIONA OPCIÓN") {
+      ons.notification.toast(
+        "Selecciona una opción donde guardar el dinero, si no existe un lugar donde guardar el dinero, añade uno en 'MI DINERO'",
+        {
+          title: "Aviso!",
+          timeout: 2500,
+          animation: "ascend",
+        }
+      );
       return;
     }
 
@@ -525,21 +562,24 @@ function addToMoneyLeftMoney() {
     localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
 
     let moneys = JSON.parse(localStorage.getItem("moneyStorage"));
-  
+
     // Añado el dinero a la cartera
     for (let i = 0; i < moneys.length; i++) {
       if (moneys[i].moneyName == choseMoney) {
-        let newMoney = parseFloat(moneys[i].moneyCurrent) + parseFloat(leftMoney);
+        let newMoney =
+          parseFloat(moneys[i].moneyCurrent) + parseFloat(leftMoney);
         moneys[i].moneyCurrent = newMoney.toFixed(2);
 
         localStorage.setItem("moneyStorage", JSON.stringify(moneys));
 
         // Actualizo el dinero ahorrado
         let savedMoney = localStorage.getItem("savedMoneySaving");
-        if(savedMoney == null || savedMoney == ""){
+        if (savedMoney == null || savedMoney == "") {
           savedMoney = 0;
         }
-        savedMoney = (parseFloat(savedMoney) + parseFloat(leftMoney)).toFixed(2);
+        savedMoney = (parseFloat(savedMoney) + parseFloat(leftMoney)).toFixed(
+          2
+        );
         localStorage.setItem("savedMoneySaving", savedMoney);
         break;
       }
@@ -550,7 +590,7 @@ function addToMoneyLeftMoney() {
     localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
 
     // Pongo el dinero disponible en 0 dado que no quedan días restantes del fondo
-    if (parseInt(savingStorage.daysLeft) === 0){
+    if (parseInt(savingStorage.daysLeft) === 0) {
       savingStorage.moneyLeft = 0;
       localStorage.setItem("savingStorage", JSON.stringify(savingStorage));
     }
@@ -595,7 +635,6 @@ function makeSavingOperation() {
 }
 
 function closeAlertSavingNoChange() {
-
   ons.notification.toast("No se modifica nada!", {
     title: "Aviso!",
     timeout: 2000,
@@ -858,11 +897,14 @@ function hideAlertAddExpenseSaving() {
 
 // Cuando da en cancelar en el alert para añadir un gasto
 function hideAlertAddExpenseSavingNoChange() {
-  ons.notification.toast("De acuerdo, no se añadira ningún gasto, pero el dinero sí se redujo!", {
-    title: "Aviso!",
-    timeout: 2500,
-    animation: "ascend",
-  });
+  ons.notification.toast(
+    "De acuerdo, no se añadira ningún gasto, pero el dinero sí se redujo!",
+    {
+      title: "Aviso!",
+      timeout: 2500,
+      animation: "ascend",
+    }
+  );
 
   document.getElementById("alertToAddExpenseSaving").hide();
 }
@@ -897,4 +939,3 @@ function updateExpenseTotalMoneySaving(sendName, amountSend) {
     localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
   }
 }
-

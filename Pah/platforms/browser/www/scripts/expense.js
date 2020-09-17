@@ -74,24 +74,23 @@ function changeTitlePreview() {
 }
 
 function selectIcon(iconName, iconColor) {
+  sessionStorage.setItem("expenseIconName", iconName);
+  // Oculto los iconos, ya tengo uno seleccionado
+  document.getElementById("expandableListContainer").hideExpansion();
 
-    sessionStorage.setItem("expenseIconName", iconName);
-    // Oculto los iconos, ya tengo uno seleccionado
-    document.getElementById("expandableListContainer").hideExpansion();
-
-    // Añado el icono seleccionado
-    let iconElement = document.getElementById("expensePrevIcon");
-    iconElement.className = '';
-    iconElement.classList.add("expenseIcon");
-    iconElement.classList.add(iconName);
-    // Añado el color
-    iconElement.style.cssText = `--expenseIconColorPrev: ${iconColor}`;
+  // Añado el icono seleccionado
+  let iconElement = document.getElementById("expensePrevIcon");
+  iconElement.className = "";
+  iconElement.classList.add("expenseIcon");
+  iconElement.classList.add(iconName);
+  // Añado el color
+  iconElement.style.cssText = `--expenseIconColorPrev: ${iconColor}`;
 }
 
 function makeNewExpense() {
   let expenseName = document.getElementById("newExpenseName").value;
   let totalExpense = 0;
-  let mainDate = new Date().toJSON().slice(0,10);
+  let mainDate = new Date().toJSON().slice(0, 10);
   let iconName = sessionStorage.getItem("expenseIconName");
   let expenseColor = document.getElementById("newExpenseColor").value;
 
@@ -113,7 +112,7 @@ function makeNewExpense() {
     totalExpense,
     mainDate,
     iconName,
-    expenseColor
+    expenseColor,
   };
 
   /* Guardo el expense original*/
@@ -145,7 +144,7 @@ function getExpenses() {
 
   if (expenses == null || expenses == "null") {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
-    if(tutorial == true || tutorial == "true"){
+    if (tutorial == true || tutorial == "true") {
       expensesView.innerHTML += `
       <ons-card>
         <ons-list style="background: none;" id="expenseListOfExpensesContainer">
@@ -157,13 +156,13 @@ function getExpenses() {
               <p class="paraTutorial">
                 Aquí podrás añadir los gastos que vayas realizando, los podrás separar en categorías, podrás seleccionar un color y un icono para cada categoría,
                 estos gastos se verán reflejados en la pantalla de "INICIO", donde está la gráfica en forma de dona, también podrás seleccionar si deseas remover el gasto a
-                alguna de tus carteras ubicadas en "MI DINERO", si reinicias los gastos ese dinero no se actualizara.
+                alguna de tus carteras ubicadas en "MI DINERO", si reinicias los gastos ese dinero no se actualizará.
               </p>
               <p class="paraTutorial">
-                Podrás añadir gastos individualmente, se mostrara cuanto has gastado en cada categoría y te dira los gastos en total.
+                Podrás añadir gastos individualmente, se mostrará cuanto has gastado en cada categoría y te dira los gastos en total.
               </p>
               <p class="paraTutorial">
-                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran conforme los ballas creando, primero estara el último creado.
+                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran conforme los ballas creando, primero estará el último creado.
               </p>
               <p class="paraTutorial">
                 Podrás reiniciar todos los gastos realizados en una categoría entrando a esta y dando en "REINICIAR".
@@ -180,7 +179,7 @@ function getExpenses() {
     return;
   } else if (expenses.length == 0) {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
-    if(tutorial == true || tutorial == "true"){
+    if (tutorial == true || tutorial == "true") {
       expensesView.innerHTML += `
       <ons-card>
         <ons-list style="background: none;" id="expenseListOfExpensesContainer">
@@ -192,13 +191,13 @@ function getExpenses() {
               <p class="paraTutorial">
                 Aquí podrás añadir los gastos que vayas realizando, los podrás separar en categorías, podrás seleccionar un color y un icono para cada categoría,
                 estos gastos se verán reflejados en la pantalla de "INICIO", donde está la gráfica en forma de dona, también podrás seleccionar si deseas remover el gasto a
-                alguna de tus carteras ubicadas en "MI DINERO", si reinicias los gastos ese dinero no se actualizara.
+                alguna de tus carteras ubicadas en "MI DINERO", si reinicias los gastos ese dinero no se actualizará.
               </p>
               <p class="paraTutorial">
-                Podrás añadir gastos individualmente, se mostrara cuanto has gastado en cada categoría y te dira los gastos en total.
+                Podrás añadir gastos individualmente, se mostrará cuanto has gastado en cada categoría y te dira los gastos en total.
               </p>
               <p class="paraTutorial">
-                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran conforme los ballas creando, primero estara el último creado.
+                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran conforme los ballas creando, primero estará el último creado.
               </p>
               <p class="paraTutorial">
                 Podrás reiniciar todos los gastos realizados en una categoría entrando a esta y dando en "REINICIAR".
@@ -219,8 +218,7 @@ function getExpenses() {
   let totalFDays = getAmountFDaysN();
   let totalTDays = getAmountTDaysN();
 
-  expensesView.innerHTML += 
-  `<ons-card>
+  expensesView.innerHTML += `<ons-card>
     <div class="content">
       <label class="labelDetailExpense"
         >Gasto total: $ 
@@ -244,15 +242,13 @@ function getExpenses() {
     </div>
   </ons-card>`;
 
-
-  for(let i = 0; i < expenses.length; i++) {
+  for (let i = 0; i < expenses.length; i++) {
     let eName = expenses[i].expenseName;
     let eicon = expenses[i].iconName;
     let eColor = expenses[i].expenseColor;
     let eExpense = expenses[i].totalExpense;
 
-    expensesView.innerHTML += 
-    `<ons-card>
+    expensesView.innerHTML += `<ons-card>
       <div class="title expenseTitle" onclick="findExpense('${eName}')">
         ${eName}
         <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor}"></i>
@@ -270,13 +266,13 @@ function getExpenses() {
   }
 }
 
-function findExpense(sendName){
+function findExpense(sendName) {
   let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
 
   for (let i = 0; i < expenses.length; i++) {
     let eName = expenses[i].expenseName;
 
-    if (eName == sendName){
+    if (eName == sendName) {
       let findExpenseObject = expenses[i];
 
       if (sessionStorage.getItem("sessionFindGoal") === null) {
@@ -306,20 +302,13 @@ function addExpenseToExpense(sendName) {
     let eName = expenses[i].expenseName;
 
     if (eName == sendName) {
-
       let objectFinded = expenses[i].expenseName;
 
       if (sessionStorage.getItem("sessionFindExpense") === null) {
-        sessionStorage.setItem(
-          "sessionFindExpense",
-          objectFinded
-        );
+        sessionStorage.setItem("sessionFindExpense", objectFinded);
       } else {
         sessionStorage.removeItem("sessionFindExpense");
-        sessionStorage.setItem(
-          "sessionFindExpense",
-          objectFinded
-        );
+        sessionStorage.setItem("sessionFindExpense", objectFinded);
       }
       createAlertDialogToAddExpense();
       break;
@@ -329,7 +318,8 @@ function addExpenseToExpense(sendName) {
 
 function resetExpense(sendName) {
   ons.notification.confirm({
-    message: "Estas seguro de borrar todos los gastos realizados?, la fecha de creación no se modificara.",
+    message:
+      "Estas seguro de borrar todos los gastos realizados?, la fecha de creación no se modificara.",
     title: "Aviso!",
     buttonLabels: ["Sí", "Cancelar"],
     animation: "default",
@@ -337,23 +327,31 @@ function resetExpense(sendName) {
     cancelable: true,
     callback: function (index) {
       if (0 === index) {
-        let detailExpenses = JSON.parse(localStorage.getItem("expenseDetailStorage"))
+        let detailExpenses = JSON.parse(
+          localStorage.getItem("expenseDetailStorage")
+        );
 
         if (detailExpenses == null || detailExpenses == "null") {
-          ons.notification.toast("Un momento, no hay gastos para borrar, me querias intentar engañar?", {
-            title: "Aviso!",
-            timeout: 2000,
-            animation: "ascend",
-          });
+          ons.notification.toast(
+            "Un momento, no hay gastos para borrar, me querias intentar engañar?",
+            {
+              title: "Aviso!",
+              timeout: 2000,
+              animation: "ascend",
+            }
+          );
           return;
         }
 
         if (detailExpenses.length == 0 || detailExpenses.length == "0") {
-          ons.notification.toast("Un momento, no hay gastos para borrar, me querias intentar engañar?", {
-            title: "Aviso!",
-            timeout: 2000,
-            animation: "ascend",
-          });
+          ons.notification.toast(
+            "Un momento, no hay gastos para borrar, me querias intentar engañar?",
+            {
+              title: "Aviso!",
+              timeout: 2000,
+              animation: "ascend",
+            }
+          );
           return;
         }
 
@@ -364,13 +362,18 @@ function resetExpense(sendName) {
             i--;
           }
         }
-        localStorage.setItem("expenseDetailStorage", JSON.stringify(detailExpenses));
+        localStorage.setItem(
+          "expenseDetailStorage",
+          JSON.stringify(detailExpenses)
+        );
 
         /* RESETEO LOS CONTADORES DEL EXPENSE A 0*/
         let exName = sendName;
-      
-        let expensesStorage = JSON.parse(localStorage.getItem("expenseStorage"));
-      
+
+        let expensesStorage = JSON.parse(
+          localStorage.getItem("expenseStorage")
+        );
+
         let expense;
         let index;
         for (let i = 0; i < expensesStorage.length; i++) {
@@ -380,9 +383,9 @@ function resetExpense(sendName) {
             break;
           }
         }
-      
+
         expense.totalExpense = 0;
-      
+
         /* Guardo el expense original*/
         if (localStorage.getItem("expenseStorage") === null) {
           let expenseArray = [];
@@ -393,15 +396,18 @@ function resetExpense(sendName) {
           expenseArray[index] = expense;
           localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
         }
-        
+
         functionPopPage();
-        
+
         getExpenses();
-        ons.notification.toast("Se han reiniciado los gastos!, un nuevo comienzo...", {
-          title: "Aviso!",
-          timeout: 2000,
-          animation: "ascend",
-        });
+        ons.notification.toast(
+          "Se han reiniciado los gastos!, un nuevo comienzo...",
+          {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          }
+        );
       } else {
         ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
           title: "Aviso!",
@@ -424,7 +430,9 @@ function deleteExpense(sendName) {
     callback: function (index) {
       if (0 === index) {
         let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
-        let detailExpenses = JSON.parse(localStorage.getItem("expenseDetailStorage"))
+        let detailExpenses = JSON.parse(
+          localStorage.getItem("expenseDetailStorage")
+        );
 
         for (let i = 0; i < expenses.length; i++) {
           if (expenses[i].expenseName == sendName) {
@@ -436,13 +444,17 @@ function deleteExpense(sendName) {
 
         if (detailExpenses == null || detailExpenses == "null") {
         } else {
-          for (let i = 0; i < detailExpenses.length; i++) { //null?
+          for (let i = 0; i < detailExpenses.length; i++) {
+            //null?
             if (detailExpenses[i].expenseName == sendName) {
               detailExpenses.splice(i, 1);
               i--;
             }
           }
-          localStorage.setItem("expenseDetailStorage", JSON.stringify(detailExpenses));
+          localStorage.setItem(
+            "expenseDetailStorage",
+            JSON.stringify(detailExpenses)
+          );
         }
 
         getExpenses();
@@ -495,15 +507,15 @@ function updateExpenseTotalMoney(sendName, amountSend) {
   getExpenses();
 }
 
-function getAmountFDays(sendName){
+function getAmountFDays(sendName) {
   let storage = JSON.parse(localStorage.getItem("expenseDetailStorage"));
 
   let today = new Date().toJSON().slice(0, 10);
   let total = 0;
-  for(let i = 0; i < storage.length; i++) {
-    if(storage[i].expenseName == sendName) {
+  for (let i = 0; i < storage.length; i++) {
+    if (storage[i].expenseName == sendName) {
       let dateD = dateDiff(storage[i].inDate, today);
-      if (dateD < 16 && dateD >= 0){
+      if (dateD < 16 && dateD >= 0) {
         total = +total + +storage[i].inAmount;
       }
     }
@@ -511,15 +523,15 @@ function getAmountFDays(sendName){
   return total;
 }
 
-function getAmountTDays(sendName){
+function getAmountTDays(sendName) {
   let storage = JSON.parse(localStorage.getItem("expenseDetailStorage"));
 
   let today = new Date().toJSON().slice(0, 10);
   let total = 0;
-  for(let i = 0; i < storage.length; i++) {
-    if(storage[i].expenseName == sendName) {
+  for (let i = 0; i < storage.length; i++) {
+    if (storage[i].expenseName == sendName) {
       let dateD = dateDiff(storage[i].inDate, today);
-      if (dateD < 32 && dateD >= 0){
+      if (dateD < 32 && dateD >= 0) {
         total = +total + +storage[i].inAmount;
       }
     }
@@ -530,11 +542,14 @@ function getAmountTDays(sendName){
 function dateDiff(date1, date2) {
   dt1 = new Date(date1);
   dt2 = new Date(date2);
-  return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+  return Math.floor(
+    (Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
+      Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
+      (1000 * 60 * 60 * 24)
+  );
 }
 
 function loadDetailExpense() {
-  
   document.getElementById("detailExpenseContainer").innerHTML = "";
 
   let retrievedExpense = sessionStorage.getItem("sessionFindGoal");
@@ -617,9 +632,7 @@ function loadDetailExpense() {
   );
   detailDetailExpenseView.innerHTML = "";
 
-  let expensesDetail = JSON.parse(
-    localStorage.getItem("expenseDetailStorage")
-  );
+  let expensesDetail = JSON.parse(localStorage.getItem("expenseDetailStorage"));
 
   let actualEx = 0;
   if (expensesDetail == null || expensesDetail == "null") {
@@ -646,7 +659,7 @@ function loadDetailExpense() {
 
         let today = new Date().toJSON().slice(0, 10);
         let days = dateDiff(today, iDate);
-    
+
         if (iDate === "") {
           iDate = "SIN DATOS DE FECHA";
         } else {
@@ -659,8 +672,7 @@ function loadDetailExpense() {
           }
         }
 
-        detailDetailExpenseView.innerHTML +=
-        `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+        detailDetailExpenseView.innerHTML += `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
           <div class="center">
             <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
             <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px">${iDate}</label>
@@ -701,9 +713,9 @@ function getAmountFDaysN() {
 
   let today = new Date().toJSON().slice(0, 10);
   let total = 0;
-  for(let i = 0; i < storage.length; i++) {
+  for (let i = 0; i < storage.length; i++) {
     let dateD = dateDiff(storage[i].inDate, today);
-    if (dateD < 16 && dateD >= 0){
+    if (dateD < 16 && dateD >= 0) {
       total = +total + +storage[i].inAmount;
     }
   }
@@ -719,9 +731,9 @@ function getAmountTDaysN() {
 
   let today = new Date().toJSON().slice(0, 10);
   let total = 0;
-  for(let i = 0; i < storage.length; i++) {
+  for (let i = 0; i < storage.length; i++) {
     let dateD = dateDiff(storage[i].inDate, today);
-    if (dateD < 32 && dateD >= 0){
+    if (dateD < 32 && dateD >= 0) {
       total = +total + +storage[i].inAmount;
     }
   }
