@@ -36,7 +36,7 @@ function hideAlertMoneys() {
     return;
   }
 
-  let newMoney = sessionStorage.getItem("addNewMoney");
+  let newMoney = sessionStorage.getItem("addNewMoney"); // Se hace la suma del dinero en cuanto se ingresan datos
 
   let testMoney = Math.sign(newMoney);
   if (testMoney == "-1" || testMoney === "-0") {

@@ -13,14 +13,14 @@ function setTutorial() {
             </label>
             <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
               <p class="paraTutorial">
-                Aquí podrás personalizar los colores de la aplicación, conforme los vayas cambiando se iran aplicando, puedes personalizar el tema cuantas
-                veces quieras. Puedes salir para ver los cambios y volver para seguir editandolos.
+                Aquí podrás personalizar los colores de la aplicación, conforme los vayas cambiando se irán aplicando, puedes personalizar el tema cuantas
+                veces quieras. Puedes salir para ver los cambios y volver para seguir editando.
               </p>
               <p class="paraTutorial">
                 Dado que la aplicación tiene muchos elementos habrá muchas opciones de personalización.
               </p>
               <p class="paraTutorial">
-                Los colores estan separados por elementos, primero estarán los elementos esenciales y después estaran separados por pantallas, pantalla inicio, metas, etc.
+                Los colores están separados por elementos, primero estarán los elementos esenciales y después estarán separados por pantallas, pantalla inicio, metas, etc.
               </p>
             </div>
           </ons-list-item>
@@ -743,7 +743,6 @@ function initColors() {
     localStorage.setItem(pname, "#0d2840");
     color = "#0d2840";
   } else {
-    
     updateColor(pname, color);
   }
 
@@ -1522,4 +1521,113 @@ function deleteProperty() {
   document.documentElement.style.removeProperty('--flat-button-light-color-text');
   document.documentElement.style.removeProperty('--flat-button-light-active-color');
 
+}
+
+function removeStorageColors() {
+  localStorage.removeItem("--color-input");
+  localStorage.removeItem("--saving-days-left");
+  localStorage.removeItem("--detail-money-goal");
+  localStorage.removeItem("--expense-title");
+  localStorage.removeItem("--alert-custom-label");
+  localStorage.removeItem("--gradient-2");
+  localStorage.removeItem("--icon-savings");
+  localStorage.removeItem("--alert-footer-color");
+  localStorage.removeItem("--toast-message-color");
+  localStorage.removeItem("--flat-button-color-text");
+  localStorage.removeItem("--spiner-front-color");
+  localStorage.removeItem("--money-delete-button");
+  localStorage.removeItem("--spiner-back-color");
+  localStorage.removeItem("--saving-title");
+  localStorage.removeItem("--money-info");
+  localStorage.removeItem("--para-home-options");
+  localStorage.removeItem("--saving-edit-selected-range");
+  localStorage.removeItem("--flat-button-color");
+  localStorage.removeItem("--progressbar-main-color");
+  localStorage.removeItem("--expense-detail-money");
+  localStorage.removeItem("--icon-money");
+  localStorage.removeItem("--home-options-labels");
+  localStorage.removeItem("--home-goal-label");
+  localStorage.removeItem("--entry-amount-text");
+  localStorage.removeItem("--alert-content-text-color");
+  localStorage.removeItem("--saving-info");
+  localStorage.removeItem("--label-toolbar-color");
+  localStorage.removeItem("--money-title");
+  localStorage.removeItem("--chevron-color");
+  localStorage.removeItem("--text-area-border-color");
+  localStorage.removeItem("--back-button-color");
+  localStorage.removeItem("--card-text-title-color");
+  localStorage.removeItem("--switch-back-off");
+  localStorage.removeItem("--alert-button-color-text");
+  localStorage.removeItem("--saving-days-title");
+  localStorage.removeItem("--expense-detail");
+  localStorage.removeItem("--icon-home");
+  localStorage.removeItem("--menu-font-color");
+  localStorage.removeItem("--flat-button-light-color");
+  localStorage.removeItem("--alert-tile-color");
+  localStorage.removeItem("--gradient-1");
+  localStorage.removeItem("--alert-custom-label-money");
+  localStorage.removeItem("--text-without-card");
+  localStorage.removeItem("--alert-container-color");
+  localStorage.removeItem("--saving-edit-label-range");
+  localStorage.removeItem("--progressbar-back-color");
+  localStorage.removeItem("--item-list-config");
+  localStorage.removeItem("--icon-expenses");
+  localStorage.removeItem("--menu-button-color");
+  localStorage.removeItem("--card-back-color");
+  localStorage.removeItem("--detail-goal-title-color");
+  localStorage.removeItem("--text-area-text-color");
+  localStorage.removeItem("--home-total-money");
+  localStorage.removeItem("--flat-button-light-color-text");
+  localStorage.removeItem("--entry-amount-detail");
+  localStorage.removeItem("--toast-back-color");
+  localStorage.removeItem("--icon-config");
+  localStorage.removeItem("--switch-back-on");
+  localStorage.removeItem("--expense-info");
+  localStorage.removeItem("--switch-button-round");
+  localStorage.removeItem("--saving-daily");
+  localStorage.removeItem("--detail-goal-content-color");
+  localStorage.removeItem("--color-input-text");
+  localStorage.removeItem("--card-content-text-color");
+  localStorage.removeItem("--saving-main-title");
+  localStorage.removeItem("--flat-button-active-color");
+  localStorage.removeItem("--flat-button-light-active-color");
+  localStorage.removeItem("--icon-goals");
+  localStorage.removeItem("--saving-edit-range-selected");
+}
+
+function resetCustomTheme() {
+
+  ons.notification.confirm({
+    message: "Estas seguro reiniciar todos los colores?",
+    title: "Aviso!",
+    buttonLabels: ["Sí", "Cancelar"],
+    animation: "default",
+    primaryButtonIndex: 1,
+    cancelable: true,
+    callback: function (index) {
+      if (0 === index) {
+          deleteProperty();
+          setTheme("theme-default");
+          removeStorageColors();
+          functionPopPage(2);
+          ons.notification.toast(
+            "Tema reiniciado correctamente!",
+            {
+              title: "Aviso!",
+              timeout: 1000,
+              animation: "ascend",
+            }
+          );
+      } else {
+        ons.notification.toast(
+          "De acuerdo, todo fluye como normalmente!",
+          {
+            title: "Aviso!",
+            timeout: 1000,
+            animation: "ascend",
+          }
+        );
+      }
+    },
+  });
 }

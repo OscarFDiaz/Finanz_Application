@@ -17,6 +17,7 @@ function makeChart() {
 function loadChartData(expenseData) {
 
   let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
+  let entry = false;
   if (expenseData.datasets.length > 0) {
 
     if(expenses == null || expenses == "") {
@@ -25,13 +26,21 @@ function loadChartData(expenseData) {
       expenseData.datasets[0].backgroundColor.push(getComputedStyle(document.documentElement).getPropertyValue('--home-total-money'));
     } else {
       for(let i = 0; i < expenses.length; i++) {
-        let eName = expenses[i].expenseName;
-        let eColor = expenses[i].expenseColor;
-        let eExpense = expenses[i].totalExpense;
-
-        expenseData.labels.push(eName);
-        expenseData.datasets[0].data.push(eExpense);
-        expenseData.datasets[0].backgroundColor.push(eColor);
+        if(expenses[i].toShow == true) { // Si el usuario decide que se muestre en la dona
+          let eName = expenses[i].expenseName;
+          let eColor = expenses[i].expenseColor;
+          let eExpense = expenses[i].totalExpense;
+  
+          expenseData.labels.push(eName);
+          expenseData.datasets[0].data.push(eExpense);
+          expenseData.datasets[0].backgroundColor.push(eColor);
+          entry = true;
+        }
+      }
+      if (!entry) {
+        expenseData.labels.push("NO HAY GASTOS ACTIVADOS");
+        expenseData.datasets[0].data.push("100");
+        expenseData.datasets[0].backgroundColor.push(getComputedStyle(document.documentElement).getPropertyValue('--home-total-money'));
       }
     }
   }
@@ -60,21 +69,27 @@ function changeTheme() {
   if (actualThemeIndex == "0") {
     deleteProperty();
     setTheme("theme-default");
+    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
   } else if (actualThemeIndex == "1") {
     deleteProperty();
     setTheme("theme-dark");
+    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
   } else if (actualThemeIndex == "2") {
     deleteProperty();
     setTheme("theme-light");
+    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
   } else if (actualThemeIndex == "3") {
     deleteProperty();
     setTheme("theme-yuri");
+    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
   } else if (actualThemeIndex == "4") {
     deleteProperty();
     setTheme("theme-pink");
+    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
   } else if (actualThemeIndex == "5") {
     initColors();
     setTheme("theme-custom");
+    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
   }
 }
 
@@ -180,7 +195,6 @@ function loadOptions() {
     userHomeView.innerHTML += `<label class="cardHomeTitle">METAS</label>
     <ons-card onclick="fn.load('goals.html')">
       <div class="content" id="homeGoalsContainer"> 
-
       </div>
     </ons-card>`;
   }

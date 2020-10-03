@@ -126,18 +126,22 @@ function updateSavingPreview() {
     (parseInt(rangePercent) * parseFloat(mainAmount)) / 100;
 
   /* Update del preview */
-  document.getElementById("entryAmount").innerHTML = mainAmount;
+  document.getElementById("entryAmount").innerHTML = parseFloat(mainAmount).toFixed(2);
   document.getElementById("entryDays").innerHTML = rangeDays;
-  document.getElementById("entryPercent").innerHTML =
-    rangePercent + "% | $ " + equivalentAmount;
-  let toExpend = (parseFloat(equivalentAmount) / parseInt(rangeDays)).toFixed(
-    2
-  );
+  document.getElementById("entryPercent").innerHTML = rangePercent + "% | $ " + parseFloat(equivalentAmount).toFixed(2);
+  let toExpend = (parseFloat(equivalentAmount) / parseInt(rangeDays)).toFixed(2);
   document.getElementById("entryExpend").innerHTML = toExpend;
 
   /*Update de los range*/
   document.getElementById("rangeSelectDays").innerHTML = rangeDays;
   document.getElementById("rangeSelectPercent").innerHTML = rangePercent + "%";
+
+  /*Fondo ahorrado*/
+  let amountSaved = localStorage.getItem("savedMoneySaving");
+  if (amountSaved == null || amountSaved == ""){
+    amountSaved = 0
+  } 
+  document.getElementById("totalSavingAmount").innerHTML = "$ " + amountSaved;
 }
 
 function updateLastSaving() {
@@ -205,92 +209,132 @@ function loadSaving() {
 
   sView.innerHTML = "";
 
+  savingTutorial = 
+  `<ons-card>
+    <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+      <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+        <label class="iconExpenseLabel" style="margin-left: 50px;">
+          VER TUTORIAL
+        </label>
+        <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+          <p class="paraTutorial">
+            Fondo será la opción que te ayudará a controlar tus gastos, 
+            podrás elegir que cantidad de dinero quieres gastar y en cuantos días, 
+            mediante un porcentaje podrás seleccionar cuanto dinero podrás gastar día con día.
+          </p>
+          <p class="paraTutorial">
+            Ejemplo, sí tienes $3000 y quieres gastar el 50% de esa cantidad en los próximos 15 días, 
+            la aplicación te dirá cuanto dinero puedes gastar durante cada día por esos días seleccionados.
+          </p>
+          <p class="paraTutorial">
+            Podrás aumentar el gasto diario que tendrás, también podrás reducirlo,
+            si lo quieres reducir se te preguntara si deseas crear un gasto, 
+            de aceptar deberás seleccionar en que categoría quieres crear ese gasto, eso sí, 
+            deberás tener ya el gasto creado en “GASTOS”, también podrás reducirlo a tu dinero, y obvio deberás tener ese dinero creado en “MI DINERO”.
+          </p>
+          <p class="paraTutorial">
+            El punto es que vayas restando los días conforme estos terminen, para terminarlo deberás dar sobre “Terminar día”, 
+            no es necesario que te termines todo tu dinero disponible en el día para pasar al siguiente, 
+            si quedó algo de dinero se te preguntara que quieres hacer con el, 
+            añadirlo al día siguiente en caso de haberlo o guardarlo en "MI DINERO".
+          </p>
+          <p class="paraTutorial">
+            El dinero que guardes cuando te sobre es el que se verá en la pantalla de inicio en “FONDO GUARDADO”.
+          </p>
+          <p class="paraTutorial">
+            Para reiniciar esa cantidad ingresa en "MI FONDO", da click en "MODIFICAR" y en donde sale tu fondo ahorrado en "REINICIAR"
+          </p>
+          <p class="paraTutorial">
+            Para modificar/ingresar un nuevo fondo da click en “Modificar”.
+          </p>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-card>`;
+
   if (savingStorage == null || savingStorage == "null") {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
     if (tutorial == true || tutorial == "true") {
-      sView.innerHTML += `
-      <ons-card>
-        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-            <label class="iconExpenseLabel" style="margin-left: 50px;">
-              VER TUTORIAL
-            </label>
-            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-              <p class="paraTutorial">
-                Fondo será la opción que te ayudará a controlar tus gastos, 
-                podrás elegir que cantidad de dinero quieres gastar y en cuantos días, 
-                mediante un porcentaje podrás seleccionar cuanto dinero podrás gastar día con día.
-              </p>
-              <p class="paraTutorial">
-                Ejemplo, sí tienes $3000 y quieres gastar el 50% de esa cantidad en los próximos 15 días, 
-                la aplicación te dirá cuanto dinero puedes gastar durante cada día por esos días seleccionados.
-              </p>
-              <p class="paraTutorial">
-                Podrás aumentar el gasto diario que tendrás, también podrás reducirlo,
-                si lo quieres reducir se te preguntara si deseas crear un gasto, 
-                de aceptar deberás seleccionar en que categoría quieres crear ese gasto, eso sí, 
-                deberás tener ya el gasto creado en “GASTOS”, también podrás reducirlo a tu dinero, y obvio deberás tener ese dinero creado en “MI DINERO”.
-              </p>
-              <p class="paraTutorial">
-                El punto es que vayas restando los días conforme estos terminen, para terminarlo deberás dar sobre “Terminar día”, 
-                no es necesario que te termines todo tu dinero disponible en el día para pasar al siguiente, 
-                si quedó algo de dinero se te preguntara que quieres hacer con él, 
-                añadirlo al día siguiente en caso de haberlo o guardarlo en tu dinero.
-              </p>
-              <p class="paraTutorial">
-                El dinero que guardes cuando te sobre es el que se verá en la pantalla de inicio en “FONDO GUARDADO”.
-              </p>
-              <p class="paraTutorial">
-                Para modificar/ingresar un nuevo fondo da click en “Modificar”.
-              </p>
-            </div>
-          </ons-list-item>
-        </ons-list>
-      </ons-card>`;
+      sView.innerHTML += `${savingTutorial}`;
     }
     return;
   }
 
-  let sInnerAmount = savingStorage.mainAmount;
-  let sDaysSelected = savingStorage.rangeDays;
-  let sPercent = savingStorage.rangePercent;
-  let sTakedAmount = savingStorage.equivalentAmount;
+  let sTakedAmount = parseFloat(savingStorage.equivalentAmount).toFixed(2);
   let sMoneyDay = savingStorage.toExpend;
   let sDaysLeft = savingStorage.daysLeft;
   let sMoneyDayLeft = savingStorage.moneyLeft;
 
-  sView.innerHTML = `<ons-card>
-        <div class="title mainTitle">
-            FONDO
-        </div>
-        <div class="content">
-            <label id="savingsInfo" class="savingInfo">$${sTakedAmount} / $${sMoneyDay}</label>
-        </div>
+  sView.innerHTML = 
+    `<ons-card>
+      <div class="title mainTitle">
+          FONDO
+      </div>
+      <div class="content">
+          <label id="savingsInfo" class="savingInfo">$${sTakedAmount} / $${sMoneyDay}</label>
+      </div>
     </ons-card>
 
     <ons-card>
-        <div class="title savingTitle">
-            DISPONIBLE
-        </div>
-        <div class="content">
-            <label id="savingsDailyInfo" class="savingDaily">$${sMoneyDayLeft}</label>
-            <ons-button class="flatButton" onclick="editMoneySaving()">AÑADIR / QUITAR</ons-button>
-        </div>
+      <div class="title savingTitle">
+          DISPONIBLE
+      </div>
+      <div class="content">
+          <label id="savingsDailyInfo" class="savingDaily">$${sMoneyDayLeft}</label>
+          <ons-button class="flatButton" onclick="editMoneySaving()">AÑADIR / QUITAR</ons-button>
+      </div>
     </ons-card>
 
     <ons-card>
-        <div class="title daysTitle">
-            DÍAS RESTANTES | <span id="savingsDays" class="leftDays">${sDaysLeft}</span>
-        </div>
-        <div class="content">
-            <ons-button class="flatButtonLight" onclick="endSavingDay()">TERMINAR DÍA</ons-button>
-        </div>
+      <div class="title daysTitle">
+          DÍAS RESTANTES | <span id="savingsDays" class="leftDays">${sDaysLeft}</span>
+      </div>
+      <div class="content">
+          <ons-button class="flatButtonLight" onclick="endSavingDay()">TERMINAR DÍA</ons-button>
+      </div>
     </ons-card>`;
 }
 
 function loadDetailSaving() {
   updateSavingPreview();
   updateLastSaving();
+}
+
+function resetSavingMoney() {
+  ons.notification.confirm({
+    message: "Estas seguro de reinciar el fondo ahorrado?",
+    title: "Aviso!",
+    buttonLabels: ["Sí", "Cancelar"],
+    animation: "default",
+    primaryButtonIndex: 1,
+    cancelable: true,
+    callback: function (index) {
+      if (0 === index) {
+        let storageS = localStorage.getItem("savedMoneySaving");
+        if (storageS) {
+          localStorage.setItem("savedMoneySaving", 0);
+          ons.notification.toast("El fondo ahorrado se ha reiniciado!", {
+            title: "Aviso!",
+            timeout: 1000,
+            animation: "ascend",
+          });
+          loadDetailSaving();
+        } else {
+          ons.notification.toast("No tienes un fondo ahorrado para eliminar.", {
+            title: "Aviso!",
+            timeout: 1000,
+            animation: "ascend",
+          });
+        }
+      } else {
+        ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
+          title: "Aviso!",
+          timeout: 1000,
+          animation: "ascend",
+        });
+      }
+    },
+  });
 }
 
 function returnDays(days) {
@@ -498,7 +542,7 @@ function addToMoneyLeftMoney() {
   if (selectedRadioID == null || selectedRadioID == "") {
     selectedRadioID = "radio-1";
     sessionStorage.setItem("selectedRadioID", "radio-1");
-  }
+  } 
 
   // Si quiero añadir al día siguiente
   if (selectedRadioID == "radio-1") {

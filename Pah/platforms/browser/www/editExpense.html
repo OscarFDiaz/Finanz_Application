@@ -1,16 +1,14 @@
 <ons-page id="editExpense">
   <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
     <div class="left">
-      <ons-back-button></ons-back-button>
+      <ons-back-button onclick="hideAlertExpenseEditNoChange()"></ons-back-button>
     </div>
-    <div class="center labelToolbar" id="titleExpenses">
-      EDITAR GASTO
-    </div>
+    <div class="center labelToolbar" id="titleExpenses">EDITAR GASTO</div>
   </ons-toolbar>
 
   <ons-card>
     <div class="content">
-      <div style="text-align: center; margin-top: 16px;">
+      <div style="text-align: center; margin-top: 16px">
         <p>
           <ons-input
             onchange="changeTitlePreviewEdit()"
@@ -20,14 +18,16 @@
             modifier="underbar"
             placeholder="NUEVO NOMBRE"
             type="text"
-            style="display: block; margin: 16px 16px;"
+            style="display: block; margin: 16px 16px"
           ></ons-input>
         </p>
       </div>
 
-      <label class="iconExpenseLabel" style="margin-bottom: -20px;">SELECCIONA UN COLOR</label>
+      <label class="iconExpenseLabel" style="margin-bottom: -20px"
+        >SELECCIONA UN COLOR</label
+      >
 
-      <div style="text-align: center; margin-top: 16px; margin-right: 30px;">
+      <div style="text-align: center; margin-top: 16px; margin-right: 30px">
         <p>
           <ons-input
             onchange="loadIconsEdit()"
@@ -36,40 +36,57 @@
             id="newExpenseColorEdit"
             type="color"
             value="#ffffff"
-            style="display: block; margin: 16px 16px; border-radius: 50%; width: 100%; height: 30px;"
+            style="
+              display: block;
+              margin: 16px 16px;
+              border-radius: 50%;
+              width: 100%;
+              height: 30px;
+            "
           ></ons-input>
         </p>
       </div>
 
-      <ons-list style="background: none; margin-top: -25px;">
+      <ons-list style="background: none; margin-top: -25px">
         <ons-list-item id="expandableListContainerEdit" expandable>
-          <label class="iconExpenseLabel" style="margin-left: 50px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px">
             SELECCIONA UN ICONO
           </label>
-          <div class="expandable-content" id="expenseIconListOfIconsEdit"> 
+          <div class="expandable-content" id="expenseIconListOfIconsEdit">
             <!-- AQUI SE CARGAN LOS ICONOS PARA SELECCIONAR -->
           </div>
         </ons-list-item>
       </ons-list>
 
+      <div class="iconExpenseLabel" style="text-align: center">
+        MOSTRAR EN INICIO
+      </div>
+      <div style="text-align: center; margin-bottom: 16px">
+        <ons-switch id="switchNewGoalEdit"></ons-switch>
+      </div>
+
       <ons-button
-      class="flatButton"
-      style="margin-top: 16px;"
-      onclick="hideAlertExpenseEdit()"
-      >LISTO!</ons-button
-    >
-    <ons-button
-      class="flatButtonLight"
-      style="margin-top: 16px;"
-      onclick="hideAlertExpenseEditNoChange()"
-      >CANCELAR</ons-button
-    >
+        class="flatButton"
+        style="margin-top: 16px"
+        onclick="hideAlertExpenseEdit()"
+        >LISTO!</ons-button
+      >
+      <ons-button
+        class="flatButtonLight"
+        style="margin-top: 16px"
+        onclick="hideAlertExpenseEditNoChange()"
+        >CANCELAR</ons-button
+      >
     </div>
   </ons-card>
 
   <label class="cardHomeTitle">PREVISUALIZACIÓN</label>
   <ons-card>
-    <div class="title expenseTitle" id="expensePrevTitleEdit" style="display: inline-block; margin-bottom: 16px;">
+    <div
+      class="title expenseTitle"
+      id="expensePrevTitleEdit"
+      style="display: inline-block; margin-bottom: 16px"
+    >
       NUEVO NOMBRE
     </div>
     <i class="expenseIcon" id="expensePrevIconEdit"></i>
@@ -81,30 +98,42 @@
       function (event) {
         if (event.target.matches("#editExpense")) {
           loadIconsEdit();
+
           let expenseNameEdit = sessionStorage.getItem("expenseNameEdit");
           document.getElementById("newExpenseNameEdit").value = expenseNameEdit;
-          document.getElementById("expensePrevTitleEdit").innerHTML = expenseNameEdit;
+          document.getElementById(
+            "expensePrevTitleEdit"
+          ).innerHTML = expenseNameEdit;
 
           let expenseS = JSON.parse(localStorage.getItem("expenseStorage"));
-          let expenseIcon, expenseColor;
+          let expenseIcon, expenseColor, isChecked;
 
-          for(let i = 0; i < expenseS.length; i++) {
+          for (let i = 0; i < expenseS.length; i++) {
             if (expenseS[i].expenseName == expenseNameEdit) {
               expenseIcon = expenseS[i].iconName;
               expenseColor = expenseS[i].expenseColor;
+              //Seteo el switch
+              isChecked = expenseS[i].toShow;
+              break;
             }
           }
+
+          if (isChecked) {
+            document.getElementById("switchNewGoalEdit").setAttribute('checked', true);
+          } else {
+            document.getElementById('switchNewGoalEdit').removeAttribute('checked');
+          }
+          
           document.getElementById("newExpenseColorEdit").value = expenseColor;
 
           /* OBTENGO EL ICONO ACTUAL Y LO AÑADO*/
           let iconElement = document.getElementById("expensePrevIconEdit");
           sessionStorage.setItem("oldIcon", expenseIcon);
-          iconElement.className = '';
+          iconElement.className = "";
           iconElement.classList.add("expenseIcon");
           iconElement.classList.add(expenseIcon);
           // Añado el color
           iconElement.style.cssText = `--expenseIconColorPrev: ${expenseColor}`;
-
         }
       },
       false

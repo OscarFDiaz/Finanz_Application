@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.oscar.diaz" version="1.20.10" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.oscar.diaz" version="1.7.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Pah</name>
     <description>
         Aplicación sencilla para el manejo de finanzas personales.
     </description>
     <author email="oscarf.diaz@alumnos.udg.mx" href="https://github.com/OscarFDiaz">
-        Oscar Francisco Diaz Alvarez
+        Oscar Diaz
     </author>
     <content src="index.html" />
     <access origin="*" />

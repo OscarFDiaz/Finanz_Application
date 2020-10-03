@@ -12,7 +12,9 @@ function makeNewMoney() {
   }
 
   if (moneyCurrent === "") {
-    moneyCurrent = "0";
+    moneyCurrent = "0.00";
+  } else {
+    moneyCurrent = parseFloat(moneyCurrent).toFixed(2);
   }
 
   let testMoney = Math.sign(moneyCurrent);
@@ -25,7 +27,7 @@ function makeNewMoney() {
         animation: "ascend",
       }
     );
-    moneyCurrent = "0";
+    moneyCurrent = "0.00";
   }
 
   let money = {
@@ -59,68 +61,44 @@ function getMoneys() {
 
   moneyView.innerHTML = "";
 
+  let moneyTutorial = 
+  `<ons-card>
+    <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+      <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+        <label class="iconExpenseLabel" style="margin-left: 50px;">
+          VER TUTORIAL
+        </label>
+        <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+          <p class="paraTutorial">
+            Aquí podrás añadir el dinero que tienes guardado en algún otro lugar, por ejemplo; una alcancía, tu cartera o alguna tarjeta de nómina. 
+          </p>
+          <p class="paraTutorial">
+            Se te pedirá ingresar un nombre y la cantidad actual del dinero que guardas en esa alcancía, cartera, tarjeta, etc.
+          </p>
+          <p class="paraTutorial">
+            Se podrá realizar cualquier modificación que sea necesaria e incluso eliminarlo, pero recuerda que no puedes dejar una alcancía en números negativos. 
+          </p>
+          <p class="paraTutorial">
+           En la pantalla principal "DINERO TOTAL" es una suma de la cantidad de dinero que tienes en tus alcancías."
+          </p>
+          <p class="paraTutorial">
+            Para crear una pulsa "AÑADIR NUEVO".
+          </p>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-card>`;
+
   if (moneys == null || moneys == "null") {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
     if (tutorial == true || tutorial == "true") {
-      moneyView.innerHTML += `
-      <ons-card>
-        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-            <label class="iconExpenseLabel" style="margin-left: 50px;">
-              VER TUTORIAL
-            </label>
-            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-              <p class="paraTutorial">
-              Aquí podrás añadir dinero/alcancías, ese lugar donde tienes guardado tu dinero, una alcancía, tu cartera, alguna tarjeta de nómina etc.
-              </p>
-              <p class="paraTutorial">
-                Se te pedirá que ingreses un nombre y el dinero actual que tienes en esa alcancía/dinero, si no sabes después lo podrás modificar ;).
-              </p>
-              <p class="paraTutorial">
-                Podrás añadir o restar dinero a esa alcancía/dinero, y posteriormente podrás eliminarlo, sólo recuerda que no puedes dejar una alcancía en números negativos.
-              </p>
-              <p class="paraTutorial">
-              En la pantalla principal "DINERO TOTAL", hace referencia a cuánto dinero tienes en todas tus alcancías/dinero, es una suma de todas estas.
-              </p>
-              <p class="paraTutorial">
-                Para crear una nueva alcancía/dinero pulsa "AÑADIR NUEVO".
-              </p>
-            </div>
-          </ons-list-item>
-        </ons-list>
-      </ons-card>`;
+      moneyView.innerHTML += `${moneyTutorial}`;
     }
     return;
   } else if (moneys.length == 0) {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
     if (tutorial == true || tutorial == "true") {
-      moneyView.innerHTML += `
-      <ons-card>
-        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-            <label class="iconExpenseLabel" style="margin-left: 50px;">
-              VER TUTORIAL
-            </label>
-            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-              <p class="paraTutorial">
-                Aquí podrás añadir dinero/alcancías, ese lugar donde tienes guardado tu dinero, una alcancía, tu cartera, alguna tarjeta de nómina etc.
-              </p>
-              <p class="paraTutorial">
-                Se te pedirá que ingreses un nombre y el dinero actual que tienes en esa alcancía/dinero, si no sabes después lo podrás modificar ;).
-              </p>
-              <p class="paraTutorial">
-                Podrás añadir o restar dinero a esa alcancía/dinero, y posteriormente podrás eliminarlo, sólo recuerda que no puedes dejar una alcancía en números negativos.
-              </p>
-              <p class="paraTutorial">
-              En la pantalla principal "DINERO TOTAL", hace referencia a cuánto dinero tienes en todas tus alcancías/dinero, es una suma de todas estas.
-              </p>
-              <p class="paraTutorial">
-                Para crear una nueva alcancía/dinero pulsa "AÑADIR NUEVO".
-              </p>
-            </div>
-          </ons-list-item>
-        </ons-list>
-      </ons-card>`;
+      moneyView.innerHTML += `${moneyTutorial}`;
     }
     return;
   }
@@ -216,12 +194,11 @@ function addMoneyTo(sendMoneyName) {
   }
 }
 
-function makeSumMoney(SendMoneyName) {
-  let actualAmount = document.getElementById("editMoneyActualMoney")
-    .textContent;
+function makeSumMoney() {
+  let actualAmount = document.getElementById("editMoneyActualMoney").textContent;
   let newAmount = document.getElementById("editOnlyMoneyMoney").value;
 
-  let sumResult = +actualAmount + +newAmount;
+  let sumResult = parseFloat(parseFloat(actualAmount) + parseFloat(newAmount)).toFixed(2);
 
   document.getElementById("editMoneyEndMoney").innerHTML = sumResult;
   sessionStorage.setItem("addNewMoney", sumResult);

@@ -709,6 +709,16 @@
   --flat-button-light-active-color: #05565f;
 }
 
+.logoLoadPage {
+  animation-name: imageHomeLoader;
+  animation-duration: 1s;
+}
+
+@keyframes imageHomeLoader {
+  0% {width: 0%; transform: rotate(0);}
+  100% {width: 75%; transform: rotate(360deg);}
+} 
+ 
 .page__background {
   background: rgb(0, 0, 0);
   background: linear-gradient(

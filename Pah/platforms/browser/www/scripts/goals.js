@@ -9,13 +9,12 @@ function makeNewGoal() {
   let goalName = document.getElementById("newGoalName").value;
   let goalDescription = document.getElementById("newGoalDescription").value;
   let goalMoney = document.getElementById("newGoalMoney").value;
-  let goalActualMoney = 0;
+  let goalActualMoney = 0.00;
   let goalDate = document.getElementById("newGoalDate").value;
 
   //Compruebo que no hay campos vacios, en su defecto los lleno
   if (goalDescription === "") {
-    goalDescription =
-      "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR META'";
+    goalDescription = "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR META'";
   }
 
   if (goalDate === "") {
@@ -38,6 +37,8 @@ function makeNewGoal() {
       animation: "ascend",
     });
     return;
+  } else {
+    goalMoney = parseFloat(goalMoney).toFixed(2);
   }
 
   let goalTest = Math.sign(goalMoney);
@@ -93,68 +94,43 @@ function getGoals() {
 
   goalsView.innerHTML = "";
 
+  let goalsTutorial = 
+  `<ons-card>
+    <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+      <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+        <label class="iconExpenseLabel" style="margin-left: 50px;">
+          VER TUTORIAL
+        </label>
+        <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+          <p class="paraTutorial">
+            Aquí podrás añadir los objetivos que deseas cumplir. Deberás añadir un nombre a la meta, 
+            la cantidad de dinero que necesitas para cumplirla y, de ser necesario, la fecha en la que te gustaría cumplir esta meta.
+          </p>
+          <p class="paraTutorial">
+            Posteriormente, podrás añadir el dinero que vayas recaudando y, además, 
+            verás un porcentaje en el que se indique que tan lejos o cerca te encuentras de la meta.
+          </p>
+          <p class="paraTutorial">
+            Podrás editar esta información cuantas veces quieras, e incluso eliminar la meta si ya no la deseas ver.
+          </p>
+          <p class="paraTutorial">
+            Para crear una nueva meta pulsa "AÑADIR NUEVA".
+          </p>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-card>`;
+
   if (goals == null || goals == "null") {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
     if (tutorial == true || tutorial == "true") {
-      goalsView.innerHTML += `
-      <ons-card>
-        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-            <label class="iconExpenseLabel" style="margin-left: 50px;">
-              VER TUTORIAL
-            </label>
-            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-              <p class="paraTutorial">
-                Aquí podrás añadir esas metas que deseas cumplir, deberás añadir un nombre a la meta, cuánto dinero necesitas para cumplir esa meta,
-                y si gustas una fecha, en la cual te gustaría cumplir esa meta.
-              </p>
-              <p class="paraTutorial">
-                Posteriormente podrás añadir el dinero que vayas recaudando para esa meta y podrás ver un porcentaje, el cual indicara que tan lejos, 
-                o cerca te encuentras de la meta.
-              </p>
-              <p class="paraTutorial">
-                Podrás editar esta información cuantas veces quieras, e incluso eliminar la meta si ya no la deseas ver.
-              </p>
-              <p class="paraTutorial">
-                Para crear una nueva meta pulsa "AÑADIR NUEVA".
-              </p>
-            </div>
-          </ons-list-item>
-        </ons-list>
-      </ons-card>`;
-      return;
+      goalsView.innerHTML += `${goalsTutorial}`;
     }
     return;
   } else if (goals.length == 0) {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
     if (tutorial == true || tutorial == "true") {
-      goalsView.innerHTML += `
-      <ons-card>
-        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-            <label class="iconExpenseLabel" style="margin-left: 50px;">
-              VER TUTORIAL
-            </label>
-            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-              <p class="paraTutorial">
-                Aquí podrás añadir esas metas que deseas cumplir, deberás añadir un nombre a la meta, cuánto dinero necesitas para cumplir esa meta,
-                y si gustas una fecha, en la cual te gustaría cumplir esa meta.
-              </p>
-              <p class="paraTutorial">
-                Posteriormente podrás añadir el dinero que vayas recaudando para esa meta y podrás ver un porcentaje, el cual indicara que tan lejos, 
-                o cerca te encuentras de la meta.
-              </p>
-              <p class="paraTutorial">
-                Podrás editar esta información cuantas veces quieras, e incluso eliminar la meta si ya no la deseas ver.
-              </p>
-              <p class="paraTutorial">
-                Para crear una nueva meta pulsa "AÑADIR NUEVA".
-              </p>
-            </div>
-          </ons-list-item>
-        </ons-list>
-      </ons-card>`;
-      return;
+      goalsView.innerHTML += `${goalsTutorial}`;
     }
     return;
   }
@@ -387,6 +363,10 @@ function loadDetailGoal() {
     gDate = "VENCIÓ HACE " + Math.abs(days) + " DÍAS";
   } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
     gDate = "HOY ES EL ÚLTIMO DÍA";
+  }
+
+  if (gDescription === "") {
+    gDescription = "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR META'";
   }
 
   document.getElementById("titleDetailGoal").innerHTML = gName;

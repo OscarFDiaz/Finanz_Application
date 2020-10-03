@@ -33,7 +33,7 @@ function hideAlertDialog() {
   
   let name = document.getElementById("editGoalName").value;
   let description = document.getElementById("editGoalDescription").value;
-  let actualMoney = document.getElementById("editActualGoalMoney").value;
+  let actualMoney = parseFloat(document.getElementById("editActualGoalMoney").value).toFixed(2);
   let goalMoney = document.getElementById("editGoalMoney").value;
   let goalDate = document.getElementById("editGoalDate").value;
 
@@ -61,6 +61,10 @@ function hideAlertDialog() {
       animation: "ascend",
     });
     return;
+  }
+
+  if (goalDate === "") {
+    goalDate = "SIN DATOS DE FECHA";
   }
 
   for (let i = 0; i < goals.length; i++) {
@@ -118,7 +122,7 @@ function makeSum() {
   let actualAmount = document.getElementById("editOnlyMoneyActualMoney").textContent;
   let newAmount = document.getElementById("editOnlyGoalMoney").value;
 
-  let sumResult = +actualAmount + +newAmount;
+  let sumResult = parseFloat(parseFloat(actualAmount) + parseFloat(newAmount)).toFixed(2);
 
   document.getElementById("editOnlyEndMoney").innerHTML = sumResult;
   sessionStorage.setItem("addNewMoney", sumResult);
@@ -191,7 +195,6 @@ function hideAlertDialogMoney() {
         goalMoney: goals[i].goalMoney,
         goalDate: goals[i].goalDate,
       };
-
       
       // Modifico los elementos para actualizar el dinero y % mostrado
       let calculatedPercent = getPercent(updateGoalObject.goalMoney, newMoney);

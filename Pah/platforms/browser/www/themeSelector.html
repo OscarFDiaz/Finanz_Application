@@ -50,7 +50,7 @@
 
   <label class="tutorialLabel"> <- Desliza para cambiar de tema -></label>
 
-  <ons-button class="flatButton" onclick="changeTheme()" style="width: 250px; height: 50px; line-height: 50px; margin-top: 32px;">
+  <ons-button id="buttonSelectTheme" class="flatButton" onclick="changeTheme()" style="width: 250px; height: 50px; line-height: 50px; margin-top: 32px;">
     SELECCIONAR
   </ons-button>
 
@@ -62,7 +62,49 @@
       "init",
       function (event) {
         if (event.target.matches("#themeSelector")) {
-          sessionStorage.setItem("themeIndex", "0");
+
+          let currentTheme = localStorage.getItem("userTheme");
+          let currentIndex;
+
+          if (currentTheme == null || currentTheme == '') {
+            currentIndex = 0;
+          } else if (currentTheme == "theme-default") {
+            currentIndex = 0;
+          } else if (currentTheme == "theme-dark") {
+            currentIndex = 1;
+          } else if (currentTheme == "theme-light") {
+            currentIndex = 2;
+          } else if (currentTheme == "theme-yuri") {
+            currentIndex = 3;
+          } else if (currentTheme == "theme-pink") {
+            currentIndex = 4;
+          } else if (currentTheme == "theme-custom") {
+            currentIndex = 5;
+          }
+
+          document.getElementById('carousel').setAttribute('initial-index', currentIndex);
+          document.getElementById('carousel').setActiveIndex(currentIndex);
+
+          sessionStorage.setItem("themeIndex", currentIndex);
+
+          activeIndex = document.getElementById('carousel').getActiveIndex();
+
+          if (activeIndex == "5") {
+            document.getElementById("editThemeContainer").innerHTML = 
+            `<ons-button class="flatButtonLight" onclick="pushToEditTheme()" style="width: 250px; height: 50px; line-height: 50px; margin-top:16px">
+              PERSONALIZAR
+            </ons-button>`;
+          } else {
+            document.getElementById("editThemeContainer").innerHTML = "";
+          }
+
+          if (currentIndex == activeIndex) {
+            document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+          } else {
+            document.getElementById("buttonSelectTheme").innerHTML = "SELECCIONAR";
+          }
+
+          // Se ejecuta siempre que el carusel se mueva, esto para setear el botón que permite personalizar el tema custom
           ons.ready(function () {
             var carousel = document.addEventListener("postchange", function (event) {
               sessionStorage.setItem("themeIndex", event.activeIndex);
@@ -75,6 +117,32 @@
               } else {
                 document.getElementById("editThemeContainer").innerHTML = "";
               }
+
+              let current = localStorage.getItem("userTheme");
+              let currentI;
+
+              if (current == null || current == '') {
+                currentI = 0;
+              }else if (current == "theme-default") {
+                currentI = 0;
+              } else if (current == "theme-dark") {
+                currentI = 1;
+              } else if (current == "theme-light") {
+                currentI = 2;
+              } else if (current == "theme-yuri") {
+                currentI = 3;
+              } else if (current == "theme-pink") {
+                currentI = 4;
+              } else if (current == "theme-custom") {
+                currentI = 5;
+              }
+
+              if (event.activeIndex == currentI) {
+                document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+              } else {
+                document.getElementById("buttonSelectTheme").innerHTML = "SELECCIONAR";
+              }
+
             });
           });
         }

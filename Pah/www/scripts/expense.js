@@ -93,6 +93,7 @@ function makeNewExpense() {
   let mainDate = new Date().toJSON().slice(0, 10);
   let iconName = sessionStorage.getItem("expenseIconName");
   let expenseColor = document.getElementById("newExpenseColor").value;
+  let toShow = document.getElementById("switchNewGoal").checked;
 
   sessionStorage.removeItem("expenseIconName");
 
@@ -113,6 +114,7 @@ function makeNewExpense() {
     mainDate,
     iconName,
     expenseColor,
+    toShow
   };
 
   /* Guardo el expense original*/
@@ -142,74 +144,49 @@ function getExpenses() {
 
   document.getElementById("expensesContainer").innerHTML = "";
 
+  let expenseTutorial = 
+  `<ons-card>
+    <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+      <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+        <label class="iconExpenseLabel" style="margin-left: 50px;">
+          VER TUTORIAL
+        </label>
+        <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+          <p class="paraTutorial">
+            Aquí podrás añadir los gastos que vayas realizando. Podrás separarlos en categorías y, a la vez, 
+            seleccionar un color e icono para cada una de ellas. 
+            Los gastos se verán reflejados en la pantalla de "INICIO"; en dónde se encuentra la gráfica en forma de dona. 
+            Además, podrás remover el gasto a alguna de tus carteras ubicadas en: "MI DINERO". 
+          </p>
+          <p class="paraTutorial">
+            Se podrá añadir gastos individuales. Se mostrará cuánto has gastado en cada categoría y te dirá los gastos en total. 
+          </p>
+          <p class="paraTutorial">
+            Al ingresar a tu categoría verás una lista de los gastos que has generado, éstos se mostrarán conforme se vayan creando, 
+            es decir; el gasto más reciente estará ubicado en el primer lugar. 
+          </p>
+          <p class="paraTutorial">
+            También podrás reiniciar los gastos realizados en una categoría entrando a ésta y dando clic en: "REINICIAR". 
+            En dado caso de qué reinicies los gastos el dinero no se actualizará.
+          </p>
+          <p class="paraTutorial">
+            Para crear un nuevo gasto pulsa "AÑADIR NUEVO".
+          </p>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-card>`;
+
   if (expenses == null || expenses == "null") {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
     if (tutorial == true || tutorial == "true") {
-      expensesView.innerHTML += `
-      <ons-card>
-        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-            <label class="iconExpenseLabel" style="margin-left: 50px;">
-              VER TUTORIAL
-            </label>
-            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-              <p class="paraTutorial">
-                Aquí podrás añadir los gastos que vayas realizando, los podrás separar en categorías, podrás seleccionar un color y un icono para cada categoría,
-                estos gastos se verán reflejados en la pantalla de "INICIO", donde está la gráfica en forma de dona, también podrás seleccionar si deseas remover el gasto a
-                alguna de tus carteras ubicadas en "MI DINERO", si reinicias los gastos ese dinero no se actualizará.
-              </p>
-              <p class="paraTutorial">
-                Podrás añadir gastos individualmente, se mostrará cuanto has gastado en cada categoría y te dira los gastos en total.
-              </p>
-              <p class="paraTutorial">
-                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran conforme los ballas creando, primero estará el último creado.
-              </p>
-              <p class="paraTutorial">
-                Podrás reiniciar todos los gastos realizados en una categoría entrando a esta y dando en "REINICIAR".
-              </p>
-              <p class="paraTutorial">
-                Para crear un nuevo gasto pulsa "AÑADIR NUEVO".
-              </p>
-            </div>
-          </ons-list-item>
-        </ons-list>
-      </ons-card>`;
-      return;
+      expensesView.innerHTML += `${expenseTutorial}`;
     }
     return;
   } else if (expenses.length == 0) {
     let tutorial = localStorage.getItem("storageSwitchTutorial");
     if (tutorial == true || tutorial == "true") {
-      expensesView.innerHTML += `
-      <ons-card>
-        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-            <label class="iconExpenseLabel" style="margin-left: 50px;">
-              VER TUTORIAL
-            </label>
-            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-              <p class="paraTutorial">
-                Aquí podrás añadir los gastos que vayas realizando, los podrás separar en categorías, podrás seleccionar un color y un icono para cada categoría,
-                estos gastos se verán reflejados en la pantalla de "INICIO", donde está la gráfica en forma de dona, también podrás seleccionar si deseas remover el gasto a
-                alguna de tus carteras ubicadas en "MI DINERO", si reinicias los gastos ese dinero no se actualizará.
-              </p>
-              <p class="paraTutorial">
-                Podrás añadir gastos individualmente, se mostrará cuanto has gastado en cada categoría y te dira los gastos en total.
-              </p>
-              <p class="paraTutorial">
-                Entrando a tu categoría podrás ver una lista de todos los gastos que has generado, se mostraran conforme los ballas creando, primero estará el último creado.
-              </p>
-              <p class="paraTutorial">
-                Podrás reiniciar todos los gastos realizados en una categoría entrando a esta y dando en "REINICIAR".
-              </p>
-              <p class="paraTutorial">
-                Para crear un nuevo gasto pulsa "AÑADIR NUEVO".
-              </p>
-            </div>
-          </ons-list-item>
-        </ons-list>
-      </ons-card>`;
-      return;
+      expensesView.innerHTML += `${expenseTutorial}`;
     }
     return;
   }
@@ -445,7 +422,6 @@ function deleteExpense(sendName) {
         if (detailExpenses == null || detailExpenses == "null") {
         } else {
           for (let i = 0; i < detailExpenses.length; i++) {
-            //null?
             if (detailExpenses[i].expenseName == sendName) {
               detailExpenses.splice(i, 1);
               i--;

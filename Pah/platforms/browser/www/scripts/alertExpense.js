@@ -42,7 +42,7 @@ function loadSelectOptions() {
 
 function hideAlertExpense() {
   let eName = document.getElementById("alertExpenseNote").value;
-  let eMoney = document.getElementById("alertExpenseMoney").value;
+  let eMoney = parseFloat(document.getElementById("alertExpenseMoney").value).toFixed(2);
   let eDate = document.getElementById("alertExpenseDate").value;
   let eid = localStorage.getItem("detailExpenseCount");
 
@@ -220,7 +220,7 @@ function editDetailExpense(idSend) {
 
 function hideEditAlertExpense() {
   let note = document.getElementById("alertEditExpenseNote").value;
-  let money = document.getElementById("alertEditExpenseMoney").value;
+  let money = parseFloat(document.getElementById("alertEditExpenseMoney").value).toFixed(2);
   let date = document.getElementById("alertEditExpenseDate").value;
   let mName, id, index;
 
@@ -305,6 +305,8 @@ function insertNewExpenseAmount(sendName){
       newAmount += +storageExpense[i].inAmount;
     }
   }
+
+  newAmount = parseFloat(newAmount).toFixed(2);
   document.getElementById("totalExpenseDetail").innerHTML = newAmount;
 
   let mainStorage = JSON.parse(localStorage.getItem("expenseStorage"));
@@ -363,6 +365,7 @@ function hideAlertExpenseEdit() {
   let newName = document.getElementById("newExpenseNameEdit").value;
   let newColor = document.getElementById("newExpenseColorEdit").value;
   let newIcon = sessionStorage.getItem("expenseIconName");
+  let toShowN = document.getElementById("switchNewGoalEdit").checked;
 
   if (newName == null || newName == "null" || newName == "") {
     ons.notification.toast("Debes añadir un nuevo nombre al gasto!", {
@@ -390,7 +393,8 @@ function hideAlertExpenseEdit() {
         totalExpense: expenseStorage[i].totalExpense,
         mainDate: expenseStorage[i].mainDate,
         iconName: newIcon,
-        expenseColor: newColor
+        expenseColor: newColor,
+        toShow: toShowN
       };
 
       expenseStorage[index] = expense;
