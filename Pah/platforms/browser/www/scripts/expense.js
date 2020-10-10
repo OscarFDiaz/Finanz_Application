@@ -89,7 +89,7 @@ function selectIcon(iconName, iconColor) {
 
 function makeNewExpense() {
   let expenseName = document.getElementById("newExpenseName").value;
-  let totalExpense = 0;
+  let totalExpense = 0.00;
   let mainDate = new Date().toJSON().slice(0, 10);
   let iconName = sessionStorage.getItem("expenseIconName");
   let expenseColor = document.getElementById("newExpenseColor").value;
@@ -453,7 +453,7 @@ function deleteExpense(sendName) {
 
 function updateExpenseTotalMoney(sendName, amountSend) {
   let exName = sendName;
-  let newAmount = amountSend;
+  let newAmount = amountSend; //-323
 
   let expensesStorage = JSON.parse(localStorage.getItem("expenseStorage"));
 
@@ -467,7 +467,7 @@ function updateExpenseTotalMoney(sendName, amountSend) {
     }
   }
 
-  expense.totalExpense += +newAmount;
+  expense.totalExpense = parseFloat(parseFloat(expense.totalExpense) + parseFloat(newAmount)).toFixed(2);
 
   /* Guardo el expense original*/
   if (localStorage.getItem("expenseStorage") === null) {
@@ -496,7 +496,7 @@ function getAmountFDays(sendName) {
       }
     }
   }
-  return total;
+  return parseFloat(total).toFixed(2);
 }
 
 function getAmountTDays(sendName) {
@@ -512,7 +512,7 @@ function getAmountTDays(sendName) {
       }
     }
   }
-  return total;
+  return parseFloat(total).toFixed(2);
 }
 
 function dateDiff(date1, date2) {
@@ -677,7 +677,8 @@ function getTotalExpenses() {
   for (let i = 0; i < expenses.length; i++) {
     total = +total + +expenses[i].totalExpense;
   }
-  return total;
+
+  return parseFloat(total).toFixed(2);
 }
 
 function getAmountFDaysN() {
@@ -695,7 +696,8 @@ function getAmountFDaysN() {
       total = +total + +storage[i].inAmount;
     }
   }
-  return total;
+
+  return parseFloat(total).toFixed(2);
 }
 
 function getAmountTDaysN() {
@@ -713,5 +715,5 @@ function getAmountTDaysN() {
       total = +total + +storage[i].inAmount;
     }
   }
-  return total;
+  return parseFloat(total).toFixed(2);
 }

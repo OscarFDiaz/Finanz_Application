@@ -34,7 +34,7 @@ function hideAlertDialog() {
   let name = document.getElementById("editGoalName").value;
   let description = document.getElementById("editGoalDescription").value;
   let actualMoney = parseFloat(document.getElementById("editActualGoalMoney").value).toFixed(2);
-  let goalMoney = document.getElementById("editGoalMoney").value;
+  let goalMoney = parseFloat(document.getElementById("editGoalMoney").value).toFixed(2);
   let goalDate = document.getElementById("editGoalDate").value;
 
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
@@ -65,6 +65,10 @@ function hideAlertDialog() {
 
   if (goalDate === "") {
     goalDate = "SIN DATOS DE FECHA";
+  }
+
+  if (actualMoney == "" || actualMoney == "NaN") { 
+    actualMoney = "0.00";
   }
 
   for (let i = 0; i < goals.length; i++) {

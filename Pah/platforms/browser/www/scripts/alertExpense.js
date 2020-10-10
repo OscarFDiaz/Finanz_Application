@@ -218,6 +218,7 @@ function editDetailExpense(idSend) {
   }
 }
 
+// PARA EDITAR UN GASTO YA CREADO
 function hideEditAlertExpense() {
   let note = document.getElementById("alertEditExpenseNote").value;
   let money = parseFloat(document.getElementById("alertEditExpenseMoney").value).toFixed(2);
@@ -234,7 +235,9 @@ function hideEditAlertExpense() {
       animation: "ascend",
     });
     return;
-  } else if (money == null || money == "") {
+  }
+  
+  if (money == null || money == "" || money == "NaN") {
     ons.notification.toast("Puedo editar ese gasto, pero necesito saber cuanto gastaste.", {
       title: "Aviso!",
       timeout: 2000,
