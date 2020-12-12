@@ -161,7 +161,7 @@ function updateMoneyStorage(sendName, amount) {
           return true;
         }
   
-        moneyStorage[i].moneyCurrent = +moneyStorage[i].moneyCurrent + -amount;
+        moneyStorage[i].moneyCurrent = (parseFloat(moneyStorage[i].moneyCurrent) - parseFloat(amount)).toFixed(2);
   
         localStorage.setItem("moneyStorage", JSON.stringify(moneyStorage));
         break;

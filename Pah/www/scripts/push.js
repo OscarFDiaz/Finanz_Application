@@ -1,8 +1,3 @@
-function pushTest() {
-  const navigator = document.querySelector("#navigator");
-  navigator.pushPage("detailGoal.html");
-}
-
 function pushToDetailSaving() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("detailSaving.html");
@@ -21,11 +16,6 @@ function pushToNewMoney() {
 function pushToNewExpense() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("newExpense.html");
-}
-
-function pushTest6() {
-  const navigator = document.querySelector("#navigator");
-  navigator.pushPage("detailExpense.html");
 }
 
 function pushToThemeSelector() {
@@ -54,7 +44,6 @@ function pushToEditTheme() {
   navigator.pushPage("customTheme.html");
 }
 
-pushToAbout
 function pushToAbout() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("about.html");
