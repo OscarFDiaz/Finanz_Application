@@ -163,7 +163,7 @@ function updateMoneyStorage(sendName, amount) {
   
         moneyStorage[i].moneyCurrent = (parseFloat(moneyStorage[i].moneyCurrent) - parseFloat(amount)).toFixed(2);
   
-        localStorage.setItem("moneyStorage", JSON.stringify(moneyStorage));
+        localStorage.setItem("moneyStorage", JSON.stringify(moneyStorage)); 
         break;
       }
     }
@@ -193,7 +193,7 @@ function editDetailExpense(idSend) {
   
   for (let i = 0; i < expenses.length; i++) {
     if (expenses[i].inID == idSend) {
-      note = expenses[i].inName;
+      note = expenses[i].inName; 
       money = expenses[i].inAmount;
       date = expenses[i].inDate;
       break;
@@ -323,7 +323,8 @@ function insertNewExpenseAmount(sendName){
         totalExpense: newAmount,
         mainDate: mainStorage[i].mainDate,
         iconName: mainStorage[i].iconName,
-        expenseColor: mainStorage[i].expenseColor
+        expenseColor: mainStorage[i].expenseColor,
+        toShow: mainStorage[i].toShow
       };
       mainStorage[index] = expense;
       localStorage.setItem("expenseStorage", JSON.stringify(mainStorage));

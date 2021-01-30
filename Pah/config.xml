@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.oscar.diaz" versionCode= "4" version="1.70.21" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.oscar.diaz" versionCode= "5" version="1.70.22" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     
 	<name>Pah</name>
 	
@@ -21,5 +21,6 @@
 	
 	<icon src="icono.png" platform="android"/>
 
-    <preference name="android-minSdkVersion" value="29" /> 
+    <preference name="android-minSdkVersion" value="21" /> 
+    <preference name="android-targetSdkVersion" value="29" /> 
 </widget>
