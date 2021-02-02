@@ -550,7 +550,7 @@ function loadDetailExpense() {
   document.getElementById("titleDetailExpense").innerHTML = eName;
 
   expenseView.innerHTML += `<ons-card style="padding-bottom:16px">
-    <div class="content">
+    <div class="content" style="padding:0px">
       <label class="labelDetailExpense"
         >Fecha creación:
         <span id="expenseCreationDate" class="labelInfoDetailExpense"
@@ -558,7 +558,6 @@ function loadDetailExpense() {
         ></label
       >
     </div>
-    <ons-button class="flatButton" onclick="editExpense('${eName}')">EDITAR GASTO</ons-button>
   </ons-card>
 
   <ons-card>
@@ -600,8 +599,14 @@ function loadDetailExpense() {
   </ons-card>
   
   <ons-button class="flatButtonLight" style="margin-bottom: 16px;"
-  onclick="resetExpense('${eName}')">REINICIAR</ons-button
-  >`;
+  onclick="resetExpense('${eName}')">REINICIAR</ons-button>
+
+  <ons-fab position="bottom right" onclick="editExpense('${eName}')">
+  <i class="icon ion-md-create" style="font-size: 35px;"></i>
+</ons-fab>
+  
+  
+  `;
 
   let detailDetailExpenseView = document.getElementById(
     "expenseListOfExpenses"

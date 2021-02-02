@@ -784,10 +784,15 @@
   font-size: 14px;
 }
 
+ons-fab.fab--bottom__right {
+  background: var(--flat-button-color);
+  color: var(--flat-button-color-text);
+}
+
 .flatButton {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 16px;
+  margin-right: 16px;
 
   background: var(--flat-button-color);
   color: var(--flat-button-color-text);
@@ -799,18 +804,19 @@
   font-weight: 400;
   text-align: center;
 
-  line-height: 40px;
-  min-height: 40px;
-  width: 208px;
+  line-height: 50px;
+  min-height: 50px;
+  width: auto;
 }
+
 .flatButton:active {
   background: var(--flat-button-active-color);
 }
 
 .flatButtonLight {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 16px;
+  margin-right: 16px;
 
   background: var(--flat-button-light-color);
   color: var(--flat-button-light-color-text);
@@ -822,10 +828,11 @@
   font-weight: 400;
   text-align: center;
 
-  line-height: 40px;
-  min-height: 40px;
-  width: 208px;
+  line-height: 50px;
+  min-height: 50px;
+  width: auto;
 }
+
 .flatButtonLight:active {
   background: var(--flat-button-light-active-color);
 }

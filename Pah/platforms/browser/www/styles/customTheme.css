@@ -1,10 +1,21 @@
-.customInput {
-  appearance: none;
-  height: 45px;
-  width: 45px;
-  border: none;
-  background-color: transparent;
+.input-color-container {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 40px;
+  border: solid 2px #ddd;
+  border-radius: 15px;
 }
+
+.customInput {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  width: 60px;
+  height: 56px;
+  border: none;
+}
+
 
 .labelColorText {
   margin-left: 16px;

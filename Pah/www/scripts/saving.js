@@ -281,7 +281,7 @@ function loadSaving() {
       </div>
       <div class="content">
           <label id="savingsDailyInfo" class="savingDaily">$${sMoneyDayLeft}</label>
-          <ons-button class="flatButton" onclick="editMoneySaving()">AÑADIR / QUITAR</ons-button>
+          <ons-button class="flatButton" onclick="editMoneySaving()" style="margin-left: 0px; margin-right: 0px">MODIFICAR DINERO</ons-button>
       </div>
     </ons-card>
 
@@ -290,7 +290,7 @@ function loadSaving() {
           DÍAS RESTANTES | <span id="savingsDays" class="leftDays">${sDaysLeft}</span>
       </div>
       <div class="content">
-          <ons-button class="flatButtonLight" onclick="endSavingDay()">TERMINAR DÍA</ons-button>
+          <ons-button class="flatButtonLight" onclick="endSavingDay()" style="margin-left: 0px; margin-right: 0px">TERMINAR DÍA</ons-button>
       </div>
     </ons-card>`;
 }

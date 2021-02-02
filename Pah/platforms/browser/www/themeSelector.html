@@ -50,7 +50,7 @@
 
   <label class="tutorialLabel"> <- Desliza para cambiar de tema -></label>
 
-  <ons-button id="buttonSelectTheme" class="flatButton" onclick="changeTheme()" style="width: 250px; height: 50px; line-height: 50px; margin-top: 32px;">
+  <ons-button id="buttonSelectTheme" class="flatButton" onclick="changeTheme()" style="margin-top: 32px;">
     SELECCIONAR
   </ons-button>
 
@@ -91,7 +91,7 @@
 
           if (activeIndex == "5") {
             document.getElementById("editThemeContainer").innerHTML = 
-            `<ons-button class="flatButtonLight" onclick="pushToEditTheme()" style="width: 250px; height: 50px; line-height: 50px; margin-top:16px">
+            `<ons-button class="flatButtonLight" onclick="pushToEditTheme()" style="margin-top:16px">
               PERSONALIZAR
             </ons-button>`;
           } else {
@@ -111,7 +111,7 @@
 
               if (event.activeIndex == "5") {
                 document.getElementById("editThemeContainer").innerHTML = 
-                `<ons-button class="flatButtonLight" onclick="pushToEditTheme()" style="width: 250px; height: 50px; line-height: 50px; margin-top:16px">
+                `<ons-button class="flatButtonLight" onclick="pushToEditTheme()" style="margin-top:16px">
                   PERSONALIZAR
                 </ons-button>`;
               } else {

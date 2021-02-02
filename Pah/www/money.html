@@ -12,12 +12,18 @@
 
   <div id="moneyContainer"></div>
 
-  <ons-button
-    class="flatButton"
-    onclick="pushToNewMoney()"
-    style="margin-bottom: 16px;"
-    >AÑADIR NUEVO</ons-button
-  >
+  <!--
+    <ons-button
+      class="flatButton"
+      onclick="pushToNewMoney()"
+      style="margin-bottom: 16px;"
+      >AÑADIR NUEVO</ons-button
+    >
+  -->
+
+  <ons-fab position="bottom right" onclick="pushToNewMoney()">
+    <i class="icon ion-md-add" style="font-size: 35px;"></i>
+  </ons-fab>
 
   <!--ALERT PARA EDITAR UNICAMENTE EL DINERO-->
   <ons-alert-dialog id="alertEditMoneyMoney" modifier="material">

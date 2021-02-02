@@ -402,17 +402,20 @@ function loadDetailGoal() {
         <label class="moneyDetailGoal">
           ${gDate}
         </label>
-        <ons-button class="flatButton" style="margin-top: 16px;" onclick="addMoneyGoal('${gName}')">
-          AÑADIR DINERO
+        <ons-button class="flatButton" style="margin-top: 16px; margin-left: 0px; margin-right: 0px" onclick="addMoneyGoal('${gName}')">
+          MODIFICAR DINERO
         </ons-button>
       </div>
     </ons-card>
-
-    <ons-button class="flatButtonLight" style="margin-bottom: 16px;" onclick="editGoal('${gName}')">
-      EDITAR META
+    
+    <ons-button class="flatButtonLight" style="margin-top: 16px; margin-bottom: 16px" onclick="deleteGoal('${gName}')">
+          ELIMINAR META
     </ons-button>
     
-    <ons-button class="flatButton" style="margin-top: 16px; margin-bottom: 16px" onclick="deleteGoal('${gName}')">
-          ELIMINAR META
-    </ons-button>`;
+    <ons-fab position="bottom right" onclick="editGoal('${gName}')">
+      <i class="icon ion-md-create" style="font-size: 35px;"></i>
+    </ons-fab>
+    
+    `;
+
 }

@@ -1,6 +1,5 @@
 
 function makeChart() {
-  
   var config = {
     labels: [],
     datasets: [

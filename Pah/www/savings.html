@@ -10,12 +10,18 @@
 
   <div id="savingMainContainer"></div>
 
-  <ons-button
-    class="flatButton"
-    style="margin-bottom: 16px"
-    onclick="pushToDetailSaving()"
-    >MODIFICAR</ons-button
-  >
+  <!--
+    <ons-button
+      class="flatButton"
+      style="margin-bottom: 16px"
+      onclick="pushToDetailSaving()"
+      >MODIFICAR</ons-button
+    >
+  -->
+
+  <ons-fab position="bottom right" onclick="pushToDetailSaving()">
+    <i class="icon ion-md-create" style="font-size: 35px;"></i>
+  </ons-fab>
 
   <!--ALERT PARA AÑADIR UN GASTO-->
   <ons-alert-dialog id="alertToAddExpenseSaving" modifier="material">
