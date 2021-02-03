@@ -9,60 +9,68 @@
   <ons-card>
     <div class="content">
       <div style="text-align: center; margin-top: 16px">
-        <p>
+        <div>
+          <p style=" margin: 0px auto -16px 12px;text-align: left; padding-top: 16px;">
+            NOMBRE DEL GASTO
+          </p>
           <ons-input
             onchange="changeTitlePreviewEdit()"
             onkeypress="this.onchange()"
             oninput="this.onchange()"
             id="newExpenseNameEdit"
             modifier="underbar"
-            placeholder="NUEVO NOMBRE"
+            placeholder=""
             type="text"
-            style="display: block; margin: 16px 16px"
+            style="display: block; margin: 0px auto 16px auto"
           ></ons-input>
-        </p>
+        </div>
       </div>
 
-      <label class="iconExpenseLabel" style="margin-bottom: -20px"
-        >SELECCIONA UN COLOR</label
-      >
-
-      <div style="text-align: center; margin-top: 16px; margin-right: 30px">
-        <p>
-          <ons-input
-            onchange="loadIconsEdit()"
-            onkeypress="this.onchange()"
-            oninput="this.onchange()"
-            id="newExpenseColorEdit"
-            type="color"
-            value="#ffffff"
-            style="
-              display: block;
-              margin: 16px 16px;
-              border-radius: 50%;
-              width: 100%;
-              height: 30px;
-            "
-          ></ons-input>
+      <div>
+        <p style="margin: 0px auto -16px 12px; text-align: left">
+          SELECCIONA UN COLOR
         </p>
-      </div>
-
-      <ons-list style="background: none; margin-top: -25px">
-        <ons-list-item id="expandableListContainerEdit" expandable>
-          <label class="iconExpenseLabel" style="margin-left: 50px">
-            SELECCIONA UN ICONO
-          </label>
-          <div class="expandable-content" id="expenseIconListOfIconsEdit">
-            <!-- AQUI SE CARGAN LOS ICONOS PARA SELECCIONAR -->
+        <div style="margin-top: 16px;border: 2px solid var(--color-input); border-radius: 15px; height: 48px;">
+          <div class="input-color-container" style="width: 100%; height: 44px; border: none">
+            <input
+              onchange="loadIconsEdit()"
+              onkeypress="this.onchange()"
+              oninput="this.onchange()"
+              class="customInput"
+              value="#ffffff"
+              type="color"
+              id="newExpenseColorEdit"
+              style="display: block;width: 105%;height: 150%;margin: 0px;"
+            />
           </div>
-        </ons-list-item>
-      </ons-list>
-
-      <div class="iconExpenseLabel" style="text-align: center">
-        MOSTRAR EN INICIO
+        </div>
       </div>
-      <div style="text-align: center; margin-bottom: 16px">
-        <ons-switch id="switchNewGoalEdit"></ons-switch>
+
+      <p style="margin: 16px auto 0px 12px; text-align: left; color: var(--card-content-text-color);">
+        SELECCIONA UN ICONO
+      </p>
+      <div style="border: 2px solid var(--color-input); border-radius: 15px; margin-bottom: 16px;">
+        <ons-list style="background: none; margin-top: -16px">
+          <ons-list-item id="expandableListContainerEdit" expandable>
+            <p style="margin: 0px auto 0px 12px; text-align: left; color: var(--card-content-text-color);">
+              CLICK PARA CAMBIAR
+            </p>
+            <div class="expandable-content" id="expenseIconListOfIconsEdit">
+              <!-- AQUI SE CARGAN LOS ICONOS PARA SELECCIONAR -->
+            </div>
+          </ons-list-item>
+        </ons-list>
+      </div>
+
+      <div>
+        <p style="margin: 0px auto -16px 12px; text-align: left">
+          MOSTRAR EN INICIO
+        </p>
+        <div style="margin-top: 16px;border: 2px solid var(--color-input); border-radius: 15px; height: 48px;">
+          <div style="text-align: left;display: block; margin: 10px 16px;">
+            <ons-switch id="switchNewGoalEdit"></ons-switch>
+          </div>
+        </div>
       </div>
 
       <ons-button
@@ -82,14 +90,19 @@
 
   <label class="cardHomeTitle">PREVISUALIZACIÓN</label>
   <ons-card>
-    <div
-      class="title expenseTitle"
-      id="expensePrevTitleEdit"
-      style="display: inline-block; margin-bottom: 16px"
-    >
+    <div class="title expenseTitle" id="expensePrevTitleEdit" style="display: inline-block; margin-bottom: 16px">
       NUEVO NOMBRE
     </div>
     <i class="expenseIcon" id="expensePrevIconEdit"></i>
+    <div class="content" style="margin-top: -16px;">
+      <label class="expenseInfo" id='expenseInfoInsert'>$  GASTADOS TOTALMENTE</label>
+    </div>
+    <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="" > 
+      AÑADIR GASTO
+    </ons-button>
+    <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="" >
+      ELIMINAR
+    </ons-button>
   </ons-card>
 
   <script>
@@ -101,17 +114,17 @@
 
           let expenseNameEdit = sessionStorage.getItem("expenseNameEdit");
           document.getElementById("newExpenseNameEdit").value = expenseNameEdit;
-          document.getElementById(
-            "expensePrevTitleEdit"
-          ).innerHTML = expenseNameEdit;
+          document.getElementById("expensePrevTitleEdit" ).innerHTML = expenseNameEdit;
 
           let expenseS = JSON.parse(localStorage.getItem("expenseStorage"));
           let expenseIcon, expenseColor, isChecked;
+          let expenseInfoInsert = document.getElementById("expenseInfoInsert");
 
           for (let i = 0; i < expenseS.length; i++) {
             if (expenseS[i].expenseName == expenseNameEdit) {
               expenseIcon = expenseS[i].iconName;
               expenseColor = expenseS[i].expenseColor;
+              expenseInfoInsert.innerHTML = "$ " +  expenseS[i].totalExpense + " GASTADOS TOTALMENTE";
               //Seteo el switch
               isChecked = expenseS[i].toShow;
               break;

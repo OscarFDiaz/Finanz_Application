@@ -42,7 +42,7 @@ function loadSelectOptions() {
 
 function hideAlertExpense() {
   let eName = document.getElementById("alertExpenseNote").value;
-  let eMoney = parseFloat(document.getElementById("alertExpenseMoney").value).toFixed(2);
+  let eMoney = document.getElementById("alertExpenseMoney").value;
   let eDate = document.getElementById("alertExpenseDate").value;
   let eid = localStorage.getItem("detailExpenseCount");
 
@@ -75,6 +75,8 @@ function hideAlertExpense() {
     });
     return;
   }
+  // Convierto la cantidad después de ver que fue escrita
+  eMoney = parseFloat(eMoney).toFixed(2);
   
   if (eDate == null || eDate == "") {
     eDate = new Date().toJSON().slice(0, 10);

@@ -9,43 +9,56 @@
 
   <ons-card>
     <div class="content">
-      <div style="text-align: center; margin-top: 16px;">
-        <p>
+      <div style="text-align: center; padding-top: 16px;">
+        <div>
+          <p style="margin: 0px auto -16px 12px; text-align: left;">NOMBRE DE LA META</p>
           <ons-input
             id="newGoalName"
             modifier="underbar"
-            placeholder="NOMBRE DE LA META"
+            placeholder=""
             type="text"
-            style="display: block; margin: 16px 16px;"
+            style="display: block; margin: 0px auto 16px auto;"
           ></ons-input>
+        </div>
 
+        <div>
+          <p style="margin: 16px auto 0px 12px; text-align: left;">DESCRIPCIÓN DE LA META</p>
           <textarea
           id="newGoalDescription" 
           class="textarea" 
           rows="5" 
-          placeholder="DESCRIPCIÓN"
+          placeholder=""
           ></textarea>
+        </div>
 
+        <div>
+          <p style="margin: 16px auto -33px 12px; text-align: left;">DINERO NECESARIO</p>
           <ons-input
             id="newGoalMoney"
             modifier="underbar"
-            placeholder="DINERO NECESARIO"
+            placeholder=""
             type="number"
-            style="display: block; margin: 16px 16px;"
+            style="display: block; margin: 16px auto;"
           ></ons-input>
+        </div>
 
+        <div>
+          <p style="margin: 0px auto -33px 12px; text-align: left;">FECHA META</p>
           <ons-input
             id="newGoalDate"
             modifier="underbar"
-            placeholder="FECHA META"
+            placeholder=""
             type="date"
-            style="display: block; margin: 16px 16px;"
+            style="display: block; margin: 16px auto;"
           ></ons-input>
-        </p>
+        </div>
       </div>
 
       <ons-button class="flatButton" onclick="makeNewGoal()" style="margin-left: 0px; margin-right: 0px">
-        TERMINADO
+        LISTO!
+      </ons-button>
+      <ons-button class="flatButtonLight" onclick="functionPopPage()" style="margin-left: 0px; margin-right: 0px; margin-top: 16px">
+        CANCELAR
       </ons-button>
     </div>
   </ons-card>

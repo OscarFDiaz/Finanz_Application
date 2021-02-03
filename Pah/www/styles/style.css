@@ -851,6 +851,7 @@ ons-fab.fab--bottom__right {
   font-size: 18px;
   color: var(--color-input-text);
   top: 0px;
+  
 }
 
 .text-input--material {
@@ -858,6 +859,10 @@ ons-fab.fab--bottom__right {
   color: var(--color-input-text);
   font-size: 18px;
   text-align: center;
+
+  border-radius: 15px;
+  border: 2px solid var(--color-input);
+  height: 48px;
 
   background-image: linear-gradient(
     to top,
@@ -895,7 +900,8 @@ option {
   border-radius: 15px;
   border: 2px solid var(--text-area-border-color);
   color: var(--text-area-text-color);
-  width: 90%;
+  width: 100%;
+  margin: 0px auto;
 }
 
 .alert-dialog,

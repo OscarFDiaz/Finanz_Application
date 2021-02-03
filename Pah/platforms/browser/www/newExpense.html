@@ -2,71 +2,93 @@
   <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
     <ons-back-button></ons-back-button>
 
-    <div class="center labelToolbar">
-      NUEVO GASTO
-    </div>
+    <div class="center labelToolbar">NUEVO GASTO</div>
   </ons-toolbar>
 
   <ons-card>
     <div class="content">
-      <div style="text-align: center; margin-top: 16px;">
-        <p>
+      <div style="text-align: center; margin-top: 16px">
+        <div>
+          <p style=" margin: 0px auto -16px 12px;text-align: left; padding-top: 16px;">
+            NOMBRE DEL GASTO
+          </p>
           <ons-input
             onchange="changeTitlePreview()"
             onkeypress="this.onchange()"
             oninput="this.onchange()"
             id="newExpenseName"
             modifier="underbar"
-            placeholder="NOMBRE DEL GASTO"
+            placeholder=""
             type="text"
-            style="display: block; margin: 16px 16px;"
+            style="display: block; margin: 0px auto 16px auto"
           ></ons-input>
-        </p>
+        </div>
       </div>
 
-      <label class="iconExpenseLabel" style="margin-bottom: -20px;">SELECCIONA UN COLOR</label>
-
-      <div style="text-align: center; margin-top: 16px; margin-right: 30px;">
-        <p>
-          <ons-input
-            onchange="loadIcons()"
-            onkeypress="this.onchange()"
-            oninput="this.onchange()"
-            id="newExpenseColor"
-            type="color"
-            value="#ffffff"
-            style="display: block; margin: 16px 16px; border-radius: 50%; width: 100%; height: 30px;"
-          ></ons-input>
+      <div>
+        <p style="margin: 0px auto -16px 12px; text-align: left">
+          SELECCIONA UN COLOR
         </p>
-      </div>
-
-      <ons-list style="background: none; margin-top: -25px;">
-        <ons-list-item id="expandableListContainer" expandable>
-          <label class="iconExpenseLabel" style="margin-left: 50px;">
-            SELECCIONA UN ICONO
-          </label>
-          <div class="expandable-content" id="expenseIconListOfIcons"> 
-            <!-- AQUI SE CARGAN LOS ICONOS PARA SELECCIONAR -->
+        <div style="margin-top: 16px;border: 2px solid var(--color-input); border-radius: 15px; height: 48px;">
+          <div class="input-color-container" style="width: 100%; height: 44px; border: none">
+            <input
+              onchange="loadIcons()"
+              onkeypress="this.onchange()"
+              oninput="this.onchange()"
+              class="customInput"
+              value="#ffffff"
+              type="color"
+              id="newExpenseColor"
+              style="display: block;width: 105%;height: 150%;margin: 0px;"
+            />
           </div>
-        </ons-list-item>
-      </ons-list>
-
-      <div class="iconExpenseLabel" style="text-align: center;">
-        MOSTRAR EN INICIO
-      </div>
-      <div style="text-align: center; margin-bottom: 16px;">
-        <ons-switch id="switchNewGoal" checked></ons-switch>
+        </div>
       </div>
 
-      <ons-button class="flatButton" onclick="makeNewExpense()" style="margin-left: 0px; margin-right: 0px">
-        TERMINADO
+      <p style="margin: 16px auto 0px 12px; text-align: left; color: var(--card-content-text-color);">
+        SELECCIONA UN ICONO
+      </p>
+      <div style="border: 2px solid var(--color-input); border-radius: 15px; margin-bottom: 16px;">
+        <ons-list style="background: none; margin-top: -16px">
+          <ons-list-item id="expandableListContainer" expandable>
+            <p style="margin: 0px auto 0px 12px; text-align: left; color: var(--card-content-text-color);">
+              CLICK PARA CAMBIAR
+            </p>
+            <div class="expandable-content" id="expenseIconListOfIcons">
+              <!-- AQUI SE CARGAN LOS ICONOS PARA SELECCIONAR -->
+            </div>
+          </ons-list-item>
+        </ons-list>
+      </div>
+
+      <div>
+        <p style="margin: 0px auto -16px 12px; text-align: left">
+          MOSTRAR EN INICIO
+        </p>
+        <div style="margin-top: 16px;border: 2px solid var(--color-input); border-radius: 15px; height: 48px;">
+          <div style="text-align: left;display: block; margin: 10px 16px;">
+            <ons-switch id="switchNewGoal" checked></ons-switch>
+          </div>
+        </div>
+      </div>
+
+      <ons-button
+        class="flatButton"
+        onclick="makeNewExpense()"
+        style="margin-left: 0px; margin-right: 0px; margin-top: 16px;"
+      >
+        LISTO!
       </ons-button>
     </div>
   </ons-card>
 
   <label class="cardHomeTitle">PREVISUALIZACIÓN</label>
   <ons-card>
-    <div class="title expenseTitle" id="expensePrevTitle" style="display: inline-block;">
+    <div
+      class="title expenseTitle"
+      id="expensePrevTitle"
+      style="display: inline-block"
+    >
       NOMBRE
     </div>
     <i class="expenseIcon ion-md-laptop" id="expensePrevIcon"></i>
