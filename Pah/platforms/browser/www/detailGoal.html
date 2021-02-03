@@ -16,46 +16,59 @@
     </div>
     <div class="alert-dialog-content">
       <div style="text-align: center; margin-top: 16px;">
-        <p>
+        <div>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">NOMBRE DE LA META</p>
           <ons-input
             id="editGoalName"
             modifier="underbar"
-            placeholder="NOMBRE DE LA META"
+            placeholder=""
             type="text"
-            style="display: block; margin: 16px 16px;"
+            style="display: block;"
           ></ons-input>
+        </div>
 
+        <div>
+          <p style="margin: 0px auto 0px 12px; text-align: left; padding-top: 16px">DESCRIPCIÓN</p>
           <textarea
           id="editGoalDescription" 
           class="textarea" 
           rows="5" 
-          placeholder="DESCRIPCIÓN"
+          placeholder=""
           ></textarea>
+        </div>
 
+        <div>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">DINERO NECESARIO</p>
           <ons-input
             id="editGoalMoney"
             modifier="underbar"
-            placeholder="DINERO NECESARIO"
+            placeholder=""
             type="number"
-            style="display: block; margin: 16px 16px;"
+            style="display: block;"
           ></ons-input>
+        </div>
 
+        <div>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">DINERO ACTUAL</p>
           <ons-input
             id="editActualGoalMoney"
             modifier="underbar"
-            placeholder="DINERO ACTUAL"
+            placeholder=""
             type="number"
-            style="display: block; margin: 16px 16px;"
+            style="display: block;"
           ></ons-input>
+        </div>
 
+        <div>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">FECHA META</p>
           <ons-input
             id="editGoalDate"
             modifier="underbar"
-            placeholder="FECHA META"
+            placeholder=""
             type="date"
-            style="display: block; margin: 16px 16px;"
+            style="display: block;"
           ></ons-input>
-        </p>
+        </div>
       </div>
     </div>
 
@@ -77,26 +90,27 @@
 
     <div class="alert-dialog-content">
       <div style="text-align: center; margin-top: 16px;">
-        <p>
           <label style="color: var(--alert-custom-label);">DINERO ACTUAL: $ 
             <label id="editOnlyMoneyActualMoney" style="color: var(--alert-custom-label-money)">0</label>
           </label>
 
-          <ons-input
-          onchange="makeSum()"
-          onkeypress="this.onchange()"
-          oninput="this.onchange()"
-          id="editOnlyGoalMoney"
-          modifier="underbar"
-          placeholder="QUIERO AÑADIR / QUITAR"
-          type="number"
-          style="display: block; margin: -10px auto 16px;"
-          ></ons-input>
+          <div>
+            <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">QUIERO AÑADIR / QUITAR</p>
+            <ons-input
+            onchange="makeSum()"
+            onkeypress="this.onchange()"
+            oninput="this.onchange()"
+            id="editOnlyGoalMoney"
+            modifier="underbar"
+            placeholder=""
+            type="number"
+            style="display: block; margin: -10px auto 16px;"
+            ></ons-input>
+          </div>
 
           <label style="color: var(--alert-custom-label);">CANTIDAD NUEVA: $ 
             <label id="editOnlyEndMoney" style="color: var(--alert-custom-label-money)">0</label>
           </label>
-        </p>
       </div>
     </div>
 

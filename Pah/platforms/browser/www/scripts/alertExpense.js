@@ -594,8 +594,9 @@ function reInsertExpenseDetail(sendName) {
   }
 
   if (actualEx == 0) {
-    detailDetailExpenseView.innerHTML = `<div style="margin-bottom: 30px;">
-      <label class="labelDetailExpense">Nada por mostrar, vas bien con los ahorros...</label>
+    detailDetailExpenseView.innerHTML = 
+    `<div style="margin-bottom: 30px;">
+      <label class="labelDetailExpense" style="text-align:center">Nada por mostrar, vas bien con los ahorros...</label>
     </div>`;
   } else {
     for (let i = 0; i < expensesDetail.length; i++) {
@@ -623,8 +624,8 @@ function reInsertExpenseDetail(sendName) {
         detailDetailExpenseView.innerHTML +=
         `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
           <div class="center">
-            <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
-            <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px">${iDate}</label>
+            <label class="list-item__title labelDetailExpense" style="text-align:center; font-size:22px">${iName} - $ <span class="labelInfoDetailExpense" style="font-size:22px">${iAmount}</span></label>
+            <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px; text-align:center">${iDate}</label>
           </div>
           <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
 

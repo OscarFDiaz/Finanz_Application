@@ -31,42 +31,53 @@
 
     <div class="alert-dialog-content">
       <div style="text-align: center; margin-top: 16px;">
-        <p>
-          <label style="color: var(--alert-tile-color)">CATEGORÍA: </label>
+        <div style="text-align: left;">
+          <label style="color: var(--alert-tile-color); margin-left: 12px;">CATEGORÍA: </label>
           <select id="selectOptioCa">
             <!--AQUI SE CARGAN LAS CATEGORÍAS-->
           </select>
+        </div>
 
+        <div>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">NOTA DEL GASTO</p>
           <ons-input
             id="alertExpenseNoteSaving"
             modifier="underbar"
-            placeholder="NOTA DEL GASTO"
+            placeholder=""
             type="text"
-            style="display: block; margin: 16px 16px;"
+            style="display: block;"
           ></ons-input>
+        </div>
 
+        <div>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">DINERO GASTADO</p>
           <ons-input
             id="alertExpenseMoneySaving"
             modifier="underbar"
-            placeholder="DINERO GASTADO"
+            placeholder=""
             type="number"
-            style="display: block; margin: 16px 16px;"
+            style="display: block;"
             disabled
           ></ons-input>
+        </div>
 
+        <div>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">FECHA DEL GASTO</p>
           <ons-input
             id="alertExpenseDateSaving"
             modifier="underbar"
-            placeholder="FECHA DEL GASTO"
+            placeholder=""
             type="date"
-            style="display: block; margin: 16px 16px;"
+            style="display: block;"
           ></ons-input>
+        </div>
 
-          <label style="color: var(--alert-tile-color)">RESTAR A: </label>
+        <div style="margin-top: 16px; text-align: left;">
+          <label style="color: var(--alert-tile-color); margin-left: 12px;">RESTAR A: </label>
           <select id="selectOption">
             <!--AQUI SE CARGAN LOS POSIBLES GASTOS-->
           </select>
-        </p>
+        </div>
       </div>
     </div>
 
@@ -99,16 +110,19 @@
             >
           </label>
 
-          <ons-input
-            onchange="makeSavingOperation()"
-            onkeypress="this.onchange()"
-            oninput="this.onchange()"
-            id="alertInputSaving"
-            modifier="underbar"
-            placeholder="QUIERO AÑADIR / QUITAR"
-            type="number"
-            style="display: block; margin: -10px auto 16px"
-          ></ons-input>
+          <div>
+            <p style="margin: 0px auto -16px 12px; text-align: left;">QUIERO AÑADIR / QUITAR</p>
+            <ons-input
+              onchange="makeSavingOperation()"
+              onkeypress="this.onchange()"
+              oninput="this.onchange()"
+              id="alertInputSaving"
+              modifier="underbar"
+              placeholder=""
+              type="number"
+              style="display: block; margin: -10px auto 16px"
+            ></ons-input>
+          </div>
 
           <label style="color: var(--alert-custom-label)"
             >CANTIDAD NUEVA: $

@@ -38,16 +38,19 @@
             <label id="editMoneyActualMoney" style="color: var(--alert-custom-label-money)">0</label>
           </label>
 
-          <ons-input
-          onchange="makeSumMoney()"
-          onkeypress="this.onchange()"
-          oninput="this.onchange()"
-          id="editOnlyMoneyMoney"
-          modifier="underbar"
-          placeholder="QUIERO AÑADIR / QUITAR"
-          type="number"
-          style="display: block; margin: -10px auto 16px;"
-          ></ons-input>
+          <div>
+            <p style="margin: 0px auto -16px 12px; text-align: left;">QUIERO AÑADIR / QUITAR</p>
+            <ons-input
+            onchange="makeSumMoney()"
+            onkeypress="this.onchange()"
+            oninput="this.onchange()"
+            id="editOnlyMoneyMoney"
+            modifier="underbar"
+            placeholder=""
+            type="number"
+            style="display: block; margin: -10px auto 16px;"
+            ></ons-input>
+          </div>
 
           <label style="color: var(--alert-custom-label);">CANTIDAD NUEVA: $ 
             <label id="editMoneyEndMoney" style="color: var(--alert-custom-label-money)">0</label>

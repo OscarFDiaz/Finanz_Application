@@ -79,23 +79,34 @@
   <ons-card style="padding-top: 16px">
     <div class="content">
       <label class="entryAmountText"
-        >CANTIDAD INGRESADA: <span class="entryAmountDetail">$ </span>
-        <span id="entryAmount" class="entryAmountDetail">0</span></label
-      >
+        >CANTIDAD INGRESADA: 
+        <div style="display: block;">
+          <span class="entryAmountDetail">$ </span>
+          <span id="entryAmount" class="entryAmountDetail">0</span>
+        </div>
+      </label>
 
       <label class="entryAmountText"
-        >DÍAS: <span id="entryDays" class="entryAmountDetail"></span></label
-      >
+        >DÍAS: 
+        <div style="display: block;">
+          <span id="entryDays" class="entryAmountDetail"></span>
+        </div>
+      </label>
 
       <label class="entryAmountText"
         >PORCENTAJE:
-        <span id="entryPercent" class="entryAmountDetail"></span></label
-      >
+        <div style="display: block;">
+          <span id="entryPercent" class="entryAmountDetail"></span>
+        </div>
+      </label>
 
-      <label class="entryAmountText"
-        >PARA GASTAR: <span class="entryAmountDetail">$ </span>
-        <span id="entryExpend" class="entryAmountDetail">0</span></label
-      >
+      <label class="entryAmountText" style="margin-bottom: 0px;"
+        >PARA GASTAR: 
+        <div style="display: block;">
+          <span class="entryAmountDetail">$ </span>
+          <span id="entryExpend" class="entryAmountDetail">0</span>
+        </div>
+      </label>
     </div>
   </ons-card>
 
@@ -118,7 +129,7 @@
         ></label
       >
 
-      <label class="entryAmountText"
+      <label class="entryAmountText" style="margin-bottom: 0px;"
         >PARA GASTAR: <span class="entryAmountDetail">$ </span>
         <span id="entryCurrentExpend" class="entryAmountDetail">0</span
         ></label
@@ -126,7 +137,7 @@
     </div>
   </ons-card>
 
-  <label class="cardHomeTitle">FONDO AHORRADO</label>
+  <label class="cardHomeTitle" >FONDO AHORRADO</label>
   <ons-card style="padding-bottom: 16px;">
     <div class="title totalMoneyTitle" id="totalSavingAmount"></div>
     <ons-button class="flatButton" onclick="resetSavingMoney()" >REINCIAR</ons-button>

@@ -58,13 +58,14 @@
   padding-top: 16px;
   color: var(--expense-detail);
 
-  font-size: 20px;
-  text-align: center;
+  font-size: 14px;
+  text-align: left;
   font-weight: 400;
   font-style: normal;
 }
 
 .labelInfoDetailExpense {
-  font-weight: 500;
+  font-weight: bold;
   color: var(--expense-detail-money);
+  font-size: 30px;
 }

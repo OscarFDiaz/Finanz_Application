@@ -10,27 +10,38 @@
     <ons-card onclick="">
       <div class="content">
         <div style="text-align: center; margin-top: 16px;">
-          <p>
+          <div>
+            <p style=" margin: 0px auto -16px 12px;text-align: left; padding-top: 16px;">
+              NOMBRE DEL DINERO
+            </p>
             <ons-input
               id="newMoneyName"
               modifier="underbar"
-              placeholder="NOMBRE DEL DINERO"
+              placeholder=""
               type="text"
-              style="display: block; margin: 16px 16px;"
+              style="display: block;"
             ></ons-input>
+          </div>
   
+          <div>
+            <p style=" margin: 0px auto -16px 12px;text-align: left; padding-top: 16px;">
+              DINERO ACTUAL
+            </p>
             <ons-input
               id="newMoneyMoney"
               modifier="underbar"
-              placeholder="DINERO ACTUAL"
+              placeholder=""
               type="number"
-              style="display: block; margin: 16px 16px;"
+              style="display: block;"
             ></ons-input>
-          </p>
+          </div>
         </div>
   
-        <ons-button class="flatButton" onclick="makeNewMoney()" style="margin-left: 0px; margin-right: 0px">
-          TERMINADO
+        <ons-button class="flatButton" onclick="makeNewMoney()" style="margin-left: 0px; margin-right: 0px; margin-top: 16px;">
+          LISTO!
+        </ons-button>
+        <ons-button class="flatButtonLight" onclick="functionPopPage()" style="margin-left: 0px; margin-right: 0px; margin-top: 16px;">
+          CANCELAR
         </ons-button>
       </div>
     </ons-card>

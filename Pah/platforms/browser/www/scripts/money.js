@@ -23,7 +23,7 @@ function makeNewMoney() {
       "No puedo añadir una cartera con dinero negativo, supondre que la cartera esta vacia.",
       {
         title: "Error!",
-        timeout: 2000,
+        timeout: 2500,
         animation: "ascend",
       }
     );
@@ -32,7 +32,7 @@ function makeNewMoney() {
 
   let money = {
     moneyName,
-    moneyCurrent,
+    moneyCurrent
   };
 
   if (localStorage.getItem("moneyStorage") === null) {

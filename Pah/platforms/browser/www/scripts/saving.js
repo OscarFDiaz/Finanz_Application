@@ -128,13 +128,13 @@ function updateSavingPreview() {
   /* Update del preview */
   document.getElementById("entryAmount").innerHTML = parseFloat(mainAmount).toFixed(2);
   document.getElementById("entryDays").innerHTML = rangeDays;
-  document.getElementById("entryPercent").innerHTML = rangePercent + "% | $ " + parseFloat(equivalentAmount).toFixed(2);
+  document.getElementById("entryPercent").innerHTML = rangePercent + " % | $ " + parseFloat(equivalentAmount).toFixed(2);
   let toExpend = (parseFloat(equivalentAmount) / parseInt(rangeDays)).toFixed(2);
   document.getElementById("entryExpend").innerHTML = toExpend;
 
   /*Update de los range*/
   document.getElementById("rangeSelectDays").innerHTML = rangeDays;
-  document.getElementById("rangeSelectPercent").innerHTML = rangePercent + "%";
+  document.getElementById("rangeSelectPercent").innerHTML = rangePercent + " %";
 
   /*Fondo ahorrado*/
   let amountSaved = localStorage.getItem("savedMoneySaving");
@@ -152,38 +152,52 @@ function updateLastSaving() {
     cSavingView.innerHTML = `<label class="cardHomeTitle" style="margin-top: 0px">NO HAY UN FONDO ACTIVO...</label>`;
     return;
   } else {
-    cSavingView.innerHTML = `<label class="entryAmountText"
-        >CANTIDAD INGRESADA: <span class="entryAmountDetail">$ </span>
-        <span id="entryCurrentAmount" class="entryAmountDetail">0</span></label
-        >
+    cSavingView.innerHTML = 
+     `<label class="entryAmountText"
+        >CANTIDAD INGRESADA: 
+        <div style="display: block;">
+          <span class="entryAmountDetail">$ </span>
+          <span id="entryCurrentAmount" class="entryAmountDetail">0</span>
+        </div>
+      </label>
 
         <label class="entryAmountText"
         >DÍAS SELECCIONADOS:
-        <span id="entryCurrentDays" class="entryAmountDetail"></span></label
+          <div style="display: block;">
+            <span id="entryCurrentDays" class="entryAmountDetail"></span>
+          </div>
+        </label
         >
 
         <label class="entryAmountText"
         >DÍAS RESTANTES:
-        <span id="entryCurrentDaysLeft" class="entryAmountDetail"></span></label
-        >
+          <div style="display: block;">
+            <span id="entryCurrentDaysLeft" class="entryAmountDetail"></span>
+          </div>
+        </label>
 
         <label class="entryAmountText"
         >PORCENTAJE:
-        <span id="entryCurrentPercent" class="entryAmountDetail"></span
-        ></label
-        >
+          <div style="display: block;">
+            <span id="entryCurrentPercent" class="entryAmountDetail"></span>
+          </div>
+        </label>
 
         <label class="entryAmountText"
-        >PARA GASTAR: <span class="entryAmountDetail">$ </span>
-        <span id="entryCurrentExpend" class="entryAmountDetail">0</span
-        ></label
-        >
+        >PARA GASTAR: 
+          <div style="display: block;">
+            <span class="entryAmountDetail">$ </span>
+            <span id="entryCurrentExpend" class="entryAmountDetail">0</span>
+          </div>
+        </label>
         
-        <label class="entryAmountText"
-        >DISPONIBLE ACTUAL: <span class="entryAmountDetail">$ </span>
-        <span id="entryCurrentExpendLeft" class="entryAmountDetail">0</span
-        ></label
-        >`;
+        <label class="entryAmountText" style="margin-bottom: 0px;"
+        >DISPONIBLE ACTUAL: 
+          <div style="display: block;">
+            <span class="entryAmountDetail">$ </span>
+            <span id="entryCurrentExpendLeft" class="entryAmountDetail">0</span>
+          </div>
+        </label>`;
   }
 
   let sInnerAmount = savingStorage.mainAmount;
@@ -194,11 +208,11 @@ function updateLastSaving() {
   let sDaysLeft = savingStorage.daysLeft;
   let sMoneyDayLeft = savingStorage.moneyLeft;
 
-  document.getElementById("entryCurrentAmount").innerHTML = sInnerAmount;
+  document.getElementById("entryCurrentAmount").innerHTML = parseFloat(sInnerAmount).toFixed(2);
   document.getElementById("entryCurrentDays").innerHTML = sDaysSelected;
   document.getElementById("entryCurrentDaysLeft").innerHTML = sDaysLeft;
   document.getElementById("entryCurrentPercent").innerHTML =
-    sPercent + "% | $ " + sTakedAmount;
+    sPercent + " % | $ " + sTakedAmount;
   document.getElementById("entryCurrentExpend").innerHTML = sMoneyDay;
   document.getElementById("entryCurrentExpendLeft").innerHTML = sMoneyDayLeft;
 }
@@ -271,7 +285,7 @@ function loadSaving() {
           FONDO
       </div>
       <div class="content">
-          <label id="savingsInfo" class="savingInfo">$${sTakedAmount} / $${sMoneyDay}</label>
+          <label id="savingsInfo" class="savingInfo">$ ${sTakedAmount} / $ ${sMoneyDay}</label>
       </div>
     </ons-card>
 
@@ -280,7 +294,7 @@ function loadSaving() {
           DISPONIBLE
       </div>
       <div class="content">
-          <label id="savingsDailyInfo" class="savingDaily">$${sMoneyDayLeft}</label>
+          <label id="savingsDailyInfo" class="savingDaily">$ ${sMoneyDayLeft}</label>
           <ons-button class="flatButton" onclick="editMoneySaving()" style="margin-left: 0px; margin-right: 0px">MODIFICAR DINERO</ons-button>
       </div>
     </ons-card>

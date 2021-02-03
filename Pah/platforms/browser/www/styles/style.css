@@ -873,14 +873,18 @@ ons-fab.fab--bottom__right {
 
 select {
   display: block;
-  width: 90%;
+  width: 100%;
+  height: 48px;
+
   margin-left: auto;
   margin-right: auto;
+
   background: none;
   border: none;
   color: var(--color-input-text);
   font-size: 18px;
-  border-bottom: 2px solid var(--color-input);
+  border: 2px solid var(--color-input);
+  border-radius: 15px;
 }
 
 option {

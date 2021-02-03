@@ -196,27 +196,34 @@ function getExpenses() {
   let totalFDays = getAmountFDaysN();
   let totalTDays = getAmountTDaysN();
 
-  expensesView.innerHTML += `<ons-card>
+  expensesView.innerHTML += 
+  `<ons-card>
     <div class="content">
       <label class="labelDetailExpense"
-        >Gasto total: $ 
-        <span id="totalExpenseDetailMain" class="labelInfoDetailExpense"
-          >${totalExpenses}</span
-        ></label
-      >
+        >Gasto total:
+        <div style="display: block; font-size: 30px; font-weight: bold;">$ 
+          <span id="totalExpenseDetailMain" class="labelInfoDetailExpense"
+            >${totalExpenses}</span
+          >
+        </div>
+      </label>
       
       <label class="labelDetailExpense"
-        >Últimos 15 días: $ 
-        <span id="lastDaysDetailMain" class="labelInfoDetailExpense"
-          >${totalFDays}</span
-        ></label
-      >
+        >Últimos 15 días: 
+        <div style="display: block; font-size: 30px; font-weight: bold;">$ 
+          <span id="lastDaysDetailMain" class="labelInfoDetailExpense"
+            >${totalFDays}</span
+          >
+        </div>
+      </label>
       <label class="labelDetailExpense"
-        >Últimos 31 días: $ 
-        <span id="lastMonthDetailMain" class="labelInfoDetailExpense"
-          >${totalTDays}</span
-        ></label
-      >
+        >Últimos 31 días: 
+        <div style="display: block; font-size: 30px; font-weight: bold;">$ 
+          <span id="lastMonthDetailMain" class="labelInfoDetailExpense"
+            >${totalTDays}</span
+          >
+        </div>
+      </label>
     </div>
   </ons-card>`;
 
@@ -550,11 +557,12 @@ function loadDetailExpense() {
 
   document.getElementById("titleDetailExpense").innerHTML = eName;
 
-  expenseView.innerHTML += `<ons-card style="padding-bottom:16px">
-    <div class="content" style="padding:0px">
-      <label class="labelDetailExpense"
+  expenseView.innerHTML += 
+  `<ons-card style="padding-bottom:16px">
+    <div class="content" style="padding:0px;">
+      <label class="labelDetailExpense" style="text-align:center; font-size: 20px"
         >Fecha creación:
-        <span id="expenseCreationDate" class="labelInfoDetailExpense"
+        <span id="expenseCreationDate" class="labelInfoDetailExpense" style="font-size: 20px"
           >${mDate}</span
         ></label
       >
@@ -564,24 +572,30 @@ function loadDetailExpense() {
   <ons-card>
     <div class="content">
       <label class="labelDetailExpense"
-        >Gasto total: $ 
-        <span id="totalExpenseDetail" class="labelInfoDetailExpense"
-          >${eTotal}</span
-        ></label
-      >
+        >Gasto total: 
+        <div style="display: block; font-size: 30px; font-weight: bold;">$  
+          <span id="totalExpenseDetail" class="labelInfoDetailExpense"
+            >${eTotal}</span
+          >
+        </div>
+      </label>
       
       <label class="labelDetailExpense"
-        >Últimos 15 días: $ 
-        <span id="lastDaysDetail" class="labelInfoDetailExpense"
-          >${lastFDays}</span
-        ></label
-      >
+        >Últimos 15 días: 
+        <div style="display: block; font-size: 30px; font-weight: bold;">$  
+          <span id="lastDaysDetail" class="labelInfoDetailExpense"
+            >${lastFDays}</span
+          >
+        </div>
+      </label>
       <label class="labelDetailExpense"
-        >Últimos 30 días: $ 
-        <span id="lastMonthDetail" class="labelInfoDetailExpense"
-          >${lastTDays}</span
-        ></label
-      >
+        >Últimos 30 días: 
+        <div style="display: block; font-size: 30px; font-weight: bold;">$  
+          <span id="lastMonthDetail" class="labelInfoDetailExpense"
+            >${lastTDays}</span
+          >
+        </div>
+      </label>
     </div>
   </ons-card>
   
@@ -628,8 +642,9 @@ function loadDetailExpense() {
   }
 
   if (actualEx == 0) {
-    detailDetailExpenseView.innerHTML = `<div style="margin-bottom: 30px;">
-      <label class="labelDetailExpense">Nada por mostrar, vas bien con los ahorros...</label>
+    detailDetailExpenseView.innerHTML = 
+    `<div style="margin-bottom: 30px;">
+      <label class="labelDetailExpense" style="text-align:center">Nada por mostrar, vas bien con los ahorros...</label>
     </div>`;
   } else {
     for (let i = 0; i < expensesDetail.length; i++) {
@@ -654,10 +669,11 @@ function loadDetailExpense() {
           }
         }
 
-        detailDetailExpenseView.innerHTML += `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+        detailDetailExpenseView.innerHTML += 
+        `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
           <div class="center">
-            <label class="list-item__title labelDetailExpense">${iName} - $ <span class="labelInfoDetailExpense">${iAmount}</span></label>
-            <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px">${iDate}</label>
+            <label class="list-item__title labelDetailExpense" style="text-align:center; font-size:22px">${iName} - $ <span class="labelInfoDetailExpense" style="font-size:22px">${iAmount}</span></label>
+            <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px; text-align:center">${iDate}</label>
           </div>
           <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
 
