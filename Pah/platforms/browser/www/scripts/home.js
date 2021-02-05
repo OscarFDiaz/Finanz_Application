@@ -219,28 +219,37 @@ function loadOptions() {
 
   let totalMoney = localStorage.getItem("storageSwitchTotalMoney");
   if (totalMoney == true || totalMoney == "true") {
-    userHomeView.innerHTML += `<label class="cardHomeTitle">DINERO TOTAL</label>
+    /* */
+    userHomeView.innerHTML += 
+    `<label class="cardHomeTitle">DINERO TOTAL</label>
     <ons-card onclick="fn.load('money.html')">
-      <div class="title totalMoneyTitle" id="totalMoneyMoney">
+      <div class="title totalMoneyTitle" style="color: var(--card-text-title-color); display: block">$ 
+        <span class="totalMoneyTitle" id="totalMoneyMoney">
+        </span>
       </div>
     </ons-card>`;
   }
 
   let expenses = localStorage.getItem("storageSwitchExpenses");
   if (expenses == true || expenses == "true") {
-    userHomeView.innerHTML += `<label class="cardHomeTitle">GASTOS</label>
+    userHomeView.innerHTML += 
+    `<label class="cardHomeTitle">GASTOS</label>
     <ons-card onclick="fn.load('expenses.html')" style="padding-top: 16px;">
       <div class="content">
         <canvas id="oilChart" width="400" height="400"></canvas>
       </div>
     </ons-card>`;
+
   }
 
   let savings = localStorage.getItem("storageSwitchSavings");
   if (savings == true || savings == "true") {
-    userHomeView.innerHTML += `<label class="cardHomeTitle">FONDO AHORRADO</label>
+    userHomeView.innerHTML += 
+    `<label class="cardHomeTitle">FONDO AHORRADO</label>
     <ons-card onclick="fn.load('savings.html')">
-      <div class="title totalMoneyTitle" id="totalSavingsAmount">
+      <div class="title totalMoneyTitle" style="color: var(--card-text-title-color); display: block">$
+        <span class="totalMoneyTitle" id="totalSavingsAmount">
+        </span>
       </div>
     </ons-card>`;
   }
@@ -261,7 +270,7 @@ function loadOptions() {
 
   if (totalMoney == "true") {
     let amount = getTotalMoney();
-    document.getElementById("totalMoneyMoney").innerHTML = "$ " + amount;
+    document.getElementById("totalMoneyMoney").innerHTML = amount;
   }
 
   if (expenses == "true") {
@@ -270,7 +279,7 @@ function loadOptions() {
 
   if (savings == "true") {
     let amount = getTotalSavings();
-    document.getElementById("totalSavingsAmount").innerHTML = "$ " + amount;
+    document.getElementById("totalSavingsAmount").innerHTML = amount;
   }
 
   if (goals == "true") {

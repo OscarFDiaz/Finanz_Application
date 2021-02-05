@@ -208,12 +208,11 @@ function hideAlertDialogMoney() {
       document.getElementById("pbarDetail").style.setProperty('--width', calculatedPercent);
       
       // Modifico los elementos para mostrar la cantidad de dinero actualizada
-      document.getElementById("detailMoneyStatus").innerHTML = "";
-      
-      document.getElementById("detailMoneyStatus").innerHTML =
-      "$ " + newMoney +
-      " de $ " +
-      updateGoalObject.goalMoney;
+      document.getElementById("detailMoneyActualMoney").innerHTML = "";
+      document.getElementById("detailMoneyActualMoney").innerHTML = newMoney;
+
+      document.getElementById("detailMoneyGoalGoalMoney").innerHTML = "";
+      document.getElementById("detailMoneyGoalGoalMoney").innerHTML = updateGoalObject.goalMoney;
       
       if (localStorage.getItem("goalStorage") === null) {
         let goalsArray = [];

@@ -48,9 +48,9 @@
   --expense-detail: #9cd9ce;
   --expense-detail-money: #f5a11b;
 
-  --detail-goal-title-color: #9cd9ce;
+  --detail-goal-title-color: #ffffff;
   --detail-goal-content-color: #9cd9ce;
-  --detail-money-goal: #0596a6;
+  --detail-money-goal: #f5a11b;
 
   --home-total-money: #f5a11b;
   --home-goal-label: #9cd9ce;
@@ -637,9 +637,9 @@
   --expense-detail: #9cd9ce;
   --expense-detail-money: #f5a11b;
 
-  --detail-goal-title-color: #9cd9ce;
+  --detail-goal-title-color: #ffffff;
   --detail-goal-content-color: #9cd9ce;
-  --detail-money-goal: #0596a6;
+  --detail-money-goal: #f5a11b;
 
   --home-total-money: #f5a11b;
   --home-goal-label: #9cd9ce;

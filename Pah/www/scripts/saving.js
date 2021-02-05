@@ -128,20 +128,20 @@ function updateSavingPreview() {
   /* Update del preview */
   document.getElementById("entryAmount").innerHTML = parseFloat(mainAmount).toFixed(2);
   document.getElementById("entryDays").innerHTML = rangeDays;
-  document.getElementById("entryPercent").innerHTML = rangePercent + " % | $ " + parseFloat(equivalentAmount).toFixed(2);
+  document.getElementById("entryPercent").innerHTML = rangePercent + `<span style="color: var(--card-text-title-color)"> % </span> | <span style="color: var(--card-text-title-color)">$</span> ` + parseFloat(equivalentAmount).toFixed(2);
   let toExpend = (parseFloat(equivalentAmount) / parseInt(rangeDays)).toFixed(2);
   document.getElementById("entryExpend").innerHTML = toExpend;
 
   /*Update de los range*/
   document.getElementById("rangeSelectDays").innerHTML = rangeDays;
-  document.getElementById("rangeSelectPercent").innerHTML = rangePercent + " %";
+  document.getElementById("rangeSelectPercent").innerHTML = rangePercent + ` <span style="color: var(--card-text-title-color)">%</span>`;
 
   /*Fondo ahorrado*/
   let amountSaved = localStorage.getItem("savedMoneySaving");
   if (amountSaved == null || amountSaved == ""){
     amountSaved = 0
   } 
-  document.getElementById("totalSavingAmount").innerHTML = "$ " + amountSaved;
+  document.getElementById("totalSavingAmount").innerHTML = `<span style="color: var(--card-text-title-color)">$</span> ` + amountSaved;
 }
 
 function updateLastSaving() {
@@ -156,7 +156,7 @@ function updateLastSaving() {
      `<label class="entryAmountText"
         >CANTIDAD INGRESADA: 
         <div style="display: block;">
-          <span class="entryAmountDetail">$ </span>
+          <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
           <span id="entryCurrentAmount" class="entryAmountDetail">0</span>
         </div>
       </label>
@@ -186,7 +186,7 @@ function updateLastSaving() {
         <label class="entryAmountText"
         >PARA GASTAR: 
           <div style="display: block;">
-            <span class="entryAmountDetail">$ </span>
+            <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
             <span id="entryCurrentExpend" class="entryAmountDetail">0</span>
           </div>
         </label>
@@ -194,7 +194,7 @@ function updateLastSaving() {
         <label class="entryAmountText" style="margin-bottom: 0px;"
         >DISPONIBLE ACTUAL: 
           <div style="display: block;">
-            <span class="entryAmountDetail">$ </span>
+            <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
             <span id="entryCurrentExpendLeft" class="entryAmountDetail">0</span>
           </div>
         </label>`;
@@ -211,8 +211,7 @@ function updateLastSaving() {
   document.getElementById("entryCurrentAmount").innerHTML = parseFloat(sInnerAmount).toFixed(2);
   document.getElementById("entryCurrentDays").innerHTML = sDaysSelected;
   document.getElementById("entryCurrentDaysLeft").innerHTML = sDaysLeft;
-  document.getElementById("entryCurrentPercent").innerHTML =
-    sPercent + " % | $ " + sTakedAmount;
+  document.getElementById("entryCurrentPercent").innerHTML = sPercent + `<span style="color: var(--card-text-title-color)"> % </span> | <span style="color: var(--card-text-title-color)">$</span> ` + sTakedAmount;
   document.getElementById("entryCurrentExpend").innerHTML = sMoneyDay;
   document.getElementById("entryCurrentExpendLeft").innerHTML = sMoneyDayLeft;
 }
@@ -285,7 +284,9 @@ function loadSaving() {
           FONDO
       </div>
       <div class="content">
-          <label id="savingsInfo" class="savingInfo">$ ${sTakedAmount} / $ ${sMoneyDay}</label>
+          <label id="savingsInfo" class="savingInfo">
+            <span style="color: var(--card-text-title-color)">$</span> ${sTakedAmount} / 
+            <span style="color: var(--card-text-title-color)">$</span> ${sMoneyDay}</label>
       </div>
     </ons-card>
 
@@ -294,7 +295,10 @@ function loadSaving() {
           DISPONIBLE
       </div>
       <div class="content">
-          <label id="savingsDailyInfo" class="savingDaily">$ ${sMoneyDayLeft}</label>
+          <label id="savingsDailyInfo" class="savingDaily">
+            <span style="color: var(--card-text-title-color)">$</span> 
+            ${sMoneyDayLeft}
+          </label>
           <ons-button class="flatButton" onclick="editMoneySaving()" style="margin-left: 0px; margin-right: 0px">MODIFICAR DINERO</ons-button>
       </div>
     </ons-card>

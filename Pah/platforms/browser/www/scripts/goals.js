@@ -158,16 +158,20 @@ function getGoals() {
       }
     }
 
-    // cambiar pushTest()
-    goalsView.innerHTML += `<ons-card onclick="findGoal('${gName}')">
+    goalsView.innerHTML += 
+    `<ons-card onclick="findGoal('${gName}')">
         <div class="title" id="titleGoal">
           ${gName}
         </div>
         <div class="content">
-          <label id="goalInfo">$ ${gAMoney} de $ ${gMoney} | ${gDate}</label>
-          <div class="progressBarContainer"> 
-            <div class="progressBarPercent" style="--width: ${gPercent}" id="${gName}-pbar"></div> 
-          </div> 
+          <label id="goalInfo">${gDate}</label>
+          <div>
+            <div class="progressBarContainer"> 
+              <div class="progressBarPercent" style="--width: ${gPercent}" id="${gName}-pbar"></div> 
+            </div> 
+            <span style="font-weight: 600">$ ${gAMoney}</span>
+            <span style="font-weight: 600; position: absolute; right: 16px; margin-right: 16px;">$ ${gMoney}</span>
+          </div>
         </div>
       </ons-card>`;
   }
@@ -350,6 +354,7 @@ function loadDetailGoal() {
   let gDescription = parseGoal.description;
   let gAMoney = parseGoal.actualMoney;
   let gMoney = parseGoal.goalMoney;
+  let nModifyDate = parseGoal.date;
   let gDate = parseGoal.date;
 
   let gPercent = getPercent(gMoney, gAMoney);
@@ -375,33 +380,39 @@ function loadDetailGoal() {
   goalsView.innerHTML = "";
 
   goalsView.innerHTML += 
-    `<ons-card>
-      <div class="title detailTitle">
-        ${gName}
-      </div>
+   `<label class="cardHomeTitle" style="margin-top: 0px">DESCRIPCIÓN</label>
+    <ons-card style="padding-top:16px">
       <div class="content detailInfo">
-        <p>
           ${gDescription}
-        </p>
       </div>
     </ons-card>
 
+    <label class="cardHomeTitle">PROGRESO</label>
     <ons-card>
-      <div class="title percentDetailTitle" id="${gName}-pnumber">
-        ${gPercent}%
+      <div style="padding-top: 16px">
+        <span style="margin-left: 20px; font-size: 30px; font-weight: bold; color: var(--detail-goal-content-color)">$ 
+          <span style="color: var(--detail-money-goal)" id="detailMoneyActualMoney">${gAMoney}</span>
+        </span>
+        <span style="position: absolute; right: 16px; margin-right: 20px;font-size: 16px; font-weight: 600; margin-top: 16px; color: var(--detail-goal-content-color)">$ 
+          <span style="color: var(--detail-money-goal)" id="detailMoneyGoalGoalMoney">${gMoney}</span>
+        </span>
+        <div class="progressBarContainer percentBar" style="margin-top:0px"> 
+          <div class="progressBarPercent" style="--width:${gPercent}" data-label="${gPercent}" id="pbarDetail">
+            <span style="white-space: nowrap; margin-left: 47%; color: var(--progressbar-back-color); font-weight: bold; position: relative; top: -5px; font-size:20px" id="${gName}-pnumber">${gPercent} %</span>
+          </div> 
+        </div> 
       </div>
 
-      <div class="progressBarContainer percentBar"> 
-        <div class="progressBarPercent" style="--width:${gPercent}" id="pbarDetail"></div> 
-      </div> 
-
       <div class="content">
-        <label class="moneyDetailGoal" id="detailMoneyStatus">
-          $ ${gAMoney} de $ ${gMoney}
-        </label>
-        <label class="moneyDetailGoal">
-          ${gDate}
-        </label>
+        <div style="height: 95px">
+          <i class="menuIcon ion-md-calendar" style="font-size: 70px; margin-left: 6px; display: inline-block;color: var(--detail-goal-title-color);"></i>
+          <label class="moneyDetailGoal" style="display: block; position: relative; top: -68px; left: 76px; font-size: 14px;">
+            ${nModifyDate}
+          </label>
+          <label class="moneyDetailGoal" style="display: block; position: relative;top: -66px; left: 76px; font-weight:500">
+            ${gDate}
+          </label>
+        </div>
         <ons-button class="flatButton" style="margin-top: 16px; margin-left: 0px; margin-right: 0px" onclick="addMoneyGoal('${gName}')">
           MODIFICAR DINERO
         </ons-button>

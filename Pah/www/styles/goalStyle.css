@@ -42,11 +42,6 @@
 }
 
 .moneyDetailGoal {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
-  text-align: center;
-  font-size: 28px;
-  color: var(--detail-money-goal);
+  font-size: 20px;
+  color: var(--detail-goal-title-color);
 }
