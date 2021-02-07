@@ -45,6 +45,15 @@ function hideAlertDialog() {
   let testMoney = Math.sign(goalMoney);
   let testGMoney = Math.sign(actualMoney);
 
+  if (goalMoney == "" || goalMoney == null || goalMoney == "NaN"){
+    ons.notification.toast("Un momento, cuanto dinero necesita tu meta?!", {
+      title: "Error!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+    return;
+  }
+
   if (testMoney == "-1" || testMoney === "-0") {
     ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
       title: "Aviso!",

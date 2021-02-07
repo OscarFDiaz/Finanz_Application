@@ -233,13 +233,16 @@ function getExpenses() {
     let eColor = expenses[i].expenseColor;
     let eExpense = expenses[i].totalExpense;
 
-    expensesView.innerHTML += `<ons-card>
-      <div class="title expenseTitle" onclick="findExpense('${eName}')">
+    expensesView.innerHTML += 
+    `<ons-card>
+      <div class="title expenseTitle" onclick="findExpense('${eName}')" style="padding-top: 16px; padding-left: 16px;">
         ${eName}
-        <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor}"></i>
+      </div>
+      <div style="position: relative;left: 298px; top: -58px;">
+        <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor}; position: absolute;font-size: 80px;"></i>
       </div>
       <div class="content">
-        <label class="expenseInfo">$ ${eExpense} GASTADOS TOTALMENTE</label>
+        <label class="expenseInfo">$ ${eExpense} GASTADOS</label>
       </div>
       <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addExpenseToExpense('${eName}')" > 
         AÑADIR GASTO

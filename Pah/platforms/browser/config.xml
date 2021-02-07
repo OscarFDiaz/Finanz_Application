@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.oscar.diaz" version="1.80.10" versionCode="7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Pah</name>
+<widget id="com.oscar.diaz" version="1.80.90" versionCode="8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Finanz</name>
     <description>
-        Aplicación sencilla para el manejo de finanzas personales.
+        Aplicación para el manejo de finanzas personales y manejo de gastos.
     </description>
+    <meta content="Finanz - Aplicación para el manejo de finanzas personales y manejo de gastos." name="description" />
+    <meta content="index,follow" name="robots" />
     <author email="oscarf.diaz@alumnos.udg.mx" href="https://github.com/OscarFDiaz">
         Oscar Diaz
     </author>
