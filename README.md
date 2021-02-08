@@ -1,5 +1,5 @@
 # ProyectoAhorro
-Aplicación movil, para el manejo de finanzas personales básicas.
+Aplicación movil, para el control de gastos y manejo de finanzas personales
 ![t1](https://user-images.githubusercontent.com/9502714/95772741-da23e780-0c82-11eb-9756-bdde635191f5.jpg)
 ![t2](https://user-images.githubusercontent.com/9502714/95772747-dc864180-0c82-11eb-8149-0cdbb149d392.jpg)
 ![t3](https://user-images.githubusercontent.com/9502714/95772748-ddb76e80-0c82-11eb-8c65-554cb75b731e.jpg)
