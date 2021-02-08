@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.oscar.diaz" versionCode= "8" version="1.80.90" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.oscar.diaz" versionCode= "9" version="1.80.95" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     
 	<name>Finanz</name>
 	
@@ -7,8 +7,7 @@
         Aplicación para el manejo de finanzas personales y manejo de gastos.
     </description>
 
-    <meta name="description" content="Finanz - Aplicación para el manejo de finanzas personales y manejo de gastos."/>
-    <meta name="robots" content="index,follow" />
+    <meta name="description" content="Finanz: Aplicación para el manejo de finanzas personales y manejo de gastos."/>
 	
     <author email="finanz.application@gmail.com" href="https://github.com/OscarFDiaz">
         Oscar Diaz
