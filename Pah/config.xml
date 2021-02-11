@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.oscar.diaz" versionCode= "9" version="1.80.95" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.oscar.diaz" versionCode= "10" version="1.80.96" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     
-	<name>Finanz</name>
+	<name>Finanzy</name>
 	
     <description>
-        Aplicación para el manejo de finanzas personales y manejo de gastos.
+        Finanzy: Control de gastos y finanzas personales.
     </description>
 
-    <meta name="description" content="Finanz: Aplicación para el manejo de finanzas personales y manejo de gastos."/>
+    <meta name="description" content="Finanzy: Control de gastos y finanzas personales."/>
 	
     <author email="finanz.application@gmail.com" href="https://github.com/OscarFDiaz">
         Oscar Diaz
