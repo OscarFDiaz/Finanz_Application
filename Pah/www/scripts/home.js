@@ -1,4 +1,3 @@
-
 function makeChart() {
   var config = {
     labels: [],
@@ -14,22 +13,30 @@ function makeChart() {
 }
 
 function loadChartData(expenseData) {
-
   let expenses = JSON.parse(localStorage.getItem("expenseStorage"));
+  let language = localStorage.getItem("storageSwitchLanguage");
   let entry = false;
   if (expenseData.datasets.length > 0) {
-
-    if(expenses == null || expenses == "") {
-      expenseData.labels.push("NO HAY GASTOS PARA MOSTRAR");
+    if (expenses == null || expenses == "") {
+      if (!language) {
+        expenseData.labels.push("NO EXPENSES TO SHOW");
+      } else {
+        expenseData.labels.push("NO HAY GASTOS PARA MOSTRAR");
+      }
       expenseData.datasets[0].data.push("000.01");
-      expenseData.datasets[0].backgroundColor.push(getComputedStyle(document.documentElement).getPropertyValue('--home-total-money'));
+      expenseData.datasets[0].backgroundColor.push(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--home-total-money"
+        )
+      );
     } else {
-      for(let i = 0; i < expenses.length; i++) {
-        if(expenses[i].toShow == true) { // Si el usuario decide que se muestre en la dona
+      for (let i = 0; i < expenses.length; i++) {
+        if (expenses[i].toShow == true) {
+          // Si el usuario decide que se muestre en la dona
           let eName = expenses[i].expenseName;
           let eColor = expenses[i].expenseColor;
           let eExpense = expenses[i].totalExpense;
-  
+
           expenseData.labels.push(eName);
           expenseData.datasets[0].data.push(eExpense);
           expenseData.datasets[0].backgroundColor.push(eColor);
@@ -37,59 +44,87 @@ function loadChartData(expenseData) {
         }
       }
       if (!entry) {
-        expenseData.labels.push("NO HAY GASTOS ACTIVADOS");
+        if (language == "false") {
+          expenseData.labels.push("NO EXPENSES ACTIVATED");
+        } else {
+          expenseData.labels.push("NO HAY GASTOS ACTIVADOS");
+        }
         expenseData.datasets[0].data.push("100");
-        expenseData.datasets[0].backgroundColor.push(getComputedStyle(document.documentElement).getPropertyValue('--home-total-money'));
+        expenseData.datasets[0].backgroundColor.push(
+          getComputedStyle(document.documentElement).getPropertyValue(
+            "--home-total-money"
+          )
+        );
       }
     }
   }
 
   let expenseCanvas = document.getElementById("oilChart");
-  Chart.defaults.global.defaultFontColor = getComputedStyle(document.documentElement).getPropertyValue('--card-text-title-color');
+  Chart.defaults.global.defaultFontColor = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue("--card-text-title-color");
   Chart.defaults.global.defaultFontSize = 16;
-  Chart.defaults.RoundedDoughnut    = Chart.helpers.clone(Chart.defaults.doughnut);
+  Chart.defaults.RoundedDoughnut = Chart.helpers.clone(Chart.defaults.doughnut);
 
-  Chart.defaults.global.tooltips.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-color');
+  Chart.defaults.global.tooltips.backgroundColor = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue("--toolbar-color");
   Chart.defaults.global.tooltips.titleFontSize = 20;
 
-  Chart.defaults.global.elements.arc.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--card-back-color');
-  Chart.defaults.global.elements.arc.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--card-back-color');
+  Chart.defaults.global.elements.arc.backgroundColor = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue("--card-back-color");
+  Chart.defaults.global.elements.arc.borderColor = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue("--card-back-color");
   Chart.defaults.global.elements.arc.borderWidth = 0;
 
-  Chart.defaults.RoundedDoughnut    = Chart.helpers.clone(Chart.defaults.doughnut);
+  Chart.defaults.RoundedDoughnut = Chart.helpers.clone(Chart.defaults.doughnut);
   Chart.controllers.RoundedDoughnut = Chart.controllers.doughnut.extend({
-      draw: function(ease) {
-          var ctx           = this.chart.ctx;
-          var easingDecimal = ease || 1;
-          var arcs          = this.getMeta().data;
-          Chart.helpers.each(arcs, function(arc, i) {
-              arc.transition(easingDecimal).draw();
+    draw: function (ease) {
+      var ctx = this.chart.ctx;
+      var easingDecimal = ease || 1;
+      var arcs = this.getMeta().data;
+      Chart.helpers.each(arcs, function (arc, i) {
+        arc.transition(easingDecimal).draw();
 
-              var pArc   = arcs[i === 0 ? arcs.length - 1 : i - 1];
-              var pColor = pArc._view.backgroundColor;
+        var pArc = arcs[i === 0 ? arcs.length - 1 : i - 1];
+        var pColor = pArc._view.backgroundColor;
 
-              var vm         = arc._view;
-              var radius     = (vm.outerRadius + vm.innerRadius) / 2;
-              var thickness  = (vm.outerRadius - vm.innerRadius) / 2;
-              var startAngle = Math.PI - vm.startAngle - Math.PI / 2;
-              var angle      = Math.PI - vm.endAngle - Math.PI / 2;
+        var vm = arc._view;
+        var radius = (vm.outerRadius + vm.innerRadius) / 2;
+        var thickness = (vm.outerRadius - vm.innerRadius) / 2;
+        var startAngle = Math.PI - vm.startAngle - Math.PI / 2;
+        var angle = Math.PI - vm.endAngle - Math.PI / 2;
 
-              ctx.save();
-              ctx.translate(vm.x, vm.y);
+        ctx.save();
+        ctx.translate(vm.x, vm.y);
 
-              ctx.fillStyle = i === 0 ? vm.backgroundColor : pColor;
-              ctx.beginPath();
-              ctx.arc(radius * Math.sin(startAngle), radius * Math.cos(startAngle), thickness, 0, 2 * Math.PI);
-              ctx.fill();
+        ctx.fillStyle = i === 0 ? vm.backgroundColor : pColor;
+        ctx.beginPath();
+        ctx.arc(
+          radius * Math.sin(startAngle),
+          radius * Math.cos(startAngle),
+          thickness,
+          0,
+          2 * Math.PI
+        );
+        ctx.fill();
 
-              ctx.fillStyle = vm.backgroundColor;
-              ctx.beginPath();
-              ctx.arc(radius * Math.sin(angle), radius * Math.cos(angle), thickness, 0, 2 * Math.PI);
-              ctx.fill();
+        ctx.fillStyle = vm.backgroundColor;
+        ctx.beginPath();
+        ctx.arc(
+          radius * Math.sin(angle),
+          radius * Math.cos(angle),
+          thickness,
+          0,
+          2 * Math.PI
+        );
+        ctx.fill();
 
-              ctx.restore();
-          });
-      }
+        ctx.restore();
+      });
+    },
   });
 
   let pieChart = new Chart(expenseCanvas, {
@@ -99,52 +134,77 @@ function loadChartData(expenseData) {
       cutoutPercentage: 65,
       legend: {
         labels: {
-          usePointStyle: true
-        }
+          usePointStyle: true,
+        },
       },
       tooltips: {
         callbacks: {
-          title: function(tooltipItem, data) {
-            return data['labels'][tooltipItem[0]['index']];
+          title: function (tooltipItem, data) {
+            return data["labels"][tooltipItem[0]["index"]];
           },
-          label: function(tooltipItem, data) {
-            return "$ " + data['datasets'][0]['data'][tooltipItem['index']];
+          label: function (tooltipItem, data) {
+            return "$ " + data["datasets"][0]["data"][tooltipItem["index"]];
           },
         },
-      }
-    }
+      },
+    },
   });
 
   pieChart.update();
 }
- 
+
 function changeTheme() {
   let actualThemeIndex = sessionStorage.getItem("themeIndex");
+  let language = localStorage.getItem("storageSwitchLanguage");
 
   if (actualThemeIndex == "0") {
     deleteProperty();
     setTheme("theme-default");
-    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    if (language == "false") {
+      document.getElementById("buttonSelectTheme").innerHTML = "CURRENT THEME";
+    } else {
+      document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    }
   } else if (actualThemeIndex == "1") {
     deleteProperty();
     setTheme("theme-dark");
-    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    if (language == "false") {
+      document.getElementById("buttonSelectTheme").innerHTML = "CURRENT THEME";
+    } else {
+      document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    }
   } else if (actualThemeIndex == "2") {
     deleteProperty();
     setTheme("theme-light");
-    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    if (language == "false") {
+      document.getElementById("buttonSelectTheme").innerHTML = "CURRENT THEME";
+    } else {
+      document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    }
   } else if (actualThemeIndex == "3") {
     deleteProperty();
     setTheme("theme-yuri");
-    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    if (language == "false") {
+      document.getElementById("buttonSelectTheme").innerHTML = "CURRENT THEME";
+    } else {
+      document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    }
   } else if (actualThemeIndex == "4") {
     deleteProperty();
     setTheme("theme-pink");
-    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    if (language == "false") {
+      document.getElementById("buttonSelectTheme").innerHTML = "CURRENT THEME";
+    } else {
+      document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    }
   } else if (actualThemeIndex == "5") {
     initColors();
     setTheme("theme-custom");
-    document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    if (language == "false") {
+      document.getElementById("buttonSelectTheme").innerHTML = "CURRENT THEME";
+    } else {
+      document.getElementById("buttonSelectTheme").innerHTML = "TEMA ACTUAL";
+    }
   }
 }
 
@@ -158,28 +218,50 @@ function getTheme(themeName) {
 }
 
 function setTheme(themeName) {
+  let language = localStorage.getItem("storageSwitchLanguage");
   if (getTheme(themeName)) {
     //EL TEMA SELECCIONADO YA ESTA PUESTO
-    ons.notification.toast(
-      "Actualmente tienes este tema puesto, esta chevere, verdad?",
-      {
+
+    if (language == "false") {
+      ons.notification.toast("You currently have this theme on, cool right?", {
         title: "Aviso!",
         timeout: 2000,
         animation: "ascend",
-      }
-    );
+      });
+    } else {
+      ons.notification.toast(
+        "Actualmente tienes este tema puesto, esta chevere, verdad?",
+        {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        }
+      );
+    }
   } else {
     //Si no es el mismo tema lo cambio
     localStorage.setItem("userTheme", themeName);
     document.documentElement.className = themeName;
-    ons.notification.toast(
-      "Se cambio el tema correctamente, tienes buenos gustos!",
-      {
-        title: "Aviso!",
-        timeout: 2000,
-        animation: "ascend",
-      }
-    );
+
+    if (language == "false") {
+      ons.notification.toast(
+        "The theme was changed correctly, you have good tastes!",
+        {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        }
+      );
+    } else {
+      ons.notification.toast(
+        "Se cambio el tema correctamente, tienes buenos gustos!",
+        {
+          title: "Aviso!",
+          timeout: 2000,
+          animation: "ascend",
+        }
+      );
+    }
   }
 }
 
@@ -213,16 +295,20 @@ function checkOptions() {
 }
 
 function loadOptions() {
-  
   let userHomeView = document.getElementById("homeOptionsContainer");
+  let language = localStorage.getItem("storageSwitchLanguage");
+
   userHomeView.innerHTML = "";
 
   let totalMoney = localStorage.getItem("storageSwitchTotalMoney");
   if (totalMoney == true || totalMoney == "true") {
     /* */
-    userHomeView.innerHTML += 
-    `<label class="cardHomeTitle">DINERO TOTAL</label>
-    <ons-card onclick="fn.load('money.html')">
+    if (language == "false") {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">TOTAL MONEY</label>`;
+    } else {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">DINERO TOTAL</label>`;
+    }
+    userHomeView.innerHTML += `<ons-card onclick="fn.load('money.html')">
       <div class="title totalMoneyTitle" style="color: var(--card-text-title-color); display: block">$ 
         <span class="totalMoneyTitle" id="totalMoneyMoney">
         </span>
@@ -232,21 +318,26 @@ function loadOptions() {
 
   let expenses = localStorage.getItem("storageSwitchExpenses");
   if (expenses == true || expenses == "true") {
-    userHomeView.innerHTML += 
-    `<label class="cardHomeTitle">GASTOS</label>
-    <ons-card onclick="fn.load('expenses.html')" style="padding-top: 16px;">
+    if (language == "false") {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">EXPENSES</label>`;
+    } else {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">GASTOS</label>`;
+    }
+    userHomeView.innerHTML += `<ons-card onclick="fn.load('expenses.html')" style="padding-top: 16px;">
       <div class="content">
         <canvas id="oilChart" width="400" height="400"></canvas>
       </div>
     </ons-card>`;
-
   }
 
   let savings = localStorage.getItem("storageSwitchSavings");
   if (savings == true || savings == "true") {
-    userHomeView.innerHTML += 
-    `<label class="cardHomeTitle">FONDO AHORRADO</label>
-    <ons-card onclick="fn.load('savings.html')">
+    if (language == "false") {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">SAVED MONEY</label>`;
+    } else {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">FONDO AHORRADO</label>`;
+    }
+    userHomeView.innerHTML += `<ons-card onclick="fn.load('savings.html')">
       <div class="title totalMoneyTitle" style="color: var(--card-text-title-color); display: block">$
         <span class="totalMoneyTitle" id="totalSavingsAmount">
         </span>
@@ -256,16 +347,30 @@ function loadOptions() {
 
   let goals = localStorage.getItem("storageSwitchGoals");
   if (goals == true || goals == "true") {
-    userHomeView.innerHTML += `<label class="cardHomeTitle">METAS</label>
-    <ons-card onclick="fn.load('goals.html')">
+    if (language == "false") {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">GOALS</label>`;
+    } else {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">METAS</label>`;
+    }
+    userHomeView.innerHTML += `<ons-card onclick="fn.load('goals.html')">
       <div class="content" id="homeGoalsContainer"> 
       </div>
     </ons-card>`;
   }
 
-  if (totalMoney == "false" && expenses == "false" && savings == "false" && goals == "false") {
+  if (
+    totalMoney == "false" &&
+    expenses == "false" &&
+    savings == "false" &&
+    goals == "false"
+  ) {
     userHomeView.innerHTML = "";
-    userHomeView.innerHTML += `<label class="cardHomeTitle">NADA POR AQUÍ...</label>`;
+
+    if (language == "false") {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">NOTHING HERE...</label>`;
+    } else {
+      userHomeView.innerHTML += `<label class="cardHomeTitle">NADA POR AQUÍ...</label>`;
+    }
   }
 
   if (totalMoney == "true") {
@@ -294,7 +399,7 @@ function getTotalMoney() {
   if (arrayMoney == null || arrayMoney == "") {
     return amount;
   }
-  for (let i = 0; i < arrayMoney.length; i++){
+  for (let i = 0; i < arrayMoney.length; i++) {
     amount += +arrayMoney[i].moneyCurrent;
   }
   return amount.toFixed(2);
@@ -302,9 +407,9 @@ function getTotalMoney() {
 
 function getTotalSavings() {
   let storage = localStorage.getItem("savedMoneySaving");
-  if (storage == null || storage == ""){
-    storage = 0
-  } 
+  if (storage == null || storage == "") {
+    storage = 0;
+  }
   return storage;
 }
 
@@ -314,15 +419,26 @@ function getTotalExpenses() {
 
 function getTotalGoals() {
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
+  let language = localStorage.getItem("storageSwitchLanguage");
   let goalsView = "";
 
   if (goals == null || goals == "null") {
-    goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</p>`;
+    if (language == "false") {
+      goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nothing here...</p>`;
+    } else {
+      goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</p>`;
+    }
+
     return goalsView;
   }
 
   if (goals.length == 0 || goals.length < 1) {
-    goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</p>`;
+    if (language == "false") {
+      goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nothing here...</p>`;
+    } else {
+      goalsView += `<p class="homeGoalLabel" style="text-align:center; margin-bottom:0px">Nada por aquí...</p>`;
+    }
+
     return goalsView;
   }
 
@@ -333,8 +449,7 @@ function getTotalGoals() {
 
     let gPercent = getPercent(gMoney, gAMoney);
 
-    goalsView += 
-    `<label class="homeGoalLabel">${gName}</label>
+    goalsView += `<label class="homeGoalLabel">${gName}</label>
     <div class="progressBarContainer">
       <div class="progressBarPercent" style="--width: ${gPercent};"></div>
     </div>`;
@@ -344,15 +459,17 @@ function getTotalGoals() {
 }
 
 function deleteAllData() {
-  ons.notification.confirm({
-    message: "Estas seguro de borrar TODO?",
-    title: "Aviso!",
-    buttonLabels: ["Sí", "Cancelar"],
-    animation: "default",
-    primaryButtonIndex: 1,
-    cancelable: true,
-    callback: function (index) {
-      if (0 === index) {
+  let language = localStorage.getItem("storageSwitchLanguage");
+  if (language == "false") {
+    ons.notification.confirm({
+      message: "Are you sure to delete EVERYTHING?",
+      title: "Notice!",
+      buttonLabels: ["Yes", "Cancel"],
+      animation: "default",
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
           deleteProperty();
           setTheme("theme-default");
           localStorage.clear();
@@ -360,16 +477,40 @@ function deleteAllData() {
 
           const navigator = document.querySelector("#navigator");
           navigator.resetToPage("splitterUser.html");
-      } else {
-        ons.notification.toast(
-          "De acuerdo, todo fluye como normalmente!",
-          {
+        } else {
+          ons.notification.toast("Okay, everything flows as normal!", {
+            title: "Notice!",
+            timeout: 1000,
+            animation: "ascend",
+          });
+        }
+      },
+    });
+  } else {
+    ons.notification.confirm({
+      message: "¿Estas seguro de borrar TODO?",
+      title: "Aviso!",
+      buttonLabels: ["Sí", "Cancelar"],
+      animation: "default",
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          deleteProperty();
+          setTheme("theme-default");
+          localStorage.clear();
+          sessionStorage.clear();
+
+          const navigator = document.querySelector("#navigator");
+          navigator.resetToPage("splitterUser.html");
+        } else {
+          ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
             title: "Aviso!",
             timeout: 1000,
             animation: "ascend",
-          }
-        );
-      }
-    },
-  });
+          });
+        }
+      },
+    });
+  }
 }

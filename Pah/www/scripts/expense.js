@@ -239,7 +239,7 @@ function getExpenses() {
         ${eName}
       </div>
       <div style="position: relative;float: right;top: 50%; height: 70px; width: 70px;margin: -40px 16px 0px 0px;">
-        <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor};font-size: 80px;text-align: center;vertical-align: middle;line-height: 70px;"></i>
+        <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor}; display: block; font-size: 80px;text-align: center;vertical-align: middle;line-height: 70px;"></i>
       </div>
       <div class="content">
         <label class="expenseInfo">$ ${eExpense} GASTADOS</label>

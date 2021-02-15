@@ -28,6 +28,11 @@ function pushToHomeOptions() {
   navigator.pushPage("homeOptions.html");
 }
 
+function pushToLanguageOptions() {
+  const navigator = document.querySelector("#navigator");
+  navigator.pushPage("languageOptions.html");
+}
+
 function pushToTutorialOptions() {
   const navigator = document.querySelector("#navigator");
   navigator.pushPage("tutorialOptions.html");

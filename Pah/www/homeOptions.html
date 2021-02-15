@@ -1,19 +1,21 @@
 <ons-page id="homeOptions">
   <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
     <ons-back-button></ons-back-button>
-    <div class="center labelToolbar" id="titleConfigurarion">
+    <div class="center labelToolbar" id="titleConfigurarionHomeScreen">
       PANTALLA INICIO
     </div>
   </ons-toolbar>
 
-  <p class="paraHome">
+  <p class="paraHome" id="tutorialPara">
     Las casillas marcadas aparecerán en la pantalla inicio.
   </p>
   <ons-card>
     <ons-list style="background: none; margin: 16px;">
       <ons-list-item modifier="nodivider" style="margin-top: 0px;">
         <div class="center listLabels">
-          DINERO TOTAL
+          <span id="labelHomeTotalMoney">
+            DINERO TOTAL
+          </span>
         </div>
         <div class="right">
           <ons-switch id="switchTotalMoney"></ons-switch>
@@ -22,7 +24,9 @@
 
       <ons-list-item modifier="nodivider">
         <div class="center listLabels">
-          GASTOS
+          <span id="labelHomeExpenses">
+            GASTOS
+          </span>
         </div>
         <div class="right">
           <ons-switch id="switchExpenses"></ons-switch>
@@ -31,7 +35,9 @@
 
       <ons-list-item modifier="nodivider">
         <div class="center listLabels">
-          FONDO AHORRADO
+          <span id="labelHomeSaved">
+            FONDO AHORRADO
+          </span>
         </div>
         <div class="right">
           <ons-switch id="switchSavings"></ons-switch>
@@ -40,7 +46,9 @@
 
       <ons-list-item modifier="nodivider">
         <div class="center listLabels">
-          METAS
+          <span id="labelHomeGoals">
+            METAS
+          </span>
         </div>
         <div class="right">
           <ons-switch id="switchGoals"></ons-switch>
@@ -120,6 +128,24 @@
             localStorage.setItem("storageSwitchGoals", e.target.checked);
           });
 
+
+          /* LANGUAGE */
+          let language = localStorage.getItem("storageSwitchLanguage");
+          if(language == "false"){
+            document.getElementById("titleConfigurarionHomeScreen").innerHTML = "HOME SCREEN";
+            document.getElementById("tutorialPara").innerHTML = "The enabled switches represent the options that appear on the home screen.";
+            document.getElementById("labelHomeTotalMoney").innerHTML = "TOTAL MONEY";
+            document.getElementById("labelHomeExpenses").innerHTML = "EXPENSES";
+            document.getElementById("labelHomeSaved").innerHTML = "SAVED MONEY";
+            document.getElementById("labelHomeGoals").innerHTML = "GOALS";
+          } else {
+            document.getElementById("titleConfigurarionHomeScreen").innerHTML = "PANTALLA INICIO";
+            document.getElementById("tutorialPara").innerHTML = "Los interruptores activados representan las opciones que aparecen en la pantalla de inicio.";
+            document.getElementById("labelHomeTotalMoney").innerHTML = "DINERO TOTAL";
+            document.getElementById("labelHomeExpenses").innerHTML = "GASTOS";
+            document.getElementById("labelHomeSaved").innerHTML = "FONDO AHORRADO";
+            document.getElementById("labelHomeGoals").innerHTML = "METAS";
+          }
         }
       },
       false

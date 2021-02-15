@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.oscar.diaz" version="1.80.95" versionCode="8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Finanz</name>
+<widget id="com.oscar.diaz" version="1.80.96" versionCode="10" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Finanzy</name>
     <description>
-        Aplicación para el manejo de finanzas personales y manejo de gastos.
+        Finanzy: Control de gastos y finanzas personales.
     </description>
-    <meta content="Finanz: Aplicación para el manejo de finanzas personales y manejo de gastos." name="description" />
+    <meta content="Finanzy: Control de gastos y finanzas personales." name="description" />
     <author email="finanz.application@gmail.com" href="https://github.com/OscarFDiaz">
         Oscar Diaz
     </author>

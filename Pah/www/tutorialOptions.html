@@ -1,23 +1,25 @@
 <ons-page id="tutorialOptions">
     <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
       <ons-back-button></ons-back-button>
-      <div class="center labelToolbar" id="titleConfigurarion">
+      <div class="center labelToolbar" id="titleConfigurarionTutorial">
         TUTORIALES
       </div>
     </ons-toolbar>
   
-    <p class="paraHome">
-      Si la casilla está marcada esto significa que aparecerán los tutoriales de cómo utilizar la aplicación cada que el
-      programa lo detecte necesario. 
+    <p class="paraHome" id="paraTutorialFirst">
+      Si el interruptor esta encendido significa que aparecerán los tutoriales de 
+      cómo utilizar la aplicación cada que el programa lo detecte necesario.
     </p>
-    <p class="paraHome">
-       Si la casilla esta desmarcada no aparecerán tutoriales de cómo utilizar la aplicación, a no ser que seas primer usuario.
+    <p class="paraHome" id="paraTutorialSecond">
+      Si el interruptor está desactivado, no aparecerán tutoriales sobre cómo usar la aplicación, a menos que sea el primer usuario.
     </p>
     <ons-card>
       <ons-list style="background: none; margin: 16px;">
         <ons-list-item modifier="nodivider" style="margin-top: 0px;">
           <div class="center listLabels">
-            TUTORIALES
+            <span id="switchLabel">
+              TUTORIALES
+            </span>
           </div>
           <div class="right">
             <ons-switch id="switchTutoriales"></ons-switch>
@@ -50,10 +52,29 @@
               localStorage.setItem("storageSwitchTutorial", e.target.checked);
             });
   
+            let languaje = localStorage.getItem("storageSwitchLanguage");
+
+            if(languaje == "false") {
+              document.getElementById("titleConfigurarionTutorial").innerHTML = "TUTORIALS";
+              document.getElementById("switchLabel").innerHTML = "TUTORIALS";
+              document.getElementById("paraTutorialFirst").innerHTML = 
+              "If the switch is on, it means that the tutorials about how to use the application will appear every time the program detects it necessary.";
+              document.getElementById("paraTutorialSecond").innerHTML = 
+              "If the switch is off, no tutorials will appear about how to use the application, unless you are a first user.";
+            } else{
+              document.getElementById("titleConfigurarionTutorial").innerHTML = "TUTORIALES";
+              document.getElementById("switchLabel").innerHTML = "TUTORIALES";
+              document.getElementById("paraTutorialFirst").innerHTML = 
+              "Si el interruptor esta encendido significa que aparecerán los tutoriales de cómo utilizar la aplicación cada que el programa lo detecte necesario.";
+              document.getElementById("paraTutorialSecond").innerHTML = 
+              "Si el interruptor está desactivado, no aparecerán tutoriales sobre cómo usar la aplicación, a menos que sea el primer usuario.";
+            }
+
           }
         },
         false
       );
     </script>
   </ons-page>
+  
   
