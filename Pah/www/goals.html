@@ -25,6 +25,13 @@
             localStorage.setItem("actuaPage", "goals.html");
             // Conseguir Goals
             getGoals();
+
+            let languaje = localStorage.getItem("storageSwitchLanguage");
+            if (languaje == "false") {
+              document.getElementById("titleGoals").innerHTML = "GOALS";
+            } else {
+              document.getElementById("titleGoals").innerHTML = "METAS";
+            }
           }
         },
         false

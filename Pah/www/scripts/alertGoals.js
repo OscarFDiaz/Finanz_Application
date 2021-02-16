@@ -13,10 +13,11 @@ function createAlertDialogToEditGoal() {
   document.getElementById("editActualGoalMoney").value = parseGoal.actualMoney;
   document.getElementById("editGoalDate").value = parseGoal.date;
 
-  var dialog = document.getElementById("my-alert-dialog");
+  let dialog = document.getElementById("my-alert-dialog");
 
   if (dialog) {
     dialog.show();
+    
   } else {
     ons.notification.toast(
       "No se ha podido cargar la ventana para modificar!",
@@ -29,6 +30,7 @@ function createAlertDialogToEditGoal() {
   }
 }
 
+/* CUANDO SE FINALIZA DE MODIFICAR UNA META*/
 function hideAlertDialog() {
   
   let name = document.getElementById("editGoalName").value;
@@ -39,41 +41,94 @@ function hideAlertDialog() {
 
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
 
+  let languaje = localStorage.getItem("storageSwitchLanguage");
+
   let indexGoal;
 
   let sName = localStorage.getItem("nameSaved");
   let testMoney = Math.sign(goalMoney);
   let testGMoney = Math.sign(actualMoney);
 
-  if (goalMoney == "" || goalMoney == null || goalMoney == "NaN"){
-    ons.notification.toast("Un momento, cuanto dinero necesita tu meta?!", {
-      title: "Error!",
-      timeout: 2000,
-      animation: "ascend",
-    });
-    return;
-  }
+  if (languaje == "false") {
+    if (name === ""){
+      ons.notification.toast("Wait, a goal needs a good name!", {
+        title: "Error!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
 
-  if (testMoney == "-1" || testMoney === "-0") {
-    ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
-      title: "Aviso!",
-      timeout: 2000,
-      animation: "ascend",
-    });
-    return;
-  }
+    if (goalMoney == "" || goalMoney == null || goalMoney == "NaN"){
+      ons.notification.toast("Wait, how much money does your goal need ?!", {
+        title: "Error!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
 
-  if (testGMoney == "-1" || testGMoney === "-0") {
-    ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
-      title: "Aviso!",
-      timeout: 2000,
-      animation: "ascend",
-    });
-    return;
-  }
+    if (testMoney == "-1" || testMoney === "-0") {
+      ons.notification.toast("It is not possible to leave a goal in negative numbers, sorry.", {
+        title: "Notice!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
 
-  if (goalDate === "") {
-    goalDate = "SIN DATOS DE FECHA";
+    if (testGMoney == "-1" || testGMoney === "-0") {
+      ons.notification.toast("It is not possible to leave a goal in negative numbers, sorry.", {
+        title: "Notice!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
+
+    if (goalDate === "") {
+      goalDate = "NO DATE DATA";
+    }
+  } else {
+    if (name === ""){
+      ons.notification.toast("Wait, a goal needs a good name!", {
+        title: "Error!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
+
+    if (goalMoney == "" || goalMoney == null || goalMoney == "NaN"){
+      ons.notification.toast("Un momento, cuanto dinero necesita tu meta?!", {
+        title: "Error!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
+
+    if (testMoney == "-1" || testMoney === "-0") {
+      ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
+        title: "Aviso!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
+
+    if (testGMoney == "-1" || testGMoney === "-0") {
+      ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
+        title: "Aviso!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
+
+    if (goalDate === "") {
+      goalDate = "SIN DATOS DE FECHA";
+    }
   }
 
   if (actualMoney == "" || actualMoney == "NaN") { 
@@ -83,7 +138,6 @@ function hideAlertDialog() {
   for (let i = 0; i < goals.length; i++) {
     if (goals[i].goalName == sName) {
       indexGoal = i; //Pongo la posición donde esta mi objeto que modificare
-      //deleteGoalInsta(goals[i].goalName);
 
       let updateGoalObject = {
         goalName: name,
@@ -106,26 +160,47 @@ function hideAlertDialog() {
       break;
     }
   }
-
+  
   document.getElementById("my-alert-dialog").hide();
-  ons.notification.toast("Meta modificada exitosamente!", {
-    title: "Aviso!",
-    timeout: 2000,
-    animation: "ascend",
-  });
+
+  if (languaje == "false") {
+    ons.notification.toast(`Goal ${name} sucecessfully modified!`, {
+      title: "Notice!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+  } else {
+    ons.notification.toast(`Meta ${name} modificada exitosamente!`, {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+  }
+
   functionPopPage();
   getGoals();
 }
 
+/* SE INTENTA MODIFICAR UNA META PERO SE CANCELA */
 function hideAlertNoChange() {
-  ons.notification.toast("No se ha modificado la meta!", {
-    title: "Aviso!",
-    timeout: 2000,
-    animation: "ascend",
-  });
+  document.getElementById("my-alert-dialog").hide();
+  let languaje = localStorage.getItem("storageSwitchLanguage");
+  if (languaje == "false") {
+    ons.notification.toast("Goal has not been changed!", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+  } else {
+    ons.notification.toast("No se ha modificado la meta!", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+  }
+
   localStorage.removeItem("nameSaved");
   sessionStorage.clear();
-  document.getElementById("my-alert-dialog").hide();
 }
 
 /*********************************************************/
@@ -171,24 +246,44 @@ function createAlertDialogToEditGoalMoney() {
 function hideAlertDialogMoney() {
 
   let element = document.getElementById("editOnlyGoalMoney").value;
-  if(element === null || element === "" || element == ""){
-    ons.notification.toast("Ingresa cuanto dinero deseas añadir, por favor!", {
-      title: "Aviso!",
-      timeout: 2000,
-      animation: "ascend",
-    });
-    return;
-  }
+  let languaje = localStorage.getItem("storageSwitchLanguage");
 
   let newMoney = sessionStorage.getItem("addNewMoney");
   let testMoney = Math.sign(newMoney);
-  if(testMoney == "-1" || testMoney === "-0") {
-    ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
-      title: "Aviso!",
-      timeout: 2000,
-      animation: "ascend",
-    });
-    return;
+  if (languaje == "false") {
+    if(element === null || element === "" || element == ""){
+      ons.notification.toast("Enter how much money you want to add, please!", {
+        title: "Notice!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
+    if(testMoney == "-1" || testMoney === "-0") {
+      ons.notification.toast("It is not possible to leave a goal in negative numbers, sorry.", {
+        title: "Notice!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
+  } else {
+    if(element === null || element === "" || element == ""){
+      ons.notification.toast("Ingresa cuanto dinero deseas añadir, por favor!", {
+        title: "Aviso!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
+    if(testMoney == "-1" || testMoney === "-0") {
+      ons.notification.toast("No es posible dejar una meta en numeros negativos, lo siento.", {
+        title: "Aviso!",
+        timeout: 2000,
+        animation: "ascend",
+      });
+      return;
+    }
   }
 
   let goals = JSON.parse(localStorage.getItem("goalStorage"));
@@ -231,32 +326,61 @@ function hideAlertDialogMoney() {
         goals[indexGoal] = updateGoalObject;
         localStorage.setItem("goalStorage", JSON.stringify(goals));
       }
+
       // Checo como voy de dinero conforme a lo requerido en la meta.
       let testElement = Math.sign(element);
-      if (testElement == "-1") {
-        ons.notification.toast("Meta modificada exitosamente!, retrocedimos un poco, pero esta bien!", {
-          title: "Aviso!",
-          timeout: 2000,
-          animation: "ascend",
-        });
-      } else if (newMoney < updateGoalObject.goalMoney) {
-        ons.notification.toast("Meta modificada exitosamente!, nos acercamos a la meta!", {
-          title: "Aviso!",
-          timeout: 2000,
-          animation: "ascend",
-        });
-      } else if (newMoney === updateGoalObject.goalMoney) {
-        ons.notification.toast("Meta modificada exitosamente!, hemos llegado a la meta!", {
-          title: "Aviso!",
-          timeout: 2000,
-          animation: "ascend",
-        });
+      if (languaje == "false") {
+        if (testElement == "-1") {
+          ons.notification.toast(`Goal ${sName} successfully modified! We went back a bit, but that's okay!`, {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+        } else if (newMoney < updateGoalObject.goalMoney) {
+          ons.notification.toast(`Goal ${sName} successfully modified! We are approaching the goal!`, {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+        } else if (newMoney === updateGoalObject.goalMoney) {
+          ons.notification.toast(`Goal ${sName} successfully modified! We have reached the goal!`, {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+        } else {
+          ons.notification.toast(`Goal ${sName} modified successfully!`, {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+        }
       } else {
-        ons.notification.toast("Meta modificada exitosamente!", {
-          title: "Aviso!",
-          timeout: 2000,
-          animation: "ascend",
-        });
+        if (testElement == "-1") {
+          ons.notification.toast(`Meta ${sName} modificada exitosamente!, retrocedimos un poco, pero esta bien!`, {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+        } else if (newMoney < updateGoalObject.goalMoney) {
+          ons.notification.toast(`Meta ${sName} modificada exitosamente!, nos acercamos a la meta!`, {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+        } else if (newMoney === updateGoalObject.goalMoney) {
+          ons.notification.toast(`Meta ${sName} modificada exitosamente!, hemos llegado a la meta!`, {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+        } else {
+          ons.notification.toast(`Meta ${sName} modificada exitosamente!`, {
+            title: "Aviso!",
+            timeout: 2000,
+            animation: "ascend",
+          });
+        }
       }
       localStorage.removeItem("nameSaved");
       break;
@@ -271,11 +395,22 @@ function hideAlertDialogMoney() {
 }
 
 function hideAlertNoChangeMoney() {
-  ons.notification.toast("No se ha modificado la meta!", {
-    title: "Aviso!",
-    timeout: 2000,
-    animation: "ascend",
-  });
+  let languaje = localStorage.getItem("storageSwitchLanguage");
+
+  if (languaje == "false") {
+    ons.notification.toast("The goal has not been modified!", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+  } else {
+    ons.notification.toast("No se ha modificado la meta!", {
+      title: "Aviso!",
+      timeout: 2000,
+      animation: "ascend",
+    });
+  }
   sessionStorage.clear();
   document.getElementById("alertEditGoalMoney").hide();
 }
+

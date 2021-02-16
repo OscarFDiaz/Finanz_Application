@@ -1,23 +1,21 @@
 <ons-page id="detailGoal">
   <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
     <ons-back-button></ons-back-button>
-
     <div class="center labelToolbar" id="titleDetailGoal">
-      texto muestra
+      AQUI SE CARGA EL NOMBRE DE LA META
     </div>
   </ons-toolbar>
-  
+
+  <!--SE CARGA LOS DETALLES DE LA META-->
   <div id="goalDetailContainer"></div>
 
   <!-- ALERT DIALOG PARA EDITAR TODA LA META-->
   <ons-alert-dialog id="my-alert-dialog" modifier="material">
-    <div style="text-align: center; margin-top: 16px;">
-      <div class="alert-dialog-title">Modificar meta</div>
-    </div>
+    <div class="alert-dialog-title" style="text-align: center" id="modifyGoalTitle">MODIFICAR META</div>
     <div class="alert-dialog-content">
       <div style="text-align: center; margin-top: 16px;">
         <div>
-          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">NOMBRE DE LA META</p>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px" id="goalNameAlertEdit">NOMBRE DE LA META</p>
           <ons-input
             id="editGoalName"
             modifier="underbar"
@@ -28,7 +26,7 @@
         </div>
 
         <div>
-          <p style="margin: 0px auto 0px 12px; text-align: left; padding-top: 16px">DESCRIPCIÓN</p>
+          <p style="margin: 0px auto 0px 12px; text-align: left; padding-top: 16px" id="goalDescriptionAlertEdit">DESCRIPCIÓN</p>
           <textarea
           id="editGoalDescription" 
           class="textarea" 
@@ -38,7 +36,7 @@
         </div>
 
         <div>
-          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">DINERO NECESARIO</p>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px" id="goalMoneyAlertEdit">DINERO NECESARIO</p>
           <ons-input
             id="editGoalMoney"
             modifier="underbar"
@@ -49,7 +47,7 @@
         </div>
 
         <div>
-          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">DINERO ACTUAL</p>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px" id="goalMoneyActualAlertEdit">DINERO ACTUAL</p>
           <ons-input
             id="editActualGoalMoney"
             modifier="underbar"
@@ -60,7 +58,7 @@
         </div>
 
         <div>
-          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">FECHA META</p>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px" id="goalDateAlertEdit">FECHA META</p>
           <ons-input
             id="editGoalDate"
             modifier="underbar"
@@ -73,10 +71,10 @@
     </div>
 
     <div class="alert-dialog-footer">
-      <ons-alert-dialog-button onclick="hideAlertNoChange()"
+      <ons-alert-dialog-button onclick="hideAlertNoChange()" id="goalCancelButtonAlertEdit"
         >Cancelar</ons-alert-dialog-button
       >
-      <ons-alert-dialog-button onclick="hideAlertDialog()"
+      <ons-alert-dialog-button onclick="hideAlertDialog()" id="goalFinishedButtonAlertEdit"
         >Listo!</ons-alert-dialog-button
       >
     </div>
@@ -84,19 +82,32 @@
 
   <!--ALERT PARA EDITAR UNICAMENTE EL DINERO-->
   <ons-alert-dialog id="alertEditGoalMoney" modifier="material">
-    <div style="text-align: center; margin-top: 16px;">
+    <div style="text-align: center; margin-top: 16px">
       <div class="alert-dialog-title">Modificar meta</div>
     </div>
 
     <div class="alert-dialog-content">
-      <div style="text-align: center; margin-top: 16px;">
-          <label style="color: var(--alert-custom-label);">DINERO ACTUAL: $ 
-            <label id="editOnlyMoneyActualMoney" style="color: var(--alert-custom-label-money)">0</label>
-          </label>
+      <div style="text-align: center; margin-top: 16px">
+        <label style="color: var(--alert-custom-label)"
+          >DINERO ACTUAL: $
+          <label
+            id="editOnlyMoneyActualMoney"
+            style="color: var(--alert-custom-label-money)"
+            >0</label
+          >
+        </label>
 
-          <div>
-            <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">QUIERO AÑADIR / QUITAR</p>
-            <ons-input
+        <div>
+          <p
+            style="
+              margin: 0px auto -16px 12px;
+              text-align: left;
+              padding-top: 16px;
+            "
+          >
+            QUIERO AÑADIR / QUITAR
+          </p>
+          <ons-input
             onchange="makeSum()"
             onkeypress="this.onchange()"
             oninput="this.onchange()"
@@ -104,13 +115,18 @@
             modifier="underbar"
             placeholder=""
             type="number"
-            style="display: block; margin: -10px auto 16px;"
-            ></ons-input>
-          </div>
+            style="display: block; margin: -10px auto 16px"
+          ></ons-input>
+        </div>
 
-          <label style="color: var(--alert-custom-label);">CANTIDAD NUEVA: $ 
-            <label id="editOnlyEndMoney" style="color: var(--alert-custom-label-money)">0</label>
-          </label>
+        <label style="color: var(--alert-custom-label)"
+          >CANTIDAD NUEVA: $
+          <label
+            id="editOnlyEndMoney"
+            style="color: var(--alert-custom-label-money)"
+            >0</label
+          >
+        </label>
       </div>
     </div>
 
@@ -130,6 +146,27 @@
       function (event) {
         if (event.target.matches("#detailGoal")) {
           loadDetailGoal();
+
+          let languaje = localStorage.getItem("storageSwitchLanguage");
+          if (languaje == "false") {
+            document.getElementById("modifyGoalTitle").innerHTML = "MODIFY GOAL";
+            document.getElementById("goalNameAlertEdit").innerHTML = "NAME OF THE GOAL";
+            document.getElementById("goalDescriptionAlertEdit").innerHTML = "DESCRIPTION";
+            document.getElementById("goalMoneyAlertEdit").innerHTML = "MONEY NEEDED";
+            document.getElementById("goalMoneyActualAlertEdit").innerHTML = "CURRENT MONEY";
+            document.getElementById("goalDateAlertEdit").innerHTML = "GOAL DATE";
+            document.getElementById("goalCancelButtonAlertEdit").innerHTML = "CANCEL";
+            document.getElementById("goalFinishedButtonAlertEdit").innerHTML = "FINISHED!";
+          } else {
+            document.getElementById("modifyGoalTitle").innerHTML = "MODIFICAR META";
+            document.getElementById("goalNameAlertEdit").innerHTML = "NOMBRE DE LA META";
+            document.getElementById("goalDescriptionAlertEdit").innerHTML = "DESCRIPCIÓN";
+            document.getElementById("goalMoneyAlertEdit").innerHTML = "DINERO NECESARIO";
+            document.getElementById("goalMoneyActualAlertEdit").innerHTML = "DINERO ACTUAL";
+            document.getElementById("goalDateAlertEdit").innerHTML = "FECHA META";
+            document.getElementById("goalCancelButtonAlertEdit").innerHTML = "CANCELAR";
+            document.getElementById("goalFinishedButtonAlertEdit").innerHTML = "LISTO!";
+          }
         }
       },
       false
