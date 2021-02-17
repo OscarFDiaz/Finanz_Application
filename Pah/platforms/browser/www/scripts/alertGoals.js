@@ -222,8 +222,7 @@ function createAlertDialogToEditGoalMoney() {
 
   //Guardo el nombre por si el usuario lo edita
   localStorage.setItem("nameSaved", parseGoal.name);
-  document.getElementById("editOnlyMoneyActualMoney").innerHTML =
-    parseGoal.actualMoney;
+  document.getElementById("editOnlyMoneyActualMoney").innerHTML = parseGoal.actualMoney;
 
   var dialog = document.getElementById("alertEditGoalMoney");
 
