@@ -21,17 +21,32 @@
 
         // MODIFICO EL LISTENER DEL BACK BUTTON PARA CONFIRMAS SALIDA DE APLICACIÓN
         ons.setDefaultDeviceBackButtonListener(function (event) {
-          ons.notification
-            .confirm("Quieres salir de la aplicación?", {
-              title: "Aviso!",
-              buttonLabels: ["Cancelar", "Aceptar"],
-            }) // Ask for confirmation
-            .then(function (index) {
-              if (index === 1) {
-                // OK button
-                navigator.app.exitApp(); // Close the app
-              }
-            });
+          let languaje = localStorage.getItem("storageSwitchLanguage");
+          if (languaje == "false") {
+            ons.notification
+              .confirm("Do you want to exit the application?", {
+                title: "Notice!",
+                buttonLabels: ["Cancel", "Exit"],
+              }) // Ask for confirmation
+              .then(function (index) {
+                if (index === 1) {
+                  // OK button
+                  navigator.app.exitApp(); // Close the app
+                }
+              });
+          } else {
+            ons.notification
+              .confirm("¿Quieres salir de la aplicación?", {
+                title: "Aviso!",
+                buttonLabels: ["Cancelar", "Salir"],
+              }) // Ask for confirmation
+              .then(function (index) {
+                if (index === 1) {
+                  // OK button
+                  navigator.app.exitApp(); // Close the app
+                }
+              });
+          }
         });
       },
       false
