@@ -80,7 +80,7 @@
   color: var(--entry-amount-text);
 }
 
-.entryAmountDetail{
+.entryAmountDetail {
   color: var(--entry-amount-detail);
   font-weight: bold;
   font-size: 30px;

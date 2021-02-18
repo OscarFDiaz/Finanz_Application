@@ -59,7 +59,7 @@
   font-weight: normal;
 }
 
-:checked+.switch--material__toggle {
+:checked + .switch--material__toggle {
   background-color: var(--switch-back-on);
 }
 
@@ -67,7 +67,7 @@
   background-color: var(--switch-button-round);
 }
 
-:checked+.switch--material__toggle>.switch--material__handle {
+:checked + .switch--material__toggle > .switch--material__handle {
   background-color: var(--switch-button-round);
 }
 

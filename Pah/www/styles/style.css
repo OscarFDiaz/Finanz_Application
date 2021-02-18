@@ -122,20 +122,20 @@
 
 .theme-pink {
   /* COLORES */
-  --color: #EA0067;
-  --color-2: #EA5172;
-  --color-1: #F73395;
-  --color-3: #F981BE;
-  --color-4: #FEE3EF;
+  --color: #ea0067;
+  --color-2: #ea5172;
+  --color-1: #f73395;
+  --color-3: #f981be;
+  --color-4: #fee3ef;
   --color-5: #f0f0f0;
 
   /* DEGRADADO */
-  --gradient-1: #EA0067;
-  --gradient-2: #F73395;
+  --gradient-1: #ea0067;
+  --gradient-2: #f73395;
 
   /* SPINNER ONLOAD PAGE*/
-  --spiner-back-color: #FEE3EF;
-  --spiner-front-color: #F73395;
+  --spiner-back-color: #fee3ef;
+  --spiner-front-color: #f73395;
 
   /* ICONOS MENÚ & TEXTO MENU*/
   --icon-home: #ffffff;
@@ -149,111 +149,111 @@
   --menu-font-color: #ffffff;
 
   /* TOOLBAR */
-  --toolbar-color: #EA0067;
-  --label-toolbar-color: #FEE3EF;
-  --back-button-color: #FEE3EF;
-  --menu-button-color: #FEE3EF;
+  --toolbar-color: #ea0067;
+  --label-toolbar-color: #fee3ef;
+  --back-button-color: #fee3ef;
+  --menu-button-color: #fee3ef;
 
   /* CHEVRON */
-  --chevron-color: #F981BE;
+  --chevron-color: #f981be;
 
   /* TEXTOS */
-  --item-list-config: #FEE3EF;
-  --text-without-card: #FEE3EF;
+  --item-list-config: #fee3ef;
+  --text-without-card: #fee3ef;
 
   --expense-title: #ffffff;
-  --expense-info: #FEE3EF;
-  --expense-detail: #FEE3EF;
+  --expense-info: #fee3ef;
+  --expense-detail: #fee3ef;
   --expense-detail-money: #f0f0f0;
 
   --detail-goal-title-color: #f0f0f0;
-  --detail-goal-content-color: #FEE3EF;
-  --detail-money-goal: #F981BE;
+  --detail-goal-content-color: #fee3ef;
+  --detail-money-goal: #f981be;
 
-  --home-total-money: #FEE3EF;
-  --home-goal-label: #FEE3EF;
-  --para-home-options: #FEE3EF;
-  --home-options-labels: #FEE3EF;
+  --home-total-money: #fee3ef;
+  --home-goal-label: #fee3ef;
+  --para-home-options: #fee3ef;
+  --home-options-labels: #fee3ef;
 
   --money-title: #ffffff;
-  --money-info: #FEE3EF;
+  --money-info: #fee3ef;
   --money-delete-button: crimson;
 
-  --saving-main-title: #f0f0f0; 
-  --saving-info: #F981BE;
+  --saving-main-title: #f0f0f0;
+  --saving-info: #f981be;
   --saving-title: #f0f0f0;
-  --saving-daily: #F981BE;
+  --saving-daily: #f981be;
   --saving-days-title: #f0f0f0;
-  --saving-days-left: #F981BE;
+  --saving-days-left: #f981be;
 
-  --saving-edit-label-range: #FEE3EF;
-  --saving-edit-range-selected: #FEE3EF;
+  --saving-edit-label-range: #fee3ef;
+  --saving-edit-range-selected: #fee3ef;
   --saving-edit-selected-range: #f0f0f0;
-  --entry-amount-text: #FEE3EF;
+  --entry-amount-text: #fee3ef;
   --entry-amount-detail: #f0f0f0;
 
   /* SWITCH */
-  --switch-button-round: #EA0067;
+  --switch-button-round: #ea0067;
   --switch-back-off: #ffffff;
-  --switch-back-on: #FEE3EF;
+  --switch-back-on: #fee3ef;
 
   /* INPUT */
-  --color-input: #FEE3EF;
+  --color-input: #fee3ef;
   --color-input-text: #f0f0f0;
 
   /* TEXT AREA */
-  --text-area-border-color: #FEE3EF;
+  --text-area-border-color: #fee3ef;
   --text-area-text-color: #f0f0f0;
 
   /* ALERT DIALOG */
   --alert-tile-color: #f0f0f0;
-  --alert-container-color: #EA0067;
-  --alert-footer-color: #EA5172;
+  --alert-container-color: #ea0067;
+  --alert-footer-color: #ea5172;
   --alert-content-text-color: #f0f0f0;
-  --alert-button-color-text: #FEE3EF;
+  --alert-button-color-text: #fee3ef;
 
-  --alert-custom-label: #FEE3EF;
+  --alert-custom-label: #fee3ef;
   --alert-custom-label-money: #f0f0f0;
 
   /* TOAST */
-  --toast-back-color: #EA0067;
+  --toast-back-color: #ea0067;
   --toast-message-color: #f0f0f0;
 
   /* PROGRESSBAR */
-  --progressbar-back-color: #EA0067;
-  --progressbar-main-color: #FEE3EF;
+  --progressbar-back-color: #ea0067;
+  --progressbar-main-color: #fee3ef;
 
   /* CARDS */
-  --card-back-color: #F73395;
+  --card-back-color: #f73395;
   --card-text-title-color: #f0f0f0;
-  --card-content-text-color: #FEE3EF;
+  --card-content-text-color: #fee3ef;
 
   /* BUTTONS */
-  --flat-button-color: #FEE3EF;
-  --flat-button-color-text: #EA0067;
-  --flat-button-active-color: #FEE3EF;
+  --flat-button-color: #fee3ef;
+  --flat-button-color-text: #ea0067;
+  --flat-button-active-color: #fee3ef;
 
-  --flat-button-light-color: #EA0067;
+  --flat-button-light-color: #ea0067;
   --flat-button-light-color-text: #ffffff;
-  --flat-button-light-active-color: #EA0067;
+  --flat-button-light-active-color: #ea0067;
 }
 
 .theme-yuri {
   /* COLORES */
   --color: #353535;
-  --color-1: #284B63;
-  --color-2: #3C6E71;
-  --color-3: #D9D9D9;
-  --color-4: #FFFFF0;
+  --color-1: #284b63;
+  --color-2: #3c6e71;
+  --color-3: #d9d9d9;
+  --color-4: #fffff0;
   --color-5: #f5353c;
 
   /* DEGRADADO */
-  --gradient-1: #FFFFF0;
-  --gradient-2: #D9D9D9;
+  --gradient-1: #fffff0;
+  --gradient-2: #d9d9d9;
 
   /* SPINNER ONLOAD PAGE*/
-  --spiner-back-color: #D9D9D9;
-  --spiner-front-color: #284B63;
+  --spiner-back-color: #d9d9d9;
+  --spiner-front-color: #284b63;
 
   /* ICONOS MENÚ & TEXTO MENU*/
   --icon-home: #f5a11b;
@@ -263,95 +263,95 @@
   --icon-money: #88b500;
   --icon-config: #ff0000;
 
-  --menu-icon-color: #FFFFF0;
+  --menu-icon-color: #fffff0;
   --menu-font-color: #353535;
 
   /* TOOLBAR */
   --toolbar-color: #353535;
   --label-toolbar-color: #353535;
-  --back-button-color: #284B63;
-  --menu-button-color: #284B63;
+  --back-button-color: #284b63;
+  --menu-button-color: #284b63;
 
   /* CHEVRON */
   --chevron-color: #f5353c;
 
   /* TEXTOS */
-  --item-list-config: #3C6E71;
-  --text-without-card: #3C6E71;
+  --item-list-config: #3c6e71;
+  --text-without-card: #3c6e71;
 
-  --expense-title: #FFFFF0;
-  --expense-info: #D9D9D9;
-  --expense-detail: #D9D9D9;
-  --expense-detail-money: #FFFFF0;
+  --expense-title: #fffff0;
+  --expense-info: #d9d9d9;
+  --expense-detail: #d9d9d9;
+  --expense-detail-money: #fffff0;
 
-  --detail-goal-title-color: #FFFFF0;
-  --detail-goal-content-color: #D9D9D9;
-  --detail-money-goal: #D9D9D9;
+  --detail-goal-title-color: #fffff0;
+  --detail-goal-content-color: #d9d9d9;
+  --detail-money-goal: #d9d9d9;
 
-  --home-total-money: #FFFFF0;
-  --home-goal-label: #D9D9D9;
+  --home-total-money: #fffff0;
+  --home-goal-label: #d9d9d9;
   --para-home-options: #353535;
-  --home-options-labels: #D9D9D9;
+  --home-options-labels: #d9d9d9;
 
-  --money-title: #FFFFF0;
-  --money-info: #D9D9D9;
-  --money-delete-button: #3C6E71;
+  --money-title: #fffff0;
+  --money-info: #d9d9d9;
+  --money-delete-button: #3c6e71;
 
-  --saving-main-title: #D9D9D9;
+  --saving-main-title: #d9d9d9;
   --saving-info: #353535;
-  --saving-title: #D9D9D9;
+  --saving-title: #d9d9d9;
   --saving-daily: #353535;
-  --saving-days-title: #D9D9D9;
-  --saving-days-left: #FFFFF0;
+  --saving-days-title: #d9d9d9;
+  --saving-days-left: #fffff0;
 
-  --saving-edit-label-range: #D9D9D9;
-  --saving-edit-range-selected: #D9D9D9;
-  --saving-edit-selected-range: #FFFFF0;
-  --entry-amount-text: #D9D9D9;
-  --entry-amount-detail: #FFFFF0;
+  --saving-edit-label-range: #d9d9d9;
+  --saving-edit-range-selected: #d9d9d9;
+  --saving-edit-selected-range: #fffff0;
+  --entry-amount-text: #d9d9d9;
+  --entry-amount-detail: #fffff0;
 
   /* SWITCH */
   --switch-button-round: #353535;
-  --switch-back-off: #3C6E71;
-  --switch-back-on: #D9D9D9;
+  --switch-back-off: #3c6e71;
+  --switch-back-on: #d9d9d9;
 
   /* INPUT */
-  --color-input: #D9D9D9;
-  --color-input-text: #FFFFF0;
+  --color-input: #d9d9d9;
+  --color-input-text: #fffff0;
 
   /* TEXT AREA */
-  --text-area-border-color: #D9D9D9;
-  --text-area-text-color: #FFFFF0;
+  --text-area-border-color: #d9d9d9;
+  --text-area-text-color: #fffff0;
 
   /* ALERT DIALOG */
-  --alert-tile-color: #FFFFF0;
-  --alert-container-color: #284B63;
-  --alert-footer-color: #D9D9D9;
-  --alert-content-text-color: #FFFFF0;
+  --alert-tile-color: #fffff0;
+  --alert-container-color: #284b63;
+  --alert-footer-color: #d9d9d9;
+  --alert-content-text-color: #fffff0;
   --alert-button-color-text: #353535;
 
-  --alert-custom-label: #D9D9D9;
-  --alert-custom-label-money: #FFFFF0;
+  --alert-custom-label: #d9d9d9;
+  --alert-custom-label-money: #fffff0;
 
   /* TOAST */
-  --toast-back-color: #284B63;
-  --toast-message-color: #FFFFF0;
+  --toast-back-color: #284b63;
+  --toast-message-color: #fffff0;
 
   /* PROGRESSBAR */
   --progressbar-back-color: #353535;
-  --progressbar-main-color: #FFFFF0;
+  --progressbar-main-color: #fffff0;
 
   /* CARDS */
-  --card-back-color: #284B63;
-  --card-text-title-color: #FFFFF0;
-  --card-content-text-color: #D9D9D9;
+  --card-back-color: #284b63;
+  --card-text-title-color: #fffff0;
+  --card-content-text-color: #d9d9d9;
 
   /* BUTTONS */
   --flat-button-color: #353535;
-  --flat-button-color-text: #D9D9D9;
+  --flat-button-color-text: #d9d9d9;
   --flat-button-active-color: #201e1e;
 
-  --flat-button-light-color: #FFFFF0;
+  --flat-button-light-color: #fffff0;
   --flat-button-light-color-text: #353535;
   --flat-button-light-active-color: #929292;
 }
@@ -362,7 +362,7 @@
   --color-1: #453f41;
   --color-2: #f8f8f8;
   --color-3: #a2a1a1;
-  --color-4: #A7553D;
+  --color-4: #a7553d;
   --color-5: #597889;
 
   /* DEGRADADO */
@@ -392,7 +392,7 @@
 
   /* CHEVRON */
   --chevron-color: #f8f8f8;
- 
+
   /* TEXTOS */
   --item-list-config: #f8f8f8;
   --text-without-card: #f8f8f8;
@@ -400,7 +400,7 @@
   --expense-title: #f8f8f8;
   --expense-info: #a2a1a1;
   --expense-detail: #a2a1a1;
-  --expense-detail-money: #f8f8f8;  
+  --expense-detail-money: #f8f8f8;
 
   --detail-goal-title-color: #f8f8f8;
   --detail-goal-content-color: #a2a1a1;
@@ -715,17 +715,19 @@
 }
 
 @keyframes imageHomeLoader {
-  0% {width: 0%; transform: rotate(0);}
-  100% {width: 75%; transform: rotate(360deg);}
-} 
- 
+  0% {
+    width: 0%;
+    transform: rotate(0);
+  }
+  100% {
+    width: 75%;
+    transform: rotate(360deg);
+  }
+}
+
 .page__background {
   background: rgb(0, 0, 0);
-  background: linear-gradient(
-    180deg,
-    var(--gradient-1) 0%,
-    var(--gradient-2) 100%
-  );
+  background: linear-gradient(180deg, var(--gradient-1) 0%, var(--gradient-2) 100%);
   background-position: center top !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
@@ -851,7 +853,6 @@ ons-fab.fab--bottom__right {
   font-size: 18px;
   color: var(--color-input-text);
   top: 0px;
-  
 }
 
 .text-input--material {
@@ -864,11 +865,7 @@ ons-fab.fab--bottom__right {
   border: 2px solid var(--color-input);
   height: 48px;
 
-  background-image: linear-gradient(
-    to top,
-    var(--color-input) 1px,
-    var(--color-input) 1px
-  );
+  background-image: linear-gradient(to top, var(--color-input) 1px, var(--color-input) 1px);
 }
 
 select {
@@ -956,15 +953,16 @@ option {
   text-align: center;
 }
 
-.progress-bar--material.progress-bar--indeterminate:after, .progress-bar--material.progress-bar--indeterminate:before{
+.progress-bar--material.progress-bar--indeterminate:after,
+.progress-bar--material.progress-bar--indeterminate:before {
   background-color: var(--spiner-front-color);
 }
 
-:checked+.radio-button--material__checkmark:after {
+:checked + .radio-button--material__checkmark:after {
   background: var(--chevron-color);
 }
 
-:checked+.radio-button--material__checkmark:before {
+:checked + .radio-button--material__checkmark:before {
   border: 2px solid var(--chevron-color);
 }
 
