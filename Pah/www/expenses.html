@@ -5,64 +5,44 @@
         <i class="menuButtonIcon ion-md-menu"></i>
       </ons-toolbar-button>
     </div>
-    <div class="center labelToolbar" id="titleExpenses">
-      GASTOS
-    </div>
+    <div class="center labelToolbar" id="titleExpenses">GASTOS</div>
   </ons-toolbar>
 
   <div id="expensesContainer"></div>
 
   <!--
     <ons-button class="flatButton" onclick="pushToNewExpense()" style="margin-bottom: 16px;">AÑADIR NUEVO</ons-button>
-  --> 
+  -->
 
   <ons-fab position="bottom right" onclick="pushToNewExpense()">
-    <i class="icon ion-md-add" style="font-size: 35px;"></i>
+    <i class="icon ion-md-add" style="font-size: 35px"></i>
   </ons-fab>
 
   <!--ALERT PARA AÑADIR UN GASTO-->
   <ons-alert-dialog id="alertToAddExpense" modifier="material">
-    <div style="text-align: center; margin-top: 16px;">
+    <div style="text-align: center; margin-top: 16px">
       <div class="alert-dialog-title">Añadir nuevo gasto</div>
     </div>
 
     <div class="alert-dialog-content">
-      <div style="text-align: center; margin-top: 16px;">
+      <div style="text-align: center; margin-top: 16px">
         <div>
           <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">NOTA DEL GASTO</p>
-          <ons-input
-            id="alertExpenseNote"
-            modifier="underbar"
-            placeholder=""
-            type="text"
-            style="display: block;"
-          ></ons-input>
+          <ons-input id="alertExpenseNote" modifier="underbar" placeholder="" type="text" style="display: block"></ons-input>
         </div>
 
         <div>
           <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">DINERO GASTADO</p>
-          <ons-input
-            id="alertExpenseMoney"
-            modifier="underbar"
-            placeholder=""
-            type="number"
-            style="display: block;"
-          ></ons-input>
+          <ons-input id="alertExpenseMoney" modifier="underbar" placeholder="" type="number" style="display: block"></ons-input>
         </div>
 
         <div>
           <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">FECHA DEL GASTO</p>
-          <ons-input
-            id="alertExpenseDate"
-            modifier="underbar"
-            placeholder=""
-            type="date"
-            style="display: block;"
-          ></ons-input>
+          <ons-input id="alertExpenseDate" modifier="underbar" placeholder="" type="date" style="display: block"></ons-input>
         </div>
 
-        <div style="padding-top: 16px; text-align: left;">
-          <label style="color: var(--alert-tile-color); margin-left: 12px;">RESTAR A: </label>
+        <div style="padding-top: 16px; text-align: left">
+          <label style="color: var(--alert-tile-color); margin-left: 12px">RESTAR A: </label>
           <select id="selectOptio">
             <!--AQUI SE CARGAN LOS POSIBLES GASTOS-->
           </select>
@@ -71,23 +51,19 @@
     </div>
 
     <div class="alert-dialog-footer">
-      <ons-alert-dialog-button onclick="hideAlertExpenseNoChange()"
-        >Cancelar</ons-alert-dialog-button
-      >
-      <ons-alert-dialog-button onclick="hideAlertExpense()"
-        >Listo!</ons-alert-dialog-button
-      >
+      <ons-alert-dialog-button onclick="hideAlertExpenseNoChange()">Cancelar</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="hideAlertExpense()">Listo!</ons-alert-dialog-button>
     </div>
   </ons-alert-dialog>
   <!----------------------------------------------------------------->
 
   <script>
     document.addEventListener(
-      "show",
+      'show',
       function (event) {
-        if (event.target.matches("#expensesPage")) {
+        if (event.target.matches('#expensesPage')) {
           ons.ready(function () {
-            localStorage.setItem("actuaPage", "expenses.html");
+            localStorage.setItem('actuaPage', 'expenses.html');
             getExpenses();
           });
         }

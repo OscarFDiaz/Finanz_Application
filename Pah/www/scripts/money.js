@@ -1,54 +1,51 @@
 function makeNewMoney() {
-  let moneyName = document.getElementById("newMoneyName").value;
-  let moneyCurrent = document.getElementById("newMoneyMoney").value;
+  let moneyName = document.getElementById('newMoneyName').value;
+  let moneyCurrent = document.getElementById('newMoneyMoney').value;
 
-  if (moneyName === "") {
-    ons.notification.toast("Un momento, se necesita un buen nombre!", {
-      title: "Error!",
+  if (moneyName === '') {
+    ons.notification.toast('Un momento, se necesita un buen nombre!', {
+      title: 'Error!',
       timeout: 2000,
-      animation: "ascend",
+      animation: 'ascend',
     });
     return;
   }
 
-  if (moneyCurrent === "") {
-    moneyCurrent = "0.00";
+  if (moneyCurrent === '') {
+    moneyCurrent = '0.00';
   } else {
     moneyCurrent = parseFloat(moneyCurrent).toFixed(2);
   }
 
   let testMoney = Math.sign(moneyCurrent);
-  if (testMoney == "-1" || testMoney === "-0") {
-    ons.notification.toast(
-      "No puedo añadir una cartera con dinero negativo, supondre que la cartera esta vacia.",
-      {
-        title: "Error!",
-        timeout: 2500,
-        animation: "ascend",
-      }
-    );
-    moneyCurrent = "0.00";
+  if (testMoney == '-1' || testMoney === '-0') {
+    ons.notification.toast('No puedo añadir una cartera con dinero negativo, supondre que la cartera esta vacia.', {
+      title: 'Error!',
+      timeout: 2500,
+      animation: 'ascend',
+    });
+    moneyCurrent = '0.00';
   }
 
   let money = {
     moneyName,
-    moneyCurrent
+    moneyCurrent,
   };
 
-  if (localStorage.getItem("moneyStorage") === null) {
+  if (localStorage.getItem('moneyStorage') === null) {
     let moneyArray = [];
     moneyArray.push(money);
-    localStorage.setItem("moneyStorage", JSON.stringify(moneyArray));
+    localStorage.setItem('moneyStorage', JSON.stringify(moneyArray));
   } else {
-    let moneyArray = JSON.parse(localStorage.getItem("moneyStorage"));
+    let moneyArray = JSON.parse(localStorage.getItem('moneyStorage'));
     moneyArray.push(money);
-    localStorage.setItem("moneyStorage", JSON.stringify(moneyArray));
+    localStorage.setItem('moneyStorage', JSON.stringify(moneyArray));
   }
 
-  ons.notification.toast("Nuevo dinero añadido!", {
-    title: "Aviso!",
+  ons.notification.toast('Nuevo dinero añadido!', {
+    title: 'Aviso!',
     timeout: 2000,
-    animation: "ascend",
+    animation: 'ascend',
   });
 
   getMoneys();
@@ -56,13 +53,12 @@ function makeNewMoney() {
 }
 
 function getMoneys() {
-  let moneys = JSON.parse(localStorage.getItem("moneyStorage"));
-  let moneyView = document.getElementById("moneyContainer");
+  let moneys = JSON.parse(localStorage.getItem('moneyStorage'));
+  let moneyView = document.getElementById('moneyContainer');
 
-  moneyView.innerHTML = "";
+  moneyView.innerHTML = '';
 
-  let moneyTutorial = 
-  `<ons-card>
+  let moneyTutorial = `<ons-card>
     <ons-list style="background: none;" id="expenseListOfExpensesContainer">
       <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
         <label class="iconExpenseLabel" style="margin-left: 50px;">
@@ -89,15 +85,15 @@ function getMoneys() {
     </ons-list>
   </ons-card>`;
 
-  if (moneys == null || moneys == "null") {
-    let tutorial = localStorage.getItem("storageSwitchTutorial");
-    if (tutorial == true || tutorial == "true") {
+  if (moneys == null || moneys == 'null') {
+    let tutorial = localStorage.getItem('storageSwitchTutorial');
+    if (tutorial == true || tutorial == 'true') {
       moneyView.innerHTML += `${moneyTutorial}`;
     }
     return;
   } else if (moneys.length == 0) {
-    let tutorial = localStorage.getItem("storageSwitchTutorial");
-    if (tutorial == true || tutorial == "true") {
+    let tutorial = localStorage.getItem('storageSwitchTutorial');
+    if (tutorial == true || tutorial == 'true') {
       moneyView.innerHTML += `${moneyTutorial}`;
     }
     return;
@@ -126,15 +122,15 @@ function getMoneys() {
 
 function deleteMoney(sendMoneyName) {
   ons.notification.confirm({
-    message: "Estas seguro de borrar ese dinero?",
-    title: "Aviso!",
-    buttonLabels: ["Sí", "Cancelar"],
-    animation: "default",
+    message: 'Estas seguro de borrar ese dinero?',
+    title: 'Aviso!',
+    buttonLabels: ['Sí', 'Cancelar'],
+    animation: 'default',
     primaryButtonIndex: 1,
     cancelable: true,
     callback: function (index) {
       if (0 === index) {
-        let moneys = JSON.parse(localStorage.getItem("moneyStorage"));
+        let moneys = JSON.parse(localStorage.getItem('moneyStorage'));
 
         for (let i = 0; i < moneys.length; i++) {
           if (moneys[i].moneyName == sendMoneyName) {
@@ -142,20 +138,20 @@ function deleteMoney(sendMoneyName) {
             break;
           }
         }
-        localStorage.setItem("moneyStorage", JSON.stringify(moneys));
+        localStorage.setItem('moneyStorage', JSON.stringify(moneys));
 
         getMoneys();
 
-        ons.notification.toast("Se ha elimindado el dinero seleccionado!", {
-          title: "Aviso!",
+        ons.notification.toast('Se ha elimindado el dinero seleccionado!', {
+          title: 'Aviso!',
           timeout: 2000,
-          animation: "ascend",
+          animation: 'ascend',
         });
       } else {
-        ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
-          title: "Aviso!",
+        ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+          title: 'Aviso!',
           timeout: 1000,
-          animation: "ascend",
+          animation: 'ascend',
         });
       }
     },
@@ -163,7 +159,7 @@ function deleteMoney(sendMoneyName) {
 }
 
 function addMoneyTo(sendMoneyName) {
-  let moneys = JSON.parse(localStorage.getItem("moneyStorage"));
+  let moneys = JSON.parse(localStorage.getItem('moneyStorage'));
 
   for (let i = 0; i < moneys.length; i++) {
     let mName = moneys[i].moneyName;
@@ -176,17 +172,11 @@ function addMoneyTo(sendMoneyName) {
         moneyCurrent: mMoney,
       };
 
-      if (sessionStorage.getItem("sessionFindMoney") === null) {
-        sessionStorage.setItem(
-          "sessionFindMoney",
-          JSON.stringify(findMoneyObject)
-        );
+      if (sessionStorage.getItem('sessionFindMoney') === null) {
+        sessionStorage.setItem('sessionFindMoney', JSON.stringify(findMoneyObject));
       } else {
-        sessionStorage.removeItem("sessionFindMoney");
-        sessionStorage.setItem(
-          "sessionFindMoney",
-          JSON.stringify(findMoneyObject)
-        );
+        sessionStorage.removeItem('sessionFindMoney');
+        sessionStorage.setItem('sessionFindMoney', JSON.stringify(findMoneyObject));
       }
       createAlertDialogToEditMoneyMoney();
       break;
@@ -195,11 +185,11 @@ function addMoneyTo(sendMoneyName) {
 }
 
 function makeSumMoney() {
-  let actualAmount = document.getElementById("editMoneyActualMoney").textContent;
-  let newAmount = document.getElementById("editOnlyMoneyMoney").value;
+  let actualAmount = document.getElementById('editMoneyActualMoney').textContent;
+  let newAmount = document.getElementById('editOnlyMoneyMoney').value;
 
   let sumResult = parseFloat(parseFloat(actualAmount) + parseFloat(newAmount)).toFixed(2);
 
-  document.getElementById("editMoneyEndMoney").innerHTML = sumResult;
-  sessionStorage.setItem("addNewMoney", sumResult);
+  document.getElementById('editMoneyEndMoney').innerHTML = sumResult;
+  sessionStorage.setItem('addNewMoney', sumResult);
 }

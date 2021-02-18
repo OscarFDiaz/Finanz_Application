@@ -17,13 +17,7 @@
       <div style="text-align: center; margin-top: 16px">
         <div>
           <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">NOTA DEL GASTO</p>
-          <ons-input
-            id="alertEditExpenseNote"
-            modifier="underbar"
-            placeholder=""
-            type="text"
-            style="display: block;"
-          ></ons-input>
+          <ons-input id="alertEditExpenseNote" modifier="underbar" placeholder="" type="text" style="display: block"></ons-input>
         </div>
 
         <div>
@@ -33,39 +27,29 @@
             modifier="underbar"
             placeholder=""
             type="number"
-            style="display: block;"
+            style="display: block"
           ></ons-input>
         </div>
 
         <div>
           <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">FECHA DEL GASTO</p>
-          <ons-input
-            id="alertEditExpenseDate"
-            modifier="underbar"
-            placeholder=""
-            type="date"
-            style="display: block;"
-          ></ons-input>
+          <ons-input id="alertEditExpenseDate" modifier="underbar" placeholder="" type="date" style="display: block"></ons-input>
         </div>
       </div>
     </div>
 
     <div class="alert-dialog-footer">
-      <ons-alert-dialog-button onclick="hideEditAlertExpenseNoChange()"
-        >Cancelar</ons-alert-dialog-button
-      >
-      <ons-alert-dialog-button onclick="hideEditAlertExpense()"
-        >Listo!</ons-alert-dialog-button
-      >
+      <ons-alert-dialog-button onclick="hideEditAlertExpenseNoChange()">Cancelar</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="hideEditAlertExpense()">Listo!</ons-alert-dialog-button>
     </div>
   </ons-alert-dialog>
   <!----------------------------------------------------------------->
 
   <script>
     document.addEventListener(
-      "init",
+      'init',
       function (event) {
-        if (event.target.matches("#detailExpense")) {
+        if (event.target.matches('#detailExpense')) {
           loadDetailExpense();
         }
       },

@@ -2,9 +2,7 @@
   <ons-toolbar id="toolbar" class="toolbar" modifier="transparent">
     <ons-back-button></ons-back-button>
 
-    <div class="center labelToolbar" id="titleDetailSaving">
-      Modificar Fondo
-    </div>
+    <div class="center labelToolbar" id="titleDetailSaving">Modificar Fondo</div>
   </ons-toolbar>
 
   <ons-card>
@@ -20,50 +18,46 @@
             modifier="underbar"
             placeholder=""
             type="number"
-            style="display: block; margin: 0px auto 16px auto;"
+            style="display: block; margin: 0px auto 16px auto"
           ></ons-input>
         </div>
       </div>
 
       <p>
-        <label class="selectedText"
-          >DÍAS:
-          <span id="rangeSelectDays" class="selectedRange">16</span></label
-        >
+        <label class="selectedText">DÍAS: <span id="rangeSelectDays" class="selectedRange">16</span></label>
         <ons-row style="margin-top: 15px">
           <ons-col width="40px" style="text-align: center; line-height: 31px">
             <label class="labelRange">1</label>
           </ons-col>
           <ons-col>
-            <ons-range 
-            onchange="updateSavingPreview()"
-            onkeypress="this.onchange()"
-            oninput="this.onchange()"
-            style="width: 100%" 
-            value="50" 
-            id="rangeDays"></ons-range>
+            <ons-range
+              onchange="updateSavingPreview()"
+              onkeypress="this.onchange()"
+              oninput="this.onchange()"
+              style="width: 100%"
+              value="50"
+              id="rangeDays"
+            ></ons-range>
           </ons-col>
           <ons-col width="40px" style="text-align: center; line-height: 31px">
             <label class="labelRange">31</label>
           </ons-col>
         </ons-row>
 
-        <label class="selectedText"
-          >PORCENTAJE A USAR:
-          <span id="rangeSelectPercent" class="selectedRange">50%</span></label
-        >
+        <label class="selectedText">PORCENTAJE A USAR: <span id="rangeSelectPercent" class="selectedRange">50%</span></label>
         <ons-row style="margin-top: 16px">
           <ons-col width="40px" style="text-align: center; line-height: 31px">
             <label class="labelRangeLess">0</label>
           </ons-col>
           <ons-col>
             <ons-range
-            onchange="updateSavingPreview()"
-            onkeypress="this.onchange()"
-            oninput="this.onchange()"
-            style="width: 100%" 
-            value="50" 
-            id="rangePercent"></ons-range>
+              onchange="updateSavingPreview()"
+              onkeypress="this.onchange()"
+              oninput="this.onchange()"
+              style="width: 100%"
+              value="50"
+              id="rangePercent"
+            ></ons-range>
           </ons-col>
           <ons-col width="35px" style="text-align: center; line-height: 31px">
             <label class="labelRangeLess">100</label>
@@ -79,30 +73,30 @@
   <ons-card style="padding-top: 16px">
     <div class="content">
       <label class="entryAmountText"
-        >CANTIDAD INGRESADA: 
-        <div style="display: block;">
+        >CANTIDAD INGRESADA:
+        <div style="display: block">
           <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
           <span id="entryAmount" class="entryAmountDetail">0</span>
         </div>
       </label>
 
       <label class="entryAmountText"
-        >DÍAS: 
-        <div style="display: block;">
+        >DÍAS:
+        <div style="display: block">
           <span id="entryDays" class="entryAmountDetail"></span>
         </div>
       </label>
 
       <label class="entryAmountText"
         >PORCENTAJE:
-        <div style="display: block;">
+        <div style="display: block">
           <span id="entryPercent" class="entryAmountDetail"></span>
         </div>
       </label>
 
-      <label class="entryAmountText" style="margin-bottom: 0px;"
-        >PARA GASTAR: 
-        <div style="display: block;">
+      <label class="entryAmountText" style="margin-bottom: 0px"
+        >PARA GASTAR:
+        <div style="display: block">
           <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
           <span id="entryExpend" class="entryAmountDetail">0</span>
         </div>
@@ -118,36 +112,28 @@
         <span id="entryCurrentAmount" class="entryAmountDetail">0</span></label
       >
 
-      <label class="entryAmountText"
-        >DÍAS:
-        <span id="entryCurrentDays" class="entryAmountDetail"></span></label
-      >
+      <label class="entryAmountText">DÍAS: <span id="entryCurrentDays" class="entryAmountDetail"></span></label>
 
-      <label class="entryAmountText"
-        >PORCENTAJE:
-        <span id="entryCurrentPercent" class="entryAmountDetail"></span
-        ></label
-      >
+      <label class="entryAmountText">PORCENTAJE: <span id="entryCurrentPercent" class="entryAmountDetail"></span></label>
 
-      <label class="entryAmountText" style="margin-bottom: 0px;"
+      <label class="entryAmountText" style="margin-bottom: 0px"
         >PARA GASTAR: <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
-        <span id="entryCurrentExpend" class="entryAmountDetail">0</span
-        ></label
+        <span id="entryCurrentExpend" class="entryAmountDetail">0</span></label
       >
     </div>
   </ons-card>
 
-  <label class="cardHomeTitle" >FONDO AHORRADO</label>
-  <ons-card style="padding-bottom: 16px;">
+  <label class="cardHomeTitle">FONDO AHORRADO</label>
+  <ons-card style="padding-bottom: 16px">
     <div class="title totalMoneyTitle" id="totalSavingAmount"></div>
-    <ons-button class="flatButton" onclick="resetSavingMoney()" >REINCIAR</ons-button>
+    <ons-button class="flatButton" onclick="resetSavingMoney()">REINCIAR</ons-button>
   </ons-card>
 
   <script>
     document.addEventListener(
-      "init",
+      'init',
       function (event) {
-        if (event.target.matches("#detailSaving")) {
+        if (event.target.matches('#detailSaving')) {
           loadDetailSaving();
         }
       },
