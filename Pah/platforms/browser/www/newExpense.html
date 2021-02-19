@@ -9,9 +9,7 @@
     <div class="content">
       <div style="text-align: center; margin-top: 16px">
         <div>
-          <p style=" margin: 0px auto -16px 12px;text-align: left; padding-top: 16px;">
-            NOMBRE DEL GASTO
-          </p>
+          <p style="margin: 0px auto -16px 12px; text-align: left; padding-top: 16px">NOMBRE DEL GASTO</p>
           <ons-input
             onchange="changeTitlePreview()"
             onkeypress="this.onchange()"
@@ -26,10 +24,8 @@
       </div>
 
       <div>
-        <p style="margin: 0px auto -16px 12px; text-align: left">
-          SELECCIONA UN COLOR
-        </p>
-        <div style="margin-top: 16px;border: 2px solid var(--color-input); border-radius: 15px; height: 48px;">
+        <p style="margin: 0px auto -16px 12px; text-align: left">SELECCIONA UN COLOR</p>
+        <div style="margin-top: 16px; border: 2px solid var(--color-input); border-radius: 15px; height: 48px">
           <div class="input-color-container" style="width: 100%; height: 44px; border: none">
             <input
               onchange="loadIcons()"
@@ -39,21 +35,17 @@
               value="#ffffff"
               type="color"
               id="newExpenseColor"
-              style="display: block;width: 105%;height: 150%;margin: 0px;"
+              style="display: block; width: 105%; height: 150%; margin: 0px"
             />
           </div>
         </div>
       </div>
 
-      <p style="margin: 16px auto 0px 12px; text-align: left; color: var(--card-content-text-color);">
-        SELECCIONA UN ICONO
-      </p>
-      <div style="border: 2px solid var(--color-input); border-radius: 15px; margin-bottom: 16px;">
+      <p style="margin: 16px auto 0px 12px; text-align: left; color: var(--card-content-text-color)">SELECCIONA UN ICONO</p>
+      <div style="border: 2px solid var(--color-input); border-radius: 15px; margin-bottom: 16px">
         <ons-list style="background: none; margin-top: -16px">
           <ons-list-item id="expandableListContainer" expandable>
-            <p style="margin: 0px auto 0px 12px; text-align: left; color: var(--card-content-text-color);">
-              CLICK PARA CAMBIAR
-            </p>
+            <p style="margin: 0px auto 0px 12px; text-align: left; color: var(--card-content-text-color)">CLICK PARA CAMBIAR</p>
             <div class="expandable-content" id="expenseIconListOfIcons">
               <!-- AQUI SE CARGAN LOS ICONOS PARA SELECCIONAR -->
             </div>
@@ -62,28 +54,22 @@
       </div>
 
       <div>
-        <p style="margin: 0px auto -16px 12px; text-align: left">
-          MOSTRAR EN INICIO
-        </p>
-        <div style="margin-top: 16px;border: 2px solid var(--color-input); border-radius: 15px; height: 48px;">
-          <div style="text-align: left;display: block; margin: 10px 16px;">
+        <p style="margin: 0px auto -16px 12px; text-align: left">MOSTRAR EN INICIO</p>
+        <div style="margin-top: 16px; border: 2px solid var(--color-input); border-radius: 15px; height: 48px">
+          <div style="text-align: left; display: block; margin: 10px 16px">
             <ons-switch id="switchNewGoal" checked></ons-switch>
           </div>
         </div>
       </div>
 
-      <ons-button
-        class="flatButton"
-        onclick="makeNewExpense()"
-        style="margin-left: 0px; margin-right: 0px; margin-top: 16px;"
-      >
+      <ons-button class="flatButton" onclick="makeNewExpense()" style="margin-left: 0px; margin-right: 0px; margin-top: 16px">
         LISTO!
       </ons-button>
 
       <ons-button
         class="flatButtonLight"
         onclick="functionPopPage()"
-        style="margin-left: 0px; margin-right: 0px; margin-top: 16px;"
+        style="margin-left: 0px; margin-right: 0px; margin-top: 16px"
       >
         CANCELAR
       </ons-button>
@@ -92,30 +78,20 @@
 
   <label class="cardHomeTitle">PREVISUALIZACIÓN</label>
   <ons-card>
-    <div
-      class="title expenseTitle"
-      id="expensePrevTitle"
-      style="display: inline-block"
-    >
-      NOMBRE
-    </div>
+    <div class="title expenseTitle" id="expensePrevTitle" style="display: inline-block">NOMBRE</div>
     <i class="expenseIcon ion-md-laptop" id="expensePrevIcon"></i>
     <div class="content">
       <label class="expenseInfo">$ 0 GASTADOS TOTALMENTE</label>
     </div>
-    <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="" > 
-      AÑADIR GASTO
-    </ons-button>
-    <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="" >
-      ELIMINAR
-    </ons-button>
+    <ons-button class="moneyButtonAdd" style="margin-bottom: 16px" onclick=""> AÑADIR GASTO </ons-button>
+    <ons-button class="moneyButtonDe" style="margin-bottom: 16px" onclick=""> ELIMINAR </ons-button>
   </ons-card>
 
   <script>
     document.addEventListener(
-      "init",
+      'init',
       function (event) {
-        if (event.target.matches("#newExpense")) {
+        if (event.target.matches('#newExpense')) {
           loadIcons();
         }
       },

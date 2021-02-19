@@ -9,89 +9,50 @@
   </ons-toolbar>
 
   <ons-list class="listConfiguration">
-    <ons-list-item
-      modifier="chevron nodivider"
-      class="itemListConfiguration"
-      tappable
-      onclick="pushToHomeOptions()"
-    >
+    <ons-list-item modifier="chevron nodivider" class="itemListConfiguration" tappable onclick="pushToHomeOptions()">
       <span id="itemHomeScreen">PANTALLA INICIO</span>
     </ons-list-item>
-    <ons-list-item
-      modifier="chevron nodivider"
-      class="itemListConfiguration"
-      tappable
-      onclick="pushToThemeSelector()"
-    >
+    <ons-list-item modifier="chevron nodivider" class="itemListConfiguration" tappable onclick="pushToThemeSelector()">
       <span id="itemThemeScreen">TEMA</span>
     </ons-list-item>
-    <ons-list-item
-      modifier="chevron nodivider"
-      class="itemListConfiguration"
-      tappable
-      onclick="pushToTutorialOptions()"
-    >
+    <ons-list-item modifier="chevron nodivider" class="itemListConfiguration" tappable onclick="pushToTutorialOptions()">
       <span id="itemTutorialScreen">TUTORIALES</span>
     </ons-list-item>
-    <ons-list-item
-      modifier="chevron nodivider"
-      class="itemListConfiguration"
-      tappable
-      onclick="pushToLanguageOptions()"
-    >
+    <ons-list-item modifier="chevron nodivider" class="itemListConfiguration" tappable onclick="pushToLanguageOptions()">
       <span id="itemLanguageScreen">IDIOMA</span>
     </ons-list-item>
-    <ons-list-item
-      modifier="chevron nodivider"
-      class="itemListConfiguration"
-      tappable
-      onclick="pushToDeleteOptions()"
-    >
+    <ons-list-item modifier="chevron nodivider" class="itemListConfiguration" tappable onclick="pushToDeleteOptions()">
       <span id="itemDeleteScreen">BORRAR DATPS</span>
     </ons-list-item>
-    <ons-list-item
-      modifier="chevron nodivider"
-      class="itemListConfiguration"
-      tappable
-      onclick="pushToAbout()"
-    >
+    <ons-list-item modifier="chevron nodivider" class="itemListConfiguration" tappable onclick="pushToAbout()">
       <span id="itemAboutScreen">ACERDA DE</span>
     </ons-list-item>
   </ons-list>
 
   <script>
     document.addEventListener(
-      "show",
+      'show',
       function (event) {
-        if (event.target.matches("#configuration")) {
-          localStorage.setItem("actuaPage", "configuration.html");
+        if (event.target.matches('#configuration')) {
+          localStorage.setItem('actuaPage', 'configuration.html');
 
-          let language = localStorage.getItem("storageSwitchLanguage");
-          if (language == "false") {
-            document.getElementById("titleConfigurarion").innerHTML =
-              "CONFIGURATION";
-            document.getElementById("itemHomeScreen").innerHTML = "HOME SCREEN";
-            document.getElementById("itemThemeScreen").innerHTML = "THEME";
-            document.getElementById("itemTutorialScreen").innerHTML =
-              "TUTORIALS";
-            document.getElementById("itemLanguageScreen").innerHTML =
-              "LANGUAGE";
-            document.getElementById("itemDeleteScreen").innerHTML =
-              "DELETE DATA";
-            document.getElementById("itemAboutScreen").innerHTML = "ABOUT";
+          let language = localStorage.getItem('storageSwitchLanguage');
+          if (language == 'false') {
+            document.getElementById('titleConfigurarion').innerHTML = 'CONFIGURATION';
+            document.getElementById('itemHomeScreen').innerHTML = 'HOME SCREEN';
+            document.getElementById('itemThemeScreen').innerHTML = 'THEME';
+            document.getElementById('itemTutorialScreen').innerHTML = 'TUTORIALS';
+            document.getElementById('itemLanguageScreen').innerHTML = 'LANGUAGE';
+            document.getElementById('itemDeleteScreen').innerHTML = 'DELETE DATA';
+            document.getElementById('itemAboutScreen').innerHTML = 'ABOUT';
           } else {
-            document.getElementById("titleConfigurarion").innerHTML =
-              "CONFIGURACIÓN";
-            document.getElementById("itemHomeScreen").innerHTML =
-              "PANTALLA INICIO";
-            document.getElementById("itemThemeScreen").innerHTML = "TEMA";
-            document.getElementById("itemTutorialScreen").innerHTML =
-              "TUTORIALES";
-            document.getElementById("itemLanguageScreen").innerHTML =
-              "LENGUAJE";
-            document.getElementById("itemDeleteScreen").innerHTML =
-              "BORRAR DATOS";
-            document.getElementById("itemAboutScreen").innerHTML = "ACERCA DE";
+            document.getElementById('titleConfigurarion').innerHTML = 'CONFIGURACIÓN';
+            document.getElementById('itemHomeScreen').innerHTML = 'PANTALLA INICIO';
+            document.getElementById('itemThemeScreen').innerHTML = 'TEMA';
+            document.getElementById('itemTutorialScreen').innerHTML = 'TUTORIALES';
+            document.getElementById('itemLanguageScreen').innerHTML = 'LENGUAJE';
+            document.getElementById('itemDeleteScreen').innerHTML = 'BORRAR DATOS';
+            document.getElementById('itemAboutScreen').innerHTML = 'ACERCA DE';
           }
         }
       },

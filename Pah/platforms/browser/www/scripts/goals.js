@@ -6,39 +6,38 @@
   - Lo regreso a la pantalla
 */
 function makeNewGoal() {
-  let goalName = document.getElementById("newGoalName").value;
-  let goalDescription = document.getElementById("newGoalDescription").value;
-  let goalMoney = document.getElementById("newGoalMoney").value;
+  let goalName = document.getElementById('newGoalName').value;
+  let goalDescription = document.getElementById('newGoalDescription').value;
+  let goalMoney = document.getElementById('newGoalMoney').value;
   let goalActualMoney = 0.0;
-  let goalDate = document.getElementById("newGoalDate").value;
+  let goalDate = document.getElementById('newGoalDate').value;
 
-  let languaje = localStorage.getItem("storageSwitchLanguage");
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
   //Compruebo que no hay campos vacios, en su defecto los lleno
-  if (languaje == "false") {
-    if (goalDescription === "") {
-        goalDescription =
-          "There is no description for this amazing goal. You can add one in the 'EDIT GOAL' button";
+  if (languaje == 'false') {
+    if (goalDescription === '') {
+      goalDescription = "There is no description for this amazing goal. You can add one in the 'EDIT GOAL' button";
     }
 
-    if (goalDate === "") {
-      goalDate = "NO DATE GOAL";
+    if (goalDate === '') {
+      goalDate = 'NO DATE GOAL';
     }
 
-    if (goalName === "") {
-      ons.notification.toast("Wait, a goal needs a good name!", {
-        title: "Error!",
+    if (goalName === '') {
+      ons.notification.toast('Wait, a goal needs a good name!', {
+        title: 'Error!',
         timeout: 2000,
-        animation: "ascend",
+        animation: 'ascend',
       });
       return;
     }
 
-    if (goalMoney === "") {
-      ons.notification.toast("Wait, how much money does your goal need?!", {
-        title: "Error!",
+    if (goalMoney === '') {
+      ons.notification.toast('Wait, how much money does your goal need?!', {
+        title: 'Error!',
         timeout: 2000,
-        animation: "ascend",
+        animation: 'ascend',
       });
       return;
     } else {
@@ -46,46 +45,42 @@ function makeNewGoal() {
     }
 
     let goalTest = Math.sign(goalMoney);
-    if (goalTest == "-1" || goalTest == "-0") {
-      ons.notification.toast(
-        "Wait, it is not possible to add a negative goal, it would be impossible to achieve.",
-        {
-          title: "Error!",
-          timeout: 2000,
-          animation: "ascend",
-        }
-      );
+    if (goalTest == '-1' || goalTest == '-0') {
+      ons.notification.toast('Wait, it is not possible to add a negative goal, it would be impossible to achieve.', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
       return;
     }
-  } else { /* SI EL IDIOMA SELECCIONADO ESTA EN ESPANOL */
-    if (goalDescription === "") {
-      if (languaje == "false") {
-        goalDescription =
-          "There is no description for this amazing goal. You can add one in the 'EDIT GOAL' button";
+  } else {
+    /* SI EL IDIOMA SELECCIONADO ESTA EN ESPANOL */
+    if (goalDescription === '') {
+      if (languaje == 'false') {
+        goalDescription = "There is no description for this amazing goal. You can add one in the 'EDIT GOAL' button";
       } else {
-        goalDescription =
-          "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR META'";
+        goalDescription = "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR META'";
       }
     }
 
-    if (goalDate === "") {
-      goalDate = "SIN DATOS DE FECHA";
+    if (goalDate === '') {
+      goalDate = 'SIN DATOS DE FECHA';
     }
 
-    if (goalName === "") {
-      ons.notification.toast("Un momento, una meta necesita un buen nombre!", {
-        title: "Error!",
+    if (goalName === '') {
+      ons.notification.toast('Un momento, una meta necesita un buen nombre!', {
+        title: 'Error!',
         timeout: 2000,
-        animation: "ascend",
+        animation: 'ascend',
       });
       return;
     }
 
-    if (goalMoney === "") {
-      ons.notification.toast("Un momento, cuanto dinero necesita tu meta?!", {
-        title: "Error!",
+    if (goalMoney === '') {
+      ons.notification.toast('Un momento, cuanto dinero necesita tu meta?!', {
+        title: 'Error!',
         timeout: 2000,
-        animation: "ascend",
+        animation: 'ascend',
       });
       return;
     } else {
@@ -93,15 +88,12 @@ function makeNewGoal() {
     }
 
     let goalTest = Math.sign(goalMoney);
-    if (goalTest == "-1" || goalTest == "-0") {
-      ons.notification.toast(
-        "Un momento, no es posible añadir una meta en negativo, seria imposible de lograr.",
-        {
-          title: "Error!",
-          timeout: 2000,
-          animation: "ascend",
-        }
-      );
+    if (goalTest == '-1' || goalTest == '-0') {
+      ons.notification.toast('Un momento, no es posible añadir una meta en negativo, seria imposible de lograr.', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
       return;
     }
   } /* TERMINA IDIOMA */
@@ -114,28 +106,28 @@ function makeNewGoal() {
     goalDate,
   };
 
-  if (localStorage.getItem("goalStorage") === null) {
+  if (localStorage.getItem('goalStorage') === null) {
     let goalsArray = [];
     goalsArray.push(goal);
-    localStorage.setItem("goalStorage", JSON.stringify(goalsArray));
+    localStorage.setItem('goalStorage', JSON.stringify(goalsArray));
   } else {
-    let goalsArray = JSON.parse(localStorage.getItem("goalStorage"));
+    let goalsArray = JSON.parse(localStorage.getItem('goalStorage'));
     goalsArray.push(goal);
-    localStorage.setItem("goalStorage", JSON.stringify(goalsArray));
+    localStorage.setItem('goalStorage', JSON.stringify(goalsArray));
   }
 
-  if (languaje == "false") {
+  if (languaje == 'false') {
     ons.notification.toast(`New goal ${goalName} added!`, {
-      title: "Aviso!",
+      title: 'Aviso!',
       timeout: 2000,
-      animation: "ascend",
+      animation: 'ascend',
     });
   } else {
     ons.notification.toast(`Nueva meta ${goalName} añadida!`, {
-      title: "Aviso!",
+      title: 'Aviso!',
       timeout: 2000,
-      animation: "ascend",
-    });  
+      animation: 'ascend',
+    });
   }
 
   getGoals();
@@ -150,16 +142,15 @@ function getPercent(goalMoney, actualMoney) {
 }
 
 function getGoals() {
-  let goals = JSON.parse(localStorage.getItem("goalStorage"));
-  let goalsView = document.getElementById("goalsContainer");
-  let languaje = localStorage.getItem("storageSwitchLanguage");
+  let goals = JSON.parse(localStorage.getItem('goalStorage'));
+  let goalsView = document.getElementById('goalsContainer');
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
-  goalsView.innerHTML = "";
-  let goalsTutorial = "";
+  goalsView.innerHTML = '';
+  let goalsTutorial = '';
 
-  if (languaje == "false"){
-    goalsTutorial = 
-    `<ons-card>
+  if (languaje == 'false') {
+    goalsTutorial = `<ons-card>
       <ons-list style="background: none;" id="expenseListOfExpensesContainer">
         <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
           <label class="iconExpenseLabel" style="margin-left: 50px;">
@@ -185,8 +176,7 @@ function getGoals() {
       </ons-list>
     </ons-card>`;
   } else {
-    goalsTutorial = 
-    `<ons-card>
+    goalsTutorial = `<ons-card>
       <ons-list style="background: none;" id="expenseListOfExpensesContainer">
         <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
           <label class="iconExpenseLabel" style="margin-left: 50px;">
@@ -213,15 +203,15 @@ function getGoals() {
     </ons-card>`;
   }
 
-  if (goals == null || goals == "null") {
-    let tutorial = localStorage.getItem("storageSwitchTutorial");
-    if (tutorial == true || tutorial == "true") {
+  if (goals == null || goals == 'null') {
+    let tutorial = localStorage.getItem('storageSwitchTutorial');
+    if (tutorial == true || tutorial == 'true') {
       goalsView.innerHTML += `${goalsTutorial}`;
     }
     return;
   } else if (goals.length == 0) {
-    let tutorial = localStorage.getItem("storageSwitchTutorial");
-    if (tutorial == true || tutorial == "true") {
+    let tutorial = localStorage.getItem('storageSwitchTutorial');
+    if (tutorial == true || tutorial == 'true') {
       goalsView.innerHTML += `${goalsTutorial}`;
     }
     return;
@@ -238,34 +228,33 @@ function getGoals() {
     let today = new Date().toJSON().slice(0, 10);
     let days = dateDiff(today, gDate);
 
-    if (languaje == "false") {
-      if (gDate === "") {
-        gDate = "NO DATE DATA";
+    if (languaje == 'false') {
+      if (gDate === '') {
+        gDate = 'NO DATE DATA';
       } else {
-        if (Math.sign(days) == 1 || Math.sign(days) == "1") {
-          gDate = days + " DAYS REMAINING";
-        } else if (Math.sign(days) == "-1" || Math.sign(days) == -1) {
-          gDate = "EXPIRED " + Math.abs(days) + " DAYS AGO";
-        } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
-          gDate = "TODAY IS THE LAST DAY";
+        if (Math.sign(days) == 1 || Math.sign(days) == '1') {
+          gDate = days + ' DAYS REMAINING';
+        } else if (Math.sign(days) == '-1' || Math.sign(days) == -1) {
+          gDate = 'EXPIRED ' + Math.abs(days) + ' DAYS AGO';
+        } else if (Math.sign(days) == '0' || Math.sign(days) == 0) {
+          gDate = 'TODAY IS THE LAST DAY';
         }
       }
     } else {
-      if (gDate === "") {
-        gDate = "SIN DATOS DE FECHA";
+      if (gDate === '') {
+        gDate = 'SIN DATOS DE FECHA';
       } else {
-        if (Math.sign(days) == 1 || Math.sign(days) == "1") {
-          gDate = days + " DÍAS RESTANTES";
-        } else if (Math.sign(days) == "-1" || Math.sign(days) == -1) {
-          gDate = "VENCIÓ HACE " + Math.abs(days) + " DÍAS";
-        } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
-          gDate = "HOY ES EL ÚLTIMO DÍA";
+        if (Math.sign(days) == 1 || Math.sign(days) == '1') {
+          gDate = days + ' DÍAS RESTANTES';
+        } else if (Math.sign(days) == '-1' || Math.sign(days) == -1) {
+          gDate = 'VENCIÓ HACE ' + Math.abs(days) + ' DÍAS';
+        } else if (Math.sign(days) == '0' || Math.sign(days) == 0) {
+          gDate = 'HOY ES EL ÚLTIMO DÍA';
         }
       }
     }
 
-    goalsView.innerHTML += 
-      `<ons-card onclick="findGoal('${gName}')">
+    goalsView.innerHTML += `<ons-card onclick="findGoal('${gName}')">
         <div class="title" id="titleGoal">
           ${gName}
         </div>
@@ -284,7 +273,7 @@ function getGoals() {
 }
 
 function findGoal(sendGoalName) {
-  let goals = JSON.parse(localStorage.getItem("goalStorage"));
+  let goals = JSON.parse(localStorage.getItem('goalStorage'));
 
   for (let i = 0; i < goals.length; i++) {
     let gName = goals[i].goalName;
@@ -303,98 +292,92 @@ function findGoal(sendGoalName) {
         date: gDate,
       };
 
-      if (sessionStorage.getItem("sessionFindGoal") === null) {
-        sessionStorage.setItem(
-          "sessionFindGoal",
-          JSON.stringify(findGoalObject)
-        );
+      if (sessionStorage.getItem('sessionFindGoal') === null) {
+        sessionStorage.setItem('sessionFindGoal', JSON.stringify(findGoalObject));
       } else {
-        sessionStorage.removeItem("sessionFindGoal");
-        sessionStorage.setItem(
-          "sessionFindGoal",
-          JSON.stringify(findGoalObject)
-        );
+        sessionStorage.removeItem('sessionFindGoal');
+        sessionStorage.setItem('sessionFindGoal', JSON.stringify(findGoalObject));
       }
 
-      const navigator = document.querySelector("#navigator");
-      navigator.pushPage("detailGoal.html");
+      const navigator = document.querySelector('#navigator');
+      navigator.pushPage('detailGoal.html');
       break;
     }
   }
 }
 
 function deleteGoal(sendGoalName) {
-  let languaje = localStorage.getItem("storageSwitchLanguage");
-  if (languaje == "false") {
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+  if (languaje == 'false') {
     ons.notification.confirm({
-      message: "Are you sure you delete the goal?",
-      title: "Notice!",
-      buttonLabels: ["Yes", "Cancel"],
-      animation: "default",
+      message: 'Are you sure you delete the goal?',
+      title: 'Notice!',
+      buttonLabels: ['Yes', 'Cancel'],
+      animation: 'default',
       primaryButtonIndex: 1,
       cancelable: true,
       callback: function (index) {
         if (0 === index) {
-          let goals = JSON.parse(localStorage.getItem("goalStorage"));
-  
+          let goals = JSON.parse(localStorage.getItem('goalStorage'));
+
           for (let i = 0; i < goals.length; i++) {
             if (goals[i].goalName == sendGoalName) {
               goals.splice(i, 1);
               break;
             }
           }
-          localStorage.setItem("goalStorage", JSON.stringify(goals));
-  
+          localStorage.setItem('goalStorage', JSON.stringify(goals));
+
           getGoals();
           functionPopPage();
-  
+
           ons.notification.toast(`The goal ${sendGoalName} has been removed!`, {
-            title: "Notice!",
+            title: 'Notice!',
             timeout: 2000,
-            animation: "ascend",
+            animation: 'ascend',
           });
         } else {
-          ons.notification.toast("Okay, everything flows as normal!", {
-            title: "Notice!",
+          ons.notification.toast('Okay, everything flows as normal!', {
+            title: 'Notice!',
             timeout: 1000,
-            animation: "ascend",
+            animation: 'ascend',
           });
         }
       },
     });
   } else {
     ons.notification.confirm({
-      message: "Estas seguro de borrar la meta?",
-      title: "Aviso!",
-      buttonLabels: ["Sí", "Cancelar"],
-      animation: "default",
+      message: 'Estas seguro de borrar la meta?',
+      title: 'Aviso!',
+      buttonLabels: ['Sí', 'Cancelar'],
+      animation: 'default',
       primaryButtonIndex: 1,
       cancelable: true,
       callback: function (index) {
         if (0 === index) {
-          let goals = JSON.parse(localStorage.getItem("goalStorage"));
-  
+          let goals = JSON.parse(localStorage.getItem('goalStorage'));
+
           for (let i = 0; i < goals.length; i++) {
             if (goals[i].goalName == sendGoalName) {
               goals.splice(i, 1);
               break;
             }
           }
-          localStorage.setItem("goalStorage", JSON.stringify(goals));
-  
+          localStorage.setItem('goalStorage', JSON.stringify(goals));
+
           getGoals();
           functionPopPage();
-  
+
           ons.notification.toast(`La meta ${sendGoalName} ha sido eliminada!`, {
-            title: "Aviso!",
+            title: 'Aviso!',
             timeout: 2000,
-            animation: "ascend",
+            animation: 'ascend',
           });
         } else {
-          ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
-            title: "Aviso!",
+          ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+            title: 'Aviso!',
             timeout: 1000,
-            animation: "ascend",
+            animation: 'ascend',
           });
         }
       },
@@ -403,7 +386,7 @@ function deleteGoal(sendGoalName) {
 }
 
 function deleteGoalInsta(sendGoalName) {
-  let goals = JSON.parse(localStorage.getItem("goalStorage"));
+  let goals = JSON.parse(localStorage.getItem('goalStorage'));
 
   for (let i = 0; i < goals.length; i++) {
     if (goals[i].goalName == sendGoalName) {
@@ -411,11 +394,11 @@ function deleteGoalInsta(sendGoalName) {
       break;
     }
   }
-  localStorage.setItem("goalStorage", JSON.stringify(goals));
+  localStorage.setItem('goalStorage', JSON.stringify(goals));
 }
 
 function editGoal(sendGoalName) {
-  let goals = JSON.parse(localStorage.getItem("goalStorage"));
+  let goals = JSON.parse(localStorage.getItem('goalStorage'));
 
   for (let i = 0; i < goals.length; i++) {
     let gName = goals[i].goalName;
@@ -434,17 +417,11 @@ function editGoal(sendGoalName) {
         date: gDate,
       };
 
-      if (sessionStorage.getItem("sessionFindGoal") === null) {
-        sessionStorage.setItem(
-          "sessionFindGoal",
-          JSON.stringify(findGoalObject)
-        );
+      if (sessionStorage.getItem('sessionFindGoal') === null) {
+        sessionStorage.setItem('sessionFindGoal', JSON.stringify(findGoalObject));
       } else {
-        sessionStorage.removeItem("sessionFindGoal");
-        sessionStorage.setItem(
-          "sessionFindGoal",
-          JSON.stringify(findGoalObject)
-        );
+        sessionStorage.removeItem('sessionFindGoal');
+        sessionStorage.setItem('sessionFindGoal', JSON.stringify(findGoalObject));
       }
       createAlertDialogToEditGoal();
       break;
@@ -453,7 +430,7 @@ function editGoal(sendGoalName) {
 }
 
 function addMoneyGoal(sendGoalName) {
-  let goals = JSON.parse(localStorage.getItem("goalStorage"));
+  let goals = JSON.parse(localStorage.getItem('goalStorage'));
 
   for (let i = 0; i < goals.length; i++) {
     let gName = goals[i].goalName;
@@ -472,17 +449,11 @@ function addMoneyGoal(sendGoalName) {
         date: gDate,
       };
 
-      if (sessionStorage.getItem("sessionFindGoal") === null) {
-        sessionStorage.setItem(
-          "sessionFindGoal",
-          JSON.stringify(findGoalObject)
-        );
+      if (sessionStorage.getItem('sessionFindGoal') === null) {
+        sessionStorage.setItem('sessionFindGoal', JSON.stringify(findGoalObject));
       } else {
-        sessionStorage.removeItem("sessionFindGoal");
-        sessionStorage.setItem(
-          "sessionFindGoal",
-          JSON.stringify(findGoalObject)
-        );
+        sessionStorage.removeItem('sessionFindGoal');
+        sessionStorage.setItem('sessionFindGoal', JSON.stringify(findGoalObject));
       }
       createAlertDialogToEditGoalMoney();
       break;
@@ -491,11 +462,11 @@ function addMoneyGoal(sendGoalName) {
 }
 
 function loadDetailGoal() {
-  document.getElementById("titleDetailGoal").innerHTML = "";
+  document.getElementById('titleDetailGoal').innerHTML = '';
 
-  let retrievedGoal = sessionStorage.getItem("sessionFindGoal");
+  let retrievedGoal = sessionStorage.getItem('sessionFindGoal');
   let parseGoal = JSON.parse(retrievedGoal);
-  let languaje = localStorage.getItem("storageSwitchLanguage");
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
   let gName = parseGoal.name;
   let gDescription = parseGoal.description;
@@ -509,27 +480,25 @@ function loadDetailGoal() {
   let today = new Date().toJSON().slice(0, 10);
   let days = dateDiff(today, gDate);
 
-  if (languaje == "false") {
-    if (Math.sign(days) == 1 || Math.sign(days) == "1") {
-      gDate = days + " DAYS REMAINING";
-    } else if (Math.sign(days) == "-1" || Math.sign(days) == -1) {
-      gDate = "EXPIRED " + Math.abs(days) + " DAYS AGO";
-    } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
-      gDate = "TODAY IS THE LAST DAY";
+  if (languaje == 'false') {
+    if (Math.sign(days) == 1 || Math.sign(days) == '1') {
+      gDate = days + ' DAYS REMAINING';
+    } else if (Math.sign(days) == '-1' || Math.sign(days) == -1) {
+      gDate = 'EXPIRED ' + Math.abs(days) + ' DAYS AGO';
+    } else if (Math.sign(days) == '0' || Math.sign(days) == 0) {
+      gDate = 'TODAY IS THE LAST DAY';
     }
 
-    if (gDescription === "") {
-      gDescription =
-        "There is no description for this amazing goal. You can add one in the 'EDIT META' button";
+    if (gDescription === '') {
+      gDescription = "There is no description for this amazing goal. You can add one in the 'EDIT META' button";
     }
 
-    document.getElementById("titleDetailGoal").innerHTML = gName;
+    document.getElementById('titleDetailGoal').innerHTML = gName;
 
-    let goalsView = document.getElementById("goalDetailContainer");
-    goalsView.innerHTML = "";
+    let goalsView = document.getElementById('goalDetailContainer');
+    goalsView.innerHTML = '';
 
-    goalsView.innerHTML += 
-    `<label class="cardHomeTitle" style="margin-top: 0px">DESCRIPTION</label>
+    goalsView.innerHTML += `<label class="cardHomeTitle" style="margin-top: 0px">DESCRIPTION</label>
       <ons-card style="padding-top:16px">
         <div class="content detailInfo">
             ${gDescription}
@@ -576,26 +545,24 @@ function loadDetailGoal() {
         <i class="icon ion-md-create" style="font-size: 35px;"></i>
       </ons-fab>`;
   } else {
-    if (Math.sign(days) == 1 || Math.sign(days) == "1") {
-      gDate = days + " DÍAS RESTANTES";
-    } else if (Math.sign(days) == "-1" || Math.sign(days) == -1) {
-      gDate = "VENCIÓ HACE " + Math.abs(days) + " DÍAS";
-    } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
-      gDate = "HOY ES EL ÚLTIMO DÍA";
+    if (Math.sign(days) == 1 || Math.sign(days) == '1') {
+      gDate = days + ' DÍAS RESTANTES';
+    } else if (Math.sign(days) == '-1' || Math.sign(days) == -1) {
+      gDate = 'VENCIÓ HACE ' + Math.abs(days) + ' DÍAS';
+    } else if (Math.sign(days) == '0' || Math.sign(days) == 0) {
+      gDate = 'HOY ES EL ÚLTIMO DÍA';
     }
 
-    if (gDescription === "") {
-      gDescription =
-        "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR META'";
+    if (gDescription === '') {
+      gDescription = "No existe una descripción para esta asombrosa meta. Puedes añadir una en el botón 'EDITAR META'";
     }
 
-    document.getElementById("titleDetailGoal").innerHTML = gName;
+    document.getElementById('titleDetailGoal').innerHTML = gName;
 
-    let goalsView = document.getElementById("goalDetailContainer");
-    goalsView.innerHTML = "";
+    let goalsView = document.getElementById('goalDetailContainer');
+    goalsView.innerHTML = '';
 
-    goalsView.innerHTML += 
-    `<label class="cardHomeTitle" style="margin-top: 0px">DESCRIPCIÓN</label>
+    goalsView.innerHTML += `<label class="cardHomeTitle" style="margin-top: 0px">DESCRIPCIÓN</label>
       <ons-card style="padding-top:16px">
         <div class="content detailInfo">
             ${gDescription}

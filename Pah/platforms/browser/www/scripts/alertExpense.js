@@ -1,171 +1,160 @@
 /* PARA AÑADIR UN GASTO*/
 function createAlertDialogToAddExpense() {
-  var dialog = document.getElementById("alertToAddExpense");
+  var dialog = document.getElementById('alertToAddExpense');
 
   if (dialog) {
     loadSelectOptions();
     dialog.show();
   } else {
-    ons.notification.toast(
-      "Ups! No se ha podido cargar la ventana para añadir!",
-      {
-        title: "Error!",
-        timeout: 2000,
-        animation: "ascend",
-      }
-    );
+    ons.notification.toast('Ups! No se ha podido cargar la ventana para añadir!', {
+      title: 'Error!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
   }
 }
 
 function loadSelectOptions() {
-  let moneyStorage = JSON.parse(localStorage.getItem("moneyStorage"));
+  let moneyStorage = JSON.parse(localStorage.getItem('moneyStorage'));
 
   let container = document.getElementById('selectOptio');
-  container.innerHTML = "";
+  container.innerHTML = '';
 
   const option = document.createElement('option');
-  let text = "NO RESTAR";
+  let text = 'NO RESTAR';
   option.innerText = text;
 
   container.appendChild(option);
-  if(moneyStorage == null || moneyStorage == "null") {
+  if (moneyStorage == null || moneyStorage == 'null') {
   } else {
     for (let i = 0; i < moneyStorage.length; i++) {
       const option = document.createElement('option');
       let text = moneyStorage[i].moneyName;
       option.innerText = text;
-  
+
       container.appendChild(option);
     }
   }
 }
 
 function hideAlertExpense() {
-  let eName = document.getElementById("alertExpenseNote").value;
-  let eMoney = document.getElementById("alertExpenseMoney").value;
-  let eDate = document.getElementById("alertExpenseDate").value;
-  let eid = localStorage.getItem("detailExpenseCount");
+  let eName = document.getElementById('alertExpenseNote').value;
+  let eMoney = document.getElementById('alertExpenseMoney').value;
+  let eDate = document.getElementById('alertExpenseDate').value;
+  let eid = localStorage.getItem('detailExpenseCount');
 
-  const selectTag = document.getElementById("selectOptio");
+  const selectTag = document.getElementById('selectOptio');
   const options = selectTag.options;
   var selectedOption = options[selectTag.selectedIndex].value;
 
-  if (eid == null || eid == ""){
-    localStorage.setItem("detailExpenseCount", "0");
+  if (eid == null || eid == '') {
+    localStorage.setItem('detailExpenseCount', '0');
     eid = 0;
   }
 
   eid = +eid + 1;
-  localStorage.setItem("detailExpenseCount", eid);
+  localStorage.setItem('detailExpenseCount', eid);
 
-  if (eName == null || eName == "") {
-    ons.notification.toast("No puedo añadir un gasto sin un nombre/nota!", {
-      title: "Aviso!",
+  if (eName == null || eName == '') {
+    ons.notification.toast('No puedo añadir un gasto sin un nombre/nota!', {
+      title: 'Aviso!',
       timeout: 2000,
-      animation: "ascend",
+      animation: 'ascend',
     });
     return;
   }
-  
-  if (eMoney == null || eMoney == "") {
-    ons.notification.toast("Puedo añadir ese gasto, pero necesito saber cuanto gastaste.", {
-      title: "Aviso!",
+
+  if (eMoney == null || eMoney == '') {
+    ons.notification.toast('Puedo añadir ese gasto, pero necesito saber cuanto gastaste.', {
+      title: 'Aviso!',
       timeout: 2000,
-      animation: "ascend",
+      animation: 'ascend',
     });
     return;
   }
   // Convierto la cantidad después de ver que fue escrita
   eMoney = parseFloat(eMoney).toFixed(2);
-  
-  if (eDate == null || eDate == "") {
+
+  if (eDate == null || eDate == '') {
     eDate = new Date().toJSON().slice(0, 10);
   }
-  
+
   let testSign = Math.sign(eMoney);
-  if (testSign == "-1" || testSign == "-0") {
-    ons.notification.toast("No puedes añadir un gasto negativo, eso seria muy extraño.", {
-      title: "Aviso!",
+  if (testSign == '-1' || testSign == '-0') {
+    ons.notification.toast('No puedes añadir un gasto negativo, eso seria muy extraño.', {
+      title: 'Aviso!',
       timeout: 2000,
-      animation: "ascend",
+      animation: 'ascend',
     });
     return;
   }
 
-  if(selectedOption == "NO RESTAR") {
+  if (selectedOption == 'NO RESTAR') {
   } else {
     // Resto el dinero de donde se selecciono, me regreso sino se puede restar
-    if(updateMoneyStorage(selectedOption, eMoney)){
+    if (updateMoneyStorage(selectedOption, eMoney)) {
       return;
     }
   }
 
   // Obtengo el nombre del item, pero es necesario modificar el contador
-  let expenseObject = sessionStorage.getItem("sessionFindExpense");
+  let expenseObject = sessionStorage.getItem('sessionFindExpense');
 
   let expenseDetail = {
     expenseName: expenseObject,
     inName: eName,
     inAmount: eMoney,
     inDate: eDate,
-    inID: eid
+    inID: eid,
   };
 
   /* Guardo los detalles del Expense*/
-  if (localStorage.getItem("expenseDetailStorage") === null) {
+  if (localStorage.getItem('expenseDetailStorage') === null) {
     let expenseDetailArray = [];
     expenseDetailArray.unshift(expenseDetail);
-    localStorage.setItem(
-      "expenseDetailStorage",
-      JSON.stringify(expenseDetailArray)
-    );
+    localStorage.setItem('expenseDetailStorage', JSON.stringify(expenseDetailArray));
   } else {
-    let expenseDetailArray = JSON.parse(
-      localStorage.getItem("expenseDetailStorage")
-    );
+    let expenseDetailArray = JSON.parse(localStorage.getItem('expenseDetailStorage'));
     expenseDetailArray.unshift(expenseDetail);
-    localStorage.setItem(
-      "expenseDetailStorage",
-      JSON.stringify(expenseDetailArray)
-    );
+    localStorage.setItem('expenseDetailStorage', JSON.stringify(expenseDetailArray));
   }
 
   updateExpenseTotalMoney(expenseObject, eMoney);
-  
-  ons.notification.toast("Nuevo gasto añadido!", {
-    title: "Aviso!",
+
+  ons.notification.toast('Nuevo gasto añadido!', {
+    title: 'Aviso!',
     timeout: 2000,
-    animation: "ascend",
+    animation: 'ascend',
   });
 
   sessionStorage.clear();
-  document.getElementById("alertExpenseNote").value = null;
-  document.getElementById("alertExpenseMoney").value = null;
-  document.getElementById("alertExpenseDate").value = null;
-  document.getElementById("alertToAddExpense").hide();
+  document.getElementById('alertExpenseNote').value = null;
+  document.getElementById('alertExpenseMoney').value = null;
+  document.getElementById('alertExpenseDate').value = null;
+  document.getElementById('alertToAddExpense').hide();
 }
 
 function updateMoneyStorage(sendName, amount) {
-  let moneyStorage = JSON.parse(localStorage.getItem("moneyStorage"));
+  let moneyStorage = JSON.parse(localStorage.getItem('moneyStorage'));
 
-  if (moneyStorage == null || moneyStorage == "null") {
+  if (moneyStorage == null || moneyStorage == 'null') {
   } else {
     for (let i = 0; i < moneyStorage.length; i++) {
-      if(moneyStorage[i].moneyName == sendName) {
+      if (moneyStorage[i].moneyName == sendName) {
         let test = +moneyStorage[i].moneyCurrent + -amount;
         let testSign = Math.sign(test);
-        if (testSign == "-1") {
-          ons.notification.toast("No se puede restar más dinero del lugar seleccionado.", {
-            title: "Aviso!",
+        if (testSign == '-1') {
+          ons.notification.toast('No se puede restar más dinero del lugar seleccionado.', {
+            title: 'Aviso!',
             timeout: 2000,
-            animation: "ascend",
+            animation: 'ascend',
           });
           return true;
         }
-  
+
         moneyStorage[i].moneyCurrent = (parseFloat(moneyStorage[i].moneyCurrent) - parseFloat(amount)).toFixed(2);
-  
-        localStorage.setItem("moneyStorage", JSON.stringify(moneyStorage)); 
+
+        localStorage.setItem('moneyStorage', JSON.stringify(moneyStorage));
         break;
       }
     }
@@ -173,91 +162,87 @@ function updateMoneyStorage(sendName, amount) {
 }
 
 function hideAlertExpenseNoChange() {
-  ons.notification.toast("No se ha modificado nada :)", {
-    title: "Aviso!",
+  ons.notification.toast('No se ha modificado nada :)', {
+    title: 'Aviso!',
     timeout: 2000,
-    animation: "ascend",
+    animation: 'ascend',
   });
   sessionStorage.clear();
-  document.getElementById("alertExpenseNote").value = null;
-  document.getElementById("alertExpenseMoney").value = null;
-  document.getElementById("alertExpenseDate").value = null;
-  document.getElementById("alertToAddExpense").hide();
+  document.getElementById('alertExpenseNote').value = null;
+  document.getElementById('alertExpenseMoney').value = null;
+  document.getElementById('alertExpenseDate').value = null;
+  document.getElementById('alertToAddExpense').hide();
 }
 
 /* PARA EDITAR UN GASTO */
 function editDetailExpense(idSend) {
-  var dialog = document.getElementById("alertToEditExpense");
-  let expenses = JSON.parse(localStorage.getItem("expenseDetailStorage"));
-  sessionStorage.setItem("editExpense", idSend);
-  
+  var dialog = document.getElementById('alertToEditExpense');
+  let expenses = JSON.parse(localStorage.getItem('expenseDetailStorage'));
+  sessionStorage.setItem('editExpense', idSend);
+
   let note, money, date;
-  
+
   for (let i = 0; i < expenses.length; i++) {
     if (expenses[i].inID == idSend) {
-      note = expenses[i].inName; 
+      note = expenses[i].inName;
       money = expenses[i].inAmount;
       date = expenses[i].inDate;
       break;
     }
   }
-  
+
   if (dialog) {
     dialog.show();
-    document.getElementById("alertEditExpenseNote").value = note;
-    document.getElementById("alertEditExpenseMoney").value = money;
-    document.getElementById("alertEditExpenseDate").value = date;
-
+    document.getElementById('alertEditExpenseNote').value = note;
+    document.getElementById('alertEditExpenseMoney').value = money;
+    document.getElementById('alertEditExpenseDate').value = date;
   } else {
-    ons.notification.toast(
-      "Ups! No se ha podido cargar la ventana para editar!",
-      {
-        title: "Error!",
-        timeout: 2000,
-        animation: "ascend",
-      }
-    );
+    ons.notification.toast('Ups! No se ha podido cargar la ventana para editar!', {
+      title: 'Error!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
   }
 }
 
 // PARA EDITAR UN GASTO YA CREADO
 function hideEditAlertExpense() {
-  let note = document.getElementById("alertEditExpenseNote").value;
-  let money = parseFloat(document.getElementById("alertEditExpenseMoney").value).toFixed(2);
-  let date = document.getElementById("alertEditExpenseDate").value;
+  let note = document.getElementById('alertEditExpenseNote').value;
+  let money = parseFloat(document.getElementById('alertEditExpenseMoney').value).toFixed(2);
+  let date = document.getElementById('alertEditExpenseDate').value;
   let mName, id, index;
 
-  let idSend = sessionStorage.getItem("editExpense");
-  let expenses = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+  let idSend = sessionStorage.getItem('editExpense');
+  let expenses = JSON.parse(localStorage.getItem('expenseDetailStorage'));
 
-  if (note == null || note == "") {
-    ons.notification.toast("No puedo añadir un gasto sin un nombre/nota!", {
-      title: "Aviso!",
+  if (note == null || note == '') {
+    ons.notification.toast('No puedo añadir un gasto sin un nombre/nota!', {
+      title: 'Aviso!',
       timeout: 2000,
-      animation: "ascend",
+      animation: 'ascend',
     });
     return;
   }
-  
-  if (money == null || money == "" || money == "NaN") {
-    ons.notification.toast("Puedo editar ese gasto, pero necesito saber cuanto gastaste.", {
-      title: "Aviso!",
+
+  if (money == null || money == '' || money == 'NaN') {
+    ons.notification.toast('Puedo editar ese gasto, pero necesito saber cuanto gastaste.', {
+      title: 'Aviso!',
       timeout: 2000,
-      animation: "ascend",
+      animation: 'ascend',
     });
     return;
   }
-  
-  if (date == null || date == "") {
+
+  if (date == null || date == '') {
     date = new Date().toJSON().slice(0, 10);
   }
 
   let testSign = Math.sign(money);
-  if (testSign == "-1" || testSign == "-0") {
-    ons.notification.toast("No puedes añadir un gasto negativo, eso seria muy extraño.", {
-      title: "Aviso!",
+  if (testSign == '-1' || testSign == '-0') {
+    ons.notification.toast('No puedes añadir un gasto negativo, eso seria muy extraño.', {
+      title: 'Aviso!',
       timeout: 2000,
-      animation: "ascend",
+      animation: 'ascend',
     });
     return;
   }
@@ -276,45 +261,45 @@ function hideEditAlertExpense() {
     inName: note,
     inAmount: money,
     inDate: date,
-    inID: id
+    inID: id,
   };
 
   /* Guardo los detalles del Expense*/
   expenses[index] = expenseDetail;
-  localStorage.setItem("expenseDetailStorage", JSON.stringify(expenses));
+  localStorage.setItem('expenseDetailStorage', JSON.stringify(expenses));
 
   /**/
   reInsertExpenseDetail(mName);
   insertNewExpenseAmount(mName);
   updateExpenseLastDays(mName);
 
-  ons.notification.toast("Gasto modificado correctamente!", {
-    title: "Aviso!",
+  ons.notification.toast('Gasto modificado correctamente!', {
+    title: 'Aviso!',
     timeout: 2000,
-    animation: "ascend",
+    animation: 'ascend',
   });
 
   sessionStorage.clear();
-  document.getElementById("alertEditExpenseNote").value = null;
-  document.getElementById("alertEditExpenseMoney").value = null;
-  document.getElementById("alertEditExpenseDate").value = null;
-  document.getElementById("alertToEditExpense").hide();
+  document.getElementById('alertEditExpenseNote').value = null;
+  document.getElementById('alertEditExpenseMoney').value = null;
+  document.getElementById('alertEditExpenseDate').value = null;
+  document.getElementById('alertToEditExpense').hide();
 }
 
-function insertNewExpenseAmount(sendName){
-  let storageExpense = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+function insertNewExpenseAmount(sendName) {
+  let storageExpense = JSON.parse(localStorage.getItem('expenseDetailStorage'));
 
   let newAmount = 0;
   for (let i = 0; i < storageExpense.length; i++) {
-    if (storageExpense[i].expenseName == sendName){
+    if (storageExpense[i].expenseName == sendName) {
       newAmount += +storageExpense[i].inAmount;
     }
   }
 
   newAmount = parseFloat(newAmount).toFixed(2);
-  document.getElementById("totalExpenseDetail").innerHTML = newAmount;
+  document.getElementById('totalExpenseDetail').innerHTML = newAmount;
 
-  let mainStorage = JSON.parse(localStorage.getItem("expenseStorage"));
+  let mainStorage = JSON.parse(localStorage.getItem('expenseStorage'));
   let index;
   for (let i = 0; i < mainStorage.length; i++) {
     if (mainStorage[i].expenseName == sendName) {
@@ -326,71 +311,71 @@ function insertNewExpenseAmount(sendName){
         mainDate: mainStorage[i].mainDate,
         iconName: mainStorage[i].iconName,
         expenseColor: mainStorage[i].expenseColor,
-        toShow: mainStorage[i].toShow
+        toShow: mainStorage[i].toShow,
       };
       mainStorage[index] = expense;
-      localStorage.setItem("expenseStorage", JSON.stringify(mainStorage));
+      localStorage.setItem('expenseStorage', JSON.stringify(mainStorage));
     }
   }
 }
 
 function hideEditAlertExpenseNoChange() {
-  ons.notification.toast("No se ha modificado nada :)", {
-    title: "Aviso!",
+  ons.notification.toast('No se ha modificado nada :)', {
+    title: 'Aviso!',
     timeout: 2000,
-    animation: "ascend",
+    animation: 'ascend',
   });
   sessionStorage.clear();
-  document.getElementById("alertEditExpenseMoney").value = null;
-  document.getElementById("alertEditExpenseDate").value = null;
-  document.getElementById("alertToEditExpense").hide();
+  document.getElementById('alertEditExpenseMoney').value = null;
+  document.getElementById('alertEditExpenseDate').value = null;
+  document.getElementById('alertToEditExpense').hide();
 }
 
 function editExpense(sendName) {
-  sessionStorage.setItem("expenseNameEdit", sendName);
+  sessionStorage.setItem('expenseNameEdit', sendName);
 
-  const navigator = document.querySelector("#navigator");
-  navigator.pushPage("editExpense.html");
+  const navigator = document.querySelector('#navigator');
+  navigator.pushPage('editExpense.html');
 }
 
 function hideAlertExpenseEditNoChange() {
-  document.getElementById("newExpenseNameEdit").value = null;
-  document.getElementById("newExpenseColorEdit").value = "#ffffff";
+  document.getElementById('newExpenseNameEdit').value = null;
+  document.getElementById('newExpenseColorEdit').value = '#ffffff';
 
   sessionStorage.clear();
   functionPopPage();
-  ons.notification.toast("De acuerdo, todo normal!", {
-    title: "Aviso!",
+  ons.notification.toast('De acuerdo, todo normal!', {
+    title: 'Aviso!',
     timeout: 2000,
-    animation: "ascend",
+    animation: 'ascend',
   });
 }
 
 function hideAlertExpenseEdit() {
-  let oldName = sessionStorage.getItem("expenseNameEdit");
-  let newName = document.getElementById("newExpenseNameEdit").value;
-  let newColor = document.getElementById("newExpenseColorEdit").value;
-  let newIcon = sessionStorage.getItem("expenseIconName");
-  let toShowN = document.getElementById("switchNewGoalEdit").checked;
+  let oldName = sessionStorage.getItem('expenseNameEdit');
+  let newName = document.getElementById('newExpenseNameEdit').value;
+  let newColor = document.getElementById('newExpenseColorEdit').value;
+  let newIcon = sessionStorage.getItem('expenseIconName');
+  let toShowN = document.getElementById('switchNewGoalEdit').checked;
 
-  if (newName == null || newName == "null" || newName == "") {
-    ons.notification.toast("Debes añadir un nuevo nombre al gasto!", {
-      title: "Aviso!",
+  if (newName == null || newName == 'null' || newName == '') {
+    ons.notification.toast('Debes añadir un nuevo nombre al gasto!', {
+      title: 'Aviso!',
       timeout: 2000,
-      animation: "ascend",
+      animation: 'ascend',
     });
     return;
   }
 
-  if (newIcon == null || newIcon == "null" || newIcon == "") {
-    newIcon = sessionStorage.getItem("oldIcon");
-    sessionStorage.removeItem("oldIcon");
+  if (newIcon == null || newIcon == 'null' || newIcon == '') {
+    newIcon = sessionStorage.getItem('oldIcon');
+    sessionStorage.removeItem('oldIcon');
   }
 
-  let expenseStorage = JSON.parse(localStorage.getItem("expenseStorage"));
+  let expenseStorage = JSON.parse(localStorage.getItem('expenseStorage'));
   let index, expense;
 
-  for(let i = 0; i < expenseStorage.length; i++) {
+  for (let i = 0; i < expenseStorage.length; i++) {
     if (expenseStorage[i].expenseName == oldName) {
       index = i;
 
@@ -400,7 +385,7 @@ function hideAlertExpenseEdit() {
         mainDate: expenseStorage[i].mainDate,
         iconName: newIcon,
         expenseColor: newColor,
-        toShow: toShowN
+        toShow: toShowN,
       };
 
       expenseStorage[index] = expense;
@@ -408,31 +393,31 @@ function hideAlertExpenseEdit() {
     }
   }
 
-  if (localStorage.getItem("expenseStorage") === null) {
+  if (localStorage.getItem('expenseStorage') === null) {
     let expenseArray = [];
     expenseArray.push(expense);
-    localStorage.setItem("expenseStorage", JSON.stringify(expenseArray));
+    localStorage.setItem('expenseStorage', JSON.stringify(expenseArray));
   } else {
-    localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
+    localStorage.setItem('expenseStorage', JSON.stringify(expenseStorage));
   }
 
-  ons.notification.toast("Gasto modificado exitosamente!", {
-    title: "Aviso!",
+  ons.notification.toast('Gasto modificado exitosamente!', {
+    title: 'Aviso!',
     timeout: 2000,
-    animation: "ascend",
+    animation: 'ascend',
   });
 
   functionPopPage(2);
-  sessionStorage.clear()
+  sessionStorage.clear();
 }
 
-function loadIconsEdit(){
-    let iconsView = document.getElementById("expenseIconListOfIconsEdit");
-    iconsView.innerHTML = "";
-  
-    let iconColor = document.getElementById("newExpenseColorEdit").value;
-  
-    iconsView.innerHTML = `<i class="expenseIconList ion-md-airplane" style="--expenseIconColor: ${iconColor}" onclick="selectIconEdit('ion-md-airplane', '${iconColor}')"></i>
+function loadIconsEdit() {
+  let iconsView = document.getElementById('expenseIconListOfIconsEdit');
+  iconsView.innerHTML = '';
+
+  let iconColor = document.getElementById('newExpenseColorEdit').value;
+
+  iconsView.innerHTML = `<i class="expenseIconList ion-md-airplane" style="--expenseIconColor: ${iconColor}" onclick="selectIconEdit('ion-md-airplane', '${iconColor}')"></i>
       <i class="expenseIconList ion-md-alarm" style="--expenseIconColor: ${iconColor}" onclick="selectIconEdit('ion-md-alarm', '${iconColor}')"></i>
       <i class="expenseIconList ion-md-flame" style="--expenseIconColor: ${iconColor}" onclick="selectIconEdit('ion-md-flame', '${iconColor}')"></i>
       <i class="expenseIconList ion-md-aperture" style="--expenseIconColor: ${iconColor}" onclick="selectIconEdit('ion-md-aperture', '${iconColor}')"></i>
@@ -490,43 +475,42 @@ function loadIconsEdit(){
 }
 
 function selectIconEdit(iconName, iconColor) {
-
-  sessionStorage.setItem("expenseIconName", iconName);
+  sessionStorage.setItem('expenseIconName', iconName);
   // Oculto los iconos, ya tengo uno seleccionado
-  document.getElementById("expandableListContainerEdit").hideExpansion();
+  document.getElementById('expandableListContainerEdit').hideExpansion();
 
   // Añado el icono seleccionado
-  let iconElement = document.getElementById("expensePrevIconEdit");
+  let iconElement = document.getElementById('expensePrevIconEdit');
   iconElement.className = '';
-  iconElement.classList.add("expenseIcon");
+  iconElement.classList.add('expenseIcon');
   iconElement.classList.add(iconName);
   // Añado el color
   iconElement.style.cssText = `--expenseIconColorPrev: ${iconColor}`;
 }
 
 function changeTitlePreviewEdit() {
-  let newTitle = document.getElementById("newExpenseNameEdit").value;
-  let oldTitle = document.getElementById("expensePrevTitleEdit");
+  let newTitle = document.getElementById('newExpenseNameEdit').value;
+  let oldTitle = document.getElementById('expensePrevTitleEdit');
 
-  if (newTitle == "" || newTitle == null) {
+  if (newTitle == '' || newTitle == null) {
     oldTitle.innerHTML = `NOMBRE <i class="expenseIcon ion-md-laptop"></i>`;
   } else {
-    oldTitle.innerHTML = "";
+    oldTitle.innerHTML = '';
     oldTitle.innerHTML = newTitle;
   }
 }
 
 function deleteDetailExpense(idSend) {
   ons.notification.confirm({
-    message: "Estas seguro de borrar el gasto?",
-    title: "Aviso!",
-    buttonLabels: ["Sí", "Cancelar"],
-    animation: "default",
+    message: 'Estas seguro de borrar el gasto?',
+    title: 'Aviso!',
+    buttonLabels: ['Sí', 'Cancelar'],
+    animation: 'default',
     primaryButtonIndex: 1,
     cancelable: true,
     callback: function (index) {
       if (0 === index) {
-        let detailExpenses = JSON.parse(localStorage.getItem("expenseDetailStorage"));
+        let detailExpenses = JSON.parse(localStorage.getItem('expenseDetailStorage'));
         let loadName, amountLess;
 
         for (let i = 0; i < detailExpenses.length; i++) {
@@ -538,32 +522,32 @@ function deleteDetailExpense(idSend) {
             break;
           }
         }
-        localStorage.setItem("expenseDetailStorage", JSON.stringify(detailExpenses));
+        localStorage.setItem('expenseDetailStorage', JSON.stringify(detailExpenses));
 
-        ons.notification.toast("Se ha elimindado el gasto seleccionado!", {
-          title: "Aviso!",
+        ons.notification.toast('Se ha elimindado el gasto seleccionado!', {
+          title: 'Aviso!',
           timeout: 2000,
-          animation: "ascend",
+          animation: 'ascend',
         });
 
         /* Actualizo los datos de la meta principal */
         reInsertExpenseDetail(loadName);
-        updateExpenseTotalMoney(loadName, "-"+amountLess);
+        updateExpenseTotalMoney(loadName, '-' + amountLess);
         updateExpenseLastDays(loadName);
 
-        let storage = JSON.parse(localStorage.getItem("expenseStorage"));
+        let storage = JSON.parse(localStorage.getItem('expenseStorage'));
 
-        for(let i = 0; i < storage.length; i++){
-          if (storage[i].expenseName == loadName){
-            document.getElementById("totalExpenseDetail").innerHTML = "" + storage[i].totalExpense;
+        for (let i = 0; i < storage.length; i++) {
+          if (storage[i].expenseName == loadName) {
+            document.getElementById('totalExpenseDetail').innerHTML = '' + storage[i].totalExpense;
             break;
           }
         }
       } else {
-        ons.notification.toast("De acuerdo, todo fluye como normalmente!", {
-          title: "Aviso!",
+        ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+          title: 'Aviso!',
           timeout: 1000,
-          animation: "ascend",
+          animation: 'ascend',
         });
       }
     },
@@ -572,18 +556,13 @@ function deleteDetailExpense(idSend) {
 
 /* RECARGA LOS GASTOS AL ELIMINAR UNO CUANDO SE ENTRA DETALLADAMENTE A UN GASTO*/
 function reInsertExpenseDetail(sendName) {
+  let detailDetailExpenseView = document.getElementById('expenseListOfExpenses');
+  detailDetailExpenseView.innerHTML = '';
 
-  let detailDetailExpenseView = document.getElementById(
-    "expenseListOfExpenses"
-  );
-  detailDetailExpenseView.innerHTML = "";
-
-  let expensesDetail = JSON.parse(
-    localStorage.getItem("expenseDetailStorage")
-  );
+  let expensesDetail = JSON.parse(localStorage.getItem('expenseDetailStorage'));
 
   let actualEx = 0;
-  if (expensesDetail == null || expensesDetail == "null") {
+  if (expensesDetail == null || expensesDetail == 'null') {
   } else {
     for (let i = 0; i < expensesDetail.length; i++) {
       if (expensesDetail[i].expenseName == sendName) {
@@ -594,8 +573,7 @@ function reInsertExpenseDetail(sendName) {
   }
 
   if (actualEx == 0) {
-    detailDetailExpenseView.innerHTML = 
-    `<div style="margin-bottom: 30px;">
+    detailDetailExpenseView.innerHTML = `<div style="margin-bottom: 30px;">
       <label class="labelDetailExpense" style="text-align:center">Nada por mostrar, vas bien con los ahorros...</label>
     </div>`;
   } else {
@@ -608,21 +586,20 @@ function reInsertExpenseDetail(sendName) {
 
         let today = new Date().toJSON().slice(0, 10);
         let days = dateDiff(today, iDate);
-    
-        if (iDate === "") {
-          iDate = "SIN DATOS DE FECHA";
+
+        if (iDate === '') {
+          iDate = 'SIN DATOS DE FECHA';
         } else {
-          if (Math.sign(days) == 1 || Math.sign(days) == "1") {
-            iDate = "EN " + days + " DÍAS";
-          } else if (Math.sign(days) == "-1" || Math.sign(days) == -1) {
-            iDate = "HACE " + Math.abs(days) + " DÍAS";
-          } else if (Math.sign(days) == "0" || Math.sign(days) == 0) {
-            iDate = "HOY";
+          if (Math.sign(days) == 1 || Math.sign(days) == '1') {
+            iDate = 'EN ' + days + ' DÍAS';
+          } else if (Math.sign(days) == '-1' || Math.sign(days) == -1) {
+            iDate = 'HACE ' + Math.abs(days) + ' DÍAS';
+          } else if (Math.sign(days) == '0' || Math.sign(days) == 0) {
+            iDate = 'HOY';
           }
         }
 
-        detailDetailExpenseView.innerHTML +=
-        `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+        detailDetailExpenseView.innerHTML += `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
           <div class="center">
             <label class="list-item__title labelDetailExpense" style="text-align:center; font-size:22px">${iName} - $ <span class="labelInfoDetailExpense" style="font-size:22px">${iAmount}</span></label>
             <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px; text-align:center">${iDate}</label>
@@ -645,11 +622,9 @@ function reInsertExpenseDetail(sendName) {
 }
 
 function updateExpenseLastDays(sendName) {
-  let days = document.getElementById("lastDaysDetail");
-  let month = document.getElementById("lastMonthDetail");
+  let days = document.getElementById('lastDaysDetail');
+  let month = document.getElementById('lastMonthDetail');
 
   days.innerHTML = getAmountFDays(sendName);
   month.innerHTML = getAmountTDays(sendName);
 }
-
-

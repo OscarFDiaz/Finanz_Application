@@ -3,21 +3,21 @@ Funciones para abrir el splitter de ambos usuarios, aqui se encarga de abrir el 
 */
 window.fn = {};
 
-window.fn.open = function() {
+window.fn.open = function () {
   var menu = document.getElementById('menu');
   menu.open();
 };
 
-window.fn.close = function(){
+window.fn.close = function () {
   var menu = document.getElementById('menu');
-  menu.close();   
-}
+  menu.close();
+};
 
-window.fn.load = function(page) {
+window.fn.load = function (page) {
   var content = document.getElementById('content');
   var menu = document.getElementById('menu');
-  let aPage = localStorage.getItem("actuaPage");
-  
+  let aPage = localStorage.getItem('actuaPage');
+
   if (aPage == page || aPage === page) {
     menu.close();
   } else {
