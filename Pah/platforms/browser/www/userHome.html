@@ -14,14 +14,19 @@
     document.addEventListener(
       'show',
       function (event) {
+        let languaje = localStorage.getItem('storageSwitchLanguage');
         if (event.target.matches('#userHome')) {
+          if (languaje == 'false') {
+            document.getElementById('titleSplitterUser').innerHTML = 'HOME';
+          } else {
+            document.getElementById('titleSplitterUser').innerHTML = 'INICIO';
+          }
           localStorage.setItem('actuaPage', 'userHome.html');
           checkOptions();
         }
 
         // MODIFICO EL LISTENER DEL BACK BUTTON PARA CONFIRMAS SALIDA DE APLICACIÓN
         ons.setDefaultDeviceBackButtonListener(function (event) {
-          let languaje = localStorage.getItem('storageSwitchLanguage');
           if (languaje == 'false') {
             ons.notification
               .confirm('Do you want to exit the application?', {

@@ -3,73 +3,142 @@ function makeSaving() {
   let mainAmount = document.getElementById('savingMainAmount').value;
   let rangeDays = document.getElementById('rangeDays').value;
   let rangePercent = document.getElementById('rangePercent').value;
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
-  if (mainAmount == null || mainAmount == 'null' || mainAmount == '') {
-    ons.notification.toast('Un momento, tienes que ingresar una cantidad antes!', {
-      title: 'Error!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
-    return;
-  }
+  if (languaje == 'false') {
+    if (mainAmount == null || mainAmount == 'null' || mainAmount == '') {
+      ons.notification.toast('Wait, you have to enter an amount before!', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+      return;
+    }
 
-  let testMoney = Math.sign(mainAmount);
-  if (testMoney == '-1' || testMoney === '-0') {
-    ons.notification.toast('No puedes añadir un fondo negativo.', {
-      title: 'Error!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
-    return;
+    let testMoney = Math.sign(mainAmount);
+    if (testMoney == '-1' || testMoney === '-0') {
+      ons.notification.toast('You cannot add a negative number', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+      return;
+    }
+  } else {
+    if (mainAmount == null || mainAmount == 'null' || mainAmount == '') {
+      ons.notification.toast('Un momento, tienes que ingresar una cantidad antes!', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+      return;
+    }
+
+    let testMoney = Math.sign(mainAmount);
+    if (testMoney == '-1' || testMoney === '-0') {
+      ons.notification.toast('No puedes añadir un fondo negativo.', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+      return;
+    }
   }
 
   let storage = JSON.parse(localStorage.getItem('savingStorage'));
 
   if (storage) {
-    ons.notification.confirm({
-      message: 'Ya existe un fondo, quieres borrar el actual e ingresar este nuevo?',
-      title: 'Aviso!',
-      buttonLabels: ['Sí', 'Cancelar'],
-      animation: 'default',
-      primaryButtonIndex: 1,
-      cancelable: true,
-      callback: function (index) {
-        if (0 === index) {
-          rangeDays = returnDays(rangeDays);
-          let equivalentAmount = (parseInt(rangePercent) * parseFloat(mainAmount)) / 100;
-          let toExpend = (parseFloat(equivalentAmount) / parseInt(rangeDays)).toFixed(2);
-          let daysLeft = rangeDays;
-          let moneyLeft = toExpend;
+    if (languaje == 'false') {
+      ons.notification.confirm({
+        message: 'A fund already exists, do you want to delete the current one and enter this new one?',
+        title: 'Notice!',
+        buttonLabels: ['Yes', 'Cancel'],
+        animation: 'default',
+        primaryButtonIndex: 1,
+        cancelable: true,
+        callback: function (index) {
+          if (0 === index) {
+            rangeDays = returnDays(rangeDays);
+            let equivalentAmount = (parseInt(rangePercent) * parseFloat(mainAmount)) / 100;
+            let toExpend = (parseFloat(equivalentAmount) / parseInt(rangeDays)).toFixed(2);
+            let daysLeft = rangeDays;
+            let moneyLeft = toExpend;
 
-          let saving = {
-            mainAmount,
-            rangeDays,
-            rangePercent,
-            equivalentAmount,
-            toExpend,
-            daysLeft,
-            moneyLeft,
-          };
+            let saving = {
+              mainAmount,
+              rangeDays,
+              rangePercent,
+              equivalentAmount,
+              toExpend,
+              daysLeft,
+              moneyLeft,
+            };
 
-          localStorage.setItem('savingStorage', JSON.stringify(saving));
-          updateLastSaving();
-          functionPopPage();
-          loadSaving();
+            localStorage.setItem('savingStorage', JSON.stringify(saving));
+            updateLastSaving();
+            functionPopPage();
+            loadSaving();
 
-          ons.notification.toast('Se ha actualizado el fondo!', {
-            title: 'Aviso!',
-            timeout: 2000,
-            animation: 'ascend',
-          });
-        } else {
-          ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
-            title: 'Aviso!',
-            timeout: 1000,
-            animation: 'ascend',
-          });
-        }
-      },
-    });
+            ons.notification.toast('It has been updated successfully!!', {
+              title: 'Notice!',
+              timeout: 2000,
+              animation: 'ascend',
+            });
+          } else {
+            ons.notification.toast('Okay, everything flows as normal!', {
+              title: 'Notice!',
+              timeout: 1000,
+              animation: 'ascend',
+            });
+          }
+        },
+      });
+    } else {
+      ons.notification.confirm({
+        message: 'Ya existe un fondo, ¿quieres borrar el actual e ingresar este nuevo?',
+        title: 'Aviso!',
+        buttonLabels: ['Sí', 'Cancelar'],
+        animation: 'default',
+        primaryButtonIndex: 1,
+        cancelable: true,
+        callback: function (index) {
+          if (0 === index) {
+            rangeDays = returnDays(rangeDays);
+            let equivalentAmount = (parseInt(rangePercent) * parseFloat(mainAmount)) / 100;
+            let toExpend = (parseFloat(equivalentAmount) / parseInt(rangeDays)).toFixed(2);
+            let daysLeft = rangeDays;
+            let moneyLeft = toExpend;
+
+            let saving = {
+              mainAmount,
+              rangeDays,
+              rangePercent,
+              equivalentAmount,
+              toExpend,
+              daysLeft,
+              moneyLeft,
+            };
+
+            localStorage.setItem('savingStorage', JSON.stringify(saving));
+            updateLastSaving();
+            functionPopPage();
+            loadSaving();
+
+            ons.notification.toast('Se ha actualizado el fondo!', {
+              title: 'Aviso!',
+              timeout: 2000,
+              animation: 'ascend',
+            });
+          } else {
+            ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+              title: 'Aviso!',
+              timeout: 1000,
+              animation: 'ascend',
+            });
+          }
+        },
+      });
+    }
   } else {
     rangeDays = returnDays(rangeDays);
     let equivalentAmount = (parseInt(rangePercent) * parseFloat(mainAmount)) / 100;
@@ -92,11 +161,19 @@ function makeSaving() {
     functionPopPage();
     loadSaving();
 
-    ons.notification.toast('Se ha ingresado el fondo!', {
-      title: 'Aviso!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast('The fund has been entered!', {
+        title: 'Notice!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast('Se ha ingresado el fondo!', {
+        title: 'Aviso!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    }
   }
 }
 
@@ -141,12 +218,64 @@ function updateSavingPreview() {
 function updateLastSaving() {
   let savingStorage = JSON.parse(localStorage.getItem('savingStorage'));
   let cSavingView = document.getElementById('actualSavingContainer');
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
   if (savingStorage == null || savingStorage == 'null') {
-    cSavingView.innerHTML = `<label class="cardHomeTitle" style="margin-top: 0px">NO HAY UN FONDO ACTIVO...</label>`;
+    if (languaje == 'false') {
+      cSavingView.innerHTML = `<label class="cardHomeTitle" style="margin-top: 0px">THERE IS NO ACTIVE FUND...</label>`;
+    } else {
+      cSavingView.innerHTML = `<label class="cardHomeTitle" style="margin-top: 0px">NO HAY UN FONDO ACTIVO...</label>`;
+    }
     return;
   } else {
-    cSavingView.innerHTML = `<label class="entryAmountText"
+    if (languaje == 'false') {
+      cSavingView.innerHTML = `<label class="entryAmountText"
+        >ENTERED AMOUNT: 
+        <div style="display: block;">
+          <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
+          <span id="entryCurrentAmount" class="entryAmountDetail">0</span>
+        </div>
+      </label>
+
+        <label class="entryAmountText"
+        >SELECTED DAYS:
+          <div style="display: block;">
+            <span id="entryCurrentDays" class="entryAmountDetail"></span>
+          </div>
+        </label
+        >
+
+        <label class="entryAmountText"
+        >REMAINING DAYS:
+          <div style="display: block;">
+            <span id="entryCurrentDaysLeft" class="entryAmountDetail"></span>
+          </div>
+        </label>
+
+        <label class="entryAmountText"
+        >PERCENTAGE:
+          <div style="display: block;">
+            <span id="entryCurrentPercent" class="entryAmountDetail"></span>
+          </div>
+        </label>
+
+        <label class="entryAmountText"
+        >TO SPEND: 
+          <div style="display: block;">
+            <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
+            <span id="entryCurrentExpend" class="entryAmountDetail">0</span>
+          </div>
+        </label>
+        
+        <label class="entryAmountText" style="margin-bottom: 0px;"
+        >CURRENT AVAILABLE: 
+          <div style="display: block;">
+            <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
+            <span id="entryCurrentExpendLeft" class="entryAmountDetail">0</span>
+          </div>
+        </label>`;
+    } else {
+      cSavingView.innerHTML = `<label class="entryAmountText"
         >CANTIDAD INGRESADA: 
         <div style="display: block;">
           <span class="entryAmountDetail" style="color: var(--card-text-title-color)">$ </span>
@@ -191,6 +320,7 @@ function updateLastSaving() {
             <span id="entryCurrentExpendLeft" class="entryAmountDetail">0</span>
           </div>
         </label>`;
+    }
   }
 
   let sInnerAmount = savingStorage.mainAmount;
@@ -215,50 +345,95 @@ function updateLastSaving() {
 function loadSaving() {
   let sView = document.getElementById('savingMainContainer');
   let savingStorage = JSON.parse(localStorage.getItem('savingStorage'));
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
   sView.innerHTML = '';
 
-  savingTutorial = `<ons-card>
-    <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-      <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-        <label class="iconExpenseLabel" style="margin-left: 50px;">
-          VER TUTORIAL
-        </label>
-        <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-          <p class="paraTutorial">
-            Fondo será la opción que te ayudará a controlar tus gastos, 
-            podrás elegir que cantidad de dinero quieres gastar y en cuantos días, 
-            mediante un porcentaje podrás seleccionar cuanto dinero podrás gastar día con día.
-          </p>
-          <p class="paraTutorial">
-            Ejemplo, sí tienes $3000 y quieres gastar el 50% de esa cantidad en los próximos 15 días, 
-            la aplicación te dirá cuanto dinero puedes gastar durante cada día por esos días seleccionados.
-          </p>
-          <p class="paraTutorial">
-            Podrás aumentar el gasto diario que tendrás, también podrás reducirlo,
-            si lo quieres reducir se te preguntara si deseas crear un gasto, 
-            de aceptar deberás seleccionar en que categoría quieres crear ese gasto, eso sí, 
-            deberás tener ya el gasto creado en “GASTOS”, también podrás reducirlo a tu dinero, y obvio deberás tener ese dinero creado en “MI DINERO”.
-          </p>
-          <p class="paraTutorial">
-            El punto es que vayas restando los días conforme estos terminen, para terminarlo deberás dar sobre “Terminar día”, 
-            no es necesario que te termines todo tu dinero disponible en el día para pasar al siguiente, 
-            si quedó algo de dinero se te preguntara que quieres hacer con el, 
-            añadirlo al día siguiente en caso de haberlo o guardarlo en "MI DINERO".
-          </p>
-          <p class="paraTutorial">
-            El dinero que guardes cuando te sobre es el que se verá en la pantalla de inicio en “FONDO GUARDADO”.
-          </p>
-          <p class="paraTutorial">
-            Para reiniciar esa cantidad ingresa en "MI FONDO", da click en "MODIFICAR" y en donde sale tu fondo ahorrado en "REINICIAR"
-          </p>
-          <p class="paraTutorial">
-            Para modificar/ingresar un nuevo fondo da click en “Modificar”.
-          </p>
-        </div>
-      </ons-list-item>
-    </ons-list>
-  </ons-card>`;
+  if (languaje == 'false') {
+    savingTutorial = `<ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            SEE TUTORIAL
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+            <p class="paraTutorial">
+              Fund will be the option that will help you control your expenses,
+              you can choose how much money you want to spend and in how many days, 
+              by means of a percentage you can select how much money you can spend day by day.
+            </p>
+            <p class="paraTutorial">
+              Example, if you have $ 3000 and you want to spend 50% of that amount in the next 15 days, 
+              the application will tell you how much money you can spend during each day for those selected days.
+            </p>
+            <p class="paraTutorial">
+              You will be able to increase the daily expense that you will have, you will also be able to reduce it, 
+              if you want to reduce it you will be asked if you want to create an expense, 
+              if you accept you must select in which category you want to create that expense, yes, 
+              you must already have the expense created in "EXPENSES" You can also reduce it to your money, 
+              and obviously you must have that money created in "MY MONEY".
+            </p>
+            <p class="paraTutorial">
+              The point is that you subtract the days as they end, to finish it you must give on "End day", 
+              it is not necessary that you finish all your available money on the day to move on to the next, 
+              if there was any money left you will be asked what you want do with it, add it the next day if there is one or save it in "MY MONEY".
+            </p>
+            <p class="paraTutorial">
+              The money that you save when you have excess is the one that will be seen on the home screen in “SAVED FUND”.
+            </p>
+            <p class="paraTutorial">
+              To restart that amount, enter "MY FUND", click on the pencil and where your saved fund appears in "RESET"
+            </p>
+            <p class="paraTutorial">
+              To modify / enter a new fund click on the pencil
+            </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>`;
+  } else {
+    savingTutorial = `<ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            VER TUTORIAL
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+            <p class="paraTutorial">
+              Fondo será la opción que te ayudará a controlar tus gastos, 
+              podrás elegir que cantidad de dinero quieres gastar y en cuantos días, 
+              mediante un porcentaje podrás seleccionar cuanto dinero podrás gastar día con día.
+            </p>
+            <p class="paraTutorial">
+              Ejemplo, sí tienes $3000 y quieres gastar el 50% de esa cantidad en los próximos 15 días, 
+              la aplicación te dirá cuanto dinero puedes gastar durante cada día por esos días seleccionados.
+            </p>
+            <p class="paraTutorial">
+              Podrás aumentar el gasto diario que tendrás, también podrás reducirlo,
+              si lo quieres reducir se te preguntara si deseas crear un gasto, 
+              de aceptar deberás seleccionar en que categoría quieres crear ese gasto, eso sí, 
+              deberás tener ya el gasto creado en “GASTOS”, también podrás reducirlo a tu dinero, y obvio deberás tener ese dinero creado en “MI DINERO”.
+            </p>
+            <p class="paraTutorial">
+              El punto es que vayas restando los días conforme estos terminen, para terminarlo deberás dar sobre “Terminar día”, 
+              no es necesario que te termines todo tu dinero disponible en el día para pasar al siguiente, 
+              si quedó algo de dinero se te preguntara que quieres hacer con el, 
+              añadirlo al día siguiente en caso de haberlo o guardarlo en "MI DINERO".
+            </p>
+            <p class="paraTutorial">
+              El dinero que guardes cuando te sobre es el que se verá en la pantalla de inicio en “FONDO GUARDADO”.
+            </p>
+            <p class="paraTutorial">
+              Para reiniciar esa cantidad ingresa en "MI FONDO", da click en "MODIFICAR" y en donde sale tu fondo ahorrado en "REINICIAR"
+            </p>
+            <p class="paraTutorial">
+              Para modificar/ingresar un nuevo fondo da click en “Modificar”.
+            </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>`;
+  }
 
   if (savingStorage == null || savingStorage == 'null') {
     let tutorial = localStorage.getItem('storageSwitchTutorial');
@@ -273,9 +448,10 @@ function loadSaving() {
   let sDaysLeft = savingStorage.daysLeft;
   let sMoneyDayLeft = savingStorage.moneyLeft;
 
-  sView.innerHTML = `<ons-card>
+  if (languaje == 'false') {
+    sView.innerHTML = `<ons-card>
       <div class="title mainTitle">
-          FONDO
+          SAVED
       </div>
       <div class="content">
           <label id="savingsInfo" class="savingInfo">
@@ -286,25 +462,59 @@ function loadSaving() {
 
     <ons-card>
       <div class="title savingTitle">
-          DISPONIBLE
+        AVAILABLE
       </div>
       <div class="content">
           <label id="savingsDailyInfo" class="savingDaily">
             <span style="color: var(--card-text-title-color)">$</span> 
             ${sMoneyDayLeft}
           </label>
-          <ons-button class="flatButton" onclick="editMoneySaving()" style="margin-left: 0px; margin-right: 0px">MODIFICAR DINERO</ons-button>
+          <ons-button class="flatButton" onclick="editMoneySaving()" style="margin-left: 0px; margin-right: 0px">MODIFY MONEY</ons-button>
       </div>
     </ons-card>
 
     <ons-card>
       <div class="title daysTitle">
-          DÍAS RESTANTES | <span id="savingsDays" class="leftDays">${sDaysLeft}</span>
+        REMAINING DAYS | <span id="savingsDays" class="leftDays">${sDaysLeft}</span>
       </div>
       <div class="content">
-          <ons-button class="flatButtonLight" onclick="endSavingDay()" style="margin-left: 0px; margin-right: 0px">TERMINAR DÍA</ons-button>
+          <ons-button class="flatButtonLight" onclick="endSavingDay()" style="margin-left: 0px; margin-right: 0px">END DAY</ons-button>
       </div>
     </ons-card>`;
+  } else {
+    sView.innerHTML = `<ons-card>
+        <div class="title mainTitle">
+            FONDO
+        </div>
+        <div class="content">
+            <label id="savingsInfo" class="savingInfo">
+              <span style="color: var(--card-text-title-color)">$</span> ${sTakedAmount} / 
+              <span style="color: var(--card-text-title-color)">$</span> ${sMoneyDay}</label>
+        </div>
+      </ons-card>
+  
+      <ons-card>
+        <div class="title savingTitle">
+            DISPONIBLE
+        </div>
+        <div class="content">
+            <label id="savingsDailyInfo" class="savingDaily">
+              <span style="color: var(--card-text-title-color)">$</span> 
+              ${sMoneyDayLeft}
+            </label>
+            <ons-button class="flatButton" onclick="editMoneySaving()" style="margin-left: 0px; margin-right: 0px">MODIFICAR DINERO</ons-button>
+        </div>
+      </ons-card>
+  
+      <ons-card>
+        <div class="title daysTitle">
+            DÍAS RESTANTES | <span id="savingsDays" class="leftDays">${sDaysLeft}</span>
+        </div>
+        <div class="content">
+            <ons-button class="flatButtonLight" onclick="endSavingDay()" style="margin-left: 0px; margin-right: 0px">TERMINAR DÍA</ons-button>
+        </div>
+      </ons-card>`;
+  }
 }
 
 function loadDetailSaving() {
@@ -313,40 +523,78 @@ function loadDetailSaving() {
 }
 
 function resetSavingMoney() {
-  ons.notification.confirm({
-    message: 'Estas seguro de reinciar el fondo ahorrado?',
-    title: 'Aviso!',
-    buttonLabels: ['Sí', 'Cancelar'],
-    animation: 'default',
-    primaryButtonIndex: 1,
-    cancelable: true,
-    callback: function (index) {
-      if (0 === index) {
-        let storageS = localStorage.getItem('savedMoneySaving');
-        if (storageS) {
-          localStorage.setItem('savedMoneySaving', 0);
-          ons.notification.toast('El fondo ahorrado se ha reiniciado!', {
-            title: 'Aviso!',
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+  if (languaje == 'false') {
+    ons.notification.confirm({
+      message: 'Are you sure to reset the saved fund?',
+      title: 'Notice!',
+      buttonLabels: ['Yes', 'Cancel'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let storageS = localStorage.getItem('savedMoneySaving');
+          if (storageS) {
+            localStorage.setItem('savedMoneySaving', 0);
+            ons.notification.toast('The saved fund has been reset!', {
+              title: 'Notice!',
+              timeout: 1000,
+              animation: 'ascend',
+            });
+            loadDetailSaving();
+          } else {
+            ons.notification.toast(`You don't have a fund saved to eliminate.`, {
+              title: 'Notice!',
+              timeout: 1000,
+              animation: 'ascend',
+            });
+          }
+        } else {
+          ons.notification.toast('Okay, everything flows as normal!', {
+            title: 'Notice!',
             timeout: 1000,
             animation: 'ascend',
           });
-          loadDetailSaving();
+        }
+      },
+    });
+  } else {
+    ons.notification.confirm({
+      message: '¿Estas seguro de reiniciar el fondo ahorrado?',
+      title: 'Aviso!',
+      buttonLabels: ['Sí', 'Cancelar'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let storageS = localStorage.getItem('savedMoneySaving');
+          if (storageS) {
+            localStorage.setItem('savedMoneySaving', 0);
+            ons.notification.toast('El fondo ahorrado se ha reiniciado!', {
+              title: 'Aviso!',
+              timeout: 1000,
+              animation: 'ascend',
+            });
+            loadDetailSaving();
+          } else {
+            ons.notification.toast('No tienes un fondo ahorrado para eliminar.', {
+              title: 'Aviso!',
+              timeout: 1000,
+              animation: 'ascend',
+            });
+          }
         } else {
-          ons.notification.toast('No tienes un fondo ahorrado para eliminar.', {
+          ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
             title: 'Aviso!',
             timeout: 1000,
             animation: 'ascend',
           });
         }
-      } else {
-        ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
-          title: 'Aviso!',
-          timeout: 1000,
-          animation: 'ascend',
-        });
-      }
-    },
-  });
+      },
+    });
+  }
 }
 
 function returnDays(days) {
@@ -417,66 +665,130 @@ function returnDays(days) {
 }
 
 function endSavingDay() {
-  ons.notification.confirm({
-    message: 'Estas seguro de terminar el día?',
-    title: 'Aviso!',
-    buttonLabels: ['Sí', 'Cancelar'],
-    animation: 'default',
-    primaryButtonIndex: 1,
-    cancelable: true,
-    callback: function (index) {
-      if (0 === index) {
-        let storageS = JSON.parse(localStorage.getItem('savingStorage'));
-        let moneyLeft = storageS.moneyLeft;
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+  if (languaje == 'false') {
+    ons.notification.confirm({
+      message: 'Are you sure to finish the day?',
+      title: 'Notice!',
+      buttonLabels: ['Yes', 'Cancel'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let storageS = JSON.parse(localStorage.getItem('savingStorage'));
+          let moneyLeft = storageS.moneyLeft;
 
-        if (storageS.daysLeft < 1) {
-          ons.notification.toast('No quedan más días en tu fondo, ya no puedes terminar el día, lo siento!', {
-            title: 'Error!',
-            timeout: 2000,
-            animation: 'ascend',
-          });
-          return;
-        }
-
-        // Si me quedo dinero
-        if (moneyLeft > 0) {
-          let dialog = document.getElementById('alertMoneyLeft');
-
-          if (dialog) {
-            dialog.show();
-            document.getElementById('leftMoneyToAlert').innerHTML = moneyLeft;
-          } else {
-            ons.notification.toast('Ups! No se ha podido cargar la ventana para el dinero disponible!', {
+          if (storageS.daysLeft < 1) {
+            ons.notification.toast(`There are no more days left in your fund, you can't finish the day anymore, I'm sorry!`, {
               title: 'Error!',
               timeout: 2000,
               animation: 'ascend',
             });
+            return;
+          }
+
+          // Si me quedo dinero
+          if (moneyLeft > 0) {
+            let dialog = document.getElementById('alertMoneyLeft');
+
+            if (dialog) {
+              dialog.show();
+              document.getElementById('leftMoneyToAlert').innerHTML = moneyLeft;
+            } else {
+              ons.notification.toast('Oops! Unable to load window for available money!', {
+                title: 'Error!',
+                timeout: 2000,
+                animation: 'ascend',
+              });
+            }
+          } else {
+            // Si no me quedó dinero
+            let savingStorage = JSON.parse(localStorage.getItem('savingStorage'));
+
+            savingStorage.daysLeft = parseInt(savingStorage.daysLeft) - 1;
+            savingStorage.moneyLeft = savingStorage.toExpend;
+
+            localStorage.setItem('savingStorage', JSON.stringify(savingStorage));
+            loadSaving();
+
+            ons.notification.toast('The day has changed!', {
+              title: 'Notice!',
+              timeout: 2500,
+              animation: 'ascend',
+            });
           }
         } else {
-          // Si no me quedó dinero
-          let savingStorage = JSON.parse(localStorage.getItem('savingStorage'));
-
-          savingStorage.daysLeft = parseInt(savingStorage.daysLeft) - 1;
-          savingStorage.moneyLeft = savingStorage.toExpend;
-
-          localStorage.setItem('savingStorage', JSON.stringify(savingStorage));
-          loadSaving();
-
-          ons.notification.toast('Se ha cambiado de día!', {
-            title: 'Aviso!',
-            timeout: 2500,
+          ons.notification.toast('Okay, everything flows as normal!', {
+            title: 'Notice!',
+            timeout: 1000,
             animation: 'ascend',
           });
         }
-      } else {
-        ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
-          title: 'Aviso!',
-          timeout: 1000,
-          animation: 'ascend',
-        });
-      }
-    },
-  });
+      },
+    });
+  } else {
+    ons.notification.confirm({
+      message: '¿Estas seguro de terminar el día?',
+      title: 'Aviso!',
+      buttonLabels: ['Sí', 'Cancelar'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let storageS = JSON.parse(localStorage.getItem('savingStorage'));
+          let moneyLeft = storageS.moneyLeft;
+
+          if (storageS.daysLeft < 1) {
+            ons.notification.toast('No quedan más días en tu fondo, ya no puedes terminar el día, lo siento!', {
+              title: 'Error!',
+              timeout: 2000,
+              animation: 'ascend',
+            });
+            return;
+          }
+
+          // Si me quedo dinero
+          if (moneyLeft > 0) {
+            let dialog = document.getElementById('alertMoneyLeft');
+
+            if (dialog) {
+              dialog.show();
+              document.getElementById('leftMoneyToAlert').innerHTML = moneyLeft;
+            } else {
+              ons.notification.toast('Ups! No se ha podido cargar la ventana para el dinero disponible!', {
+                title: 'Error!',
+                timeout: 2000,
+                animation: 'ascend',
+              });
+            }
+          } else {
+            // Si no me quedó dinero
+            let savingStorage = JSON.parse(localStorage.getItem('savingStorage'));
+
+            savingStorage.daysLeft = parseInt(savingStorage.daysLeft) - 1;
+            savingStorage.moneyLeft = savingStorage.toExpend;
+
+            localStorage.setItem('savingStorage', JSON.stringify(savingStorage));
+            loadSaving();
+
+            ons.notification.toast('Se ha cambiado de día!', {
+              title: 'Aviso!',
+              timeout: 2500,
+              animation: 'ascend',
+            });
+          }
+        } else {
+          ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+            title: 'Aviso!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
+        }
+      },
+    });
+  }
 }
 
 /* ABRE EL ALERT PARA EDITAR EL SAVING*/
@@ -503,13 +815,23 @@ function checkRadioSelect(id) {
   let container = document.getElementById('containerAlertAddMoneyLeft');
   sessionStorage.setItem('selectedRadioID', id);
 
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
   // Si elige la opcion de mi dinero se cargan las opciones, de lo contrario se ocultan
   if (id == 'radio-2') {
-    container.innerHTML = `
-    <label style="color: var(--alert-tile-color)">AÑADIR A: </label>
-    <select id="selectOptionAddMoney">
-      <!--AQUI SE CARGAN LOS POSIBLES GASTOS-->
-    </select>`;
+    if (languaje == 'false') {
+      container.innerHTML = `
+      <label style="color: var(--alert-tile-color)">ADD TO: </label>
+      <select id="selectOptionAddMoney">
+        <!--AQUI SE CARGAN LOS POSIBLES GASTOS-->
+      </select>`;
+    } else {
+      container.innerHTML = `
+      <label style="color: var(--alert-tile-color)">AÑADIR A: </label>
+      <select id="selectOptionAddMoney">
+        <!--AQUI SE CARGAN LOS POSIBLES GASTOS-->
+      </select>`;
+    }
 
     // CARGO EL DINERO DISPONIBLE
     let moneyStorage = JSON.parse(localStorage.getItem('moneyStorage'));
@@ -541,6 +863,7 @@ function addToMoneyLeftMoney() {
   let leftMoney = document.getElementById('leftMoneyToAlert').textContent;
   let selectedRadioID = sessionStorage.getItem('selectedRadioID');
   let savingStorage = JSON.parse(localStorage.getItem('savingStorage'));
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
   if (selectedRadioID == null || selectedRadioID == '') {
     selectedRadioID = 'radio-1';
@@ -554,14 +877,25 @@ function addToMoneyLeftMoney() {
 
     // No hay más días para el fondo
     if (leftDays < 1) {
-      ons.notification.toast(
-        "No hay más días para el fondo, debes seleccionar 'Añadir a MI DINERO' o modificar el fondo y agregar más días.",
-        {
-          title: 'Aviso!',
-          timeout: 2500,
-          animation: 'ascend',
-        }
-      );
+      if (languaje == 'false') {
+        ons.notification.toast(
+          "There are no more days for the fund, you must select 'Add to MY MONEY' or modify the fund and add more days.",
+          {
+            title: 'Notice!',
+            timeout: 2500,
+            animation: 'ascend',
+          }
+        );
+      } else {
+        ons.notification.toast(
+          "No hay más días para el fondo, debes seleccionar 'Añadir a MI DINERO' o modificar el fondo y agregar más días.",
+          {
+            title: 'Aviso!',
+            timeout: 2500,
+            animation: 'ascend',
+          }
+        );
+      }
       return;
     } else {
       // Resto el día y añado el dinero al día siguiente
@@ -575,11 +909,19 @@ function addToMoneyLeftMoney() {
       document.getElementById('alertMoneyLeft').hide();
       loadSaving();
 
-      ons.notification.toast('Dinero restante añadido, hoy podrás gastar un poco más!', {
-        title: 'Aviso!',
-        timeout: 2500,
-        animation: 'ascend',
-      });
+      if (languaje == 'false') {
+        ons.notification.toast('Remaining money added, today you can spend a little more!', {
+          title: 'Notice!',
+          timeout: 2500,
+          animation: 'ascend',
+        });
+      } else {
+        ons.notification.toast('Dinero restante añadido, hoy podrás gastar un poco más!', {
+          title: 'Aviso!',
+          timeout: 2500,
+          animation: 'ascend',
+        });
+      }
     }
   } else if (selectedRadioID == 'radio-2') {
     // Si quiero añadir el dinero a alguna cartera
@@ -590,14 +932,25 @@ function addToMoneyLeftMoney() {
     var choseMoney = optMoney[selMoney.selectedIndex].value;
 
     if (choseMoney == 'SELECCIONA OPCIÓN') {
-      ons.notification.toast(
-        "Selecciona una opción donde guardar el dinero, si no existe un lugar donde guardar el dinero, añade uno en 'MI DINERO'",
-        {
-          title: 'Aviso!',
-          timeout: 2500,
-          animation: 'ascend',
-        }
-      );
+      if (languaje == 'false') {
+        ons.notification.toast(
+          "Select an option where to save the money, if there is no place to save the money, add one in 'MY MONEY'",
+          {
+            title: 'Aviso!',
+            timeout: 2500,
+            animation: 'ascend',
+          }
+        );
+      } else {
+        ons.notification.toast(
+          "Selecciona una opción donde guardar el dinero, si no existe un lugar donde guardar el dinero, añade uno en 'MI DINERO'",
+          {
+            title: 'Aviso!',
+            timeout: 2500,
+            animation: 'ascend',
+          }
+        );
+      }
       return;
     }
 
@@ -638,22 +991,39 @@ function addToMoneyLeftMoney() {
     document.getElementById('alertMoneyLeft').hide();
     loadSaving();
 
-    ons.notification.toast(`Dinero restante añadido a: ${choseMoney}!`, {
-      title: 'Aviso!',
-      timeout: 2500,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast(`Remaining money added to: ${choseMoney}!`, {
+        title: 'Aviso!',
+        timeout: 2500,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast(`Dinero restante añadido a: ${choseMoney}!`, {
+        title: 'Aviso!',
+        timeout: 2500,
+        animation: 'ascend',
+      });
+    }
   }
 }
 
 function cancelAddLeftMoney() {
   document.getElementById('alertMoneyLeft').hide();
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
-  ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
-    title: 'Aviso!',
-    timeout: 1000,
-    animation: 'ascend',
-  });
+  if (languaje == 'false') {
+    ons.notification.toast('Okay, everything flows as normal!', {
+      title: 'Notice!',
+      timeout: 1000,
+      animation: 'ascend',
+    });
+  } else {
+    ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+      title: 'Aviso!',
+      timeout: 1000,
+      animation: 'ascend',
+    });
+  }
 }
 
 function makeSavingOperation() {
@@ -675,11 +1045,21 @@ function makeSavingOperation() {
 }
 
 function closeAlertSavingNoChange() {
-  ons.notification.toast('No se modifica nada!', {
-    title: 'Aviso!',
-    timeout: 2000,
-    animation: 'ascend',
-  });
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
+  if (languaje == 'false') {
+    ons.notification.toast('Nothing is modified!', {
+      title: 'Notice!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  } else {
+    ons.notification.toast('No se modifica nada!', {
+      title: 'Aviso!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  }
 
   sessionStorage.clear();
   document.getElementById('alertEditSavingMoney').hide();
@@ -688,14 +1068,26 @@ function closeAlertSavingNoChange() {
 /* ALERT PRINCIPAL */
 function closeAlertSaving() {
   let element = document.getElementById('alertInputSaving').value;
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
-  if (element === null || element === '' || element == '') {
-    ons.notification.toast('Ingresa cuanto dinero deseas añadir/quitar, por favor!', {
-      title: 'Aviso!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
-    return;
+  if (languaje == 'false') {
+    if (element === null || element === '' || element == '') {
+      ons.notification.toast('Enter how much money you want to add / remove, please!', {
+        title: 'Notice!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+      return;
+    }
+  } else {
+    if (element === null || element === '' || element == '') {
+      ons.notification.toast('Ingresa cuanto dinero deseas añadir/quitar, por favor!', {
+        title: 'Aviso!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+      return;
+    }
   }
 
   let actualMoney = parseFloat(document.getElementById('alertAddSaving').textContent);
@@ -703,11 +1095,19 @@ function closeAlertSaving() {
 
   let testMoney = Math.sign(endMoney);
   if (testMoney == '-1' || testMoney === '-0') {
-    ons.notification.toast('No puedes dejar tu fondo negativo, lo siento...', {
-      title: 'Aviso!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast(`You can't leave your negative fund, sorry ...`, {
+        title: 'Aviso!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast('No puedes dejar tu fondo negativo, lo siento...', {
+        title: 'Aviso!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    }
     return;
   }
 
@@ -719,55 +1119,104 @@ function closeAlertSaving() {
     document.getElementById('alertEditSavingMoney').hide();
 
     /* Preguntar si deseo añadir eso como gasto */
-    ons.notification.confirm({
-      message: 'Has reducido el dinero disponible. Quieres añadir un gasto?',
-      title: 'Aviso!',
-      buttonLabels: ['Sí', 'No'],
-      animation: 'default',
-      primaryButtonIndex: 1,
-      cancelable: true,
-      callback: function (index) {
-        if (0 === index) {
-          /* ABRIR VENTANA PARA AÑADIR UN GASTO A ALGUNA CATEGORÍA DE GASTO */
-          var dialog = document.getElementById('alertToAddExpenseSaving');
+    if (languaje == 'false') {
+      ons.notification.confirm({
+        message: 'You have reduced the money available. Do you want to add an expense?',
+        title: 'Notice!',
+        buttonLabels: ['Yes', 'No'],
+        animation: 'default',
+        primaryButtonIndex: 1,
+        cancelable: true,
+        callback: function (index) {
+          if (0 === index) {
+            /* ABRIR VENTANA PARA AÑADIR UN GASTO A ALGUNA CATEGORÍA DE GASTO */
+            var dialog = document.getElementById('alertToAddExpenseSaving');
 
-          document.getElementById('alertExpenseNoteSaving').value = '';
-          document.getElementById('alertExpenseMoneySaving').value = Math.abs(element);
-          document.getElementById('alertExpenseDateSaving').value = '';
+            document.getElementById('alertExpenseNoteSaving').value = '';
+            document.getElementById('alertExpenseMoneySaving').value = Math.abs(element);
+            document.getElementById('alertExpenseDateSaving').value = '';
 
-          if (dialog) {
-            dialog.show();
-            //CARGAR CATEGORÍAS DISPONIBLES Y CARGAR DONDE SE PUEDE RESTAR EL DINERO
-            loadDialogCategoryAndMoney();
+            if (dialog) {
+              dialog.show();
+              //CARGAR CATEGORÍAS DISPONIBLES Y CARGAR DONDE SE PUEDE RESTAR EL DINERO
+              loadDialogCategoryAndMoney();
+            } else {
+              ons.notification.toast('Oops! Could not load window to modify!', {
+                title: 'Error!',
+                timeout: 2000,
+                animation: 'ascend',
+              });
+            }
+            loadSaving();
           } else {
-            ons.notification.toast('Ups! No se ha podido cargar la ventana para modificar!', {
-              title: 'Error!',
-              timeout: 2000,
+            ons.notification.toast('Okay, only the money available has been reduced!', {
+              title: 'Notice!',
+              timeout: 1000,
               animation: 'ascend',
             });
+            loadSaving();
           }
-          loadSaving();
-        } else {
-          ons.notification.toast('De acuerdo, sólo se ha reducido el dinero disponible!', {
-            title: 'Aviso!',
-            timeout: 1000,
-            animation: 'ascend',
-          });
-          loadSaving();
-        }
-      },
-    });
+        },
+      });
+    } else {
+      ons.notification.confirm({
+        message: 'Has reducido el dinero disponible. ¿Quieres añadir un gasto?',
+        title: 'Aviso!',
+        buttonLabels: ['Sí', 'No'],
+        animation: 'default',
+        primaryButtonIndex: 1,
+        cancelable: true,
+        callback: function (index) {
+          if (0 === index) {
+            /* ABRIR VENTANA PARA AÑADIR UN GASTO A ALGUNA CATEGORÍA DE GASTO */
+            var dialog = document.getElementById('alertToAddExpenseSaving');
+
+            document.getElementById('alertExpenseNoteSaving').value = '';
+            document.getElementById('alertExpenseMoneySaving').value = Math.abs(element);
+            document.getElementById('alertExpenseDateSaving').value = '';
+
+            if (dialog) {
+              dialog.show();
+              //CARGAR CATEGORÍAS DISPONIBLES Y CARGAR DONDE SE PUEDE RESTAR EL DINERO
+              loadDialogCategoryAndMoney();
+            } else {
+              ons.notification.toast('Ups! No se ha podido cargar la ventana para modificar!', {
+                title: 'Error!',
+                timeout: 2000,
+                animation: 'ascend',
+              });
+            }
+            loadSaving();
+          } else {
+            ons.notification.toast('De acuerdo, sólo se ha reducido el dinero disponible!', {
+              title: 'Aviso!',
+              timeout: 1000,
+              animation: 'ascend',
+            });
+            loadSaving();
+          }
+        },
+      });
+    }
   } else if (actualMoney < endMoney) {
     // Se hizo una suma
     let storage = JSON.parse(localStorage.getItem('savingStorage'));
     storage.moneyLeft = endMoney;
     localStorage.setItem('savingStorage', JSON.stringify(storage));
 
-    ons.notification.toast('Se ha aumentado el dinero disponible!', {
-      title: 'Aviso!',
-      timeout: 1000,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast('Available money has been increased!', {
+        title: 'Notice!',
+        timeout: 1000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast('Se ha aumentado el dinero disponible!', {
+        title: 'Aviso!',
+        timeout: 1000,
+        animation: 'ascend',
+      });
+    }
 
     document.getElementById('alertEditSavingMoney').hide();
     loadSaving();
@@ -840,6 +1289,8 @@ function hideAlertAddExpenseSaving() {
   let eDate = document.getElementById('alertExpenseDateSaving').value;
   let eid = localStorage.getItem('detailExpenseCount');
 
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
   if (eid == null || eid == '') {
     localStorage.setItem('detailExpenseCount', '0');
     eid = 0;
@@ -849,11 +1300,19 @@ function hideAlertAddExpenseSaving() {
   localStorage.setItem('detailExpenseCount', eid);
 
   if (eName == null || eName == '') {
-    ons.notification.toast('No puedo añadir un gasto sin un nombre/nota!', {
-      title: 'Aviso!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast('You cannot add an expense without a name / note!', {
+        title: 'Notice!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast('No puedes añadir un gasto sin un nombre/nota!', {
+        title: 'Aviso!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    }
     return;
   }
 
@@ -862,11 +1321,19 @@ function hideAlertAddExpenseSaving() {
   }
 
   if (choseCategory == 'NINGUNA CATEGORÍA') {
-    ons.notification.toast("Debes seleccionar una categoría, de no haber, debes crear una en 'GASTOS'", {
-      title: 'Aviso!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast("You must select a category, if not, you must create one in 'EXPENSES'", {
+        title: 'Notice!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast("Debes seleccionar una categoría, de no haber, debes crear una en 'GASTOS'", {
+        title: 'Aviso!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    }
     return;
   }
 
@@ -899,11 +1366,19 @@ function hideAlertAddExpenseSaving() {
 
   updateExpenseTotalMoneySaving(choseCategory, eMoney);
 
-  ons.notification.toast('Nuevo gasto añadido!', {
-    title: 'Aviso!',
-    timeout: 2000,
-    animation: 'ascend',
-  });
+  if (languaje == 'false') {
+    ons.notification.toast('New added expense!', {
+      title: 'Notice!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  } else {
+    ons.notification.toast('Nuevo gasto añadido!', {
+      title: 'Aviso!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  }
 
   sessionStorage.clear();
   document.getElementById('alertToAddExpenseSaving').hide();
@@ -911,11 +1386,21 @@ function hideAlertAddExpenseSaving() {
 
 // Cuando da en cancelar en el alert para añadir un gasto
 function hideAlertAddExpenseSavingNoChange() {
-  ons.notification.toast('De acuerdo, no se añadira ningún gasto, pero el dinero sí se redujo!', {
-    title: 'Aviso!',
-    timeout: 2500,
-    animation: 'ascend',
-  });
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
+  if (languaje == 'false') {
+    ons.notification.toast('Okay, no expense was added, but the money was reduced!', {
+      title: 'Notice!',
+      timeout: 2500,
+      animation: 'ascend',
+    });
+  } else {
+    ons.notification.toast('De acuerdo, no se añadira ningún gasto, pero el dinero sí se redujo!', {
+      title: 'Aviso!',
+      timeout: 2500,
+      animation: 'ascend',
+    });
+  }
 
   document.getElementById('alertToAddExpenseSaving').hide();
 }
