@@ -45,7 +45,7 @@ function makeNewGoal() {
     }
 
     let goalTest = Math.sign(goalMoney);
-    if (goalTest == '-1' || goalTest == '-0') {
+    if (goalTest == '-1' || goalTest == '-0' || goalTest == '0') {
       ons.notification.toast('Wait, it is not possible to add a negative goal, it would be impossible to achieve.', {
         title: 'Error!',
         timeout: 2000,
@@ -88,7 +88,7 @@ function makeNewGoal() {
     }
 
     let goalTest = Math.sign(goalMoney);
-    if (goalTest == '-1' || goalTest == '-0') {
+    if (goalTest == '-1' || goalTest == '-0' || goalTest == '0') {
       ons.notification.toast('Un momento, no es posible añadir una meta en negativo, seria imposible de lograr.', {
         title: 'Error!',
         timeout: 2000,

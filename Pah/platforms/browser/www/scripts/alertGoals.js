@@ -63,7 +63,7 @@ function hideAlertDialog() {
       return;
     }
 
-    if (testMoney == '-1' || testMoney === '-0') {
+    if (testMoney == '-1' || testMoney === '-0' || testMoney == '0') {
       ons.notification.toast('It is not possible to leave a goal in negative numbers, sorry.', {
         title: 'Notice!',
         timeout: 2000,
@@ -103,7 +103,7 @@ function hideAlertDialog() {
       return;
     }
 
-    if (testMoney == '-1' || testMoney === '-0') {
+    if (testMoney == '-1' || testMoney === '-0' || testMoney == '0') {
       ons.notification.toast('No es posible dejar una meta en numeros negativos, lo siento.', {
         title: 'Aviso!',
         timeout: 2000,

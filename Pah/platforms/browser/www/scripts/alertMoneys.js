@@ -1,5 +1,3 @@
-const { lang } = require('moment');
-
 function createAlertDialogToEditMoneyMoney() {
   let retrievedMoney = sessionStorage.getItem('sessionFindMoney');
   let parseMoney = JSON.parse(retrievedMoney);
