@@ -1,4 +1,5 @@
-# Finanz: control de gastos y finanzas personales
+# Flynanz: control de gastos y finanzas personales
+
 Aplicación movil, para el control de gastos y manejo de finanzas personales
 
 ![funciones](https://user-images.githubusercontent.com/9502714/107262185-d5d7c300-6a05-11eb-87ca-796c0b02946a.jpg)
@@ -12,5 +13,3 @@ Aplicación movil, para el control de gastos y manejo de finanzas personales
 ![tema](https://user-images.githubusercontent.com/9502714/107262301-fc95f980-6a05-11eb-8e48-c0be6d643e4c.jpg)
 
 <p>https://play.google.com/store/apps/details?id=com.oscar.diaz</p>
-
-
