@@ -1,3 +1,5 @@
+const { lang } = require('moment');
+
 function createAlertDialogToEditMoneyMoney() {
   let retrievedMoney = sessionStorage.getItem('sessionFindMoney');
   let parseMoney = JSON.parse(retrievedMoney);
@@ -24,12 +26,22 @@ function createAlertDialogToEditMoneyMoney() {
 function hideAlertMoneys() {
   let element = document.getElementById('editOnlyMoneyMoney').value;
 
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
   if (element === null || element === '' || element == '') {
-    ons.notification.toast('Ingresa cuanto dinero deseas añadir/quitar, por favor!', {
-      title: 'Aviso!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast('Enter how much money you want to add / remove, please!', {
+        title: 'Notice!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast('Ingresa cuanto dinero deseas añadir/quitar, por favor!', {
+        title: 'Aviso!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    }
     return;
   }
 
@@ -37,11 +49,19 @@ function hideAlertMoneys() {
 
   let testMoney = Math.sign(newMoney);
   if (testMoney == '-1' || testMoney === '-0') {
-    ons.notification.toast('No puedes dejar una cartera en numeros negativos, lo siento...', {
-      title: 'Aviso!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast('You cannot leave a wallet in negative numbers, sorry ...', {
+        title: 'Aviso!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast('No puedes dejar una cartera en numeros negativos, lo siento...', {
+        title: 'Aviso!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    }
     return;
   }
 
@@ -80,22 +100,39 @@ function hideAlertMoneys() {
   document.getElementById('editOnlyMoneyMoney').value = null;
   document.getElementById('alertEditMoneyMoney').hide();
 
-  ons.notification.toast('Dinero modificado satisfactoriamente!', {
-    title: 'Aviso!',
-    timeout: 2000,
-    animation: 'ascend',
-  });
+  if (languaje == 'false') {
+    ons.notification.toast('Money modified successfully!', {
+      title: 'Notice!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  } else {
+    ons.notification.toast('Dinero modificado satisfactoriamente!', {
+      title: 'Aviso!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  }
 
   sessionStorage.clear();
   getMoneys();
 }
 
 function hideAlertNoChangeMoneys() {
-  ons.notification.toast('No se ha modificado el dinero!', {
-    title: 'Aviso!',
-    timeout: 2000,
-    animation: 'ascend',
-  });
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+  if (languaje == 'false') {
+    ons.notification.toast('Money has not been modified!', {
+      title: 'Notice!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  } else {
+    ons.notification.toast('No se ha modificado el dinero!', {
+      title: 'Aviso!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  }
   sessionStorage.clear();
   document.getElementById('alertEditMoneyMoney').hide();
 }

@@ -12,34 +12,23 @@
 
   <div id="moneyContainer"></div>
 
-  <!--
-    <ons-button
-      class="flatButton"
-      onclick="pushToNewMoney()"
-      style="margin-bottom: 16px;"
-      >AÑADIR NUEVO</ons-button
-    >
-  -->
-
   <ons-fab position="bottom right" onclick="pushToNewMoney()">
     <i class="icon ion-md-add" style="font-size: 35px;"></i>
   </ons-fab>
 
   <!--ALERT PARA EDITAR UNICAMENTE EL DINERO-->
   <ons-alert-dialog id="alertEditMoneyMoney" modifier="material">
-    <div style="text-align: center; margin-top: 16px;">
-      <div class="alert-dialog-title">Modificar mi dinero</div>
-    </div>
+    <div class="alert-dialog-title" style="text-align: center" id="moneyEditAlertTitle">MODIFICAR MI DINERO</div>
 
     <div class="alert-dialog-content">
       <div style="text-align: center; margin-top: 16px;">
         <p>
-          <label style="color: var(--alert-custom-label);">DINERO ACTUAL: $ 
-            <label id="editMoneyActualMoney" style="color: var(--alert-custom-label-money)">0</label>
+          <label style="color: var(--alert-custom-label);" id="moneyEditAlertActualMoney">
+            <!--dinero actual-->
           </label>
 
           <div>
-            <p style="margin: 0px auto -16px 12px; text-align: left;">QUIERO AÑADIR / QUITAR</p>
+            <p style="margin: 0px auto -16px 12px; text-align: left;" id="moneyEditAlertWhat">QUIERO AÑADIR / QUITAR</p>
             <ons-input
             onchange="makeSumMoney()"
             onkeypress="this.onchange()"
@@ -52,19 +41,19 @@
             ></ons-input>
           </div>
 
-          <label style="color: var(--alert-custom-label);">CANTIDAD NUEVA: $ 
-            <label id="editMoneyEndMoney" style="color: var(--alert-custom-label-money)">0</label>
+          <label style="color: var(--alert-custom-label);" id="moneyEditAlertNewMoney">
+            <!--cantidad nueva-->
           </label>
         </p>
       </div>
     </div>
 
     <div class="alert-dialog-footer">
-      <ons-alert-dialog-button onclick="hideAlertNoChangeMoneys()"
-        >Cancelar</ons-alert-dialog-button
+      <ons-alert-dialog-button onclick="hideAlertNoChangeMoneys()" id="moneyEditAlertCancel"
+        >CANCELAR</ons-alert-dialog-button
       >
-      <ons-alert-dialog-button onclick="hideAlertMoneys()"
-        >Listo!</ons-alert-dialog-button
+      <ons-alert-dialog-button onclick="hideAlertMoneys()" id="moneyEditAlertFinished"
+        >LISTO!</ons-alert-dialog-button
       >
     </div>
   </ons-alert-dialog>
@@ -75,11 +64,41 @@
       "init",
       function (event) {
         if (event.target.matches("#money")) {
-          localStorage.setItem("actuaPage", "money.html");
-          getMoneys();
+          ons.ready(function () {
+            localStorage.setItem("actuaPage", "money.html");
+
+            let languaje = localStorage.getItem("storageSwitchLanguage");
+            if (languaje == 'false') {
+              document.getElementById('titleMoney').innerHTML = 'MY MONEY';
+              document.getElementById('moneyEditAlertTitle').innerHTML = 'MODIFY MY MONEY';
+              document.getElementById('moneyEditAlertActualMoney').innerHTML = 
+              `CURRENT MONEY: $ 
+              <label id="editMoneyActualMoney" style="color: var(--alert-custom-label-money)">0</label>`;
+              document.getElementById('moneyEditAlertWhat').innerHTML = 'I WANT TO ADD / REMOVE';
+              document.getElementById('moneyEditAlertNewMoney').innerHTML = 
+              `NEW AMOUNT: $ 
+              <label id="editMoneyEndMoney" style="color: var(--alert-custom-label-money)">0</label>`;
+              document.getElementById('moneyEditAlertCancel').innerHTML = 'CANCEL';
+              document.getElementById('moneyEditAlertFinished').innerHTML = 'FINISHED!';
+            } else {
+              document.getElementById('titleMoney').innerHTML = 'MI DINERO';
+              document.getElementById('moneyEditAlertTitle').innerHTML = 'MODIFICAR MI DINERO';
+              document.getElementById('moneyEditAlertActualMoney').innerHTML = 
+              `DINERO ACTUAL: $ 
+              <label id="editMoneyActualMoney" style="color: var(--alert-custom-label-money)">0</label>`;
+              document.getElementById('moneyEditAlertWhat').innerHTML = 'QUIERO AÑADIR / QUITAR';
+              document.getElementById('moneyEditAlertNewMoney').innerHTML = 
+              `CANTIDAD NUEVA: $ 
+              <label id="editMoneyEndMoney" style="color: var(--alert-custom-label-money)">0</label>`;
+              document.getElementById('moneyEditAlertCancel').innerHTML = 'CANCELAR';
+              document.getElementById('moneyEditAlertFinished').innerHTML = 'LISTO!';
+            }
+            getMoneys();
+          });
         }
       },
       false
     );
   </script>
 </ons-page>
+

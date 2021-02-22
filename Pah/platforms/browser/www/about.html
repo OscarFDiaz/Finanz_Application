@@ -13,8 +13,8 @@
       style="display: block; margin-left: auto; margin-right: auto"
     />
     <p class="paraTutorial" style="font-weight: bold">Flynanz</p>
-    <p class="paraTutorial">Aplicación sencilla para el control de gastos y finanzas personales.</p>
-    <p class="paraTutorial">Tecnologías utilizadas:</p>
+    <p class="paraTutorial" id="aboutAppDesc">Aplicación sencilla para el control de gastos y finanzas personales.</p>
+    <p class="paraTutorial" id="aboutTech">Tecnologías utilizadas:</p>
     <p class="paraTutorial" style="text-align: left">● HTML5, CSS3, JS</p>
     <p class="paraTutorial" style="text-align: left">● Ionicons</p>
     <p class="paraTutorial" style="text-align: left">● PhoneGap</p>
@@ -22,12 +22,13 @@
   </ons-card>
 
   <ons-card style="padding: 16px">
-    <label class="paraTutorial">Autor: <span style="color: var(--home-total-money)">OscarFDA</span></label>
-    <label class="paraTutorial">Versión: <span style="color: var(--home-total-money)">1.90.00</span></label>
-    <label class="paraTutorial"
-      >Código Fuente:
-      <a href="https://github.com/OscarFDiaz/ProyectoAhorro" style="color: var(--home-total-money)">Pulsa aquí!</a></label
-    >
+    <label class="paraTutorial" id="aboutAuthor">
+      <!--auto-->
+    </label>
+    <label class="paraTutorial" id="aboutVersion">
+      <!--version-->
+    </label>
+    <label class="paraTutorial" id="aboutCode"></label>
   </ons-card>
 
   <script>
@@ -38,8 +39,27 @@
           let languaje = localStorage.getItem('storageSwitchLanguage');
           if (languaje == 'false') {
             document.getElementById('titleConfigurationAbout').innerHTML = 'ABOUT';
+            document.getElementById('aboutAppDesc').innerHTML = 'Simple application to control expenses and personal finances.';
+            document.getElementById('aboutTech').innerHTML = 'Used technology:';
+
+            document.getElementById('aboutAuthor').innerHTML = `Author:
+            <span style="color: var(--home-total-money)">OscarFDA</span>`;
+            document.getElementById('aboutVersion').innerHTML = `Version: 
+            <span style="color: var(--home-total-money)">1.90.00</span>`;
+            document.getElementById('aboutCode').innerHTML = `Source code:
+            <a href="https://github.com/OscarFDiaz/ProyectoAhorro" style="color: var(--home-total-money)">Press here!</a>`;
           } else {
             document.getElementById('titleConfigurationAbout').innerHTML = 'ACERCA DE';
+            document.getElementById('aboutAppDesc').innerHTML =
+              'Aplicación sencilla para el control de gastos y finanzas personales.';
+            document.getElementById('aboutTech').innerHTML = 'Tecnologías utilizadas:';
+
+            document.getElementById('aboutAuthor').innerHTML = `Autor:
+            <span style="color: var(--home-total-money)">OscarFDA</span>`;
+            document.getElementById('aboutVersion').innerHTML = `Versión: 
+            <span style="color: var(--home-total-money)">1.90.00</span>`;
+            document.getElementById('aboutCode').innerHTML = `Código Fuente:
+            <a href="https://github.com/OscarFDiaz/ProyectoAhorro" style="color: var(--home-total-money)">Pulsa aquí!</a>`;
           }
         }
       },
