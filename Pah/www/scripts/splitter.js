@@ -1,6 +1,5 @@
-/*
-Funciones para abrir el splitter de ambos usuarios, aqui se encarga de abrir el splitter, y cargar las paginas
-*/
+/*Funciones para abrir el splitter de ambos usuarios, aqui se encarga de abrir el splitter, y cargar las paginas
+ */
 window.fn = {};
 
 window.fn.open = function () {
