@@ -62,11 +62,17 @@ function loadIcons() {
 }
 
 function changeTitlePreview() {
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
   let newTitle = document.getElementById('newExpenseName').value;
   let oldTitle = document.getElementById('expensePrevTitle');
 
   if (newTitle == '' || newTitle == null) {
-    oldTitle.innerHTML = `NOMBRE <i class="expenseIcon ion-md-laptop"></i>`;
+    if (languaje == 'false') {
+      oldTitle.innerHTML = `NAME <i class="expenseIcon ion-md-laptop"></i>`;
+    } else {
+      oldTitle.innerHTML = `NOMBRE <i class="expenseIcon ion-md-laptop"></i>`;
+    }
   } else {
     oldTitle.innerHTML = '';
     oldTitle.innerHTML = newTitle;
@@ -95,14 +101,24 @@ function makeNewExpense() {
   let expenseColor = document.getElementById('newExpenseColor').value;
   let toShow = document.getElementById('switchNewGoal').checked;
 
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
   sessionStorage.removeItem('expenseIconName');
 
   if (expenseName == '' || expenseName == null) {
-    ons.notification.toast('Un momento, el gasto necesita un nombre!', {
-      title: 'Error!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast('Wait, the expense needs a name!', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast('Un momento, el gasto necesita un nombre!', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    }
     return;
   } else if (iconName == '' || iconName == null) {
     iconName = 'ion-md-laptop';
@@ -128,11 +144,19 @@ function makeNewExpense() {
     localStorage.setItem('expenseStorage', JSON.stringify(expenseArray));
   }
 
-  ons.notification.toast('Nuevo gasto añadido!', {
-    title: 'Aviso!',
-    timeout: 2000,
-    animation: 'ascend',
-  });
+  if (languaje == 'false') {
+    ons.notification.toast(`New expense ${expenseName} added!`, {
+      title: 'Notice!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  } else {
+    ons.notification.toast(`Nuevo gasto ${expenseName} añadido!`, {
+      title: 'Aviso!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  }
 
   getExpenses();
   functionPopPage();
@@ -142,39 +166,75 @@ function getExpenses() {
   let expenses = JSON.parse(localStorage.getItem('expenseStorage'));
   let expensesView = document.getElementById('expensesContainer');
 
-  document.getElementById('expensesContainer').innerHTML = '';
+  let languaje = localStorage.getItem('storageSwitchLanguage');
 
-  let expenseTutorial = `<ons-card>
+  document.getElementById('expensesContainer').innerHTML = '';
+  let expenseTutorial = '';
+  if (languaje == 'false') {
+    expenseTutorial = `<ons-card>
     <ons-list style="background: none;" id="expenseListOfExpensesContainer">
       <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
         <label class="iconExpenseLabel" style="margin-left: 50px;">
-          VER TUTORIAL
+          SEE TUTORIAL
         </label>
         <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
           <p class="paraTutorial">
-            Aquí podrás añadir los gastos que vayas realizando. Podrás separarlos en categorías y, a la vez, 
-            seleccionar un color e icono para cada una de ellas. 
-            Los gastos se verán reflejados en la pantalla de "INICIO"; en dónde se encuentra la gráfica en forma de dona. 
-            Además, podrás remover el gasto a alguna de tus carteras ubicadas en: "MI DINERO". 
+            Here you can add the expenses you make. You can separate them into categories and, at the same time, 
+            select a color and icon for each one of them.
+            The expenses will be reflected on the "HOME" screen; where is the donut-shaped graph.
+            In addition, you can remove the expense to any of your wallets located in: "MY MONEY".
           </p>
           <p class="paraTutorial">
-            Se podrá añadir gastos individuales. Se mostrará cuánto has gastado en cada categoría y te dirá los gastos en total. 
+            Individual expenses may be added. It will show how much you have spent in each category and it will tell you the total expenses.
           </p>
           <p class="paraTutorial">
-            Al ingresar a tu categoría verás una lista de los gastos que has generado, éstos se mostrarán conforme se vayan creando, 
-            es decir; el gasto más reciente estará ubicado en el primer lugar. 
+            When entering your category you will see a list of the expenses that you have generated, 
+            these will be shown as they are created, that is; the most recent expense will be ranked first.
           </p>
           <p class="paraTutorial">
-            También podrás reiniciar los gastos realizados en una categoría entrando a ésta y dando clic en: "REINICIAR". 
-            En dado caso de qué reinicies los gastos el dinero no se actualizará.
+            You can also restart the expenses incurred in a category by entering it and clicking on: "RESET".
+            In case you restart the expenses, the money will not be updated.
           </p>
           <p class="paraTutorial">
-            Para crear un nuevo gasto pulsa "AÑADIR NUEVO".
+            To create a new expense, click on "ADD NEW".
           </p>
         </div>
       </ons-list-item>
     </ons-list>
   </ons-card>`;
+  } else {
+    expenseTutorial = `<ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            VER TUTORIAL
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+            <p class="paraTutorial">
+              Aquí podrás añadir los gastos que vayas realizando. Podrás separarlos en categorías y, a la vez, 
+              seleccionar un color e icono para cada una de ellas. 
+              Los gastos se verán reflejados en la pantalla de "INICIO"; en dónde se encuentra la gráfica en forma de dona. 
+              Además, podrás remover el gasto a alguna de tus carteras ubicadas en: "MI DINERO". 
+            </p>
+            <p class="paraTutorial">
+              Se podrá añadir gastos individuales. Se mostrará cuánto has gastado en cada categoría y te dirá los gastos en total. 
+            </p>
+            <p class="paraTutorial">
+              Al ingresar a tu categoría verás una lista de los gastos que has generado, éstos se mostrarán conforme se vayan creando, 
+              es decir; el gasto más reciente estará ubicado en el primer lugar. 
+            </p>
+            <p class="paraTutorial">
+              También podrás reiniciar los gastos realizados en una categoría entrando a ésta y dando clic en: "REINICIAR". 
+              En dado caso de qué reinicies los gastos el dinero no se actualizará.
+            </p>
+            <p class="paraTutorial">
+              Para crear un nuevo gasto pulsa "AÑADIR NUEVO".
+            </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>`;
+  }
 
   if (expenses == null || expenses == 'null') {
     let tutorial = localStorage.getItem('storageSwitchTutorial');
@@ -194,35 +254,67 @@ function getExpenses() {
   let totalFDays = getAmountFDaysN();
   let totalTDays = getAmountTDaysN();
 
-  expensesView.innerHTML += `<ons-card>
-    <div class="content">
-      <label class="labelDetailExpense"
-        >Gasto total:
-        <div style="display: block; font-size: 30px; font-weight: bold;">$ 
-          <span id="totalExpenseDetailMain" class="labelInfoDetailExpense"
-            >${totalExpenses}</span
-          >
-        </div>
-      </label>
-      
-      <label class="labelDetailExpense"
-        >Últimos 15 días: 
-        <div style="display: block; font-size: 30px; font-weight: bold;">$ 
-          <span id="lastDaysDetailMain" class="labelInfoDetailExpense"
-            >${totalFDays}</span
-          >
-        </div>
-      </label>
-      <label class="labelDetailExpense"
-        >Últimos 31 días: 
-        <div style="display: block; font-size: 30px; font-weight: bold;">$ 
-          <span id="lastMonthDetailMain" class="labelInfoDetailExpense"
-            >${totalTDays}</span
-          >
-        </div>
-      </label>
-    </div>
-  </ons-card>`;
+  if (languaje == 'false') {
+    expensesView.innerHTML += `<ons-card>
+      <div class="content">
+        <label class="labelDetailExpense"
+          >Total cost:
+          <div style="display: block; font-size: 30px; font-weight: bold;">$ 
+            <span id="totalExpenseDetailMain" class="labelInfoDetailExpense"
+              >${totalExpenses}</span
+            >
+          </div>
+        </label>
+        
+        <label class="labelDetailExpense"
+          >Last 15 days: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$ 
+            <span id="lastDaysDetailMain" class="labelInfoDetailExpense"
+              >${totalFDays}</span
+            >
+          </div>
+        </label>
+        <label class="labelDetailExpense"
+          >Last 31 days: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$ 
+            <span id="lastMonthDetailMain" class="labelInfoDetailExpense"
+              >${totalTDays}</span
+            >
+          </div>
+        </label>
+      </div>
+    </ons-card>`;
+  } else {
+    expensesView.innerHTML += `<ons-card>
+      <div class="content">
+        <label class="labelDetailExpense"
+          >Gasto total:
+          <div style="display: block; font-size: 30px; font-weight: bold;">$ 
+            <span id="totalExpenseDetailMain" class="labelInfoDetailExpense"
+              >${totalExpenses}</span
+            >
+          </div>
+        </label>
+        
+        <label class="labelDetailExpense"
+          >Últimos 15 días: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$ 
+            <span id="lastDaysDetailMain" class="labelInfoDetailExpense"
+              >${totalFDays}</span
+            >
+          </div>
+        </label>
+        <label class="labelDetailExpense"
+          >Últimos 31 días: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$ 
+            <span id="lastMonthDetailMain" class="labelInfoDetailExpense"
+              >${totalTDays}</span
+            >
+          </div>
+        </label>
+      </div>
+    </ons-card>`;
+  }
 
   for (let i = 0; i < expenses.length; i++) {
     let eName = expenses[i].expenseName;
@@ -230,23 +322,43 @@ function getExpenses() {
     let eColor = expenses[i].expenseColor;
     let eExpense = expenses[i].totalExpense;
 
-    expensesView.innerHTML += `<ons-card>
-      <div class="title expenseTitle" onclick="findExpense('${eName}')" style="padding-top: 16px; padding-left: 16px;">
-        ${eName}
-      </div>
-      <div style="position: relative;float: right;top: 50%; height: 70px; width: 70px;margin: -40px 16px 0px 0px;">
-        <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor}; display: block; font-size: 80px;text-align: center;vertical-align: middle;line-height: 70px;"></i>
-      </div>
-      <div class="content">
-        <label class="expenseInfo">$ ${eExpense} GASTADOS</label>
-      </div>
-      <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addExpenseToExpense('${eName}')" > 
-        AÑADIR GASTO
-      </ons-button>
-      <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteExpense('${eName}')" >
-        ELIMINAR
-      </ons-button>
-    </ons-card>`;
+    if (languaje == 'false') {
+      expensesView.innerHTML += `<ons-card>
+        <div class="title expenseTitle" onclick="findExpense('${eName}')" style="padding-top: 16px; padding-left: 16px;">
+          ${eName}
+        </div>
+        <div style="position: relative;float: right;top: 50%; height: 70px; width: 70px;margin: -40px 16px 0px 0px;">
+          <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor}; display: block; font-size: 80px;text-align: center;vertical-align: middle;line-height: 70px;"></i>
+        </div>
+        <div class="content">
+          <label class="expenseInfo">$ ${eExpense} EXPENDED</label>
+        </div>
+        <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addExpenseToExpense('${eName}')" > 
+          ADD EXPENSE
+        </ons-button>
+        <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteExpense('${eName}')" >
+          DELETE
+        </ons-button>
+      </ons-card>`;
+    } else {
+      expensesView.innerHTML += `<ons-card>
+        <div class="title expenseTitle" onclick="findExpense('${eName}')" style="padding-top: 16px; padding-left: 16px;">
+          ${eName}
+        </div>
+        <div style="position: relative;float: right;top: 50%; height: 70px; width: 70px;margin: -40px 16px 0px 0px;">
+          <i class="expenseIcon ${eicon}" style="--expenseIconColorPrev: ${eColor}; display: block; font-size: 80px;text-align: center;vertical-align: middle;line-height: 70px;"></i>
+        </div>
+        <div class="content">
+          <label class="expenseInfo">$ ${eExpense} GASTADOS</label>
+        </div>
+        <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addExpenseToExpense('${eName}')" > 
+          AÑADIR GASTO
+        </ons-button>
+        <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteExpense('${eName}')" >
+          ELIMINAR
+        </ons-button>
+      </ons-card>`;
+    }
   }
 }
 
@@ -295,139 +407,277 @@ function addExpenseToExpense(sendName) {
 }
 
 function resetExpense(sendName) {
-  ons.notification.confirm({
-    message: 'Estas seguro de borrar todos los gastos realizados?, la fecha de creación no se modificara.',
-    title: 'Aviso!',
-    buttonLabels: ['Sí', 'Cancelar'],
-    animation: 'default',
-    primaryButtonIndex: 1,
-    cancelable: true,
-    callback: function (index) {
-      if (0 === index) {
-        let detailExpenses = JSON.parse(localStorage.getItem('expenseDetailStorage'));
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+  if (languaje == 'false') {
+    ons.notification.confirm({
+      message: 'Are you sure to delete all the expenses made? The creation date will not be modified.',
+      title: 'Notice!',
+      buttonLabels: ['YES', 'CANCEL'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let detailExpenses = JSON.parse(localStorage.getItem('expenseDetailStorage'));
 
-        if (detailExpenses == null || detailExpenses == 'null') {
-          ons.notification.toast('Un momento, no hay gastos para borrar, me querias intentar engañar?', {
-            title: 'Aviso!',
-            timeout: 2000,
-            animation: 'ascend',
-          });
-          return;
-        }
-
-        if (detailExpenses.length == 0 || detailExpenses.length == '0') {
-          ons.notification.toast('Un momento, no hay gastos para borrar, me querias intentar engañar?', {
-            title: 'Aviso!',
-            timeout: 2000,
-            animation: 'ascend',
-          });
-          return;
-        }
-
-        for (let i = 0; i < detailExpenses.length; i++) {
-          let name = detailExpenses[i].expenseName;
-          if (name === sendName || name == sendName) {
-            detailExpenses.splice(i, 1);
-            i--;
+          if (detailExpenses == null || detailExpenses == 'null') {
+            ons.notification.toast('Wait, there are no costs to delete, do you want to try to deceive me?', {
+              title: 'Notice!',
+              timeout: 2000,
+              animation: 'ascend',
+            });
+            return;
           }
-        }
-        localStorage.setItem('expenseDetailStorage', JSON.stringify(detailExpenses));
 
-        /* RESETEO LOS CONTADORES DEL EXPENSE A 0*/
-        let exName = sendName;
-
-        let expensesStorage = JSON.parse(localStorage.getItem('expenseStorage'));
-
-        let expense;
-        let index;
-        for (let i = 0; i < expensesStorage.length; i++) {
-          if (expensesStorage[i].expenseName == exName) {
-            expense = expensesStorage[i];
-            index = i;
-            break;
+          if (detailExpenses.length == 0 || detailExpenses.length == '0') {
+            ons.notification.toast('Wait, there are no costs to delete, do you want to try to deceive me?', {
+              title: 'Notice!',
+              timeout: 2000,
+              animation: 'ascend',
+            });
+            return;
           }
-        }
 
-        expense.totalExpense = 0;
-
-        /* Guardo el expense original*/
-        if (localStorage.getItem('expenseStorage') === null) {
-          let expenseArray = [];
-          expenseArray.push(expense);
-          localStorage.setItem('expenseStorage', JSON.stringify(expenseArray));
-        } else {
-          let expenseArray = JSON.parse(localStorage.getItem('expenseStorage'));
-          expenseArray[index] = expense;
-          localStorage.setItem('expenseStorage', JSON.stringify(expenseArray));
-        }
-
-        functionPopPage();
-
-        getExpenses();
-        ons.notification.toast('Se han reiniciado los gastos!, un nuevo comienzo...', {
-          title: 'Aviso!',
-          timeout: 2000,
-          animation: 'ascend',
-        });
-      } else {
-        ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
-          title: 'Aviso!',
-          timeout: 1000,
-          animation: 'ascend',
-        });
-      }
-    },
-  });
-}
-
-function deleteExpense(sendName) {
-  ons.notification.confirm({
-    message: 'Estas seguro de borrar el gasto totalmente?',
-    title: 'Aviso!',
-    buttonLabels: ['Sí', 'Cancelar'],
-    animation: 'default',
-    primaryButtonIndex: 1,
-    cancelable: true,
-    callback: function (index) {
-      if (0 === index) {
-        let expenses = JSON.parse(localStorage.getItem('expenseStorage'));
-        let detailExpenses = JSON.parse(localStorage.getItem('expenseDetailStorage'));
-
-        for (let i = 0; i < expenses.length; i++) {
-          if (expenses[i].expenseName == sendName) {
-            expenses.splice(i, 1);
-            break;
-          }
-        }
-        localStorage.setItem('expenseStorage', JSON.stringify(expenses));
-
-        if (detailExpenses == null || detailExpenses == 'null') {
-        } else {
           for (let i = 0; i < detailExpenses.length; i++) {
-            if (detailExpenses[i].expenseName == sendName) {
+            let name = detailExpenses[i].expenseName;
+            if (name === sendName || name == sendName) {
               detailExpenses.splice(i, 1);
               i--;
             }
           }
           localStorage.setItem('expenseDetailStorage', JSON.stringify(detailExpenses));
+
+          /* RESETEO LOS CONTADORES DEL EXPENSE A 0*/
+          let exName = sendName;
+
+          let expensesStorage = JSON.parse(localStorage.getItem('expenseStorage'));
+
+          let expense;
+          let index;
+          for (let i = 0; i < expensesStorage.length; i++) {
+            if (expensesStorage[i].expenseName == exName) {
+              expense = expensesStorage[i];
+              index = i;
+              break;
+            }
+          }
+
+          expense.totalExpense = 0;
+
+          /* Guardo el expense original*/
+          if (localStorage.getItem('expenseStorage') === null) {
+            let expenseArray = [];
+            expenseArray.push(expense);
+            localStorage.setItem('expenseStorage', JSON.stringify(expenseArray));
+          } else {
+            let expenseArray = JSON.parse(localStorage.getItem('expenseStorage'));
+            expenseArray[index] = expense;
+            localStorage.setItem('expenseStorage', JSON.stringify(expenseArray));
+          }
+
+          functionPopPage();
+
+          getExpenses();
+          ons.notification.toast('Expenses have been restarted! A new beginning ...', {
+            title: 'Notice!',
+            timeout: 2000,
+            animation: 'ascend',
+          });
+        } else {
+          ons.notification.toast('Okay, everything flows as normal!', {
+            title: 'Notice!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
         }
+      },
+    });
+  } else {
+    ons.notification.confirm({
+      message: 'Estas seguro de borrar todos los gastos realizados?, la fecha de creación no se modificara.',
+      title: 'Aviso!',
+      buttonLabels: ['SÍ', 'CANCELAR'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let detailExpenses = JSON.parse(localStorage.getItem('expenseDetailStorage'));
 
-        getExpenses();
+          if (detailExpenses == null || detailExpenses == 'null') {
+            ons.notification.toast('Un momento, no hay gastos para borrar, me quieres intentar engañar?', {
+              title: 'Aviso!',
+              timeout: 2000,
+              animation: 'ascend',
+            });
+            return;
+          }
 
-        ons.notification.toast('Se ha elimindado el gasto seleccionado!', {
-          title: 'Aviso!',
-          timeout: 2000,
-          animation: 'ascend',
-        });
-      } else {
-        ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
-          title: 'Aviso!',
-          timeout: 1000,
-          animation: 'ascend',
-        });
-      }
-    },
-  });
+          if (detailExpenses.length == 0 || detailExpenses.length == '0') {
+            ons.notification.toast('Un momento, no hay gastos para borrar, me querias intentar engañar?', {
+              title: 'Aviso!',
+              timeout: 2000,
+              animation: 'ascend',
+            });
+            return;
+          }
+
+          for (let i = 0; i < detailExpenses.length; i++) {
+            let name = detailExpenses[i].expenseName;
+            if (name === sendName || name == sendName) {
+              detailExpenses.splice(i, 1);
+              i--;
+            }
+          }
+          localStorage.setItem('expenseDetailStorage', JSON.stringify(detailExpenses));
+
+          /* RESETEO LOS CONTADORES DEL EXPENSE A 0*/
+          let exName = sendName;
+
+          let expensesStorage = JSON.parse(localStorage.getItem('expenseStorage'));
+
+          let expense;
+          let index;
+          for (let i = 0; i < expensesStorage.length; i++) {
+            if (expensesStorage[i].expenseName == exName) {
+              expense = expensesStorage[i];
+              index = i;
+              break;
+            }
+          }
+
+          expense.totalExpense = 0;
+
+          /* Guardo el expense original*/
+          if (localStorage.getItem('expenseStorage') === null) {
+            let expenseArray = [];
+            expenseArray.push(expense);
+            localStorage.setItem('expenseStorage', JSON.stringify(expenseArray));
+          } else {
+            let expenseArray = JSON.parse(localStorage.getItem('expenseStorage'));
+            expenseArray[index] = expense;
+            localStorage.setItem('expenseStorage', JSON.stringify(expenseArray));
+          }
+
+          functionPopPage();
+
+          getExpenses();
+          ons.notification.toast('Se han reiniciado los gastos!, un nuevo comienzo...', {
+            title: 'Aviso!',
+            timeout: 2000,
+            animation: 'ascend',
+          });
+        } else {
+          ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+            title: 'Aviso!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
+        }
+      },
+    });
+  }
+}
+
+function deleteExpense(sendName) {
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+  if (languaje == 'false') {
+    ons.notification.confirm({
+      message: 'Are you sure to erase the expense completely?',
+      title: 'Notice!',
+      buttonLabels: ['YES', 'CANCEL'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let expenses = JSON.parse(localStorage.getItem('expenseStorage'));
+          let detailExpenses = JSON.parse(localStorage.getItem('expenseDetailStorage'));
+
+          for (let i = 0; i < expenses.length; i++) {
+            if (expenses[i].expenseName == sendName) {
+              expenses.splice(i, 1);
+              break;
+            }
+          }
+          localStorage.setItem('expenseStorage', JSON.stringify(expenses));
+
+          if (detailExpenses == null || detailExpenses == 'null') {
+          } else {
+            for (let i = 0; i < detailExpenses.length; i++) {
+              if (detailExpenses[i].expenseName == sendName) {
+                detailExpenses.splice(i, 1);
+                i--;
+              }
+            }
+            localStorage.setItem('expenseDetailStorage', JSON.stringify(detailExpenses));
+          }
+
+          getExpenses();
+
+          ons.notification.toast('The selected expense has been deleted!', {
+            title: 'Notice!',
+            timeout: 2000,
+            animation: 'ascend',
+          });
+        } else {
+          ons.notification.toast('Okay, everything flows as normal!', {
+            title: 'Aviso!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
+        }
+      },
+    });
+  } else {
+    ons.notification.confirm({
+      message: 'Estas seguro de borrar el gasto totalmente?',
+      title: 'Aviso!',
+      buttonLabels: ['SÍ', 'CANCELAR'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let expenses = JSON.parse(localStorage.getItem('expenseStorage'));
+          let detailExpenses = JSON.parse(localStorage.getItem('expenseDetailStorage'));
+
+          for (let i = 0; i < expenses.length; i++) {
+            if (expenses[i].expenseName == sendName) {
+              expenses.splice(i, 1);
+              break;
+            }
+          }
+          localStorage.setItem('expenseStorage', JSON.stringify(expenses));
+
+          if (detailExpenses == null || detailExpenses == 'null') {
+          } else {
+            for (let i = 0; i < detailExpenses.length; i++) {
+              if (detailExpenses[i].expenseName == sendName) {
+                detailExpenses.splice(i, 1);
+                i--;
+              }
+            }
+            localStorage.setItem('expenseDetailStorage', JSON.stringify(detailExpenses));
+          }
+
+          getExpenses();
+
+          ons.notification.toast('Se ha eliminado el gasto seleccionado!', {
+            title: 'Aviso!',
+            timeout: 2000,
+            animation: 'ascend',
+          });
+        } else {
+          ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+            title: 'Aviso!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
+        }
+      },
+    });
+  }
 }
 
 function updateExpenseTotalMoney(sendName, amountSend) {
@@ -506,6 +756,8 @@ function dateDiff(date1, date2) {
 function loadDetailExpense() {
   document.getElementById('detailExpenseContainer').innerHTML = '';
 
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
   let retrievedExpense = sessionStorage.getItem('sessionFindGoal');
   let parseExpense = JSON.parse(retrievedExpense);
 
@@ -527,70 +779,131 @@ function loadDetailExpense() {
 
   document.getElementById('titleDetailExpense').innerHTML = eName;
 
-  expenseView.innerHTML += `<ons-card style="padding-bottom:16px">
-    <div class="content" style="padding:0px;">
-      <label class="labelDetailExpense" style="text-align:center; font-size: 20px"
-        >Fecha creación:
-        <span id="expenseCreationDate" class="labelInfoDetailExpense" style="font-size: 20px"
-          >${mDate}</span
-        ></label
-      >
-    </div>
-  </ons-card>
-
-  <ons-card>
-    <div class="content">
-      <label class="labelDetailExpense"
-        >Gasto total: 
-        <div style="display: block; font-size: 30px; font-weight: bold;">$  
-          <span id="totalExpenseDetail" class="labelInfoDetailExpense"
-            >${eTotal}</span
-          >
-        </div>
-      </label>
-      
-      <label class="labelDetailExpense"
-        >Últimos 15 días: 
-        <div style="display: block; font-size: 30px; font-weight: bold;">$  
-          <span id="lastDaysDetail" class="labelInfoDetailExpense"
-            >${lastFDays}</span
-          >
-        </div>
-      </label>
-      <label class="labelDetailExpense"
-        >Últimos 30 días: 
-        <div style="display: block; font-size: 30px; font-weight: bold;">$  
-          <span id="lastMonthDetail" class="labelInfoDetailExpense"
-            >${lastTDays}</span
-          >
-        </div>
-      </label>
-    </div>
-  </ons-card>
+  if (languaje == 'false') {
+    expenseView.innerHTML += `<ons-card style="padding-bottom:16px">
+      <div class="content" style="padding:0px;">
+        <label class="labelDetailExpense" style="text-align:center; font-size: 20px"
+          >Creation date:
+          <span id="expenseCreationDate" class="labelInfoDetailExpense" style="font-size: 20px"
+            >${mDate}</span
+          ></label
+        >
+      </div>
+    </ons-card>
   
-  
-  <ons-card>
-    <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-      <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-        <label class="iconExpenseLabel" style="margin-left: 50px;">
-          VER GASTOS
+    <ons-card>
+      <div class="content">
+        <label class="labelDetailExpense"
+          >Total cost: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$  
+            <span id="totalExpenseDetail" class="labelInfoDetailExpense"
+              >${eTotal}</span
+            >
+          </div>
         </label>
-        <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-          <!-- AQUI SE CARGAN LOS GASTOS -->
-        </div>
-      </ons-list-item>
-    </ons-list>
-  </ons-card>
+        
+        <label class="labelDetailExpense"
+          >Last 15 days: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$  
+            <span id="lastDaysDetail" class="labelInfoDetailExpense"
+              >${lastFDays}</span
+            >
+          </div>
+        </label>
+        <label class="labelDetailExpense"
+          >Last 30 days: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$  
+            <span id="lastMonthDetail" class="labelInfoDetailExpense"
+              >${lastTDays}</span
+            >
+          </div>
+        </label>
+      </div>
+    </ons-card>
+    
+    
+    <ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            SEE EXPENSES
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+            <!-- AQUI SE CARGAN LOS GASTOS -->
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+    
+    <ons-button class="flatButtonLight" style="margin-bottom: 16px;"
+    onclick="resetExpense('${eName}')">RESET</ons-button>
   
-  <ons-button class="flatButtonLight" style="margin-bottom: 16px;"
-  onclick="resetExpense('${eName}')">REINICIAR</ons-button>
-
-  <ons-fab position="bottom right" onclick="editExpense('${eName}')">
-  <i class="icon ion-md-create" style="font-size: 35px;"></i>
-</ons-fab>
+    <ons-fab position="bottom right" onclick="editExpense('${eName}')">
+      <i class="icon ion-md-create" style="font-size: 35px;"></i>
+    </ons-fab>`;
+  } else {
+    expenseView.innerHTML += `<ons-card style="padding-bottom:16px">
+      <div class="content" style="padding:0px;">
+        <label class="labelDetailExpense" style="text-align:center; font-size: 20px"
+          >Fecha creación:
+          <span id="expenseCreationDate" class="labelInfoDetailExpense" style="font-size: 20px"
+            >${mDate}</span
+          ></label
+        >
+      </div>
+    </ons-card>
   
+    <ons-card>
+      <div class="content">
+        <label class="labelDetailExpense"
+          >Gasto total: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$  
+            <span id="totalExpenseDetail" class="labelInfoDetailExpense"
+              >${eTotal}</span
+            >
+          </div>
+        </label>
+        
+        <label class="labelDetailExpense"
+          >Últimos 15 días: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$  
+            <span id="lastDaysDetail" class="labelInfoDetailExpense"
+              >${lastFDays}</span
+            >
+          </div>
+        </label>
+        <label class="labelDetailExpense"
+          >Últimos 30 días: 
+          <div style="display: block; font-size: 30px; font-weight: bold;">$  
+            <span id="lastMonthDetail" class="labelInfoDetailExpense"
+              >${lastTDays}</span
+            >
+          </div>
+        </label>
+      </div>
+    </ons-card>
+    
+    
+    <ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            VER GASTOS
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+            <!-- AQUI SE CARGAN LOS GASTOS -->
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+    
+    <ons-button class="flatButtonLight" style="margin-bottom: 16px;"
+    onclick="resetExpense('${eName}')">REINICIAR</ons-button>
   
-  `;
+    <ons-fab position="bottom right" onclick="editExpense('${eName}')">
+      <i class="icon ion-md-create" style="font-size: 35px;"></i>
+    </ons-fab>`;
+  }
 
   let detailDetailExpenseView = document.getElementById('expenseListOfExpenses');
   detailDetailExpenseView.innerHTML = '';
@@ -609,9 +922,15 @@ function loadDetailExpense() {
   }
 
   if (actualEx == 0) {
-    detailDetailExpenseView.innerHTML = `<div style="margin-bottom: 30px;">
-      <label class="labelDetailExpense" style="text-align:center">Nada por mostrar, vas bien con los ahorros...</label>
-    </div>`;
+    if (languaje == 'false') {
+      detailDetailExpenseView.innerHTML = `<div style="margin-bottom: 30px;">
+        <label class="labelDetailExpense" style="text-align:center">Nothing to show, you are doing well with the savings...</label>
+      </div>`;
+    } else {
+      detailDetailExpenseView.innerHTML = `<div style="margin-bottom: 30px;">
+        <label class="labelDetailExpense" style="text-align:center">Nada por mostrar, vas bien con los ahorros...</label>
+      </div>`;
+    }
   } else {
     for (let i = 0; i < expensesDetail.length; i++) {
       if (expensesDetail[i].expenseName == eName) {
@@ -623,35 +942,69 @@ function loadDetailExpense() {
         let today = new Date().toJSON().slice(0, 10);
         let days = dateDiff(today, iDate);
 
-        if (iDate === '') {
-          iDate = 'SIN DATOS DE FECHA';
-        } else {
-          if (Math.sign(days) == 1 || Math.sign(days) == '1') {
-            iDate = 'EN ' + days + ' DÍAS';
-          } else if (Math.sign(days) == '-1' || Math.sign(days) == -1) {
-            iDate = 'HACE ' + Math.abs(days) + ' DÍAS';
-          } else if (Math.sign(days) == '0' || Math.sign(days) == 0) {
-            iDate = 'HOY';
+        if (languaje == 'false') {
+          if (iDate === '') {
+            iDate = 'NO DATE DATA';
+          } else {
+            if (Math.sign(days) == 1 || Math.sign(days) == '1') {
+              iDate = 'IN ' + days + ' DAYS';
+            } else if (Math.sign(days) == '-1' || Math.sign(days) == -1) {
+              iDate = Math.abs(days) + ' DAYS AGO';
+            } else if (Math.sign(days) == '0' || Math.sign(days) == 0) {
+              iDate = 'TODAY';
+            }
           }
+
+          detailDetailExpenseView.innerHTML += `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+            <div class="center">
+              <label class="list-item__title labelDetailExpense" style="text-align:center; font-size:22px">
+                ${iName} - $ <span class="labelInfoDetailExpense" style="font-size:22px">${iAmount}</span>
+              </label>
+              <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px; text-align:center">${iDate}</label>
+            </div>
+            <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
+  
+              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
+                EDIT
+              </ons-button>
+  
+              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
+                DELETE
+              </ons-button>
+  
+            </div>
+          </ons-list-item>`;
+        } else {
+          if (iDate === '') {
+            iDate = 'SIN DATOS DE FECHA';
+          } else {
+            if (Math.sign(days) == 1 || Math.sign(days) == '1') {
+              iDate = 'EN ' + days + ' DÍAS';
+            } else if (Math.sign(days) == '-1' || Math.sign(days) == -1) {
+              iDate = 'HACE ' + Math.abs(days) + ' DÍAS';
+            } else if (Math.sign(days) == '0' || Math.sign(days) == 0) {
+              iDate = 'HOY';
+            }
+          }
+
+          detailDetailExpenseView.innerHTML += `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
+            <div class="center">
+              <label class="list-item__title labelDetailExpense" style="text-align:center; font-size:22px">${iName} - $ <span class="labelInfoDetailExpense" style="font-size:22px">${iAmount}</span></label>
+              <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px; text-align:center">${iDate}</label>
+            </div>
+            <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
+  
+              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
+                EDITAR
+              </ons-button>
+  
+              <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
+                ELIMINAR
+              </ons-button>
+  
+            </div>
+          </ons-list-item>`;
         }
-
-        detailDetailExpenseView.innerHTML += `<ons-list-item expandable style="margin-top: -16px;" modifier="nodivider">
-          <div class="center">
-            <label class="list-item__title labelDetailExpense" style="text-align:center; font-size:22px">${iName} - $ <span class="labelInfoDetailExpense" style="font-size:22px">${iAmount}</span></label>
-            <label class="list-item__subtitle labelDetailExpense" style="padding-top: 0px; font-size: 18px; text-align:center">${iDate}</label>
-          </div>
-          <div class="expandable-content" style="grid-template-columns: 1fr 1fr;">
-
-            <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 32px; margin-right: 8px; background: var(--flat-button-color); color: var(--flat-button-color-text)" onclick="editDetailExpense('${iD}')" >
-              EDITAR
-            </ons-button>
-
-            <ons-button class="moneyButtonDe" style="margin-bottom: 16px; margin-left: 8px; margin-right: 32px; background: var(--flat-button-light-color); color: var(--flat-button-light-color-text)" onclick="deleteDetailExpense('${iD}')" >
-              ELIMINAR
-            </ons-button>
-
-          </div>
-        </ons-list-item>`;
       }
     }
   }

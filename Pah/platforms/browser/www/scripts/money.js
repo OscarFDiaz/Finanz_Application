@@ -1,13 +1,23 @@
 function makeNewMoney() {
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
   let moneyName = document.getElementById('newMoneyName').value;
   let moneyCurrent = document.getElementById('newMoneyMoney').value;
 
   if (moneyName === '') {
-    ons.notification.toast('Un momento, se necesita un buen nombre!', {
-      title: 'Error!',
-      timeout: 2000,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast('Wait, it need a good name!', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast('Un momento, se necesita un buen nombre!', {
+        title: 'Error!',
+        timeout: 2000,
+        animation: 'ascend',
+      });
+    }
     return;
   }
 
@@ -19,11 +29,19 @@ function makeNewMoney() {
 
   let testMoney = Math.sign(moneyCurrent);
   if (testMoney == '-1' || testMoney === '-0') {
-    ons.notification.toast('No puedo añadir una cartera con dinero negativo, supondre que la cartera esta vacia.', {
-      title: 'Error!',
-      timeout: 2500,
-      animation: 'ascend',
-    });
+    if (languaje == 'false') {
+      ons.notification.toast('I cannot add a wallet with negative money, I will assume that the wallet is empty.', {
+        title: 'Error!',
+        timeout: 3000,
+        animation: 'ascend',
+      });
+    } else {
+      ons.notification.toast('No puedo añadir una cartera con dinero negativo, supondre que la cartera esta vacia.', {
+        title: 'Error!',
+        timeout: 3000,
+        animation: 'ascend',
+      });
+    }
     moneyCurrent = '0.00';
   }
 
@@ -42,11 +60,19 @@ function makeNewMoney() {
     localStorage.setItem('moneyStorage', JSON.stringify(moneyArray));
   }
 
-  ons.notification.toast('Nuevo dinero añadido!', {
-    title: 'Aviso!',
-    timeout: 2000,
-    animation: 'ascend',
-  });
+  if (languaje == 'false') {
+    ons.notification.toast(`New money ${moneyName} added!`, {
+      title: 'Notice!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  } else {
+    ons.notification.toast(`Nuevo dinero ${moneyName} añadido!`, {
+      title: 'Aviso!',
+      timeout: 2000,
+      animation: 'ascend',
+    });
+  }
 
   getMoneys();
   functionPopPage();
@@ -56,34 +82,66 @@ function getMoneys() {
   let moneys = JSON.parse(localStorage.getItem('moneyStorage'));
   let moneyView = document.getElementById('moneyContainer');
 
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+
   moneyView.innerHTML = '';
 
-  let moneyTutorial = `<ons-card>
+  let moneyTutorial = '';
+  if (languaje == 'false') {
+    moneyTutorial = `<ons-card>
     <ons-list style="background: none;" id="expenseListOfExpensesContainer">
       <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
         <label class="iconExpenseLabel" style="margin-left: 50px;">
-          VER TUTORIAL
+          SEE TUTORIAL
         </label>
         <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
           <p class="paraTutorial">
-            Aquí podrás añadir el dinero que tienes guardado en algún otro lugar, por ejemplo; una alcancía, tu cartera o alguna tarjeta de nómina. 
+            Here you can add the money that you have saved in some other place, for example; a piggy bank, your wallet or a payroll card.
           </p>
           <p class="paraTutorial">
-            Se te pedirá ingresar un nombre y la cantidad actual del dinero que guardas en esa alcancía, cartera, tarjeta, etc.
+            You will be asked to enter a name and the current amount of money that you keep in that piggy bank, wallet, card, etc.
           </p>
           <p class="paraTutorial">
-            Se podrá realizar cualquier modificación que sea necesaria e incluso eliminarlo, pero recuerda que no puedes dejar una alcancía en números negativos. 
+            You can make any changes that are necessary and even eliminate it, but remember that you cannot leave a piggy bank in negative numbers. 
           </p>
           <p class="paraTutorial">
-           En la pantalla principal "DINERO TOTAL" es una suma de la cantidad de dinero que tienes en tus alcancías."
+            On the main screen "TOTAL MONEY" is a sum of the amount of money you have in your piggy banks. "
           </p>
           <p class="paraTutorial">
-            Para crear una pulsa "AÑADIR NUEVO".
+            To create one press "+".
           </p>
         </div>
       </ons-list-item>
     </ons-list>
   </ons-card>`;
+  } else {
+    moneyTutorial = `<ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            VER TUTORIAL
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+            <p class="paraTutorial">
+              Aquí podrás añadir el dinero que tienes guardado en algún otro lugar, por ejemplo; una alcancía, tu cartera o alguna tarjeta de nómina. 
+            </p>
+            <p class="paraTutorial">
+              Se te pedirá ingresar un nombre y la cantidad actual del dinero que guardas en esa alcancía, cartera, tarjeta, etc.
+            </p>
+            <p class="paraTutorial">
+              Se podrá realizar cualquier modificación que sea necesaria e incluso eliminarlo, pero recuerda que no puedes dejar una alcancía en números negativos. 
+            </p>
+            <p class="paraTutorial">
+             En la pantalla principal "DINERO TOTAL" es una suma de la cantidad de dinero que tienes en tus alcancías.
+            </p>
+            <p class="paraTutorial">
+              Para crear una pulsa "+".
+            </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>`;
+  }
 
   if (moneys == null || moneys == 'null') {
     let tutorial = localStorage.getItem('storageSwitchTutorial');
@@ -103,7 +161,23 @@ function getMoneys() {
     let mName = moneys[i].moneyName;
     let mMoney = moneys[i].moneyCurrent;
 
-    moneyView.innerHTML += `<ons-card>
+    if (languaje == 'false') {
+      moneyView.innerHTML += `<ons-card>
+        <div class="title moneyTitle">
+          ${mName}
+        </div>
+        <div class="content">
+          <label class="moneyInfo" id="${mName}-money">$ ${mMoney}</label>
+        </div>
+        <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addMoneyTo('${mName}')" > 
+          ADD / SUBSTRACT
+        </ons-button>
+        <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteMoney('${mName}')" >
+          DELETE
+        </ons-button>
+      </ons-card>`;
+    } else {
+      moneyView.innerHTML += `<ons-card>
         <div class="title moneyTitle">
           ${mName}
         </div>
@@ -117,45 +191,85 @@ function getMoneys() {
           ELIMINAR
         </ons-button>
       </ons-card>`;
+    }
   }
 }
 
 function deleteMoney(sendMoneyName) {
-  ons.notification.confirm({
-    message: 'Estas seguro de borrar ese dinero?',
-    title: 'Aviso!',
-    buttonLabels: ['Sí', 'Cancelar'],
-    animation: 'default',
-    primaryButtonIndex: 1,
-    cancelable: true,
-    callback: function (index) {
-      if (0 === index) {
-        let moneys = JSON.parse(localStorage.getItem('moneyStorage'));
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+  if (languaje == 'false') {
+    ons.notification.confirm({
+      message: 'Are you sure to erase that money?',
+      title: 'Notice!',
+      buttonLabels: ['YES', 'CANCEL'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let moneys = JSON.parse(localStorage.getItem('moneyStorage'));
 
-        for (let i = 0; i < moneys.length; i++) {
-          if (moneys[i].moneyName == sendMoneyName) {
-            moneys.splice(i, 1);
-            break;
+          for (let i = 0; i < moneys.length; i++) {
+            if (moneys[i].moneyName == sendMoneyName) {
+              moneys.splice(i, 1);
+              break;
+            }
           }
+          localStorage.setItem('moneyStorage', JSON.stringify(moneys));
+
+          getMoneys();
+
+          ons.notification.toast('The selected money has been removed!', {
+            title: 'Notice!',
+            timeout: 2000,
+            animation: 'ascend',
+          });
+        } else {
+          ons.notification.toast('Okay, everything flows as normal!', {
+            title: 'Notice!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
         }
-        localStorage.setItem('moneyStorage', JSON.stringify(moneys));
+      },
+    });
+  } else {
+    ons.notification.confirm({
+      message: 'Estas seguro de borrar ese dinero?',
+      title: 'Aviso!',
+      buttonLabels: ['Sí', 'Cancelar'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          let moneys = JSON.parse(localStorage.getItem('moneyStorage'));
 
-        getMoneys();
+          for (let i = 0; i < moneys.length; i++) {
+            if (moneys[i].moneyName == sendMoneyName) {
+              moneys.splice(i, 1);
+              break;
+            }
+          }
+          localStorage.setItem('moneyStorage', JSON.stringify(moneys));
 
-        ons.notification.toast('Se ha elimindado el dinero seleccionado!', {
-          title: 'Aviso!',
-          timeout: 2000,
-          animation: 'ascend',
-        });
-      } else {
-        ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
-          title: 'Aviso!',
-          timeout: 1000,
-          animation: 'ascend',
-        });
-      }
-    },
-  });
+          getMoneys();
+
+          ons.notification.toast('Se ha eliminado el dinero seleccionado!', {
+            title: 'Aviso!',
+            timeout: 2000,
+            animation: 'ascend',
+          });
+        } else {
+          ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+            title: 'Aviso!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
+        }
+      },
+    });
+  }
 }
 
 function addMoneyTo(sendMoneyName) {
