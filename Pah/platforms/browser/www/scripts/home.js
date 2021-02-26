@@ -18,7 +18,7 @@ function loadChartData(expenseData) {
   let entry = false;
   if (expenseData.datasets.length > 0) {
     if (expenses == null || expenses == '') {
-      if (!language) {
+      if (language == 'false') {
         expenseData.labels.push('NO EXPENSES TO SHOW');
       } else {
         expenseData.labels.push('NO HAY GASTOS PARA MOSTRAR');

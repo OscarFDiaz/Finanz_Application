@@ -154,7 +154,7 @@ function getGoals() {
       <ons-list style="background: none;" id="expenseListOfExpensesContainer">
         <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
           <label class="iconExpenseLabel" style="margin-left: 50px;">
-            SEE TUTORIAL
+            READ TUTORIAL
           </label>
           <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
             <p class="paraTutorial">
@@ -174,14 +174,31 @@ function getGoals() {
           </div>
         </ons-list-item>
       </ons-list>
-    </ons-card>`;
+    </ons-card>
+
+    <ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            SEE TUTORIAL (REQUIRES INTERNET)
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr; padding: 0px; height: 400px">
+          <iframe style="width: 100%; height: 100%; border-radius: 15px; border: none"
+            src="https://www.youtube.com/embed/ibpGxxoBlik">
+          </iframe>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+  `;
   } else {
     goalsTutorial = `<ons-card>
       <ons-list style="background: none;" id="expenseListOfExpensesContainer">
         <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
           <label class="iconExpenseLabel" style="margin-left: 50px;">
-            VER TUTORIAL
+            LEER TUTORIAL
           </label>
+          
           <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
             <p class="paraTutorial">
               Aquí podrás añadir las metas que deseas cumplir. Deberás añadir un nombre a la meta, 
@@ -197,6 +214,21 @@ function getGoals() {
             <p class="paraTutorial">
               Para crear una nueva meta pulsa el botón "+".
             </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+    
+    <ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            VER TUTORIAL (REQUIERE INTERNET)
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr; padding: 0px; height: 400px">
+          <iframe style="width: 100%; height: 100%; border-radius: 15px; border: none"
+            src="https://www.youtube.com/embed/OlNvllJ7wi0">
+          </iframe>
           </div>
         </ons-list-item>
       </ons-list>
@@ -312,7 +344,7 @@ function deleteGoal(sendGoalName) {
     ons.notification.confirm({
       message: 'Are you sure you delete the goal?',
       title: 'Notice!',
-      buttonLabels: ['Yes', 'Cancel'],
+      buttonLabels: ['YES', 'CANCEL'],
       animation: 'default',
       primaryButtonIndex: 1,
       cancelable: true,
@@ -349,7 +381,7 @@ function deleteGoal(sendGoalName) {
     ons.notification.confirm({
       message: 'Estas seguro de borrar la meta?',
       title: 'Aviso!',
-      buttonLabels: ['Sí', 'Cancelar'],
+      buttonLabels: ['SÍ', 'CANCELAR'],
       animation: 'default',
       primaryButtonIndex: 1,
       cancelable: true,
