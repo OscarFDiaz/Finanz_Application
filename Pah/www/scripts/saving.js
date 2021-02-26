@@ -339,7 +339,7 @@ function updateLastSaving() {
     `<span style="color: var(--card-text-title-color)"> % </span> | <span style="color: var(--card-text-title-color)">$</span> ` +
     sTakedAmount;
   document.getElementById('entryCurrentExpend').innerHTML = sMoneyDay;
-  document.getElementById('entryCurrentExpendLeft').innerHTML = sMoneyDayLeft;
+  document.getElementById('entryCurrentExpendLeft').innerHTML = parseFloat(sMoneyDayLeft).toFixed(2);
 }
 
 function loadSaving() {
