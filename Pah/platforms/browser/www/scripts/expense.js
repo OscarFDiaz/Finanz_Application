@@ -196,14 +196,15 @@ function getExpenses() {
             In case you restart the expenses, the money will not be updated.
           </p>
           <p class="paraTutorial">
-            To create a new expense, click on "ADD NEW".
+            To create a new expense, click on +.
           </p>
         </div>
       </ons-list-item>
     </ons-list>
   </ons-card>`;
   } else {
-    expenseTutorial = `<ons-card>
+    expenseTutorial = `
+    <ons-card>
       <ons-list style="background: none;" id="expenseListOfExpensesContainer">
         <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
           <label class="iconExpenseLabel" style="margin-left: 50px;">
@@ -228,7 +229,7 @@ function getExpenses() {
               En dado caso de qué reinicies los gastos el dinero no se actualizará.
             </p>
             <p class="paraTutorial">
-              Para crear un nuevo gasto pulsa "AÑADIR NUEVO".
+              Para crear un nuevo gasto pulsa "+".
             </p>
           </div>
         </ons-list-item>
