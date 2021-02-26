@@ -89,37 +89,52 @@ function getMoneys() {
   let moneyTutorial = '';
   if (languaje == 'false') {
     moneyTutorial = `<ons-card>
-    <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-      <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-        <label class="iconExpenseLabel" style="margin-left: 50px;">
-          SEE TUTORIAL
-        </label>
-        <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-          <p class="paraTutorial">
-            Here you can add the money that you have saved in some other place, for example; a piggy bank, your wallet or a payroll card.
-          </p>
-          <p class="paraTutorial">
-            You will be asked to enter a name and the current amount of money that you keep in that piggy bank, wallet, card, etc.
-          </p>
-          <p class="paraTutorial">
-            You can make any changes that are necessary and even eliminate it, but remember that you cannot leave a piggy bank in negative numbers. 
-          </p>
-          <p class="paraTutorial">
-            On the main screen "TOTAL MONEY" is a sum of the amount of money you have in your piggy banks. "
-          </p>
-          <p class="paraTutorial">
-            To create one press "+".
-          </p>
-        </div>
-      </ons-list-item>
-    </ons-list>
-  </ons-card>`;
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            SEE TUTORIAL
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+            <p class="paraTutorial">
+              Here you can add the money that you have saved in some other place, for example; a piggy bank, your wallet or a payroll card.
+            </p>
+            <p class="paraTutorial">
+              You will be asked to enter a name and the current amount of money that you keep in that piggy bank, wallet, card, etc.
+            </p>
+            <p class="paraTutorial">
+              You can make any changes that are necessary and even eliminate it, but remember that you cannot leave a piggy bank in negative numbers. 
+            </p>
+            <p class="paraTutorial">
+              On the main screen "TOTAL MONEY" is a sum of the amount of money you have in your piggy banks. "
+            </p>
+            <p class="paraTutorial">
+              To create one press "+".
+            </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+    
+    <ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            SEE TUTORIAL (REQUIRES INTERNET)
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr; padding: 0px; height: 400px">
+          <iframe style="width: 100%; height: 100%; border-radius: 15px; border: none"
+            src="https://www.youtube.com/embed/5qdrtKrzpUE">
+          </iframe>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>`;
   } else {
     moneyTutorial = `<ons-card>
       <ons-list style="background: none;" id="expenseListOfExpensesContainer">
         <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
           <label class="iconExpenseLabel" style="margin-left: 50px;">
-            VER TUTORIAL
+            LEER TUTORIAL
           </label>
           <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
             <p class="paraTutorial">
@@ -137,6 +152,21 @@ function getMoneys() {
             <p class="paraTutorial">
               Para crear una pulsa "+".
             </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+    
+    <ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            VER TUTORIAL (REQUIERE INTERNET)
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr; padding: 0px; height: 400px">
+          <iframe style="width: 100%; height: 100%; border-radius: 15px; border: none"
+            src="https://www.youtube.com/embed/RowmPiWl_OU">
+          </iframe>
           </div>
         </ons-list-item>
       </ons-list>
