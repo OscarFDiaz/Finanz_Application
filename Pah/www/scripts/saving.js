@@ -390,13 +390,28 @@ function loadSaving() {
           </div>
         </ons-list-item>
       </ons-list>
+    </ons-card>
+
+    <ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            SEE TUTORIAL (REQUIRES INTERNET)
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr; padding: 0px; height: 400px">
+          <iframe style="width: 100%; height: 100%; border-radius: 15px; border: none"
+            src="https://www.youtube.com/embed/0LAKMfvSSKU">
+          </iframe>
+          </div>
+        </ons-list-item>
+      </ons-list>
     </ons-card>`;
   } else {
     savingTutorial = `<ons-card>
       <ons-list style="background: none;" id="expenseListOfExpensesContainer">
         <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
           <label class="iconExpenseLabel" style="margin-left: 50px;">
-            VER TUTORIAL
+            LEER TUTORIAL
           </label>
           <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
             <p class="paraTutorial">
@@ -429,6 +444,21 @@ function loadSaving() {
             <p class="paraTutorial">
               Para modificar/ingresar un nuevo fondo da click en “Modificar”.
             </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+    
+    <ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            VER TUTORIAL (REQUIERE INTERNET)
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr; padding: 0px; height: 400px">
+          <iframe style="width: 100%; height: 100%; border-radius: 15px; border: none"
+            src="https://www.youtube.com/embed/rE4JM89tnd0">
+          </iframe>
           </div>
         </ons-list-item>
       </ons-list>

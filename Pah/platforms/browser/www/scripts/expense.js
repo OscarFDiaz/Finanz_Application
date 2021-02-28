@@ -201,6 +201,21 @@ function getExpenses() {
         </div>
       </ons-list-item>
     </ons-list>
+  </ons-card>
+
+  <ons-card>
+    <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+      <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+        <label class="iconExpenseLabel" style="margin-left: 50px;">
+          SEE TUTORIAL (REQUIRES INTERNET)
+        </label>
+        <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr; padding: 0px; height: 400px">
+        <iframe style="width: 100%; height: 100%; border-radius: 15px; border: none"
+          src="https://www.youtube.com/embed/464_GWmiHHo">
+        </iframe>
+        </div>
+      </ons-list-item>
+    </ons-list>
   </ons-card>`;
   } else {
     expenseTutorial = `
@@ -231,6 +246,21 @@ function getExpenses() {
             <p class="paraTutorial">
               Para crear un nuevo gasto pulsa "+".
             </p>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+    
+    <ons-card>
+      <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+        <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+          <label class="iconExpenseLabel" style="margin-left: 50px;">
+            VER TUTORIAL (REQUIERE INTERNET)
+          </label>
+          <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr; padding: 0px; height: 400px">
+          <iframe style="width: 100%; height: 100%; border-radius: 15px; border: none"
+            src="https://www.youtube.com/embed/6B99bHXdrYE">
+          </iframe>
           </div>
         </ons-list-item>
       </ons-list>

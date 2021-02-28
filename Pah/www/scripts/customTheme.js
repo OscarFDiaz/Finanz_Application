@@ -4,29 +4,55 @@ function setTutorial() {
 
   let tutorial = localStorage.getItem('storageSwitchTutorial');
   if (tutorial == true || tutorial == 'true') {
-    container.innerHTML += `
-      <ons-card>
-        <ons-list style="background: none;" id="expenseListOfExpensesContainer">
-          <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
-            <label class="iconExpenseLabel" style="margin-left: 50px;">
-              VER TUTORIAL
-            </label>
-            <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
-              <p class="paraTutorial">
-                Aquí podrás personalizar los colores de la aplicación, conforme los vayas cambiando se irán aplicando, puedes personalizar el tema cuantas
-                veces quieras. Puedes salir para ver los cambios y volver para seguir editando.
-              </p>
-              <p class="paraTutorial">
-                Dado que la aplicación tiene muchos elementos habrá muchas opciones de personalización.
-              </p>
-              <p class="paraTutorial">
-                Los colores están separados por elementos, primero estarán los elementos esenciales y después estarán separados por pantallas, pantalla inicio, metas, etc.
-              </p>
-            </div>
-          </ons-list-item>
-        </ons-list>
-      </ons-card>`;
-    return;
+    let languaje = localStorage.getItem('storageSwitchLanguage');
+    if (languaje == 'false') {
+      container.innerHTML += `
+        <ons-card>
+          <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+            <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+              <label class="iconExpenseLabel" style="margin-left: 50px;">
+                READ TUTORIAL
+              </label>
+              <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+                <p class="paraTutorial">
+                  Here you can customize the colors of the application, as you change them they will be applied, 
+                  you can customize the theme as many times as you want. You can exit to see the changes and return to continue editing.
+                </p>
+                <p class="paraTutorial">
+                  Since the application has many elements there will be many customization options.
+                </p>
+                <p class="paraTutorial">
+                  The colors are separated by elements, the essential elements will be first and then they will be separated by screens, 
+                  home screen, goals, etc.
+                </p>
+              </div>
+            </ons-list-item>
+          </ons-list>
+        </ons-card>`;
+    } else {
+      container.innerHTML += `
+        <ons-card>
+          <ons-list style="background: none;" id="expenseListOfExpensesContainer">
+            <ons-list-item id="expandableListContainer" expandable style="margin-top: 0px;">
+              <label class="iconExpenseLabel" style="margin-left: 50px;">
+                LEER TUTORIAL
+              </label>
+              <div class="expandable-content" id="expenseListOfExpenses" style="grid-template-columns: 1fr;">
+                <p class="paraTutorial">
+                  Aquí podrás personalizar los colores de la aplicación, conforme los vayas cambiando se irán aplicando, puedes personalizar el tema cuantas
+                  veces quieras. Puedes salir para ver los cambios y volver para seguir editando.
+                </p>
+                <p class="paraTutorial">
+                  Dado que la aplicación tiene muchos elementos habrá muchas opciones de personalización.
+                </p>
+                <p class="paraTutorial">
+                  Los colores están separados por elementos, primero estarán los elementos esenciales y después estarán separados por pantallas, pantalla inicio, metas, etc.
+                </p>
+              </div>
+            </ons-list-item>
+          </ons-list>
+        </ons-card>`;
+    }
   }
 }
 
@@ -1524,31 +1550,62 @@ function removeStorageColors() {
 }
 
 function resetCustomTheme() {
-  ons.notification.confirm({
-    message: 'Estas seguro reiniciar todos los colores?',
-    title: 'Aviso!',
-    buttonLabels: ['Sí', 'Cancelar'],
-    animation: 'default',
-    primaryButtonIndex: 1,
-    cancelable: true,
-    callback: function (index) {
-      if (0 === index) {
-        deleteProperty();
-        setTheme('theme-default');
-        removeStorageColors();
-        functionPopPage(2);
-        ons.notification.toast('Tema reiniciado correctamente!', {
-          title: 'Aviso!',
-          timeout: 1000,
-          animation: 'ascend',
-        });
-      } else {
-        ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
-          title: 'Aviso!',
-          timeout: 1000,
-          animation: 'ascend',
-        });
-      }
-    },
-  });
+  let languaje = localStorage.getItem('storageSwitchLanguage');
+  if (languaje == 'false') {
+    ons.notification.confirm({
+      message: 'Are you sure to reset all colors?',
+      title: 'Notice!',
+      buttonLabels: ['YES', 'CANCEL'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          deleteProperty();
+          setTheme('theme-default');
+          removeStorageColors();
+          functionPopPage(2);
+          ons.notification.toast('Theme restarted successfully!', {
+            title: 'Notice!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
+        } else {
+          ons.notification.toast('Okay, everything flows as normal!', {
+            title: 'Notice!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
+        }
+      },
+    });
+  } else {
+    ons.notification.confirm({
+      message: '¿Estas seguro reiniciar todos los colores?',
+      title: 'Aviso!',
+      buttonLabels: ['SÍ', 'CANCELAR'],
+      animation: 'default',
+      primaryButtonIndex: 1,
+      cancelable: true,
+      callback: function (index) {
+        if (0 === index) {
+          deleteProperty();
+          setTheme('theme-default');
+          removeStorageColors();
+          functionPopPage(2);
+          ons.notification.toast('Tema reiniciado correctamente!', {
+            title: 'Aviso!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
+        } else {
+          ons.notification.toast('De acuerdo, todo fluye como normalmente!', {
+            title: 'Aviso!',
+            timeout: 1000,
+            animation: 'ascend',
+          });
+        }
+      },
+    });
+  }
 }
