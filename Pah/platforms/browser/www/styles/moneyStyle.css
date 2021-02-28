@@ -7,10 +7,10 @@
 }
 
 .moneyInfo {
-  display: block;
-  text-align: left;
-
-  font-size: 30px;
+  text-align: center;
+  padding-bottom: 16px;
+  font-size: 50px;
+  font-weight: 500;
   color: var(--money-info);
 }
 

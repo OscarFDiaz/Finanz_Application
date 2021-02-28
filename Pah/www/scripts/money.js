@@ -187,27 +187,57 @@ function getMoneys() {
     return;
   }
 
+  let totalMoney = getTotalMoney();
+
+  if (languaje == 'false') {
+    moneyView.innerHTML += `
+    <ons-card>
+      <label style="color: var(--text-without-card); display: block; padding: 16px 0px 0px 16px;">YOUR TOTAL MONEY:</label>
+      <div class="title totalMoneyTitle" style="color: var(--card-text-title-color); display: block; text-align:left; padding-top: 0;">$ 
+        <span class="totalMoneyTitle" id="totalMoneyMoney">
+          ${totalMoney}
+        </span>
+      </div>
+    </ons-card>`;
+  } else {
+    moneyView.innerHTML += `
+    <ons-card>
+    <label style="color: var(--text-without-card); display: block; padding: 16px 0px 0px 16px;">TU DINERO TOTAL:</label>
+    <div class="title totalMoneyTitle" style="color: var(--card-text-title-color); display: block; text-align:left; padding-top: 0;">$ 
+      <span class="totalMoneyTitle" id="totalMoneyMoney">
+        ${totalMoney}
+      </span>
+    </div>
+  </ons-card>`;
+  }
+
   for (let i = 0; i < moneys.length; i++) {
     let mName = moneys[i].moneyName;
     let mMoney = moneys[i].moneyCurrent;
 
     if (languaje == 'false') {
-      moneyView.innerHTML += `<ons-card>
-        <div class="title moneyTitle">
-          ${mName}
-        </div>
-        <div class="content">
-          <label class="moneyInfo" id="${mName}-money">$ ${mMoney}</label>
-        </div>
-        <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addMoneyTo('${mName}')" > 
-          ADD / SUBSTRACT
-        </ons-button>
-        <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteMoney('${mName}')" >
-          DELETE
-        </ons-button>
-      </ons-card>`;
+      moneyView.innerHTML += `
+        <ons-card>
+          <div class="title moneyTitle">
+            ${mName}
+          </div>
+          <div class="content">
+            <div class="title totalMoneyTitle" style="color: var(--card-text-title-color); display: block; text-align:left; padding-top: 0px; padding-bottom: 0px">$ 
+              <span class="moneyInfo" id="${mName}-money">
+                ${mMoney}
+              </span>
+            </div>
+          </div>
+          <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addMoneyTo('${mName}')" > 
+            MODIFY MONEY
+          </ons-button>
+          <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteMoney('${mName}')" >
+            DELETE
+          </ons-button>
+        </ons-card>`;
     } else {
-      moneyView.innerHTML += `<ons-card>
+      moneyView.innerHTML += `
+      <ons-card>
         <div class="title moneyTitle">
           ${mName}
         </div>
@@ -215,7 +245,7 @@ function getMoneys() {
           <label class="moneyInfo" id="${mName}-money">$ ${mMoney}</label>
         </div>
         <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addMoneyTo('${mName}')" > 
-          SUMAR / RESTAR
+          MODIFICAR DINERO
         </ons-button>
         <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteMoney('${mName}')" >
           ELIMINAR
