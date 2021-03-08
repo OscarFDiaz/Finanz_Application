@@ -189,6 +189,7 @@ function getMoneys() {
 
   let totalMoney = getTotalMoney();
 
+  /*
   if (languaje == 'false') {
     moneyView.innerHTML += `
     <ons-card>
@@ -210,6 +211,7 @@ function getMoneys() {
     </div>
   </ons-card>`;
   }
+  */
 
   for (let i = 0; i < moneys.length; i++) {
     let mName = moneys[i].moneyName;
@@ -217,6 +219,7 @@ function getMoneys() {
 
     if (languaje == 'false') {
       moneyView.innerHTML += `
+      <ons-carousel-item style="background-color: #085078;">
         <ons-card>
           <div class="title moneyTitle">
             ${mName}
@@ -234,7 +237,8 @@ function getMoneys() {
           <ons-button class="moneyButtonDe" style="margin-bottom: 16px;" onclick="deleteMoney('${mName}')" >
             DELETE
           </ons-button>
-        </ons-card>`;
+        </ons-card>
+      </ons-carousel-item>`;
     } else {
       moneyView.innerHTML += `
       <ons-card>
