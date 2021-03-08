@@ -18,8 +18,15 @@
     <access origin="*" />
 	
 	<plugin name="cordova-plugin-whitelist" />
-	
-	<platform name="android" />
+
+	<platform name="android">
+        <icon density="ldpi" src="icons/icon-ldpi.png" />
+        <icon density="mdpi" src="icons/icon-mdpi.png" />
+        <icon density="hdpi" src="icons/icon-hdpi.png" />
+        <icon density="xhdpi" src="icons/icon-xhdpi.png" />
+        <icon density="xxhdpi" src="icons/icon-xxhdpi.png" />
+        <icon density="xxxhdpi" src="icons/icon-xxxhdpi.png />
+    </platform>
 	
 	<icon src="icono.png" platform="android"/>
 

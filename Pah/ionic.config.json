@@ -1,0 +1,8 @@
+{
+    "name": "Flynanz",
+    "type": "custom",
+    "integrations": {
+      "cordova": {}
+    }
+  }
+  
