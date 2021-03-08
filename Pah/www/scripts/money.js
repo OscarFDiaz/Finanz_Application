@@ -242,7 +242,11 @@ function getMoneys() {
           ${mName}
         </div>
         <div class="content">
-          <label class="moneyInfo" id="${mName}-money">$ ${mMoney}</label>
+          <div class="title totalMoneyTitle" style="color: var(--card-text-title-color); display: block; text-align:left; padding-top: 0px; padding-bottom: 0px">$ 
+            <span class="moneyInfo" id="${mName}-money">
+              ${mMoney}
+            </span>
+          </div>
         </div>
         <ons-button class="moneyButtonAdd" style="margin-bottom: 16px;" onclick="addMoneyTo('${mName}')" > 
           MODIFICAR DINERO
