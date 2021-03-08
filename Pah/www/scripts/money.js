@@ -189,7 +189,6 @@ function getMoneys() {
 
   let totalMoney = getTotalMoney();
 
-  /*
   if (languaje == 'false') {
     moneyView.innerHTML += `
     <ons-card>
@@ -211,7 +210,6 @@ function getMoneys() {
     </div>
   </ons-card>`;
   }
-  */
 
   for (let i = 0; i < moneys.length; i++) {
     let mName = moneys[i].moneyName;
